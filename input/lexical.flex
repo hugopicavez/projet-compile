@@ -299,28 +299,28 @@ WRITE          =(w|W)(r|R)(i|I)(t|T)(e|E)
 ":="                    {return symbol(sym.AFFECT);}
 "."                     {return symbol(sym.POINT);}
 
-{and}                   { return symbol(sym.AND);}
-{array}                 { return symbol(sym.ARRAY);}
-{begin}                 { return symbol(sym.BEGIN);}
-{div}                   { return symbol(sym.DIV);}
-{do}                    { return symbol(sym.DO);}
-{downto}                { return symbol(sym.DOWNTO);}
-{else}                  { return symbol(sym.ELSE);}
-{end}                   { return symbol(sym.END);}
-{for}                   { return symbol(sym.FOR);}
-{if}                    { return symbol(sym.IF);}
-{mod}                   { return symbol(sym.MOD);}
-{new_line}              { return symbol(sym.NEW_LINE);}
-{not}                   { return symbol(sym.NOT);}
-{null}                  { return symbol(sym.NULL);}
-{of}                    { return symbol(sym.OF);}
-{or}                    { return symbol(sym.OR);}
-{program}               { return symbol(sym.PROGRAM);}
-{read}                  { return symbol(sym.READ);}
-{then}                  { return symbol(sym.THEN);}
-{to}                    { return symbol(sym.TO);}
-{while}                 { return symbol(sym.WHILE);}
-{write}                 { return symbol(sym.WRITE);}
+{AND}                    { return symbol(sym.AND);}
+{ARRAY}                    { return symbol(sym.ARRAY);}
+{BEGIN}                    { return symbol(sym.BEGIN);}
+{DIV}                    { return symbol(sym.DIV);}
+{DO}                    { return symbol(sym.DO);}
+{DOWNTO}                    { return symbol(sym.DOWNTO);}
+{ELSE}                    { return symbol(sym.ELSE);}
+{END}                    { return symbol(sym.END);}
+{FOR}                    { return symbol(sym.FOR);}
+{IF}                    { return symbol(sym.IF);}
+{MOD}                    { return symbol(sym.MOD);}
+{NEW_LINE}                    { return symbol(sym.NEW_LINE);}
+{NOT}                    { return symbol(sym.NOT);}
+{NULL}                    { return symbol(sym.NULL);}
+{OF}                    { return symbol(sym.OF);}
+{OR}                    { return symbol(sym.OR);}
+{PROGRAM}                    { return symbol(sym.PROGRAM);}
+{READ}                    { return symbol(sym.READ);}
+{THEN}                    { return symbol(sym.THEN);}
+{TO}                    { return symbol(sym.TO);}
+{WHILE}                    { return symbol(sym.WHILE);}
+{WRITE}                    { return symbol(sym.WRITE);}
 
 
 {IDF}                   { return symbol(sym.IDF);}
