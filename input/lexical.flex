@@ -235,15 +235,32 @@ EXP            = ("E"{SIGNE}{NUM})|("e"{SIGNE}{NUM})
 DEC            = {NUM}"."{NUM}
 INT            = NUM
 REEL           = DEC
+CHAINE_CAR     = \040|\041|[\043-\176]
+CHAINE         = \042({CHAINE_CAR}|(\042\042))*\042
+COMMENTAIRE    = "-""-"([\040-\176]|\t
 
-Les constantes numériques sont définies par :
-
-   - Constantes entières :  INT  =   NUM
-   - Constantes réelles :   REEL =   DEC + DEC EXP
-
-// ------------
-// A COMPLETER
-// ------------
+AND            =(a|A)(n|N)(d|D)
+ARRAY          =(a|A)(r|R)(r|R)(a|A)(y|Y)
+BEGIN          =(b|B)(e|E)(g|G)(i|I)(n|N)
+DIV            =(d|D)(i|I)(v|V)
+DO             =(d|D)(o|O)
+DOWNTO         =(d|D)(o|O)(w|W)(n|N)(t|T)(o|O)
+ELSE           =(e|E)(l|L)(s|S)(e|E)
+END            =(e|E)(n|N)(d|D)
+FOR            =(f|F)(o|O)(r|R)
+IF             =(i|I)(f|F)
+MOD            =(m|M)(o|O)(d|D)
+NEW_LINE       =(n|N)(e|E)(w|W)(_|_)(l|L)(i|I)(n|N)(e|E)
+NOT            =(n|N)(o|O)(t|T)
+NULL           =(n|N)(u|U)(l|L)(l|L)
+OF             =(o|O)(f|F)
+OR             =(o|O)(r|R)
+PROGRAM        =(p|P)(r|R)(o|O)(g|G)(r|R)(a|A)(m|M)
+READ           =(r|R)(e|E)(a|A)(d|D)
+THEN           =(t|T)(h|H)(e|E)(n|N)
+TO             =(t|T)(o|O)
+WHILE          =(w|W)(h|H)(i|I)(l|L)(e|E)
+WRITE          =(w|W)(r|R)(i|I)(t|T)(e|E)
 
 %%
 
@@ -256,6 +273,8 @@ Les constantes numériques sont définies par :
 \n                     { }
 
 "+"                    { return symbol(sym.PLUS); }
+
+
 
 .                      { System.out.println("Erreur Lexicale : '" +
                             yytext() + "' non reconnu ... ligne " + 
