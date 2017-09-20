@@ -1,0 +1,112 @@
+
+                        Lexicographie du langage JCas
+                        -----------------------------
+
+1) Conventions
+--------------
+
+- Les éléments entre quotes (comme '0', '.') désignent les caractères
+ou chaînes correspondantes ; ce sont des terminaux du langage JCas.
+- Les noms notés en majuscules (comme LETTRE, REEL) désignent des langages.
+- Les opérateurs sur les langages utilisés sont les notations habituelles
+  d'expressions régulieres.
+- '' désigne la chaîne vide.
+- On appelle "caractère imprimable" tout caractère dont le code ASCII
+  (en octal) est dans l'intervalle [\040-\176].
+  Le caractere ' ' a le code octal \040.
+  Le caractere '!' a le code octal \041.
+  Le caractere '"' a le code octal \042.
+ 
+
+2) Identificateurs
+------------------
+
+LETTRE = {'a',...,'z','A',...,'Z'}
+
+CHIFFRE = {'0',...,'9'}
+
+Les identificateurs sont définis par :
+
+        IDF = LETTRE (LETTRE + CHIFFRE + '_')*
+
+Exception : les mots réservés ne sont pas des identificateurs. 
+Les majuscules ne sont pas pertinentes pour distinguer des identificateurs.
+
+
+3) Constantes numériques
+------------------------
+
+NUM  = CHIFFRE CHIFFRE*
+
+SIGNE = {'+', '-', ''}.
+
+EXP (exposants)  = 'E' SIGNE NUM + 'e' SIGNE NUM
+
+DEC (décimaux positifs)  = NUM '.' NUM
+
+Les constantes numériques sont définies par :
+
+   - Constantes entières :  INT  =   NUM 
+   - Constantes réelles :   REEL =   DEC + DEC EXP
+
+
+Exemples : '12.0E+4'  '0.5e2'  '12.3' 
+Contre-exemples :  '3.'  '3.5E 2'  '12E3'
+
+
+4) Chaînes de caractères
+------------------------
+
+CHAINE_CAR est l'ensemble de tous les caractères imprimables,
+a l'exception du caractère '"'.
+
+Les chaînes de caractères sont définies par :
+
+        CHAINE = '"' (CHAINE_CAR + '""')* '"'
+
+Exemple : '"asd""ef "' ; '""'
+Contre-exemples : '"asdasf"v"' 
+
+
+
+5) Commentaires
+---------------
+
+Un commentaire est une suite de caractères imprimables et de tabulations
+qui commence par deux tirets adjacents et s'étend jusqu'à la fin de ligne.
+
+
+
+6) Mots réservés
+----------------
+
+Les mots suivants (dits mots réservés) ne sont pas des identificateurs :
+
+        and             array           begin           div
+        do              downto          else            end
+        for             if              mod             new_line 
+        not             null            of              or              
+        program         read            then            to              
+        while           write
+
+
+On peut mettre en majuscules tout ou partie d'un mot réservé.
+Par exemple, 'ElsE' est équivalent a 'else'.
+
+
+7) Symboles spéciaux
+--------------------
+
+   '<'  '>'  '='  '+'  '-'  '*'  '/'  '.'  '['  ']'  ','  ':'  '('  ')' ';'
+
+   '..'  ':='  '/='  '>='  '<='  
+
+
+8) Séparateurs
+--------------
+
+Espaces, fin de lignes, tabulations et commentaires sont des séparateurs.
+
+Par exemple, ': =' n'est pas une affectation, mais la suite des deux 
+symboles spéciaux ':' et '='.
+
