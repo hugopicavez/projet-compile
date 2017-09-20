@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html land="fr">
+  <head>
+    <title>TP CS410 - Langages et compilation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="../style/css/bootstrap.min.css" rel="stylesheet" media="screen">    
+	<link href="../style/css/cs410.css" rel="stylesheet" media="screen">    
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+	<div class="container">
+		<div class="header">
+			<ul class="nav nav-pills pull-right">
+			<li class="active"><a href="../index.html">Projet</a></li>
+			<li><a href="about.html">À propos de</a></li>			
+			</ul>
+			<a href="../"><img src="../images/esisar.gif"/></a>
+		</div>
+		<div>
+			<div class="page-header">
+				<h1><a href="../">TP Langages et Compilation</a> > <a href="../passe2/">Passe 2</a></h1>
+			</div>
+			<br/>			
+			<p/>
+				  <h2 class="page_title">Le test avec Cobertura</h2> 
+ 
+
+
+<p/>
+<ol>
+<li><a href="#couverture">Couverture de programme</a></li>
+<li><a href="#instructions">Cobertura</a></li>
+<li><a href="#travail">Travail à effectuer avec Cobertura</a></li>
+</ol>
+<br>
+<hr/>
+
+
+<a name="couverture"></a>
+<h3>Couverture de programme</h3>
+<p>
+Lorsqu'on &eacute;crit des tests, on cherche &agrave; ce que l'ensemble du jeu de tests
+couvre le programme. On a diff&eacute;rentes sortes de couverture : la couverture 
+<em>des instructions</em>, la couverture <em>des branches</em> et la couverture 
+<em>des chemins</em>. On s'int&eacute;resse ici &agrave; la couverture la plus simple : 
+la couverture des instructions.
+</p>
+<h4>Couverture des instructions</h4>
+<p>
+Un test couvre une instruction du programme lorsque cette instruction est ex&eacute;cut&eacute;e lors du test.
+</p>
+<h4>Taux de couverture d'un jeu de tests</h4>
+<p>
+Le taux de couverture d'un jeu de tests et le rapport entre le nombre
+d'instructions couvertes par au moins un test et le nombre d'instructions 
+total.</p>
+<p>
+L'objectif est d'obtenir un taux de couverture le plus haut possible, proche de 100%.
+Il n'est pas toujours possible d'obtenir un taux de 100% &agrave; cause du 
+"code mort", par exemple lorsqu'on fait de la programmation d&eacute;fensive.
+</p>
+<hr/>
+<a name="instructions"></a>
+<h3>Cobertura</h3>
+<p>
+Cobertura est un outil qui permet de calculer la couverture d'un jeu de tests
+sur un programme Java. Cobertura &eacute;value en particulier la couverture sur les 
+<em>lignes du programme</em>.
+</p>
+
+<h4>Utilisation de Cobertura dans le cadre du projet</h4>
+<p>
+Aller dans le répertoire <code>ProjetCompil/Cobertura</code>.
+Dans ce répertoire, vous avez un script <code>testCouvertureVerif</code>, 
+qui permet de lancer les tests avec
+Cobertura, et d'obtenir un rapport d'exécution.
+</p>
+
+
+<h3>Utilisation du script <code>testCouvertureVerif</code></h3>
+<p>
+Dans le r&eacute;pertoire Cobertura : 
+<br>
+<ul>
+<code>./testCouvertureVerif chemin_parent_ProjetCompil fichiers_tests</code><br>
+</ul>
+</p>
+<p>
+<ul>
+<li><code>chemin_parent_ProjetCompil</code> est le r&eacute;pertoire o&ugrave; se trouve 
+<code>ProjetCompil</code>, typiquement <code>$HOME</code>.</li>
+<li><code>fichiers_tests</code> d&eacute;signe les fichiers de tests.</li>
+Dans les deux cas, les chemins sont absolus (et non relatifs).
+</ul>
+</p>
+<p>
+Typiquement, la commande &agrave; ex&eacute;cuter sera : 
+<ul>
+<code>./testCouvertureVerif $HOME $HOME/ProjetCompil/Verif/Test/*.cas</code>
+</ul>
+</p>
+<p>
+Cette commande cr&eacute;e un r&eacute;pertoire <code>CouvertureVerif</code>, qui contient
+les informations de couverture (ouvrir le fichier index.html) dans votre 
+navigateur. On trouve en particulier pour chaque fichier java, le nombre 
+d'ex&eacute;cutions de chaque ligne du programme. Les lignes non couvertes 
+apparaissent en rouge et sont pr&eacute;c&eacute;d&eacute;es de "0".
+</p>
+<p>
+Par exemple, on peut lancer le script
+<ul>
+<code>./testCouvertureVerif $HOME $HOME/ProjetCompil/Verif/Test/simple.cas</code><br>
+</ul>
+et examiner la couverture de <code>TestVerif.java</code> en ouvrant 
+dans un navigateur le fichier <code>CouvertureVerif/index.html</code>.
+</p>
+<hr/>
+<a name="travail"></a>
+<h2>Travail &agrave; effectuer avec Cobertura</h2>
+<p>
+Le travail &agrave; effectuer avec Cobertura est le suivant : 
+</p>
+<p>
+<ul>
+<li>Evaluer la couverture de votre jeu de tests sur votre programme.</li>
+<li>Rep&eacute;rer toutes les lignes non couvertes par votre jeu de tests, qui 
+ne sont pas de la programmation d&eacute;fensive.</li>
+<li>Ajouter de nouveaux tests de fa&ccedil;on &agrave; couvrir le maximum de 
+lignes du programme.</li>
+</ul>
+</p>
+<br/>
+<br/>
+
+			
+		</div>
+	</div> <!-- container -->
+	<br/><br/><br/>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!--script src="../style/js/jquery.js"></script-->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../style/js/bootstrap.min.js"></script>
+  </body>
+</html>
+

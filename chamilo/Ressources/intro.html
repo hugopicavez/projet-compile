@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html land="fr">
+  <head>
+    <title>TP CS410 - Langages et compilation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="../style/css/bootstrap.min.css" rel="stylesheet" media="screen">    
+	<link href="../style/css/cs410.css" rel="stylesheet" media="screen">    
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+	<div class="container">
+		<div class="header">
+			<ul class="nav nav-pills pull-right">
+			<li class="active"><a href="../index.html">Projet</a></li>
+			<li><a href="about.html">À propos de</a></li>			
+			</ul>
+			<a href="../"><img src="../images/esisar.gif"/></a>
+		</div>
+		<div>
+			<div class="page-header">
+				<h1><a href="../">TP Langages et Compilation</a> > Introduction</h1>
+			</div>
+			<br/>
+			
+			Ce projet a pour buts : <br/>
+			<ul>
+				<li>écrire un compilateur "zéro-défault" pour le langage JCas ;</li>
+				<li>utiliser des générateurs d'analyseurs lexical et syntaxique (JFlex et Cup) ;</li>
+				<li>écrire des tests ;
+				<li>travailler en équipe.</li>
+			</ul>
+			<p>
+			<a href="Transparents/introduction.pdf" class="btn btn-default">Transparents du cours</a>
+			</p>
+			<br/>
+			<p>
+			
+			<a name="instructions"></a>
+<h3> Instruction pour la r&eacute;cup&eacute;ration et l'installation du projet </h3>
+<p>
+<h4> Installation sur machine personnelle (Syst&egrave;me Linux)</h4>
+<p>
+<ul>
+<li> Java doit &ecirc;tre install&eacute; (version 1.5 minimum)
+</li>
+<!--<li> Installer JFlex (G&eacute;n&eacute;rateur d'analyseur lexical pour Java). <br>
+<a href="http://jflex.de/index.html">Site JFlex</a>. 
+Voir en particulier les pages 
+<a href="http://jflex.de/download.html">Download</a> et 
+<a href="http://jflex.de/installing.html">Documentation/Installation 
+instructions</a>
+</li>-->
+<li> Pour faire fonctionner la machine abstraite (pour la passe 3), 
+il sera n&eacute;cessaire d'installer le compilateur Ada Gnat.
+</li>
+</ul>
+</p>
+</p>
+<h4> T&eacute;l&eacute;chargement et installation du projet </h4>
+<p>
+<ul>
+<li>
+T&eacute;l&eacute;charger le projet : <a href="ProjetCompil.tar.gz">ProjetCompil.tar.gz</a>
+</li>
+<li> Placer le fichier ProjetCompil.tar.gz dans le r&eacute;pertoire $HOME. D&eacute;tarer et d&eacute;compresser : <br>
+<code> gunzip ProjetCompil.tar.gz </code> <br>
+<code> tar xvf ProjetCompil.tar </code>
+</li>
+</ul>
+</p>
+
+<h4> Modifier le CLASSPATH </h4>
+<p>
+<ul>
+<li>Il faut rajouter jflex et CUP au CLASSPATH pour pouvoir compiler le projet fourni.</li>
+<li>
+Dans le fichier .bash_profile , (ou .bashrc , ou .tcshrc...), 
+modifier le CLASSPATH : 
+<br>
+
+<pre>export CLASSPATH=$CLASSPATH:$HOME:$HOME/ProjetCompil/Global/Bin/java-cup-11a-runtime.jar:$HOME/ProjetCompil/Global/Bin/JFlex.jar:.</pre>
+Dans le dossier $HOME, relire le fichier .bash_profile : 
+<code>source .bash_profile</code>, (ou <code>source .bashrc</code> , ou .tcshrc...)
+</li></ul>
+</p>
+
+<h4>Compiler</h4>
+<p>
+<ul><li>
+<code>cd ProjetCompil</code></li>
+<li><code>make</code></li>
+</ul>
+</p>
+
+<h4> Tester l'analyse lexicale </h4>
+<p>
+<ul><li>
+<code>cd Syntaxe/Test</code></li>
+<li><code>./lexico simple.cas</code></li><br>
+On doit obtenir : 
+<ul>
+<pre>
+--------------------------------------------------------------------
+Fichier : simple.cas
+--------------------------------------------------------------------
+1	-- Programme le plus simple
+2	
+3	program
+4	begin
+5	   null;
+6	end.
+Appuyer sur "Return"
+
+--------------------------------------------------------------------
+Erreur Lexicale : '-' non reconnu ... ligne 1
+Exception in thread "main" ProjetCompil.Syntaxe.Src.ErreurLexicale
+at ProjetCompil.Syntaxe.Src.Lexical.next_token(Lexical.java:773)
+at ProjetCompil.Syntaxe.Src.TestLex.main(TestLex.java:41)
+</pre>
+</ul>
+</ul>
+</p>
+
+
+<h4> Tester l'analyse syntaxique </h4> 
+<p>
+<ul>
+<li><code>./syntaxe simple.cas</code></li><br>
+On doit obtenir : 
+<ul>
+<pre>
+--------------------------------------------------------------------
+Fichier : simple.cas
+--------------------------------------------------------------------
+1	-- Programme le plus simple
+2	
+3	program
+4	begin
+5	   null;
+6	end.
+Appuyer sur "Return"
+
+--------------------------------------------------------------------
+Erreur Lexicale : '-' non reconnu ... ligne 1
+Appuyer sur "Return"
+</pre>
+</ul>
+</ul>
+</p>
+
+<br/><br/>
+			
+			
+			</p>
+		</div>
+	</div> <!-- container -->
+	<br/><br/><br/>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!--script src="../style/js/jquery.js"></script-->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../style/js/bootstrap.min.js"></script>
+  </body>
+</html>
+
