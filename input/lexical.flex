@@ -233,10 +233,10 @@ NUM            = {CHIFFRE}{CHIFFRE}*
 SIGNE          = "+"|"-"|""
 EXP            = ("E"{SIGNE}{NUM})|("e"{SIGNE}{NUM})
 DEC            = {NUM}"."{NUM}
-INT            = NUM
-REEL           = DEC
+CONST_ENT      = NUM
+CONST_REEL     = DEC
 CHAINE_CAR     = \040|\041|[\043-\176]
-CHAINE         = \"({CHAINE_CAR}|(\"\"))*\"
+CONST_CHAINE   = \"({CHAINE_CAR}|(\"\"))*\"
 COMM_CAR       = \t|[\040-\176]
 COMMENTAIRE    = "--"{COMM_CAR}*
 
