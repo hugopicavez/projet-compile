@@ -236,7 +236,7 @@ DEC            = {NUM}"."{NUM}
 INT            = NUM
 REEL           = DEC
 CHAINE_CAR     = \040|\041|[\043-\176]
-CHAINE         = \042({CHAINE_CAR}|(\042\042))*\042
+CHAINE         = \"({CHAINE_CAR}|(\"\"))*\"
 COMMENTAIRE    = "-""-"([\040-\176]|\t
 
 AND            =(a|A)(n|N)(d|D)
@@ -272,7 +272,39 @@ WRITE          =(w|W)(r|R)(i|I)(t|T)(e|E)
 
 \n                     { }
 
-"+"                    { return symbol(sym.PLUS); }
+{COMMENTAIRE}          { }
+
+// opération
+"<"                     {return symbol(sym.INF);}
+">"                     {return symbol(sym.SUP);}
+"="                     {return symbol(sym.EGAL);}
+"/="                    {return symbol(sym.DIFF);}
+"<="                    {return symbol(sym.INF_EGAL);}
+">="                    {return symbol(sym.SUP_EGAL);}
+"+"                     {return symbol(sym.PLUS);}
+"-"                     {return symbol(sym.MOINS);}
+"*"                     {return symbol(sym.MULT);}
+"/"                     {return symbol(sym.DIV_REEL);}
+
+"("                     {return symbol(sym.PAR_OUVR);}
+")"                     {return symbol(sym.PAR_FERM);}
+".."                    {return symbol(sym.DOUBLE_POINT);}
+":"                     {return symbol(sym.DEUX_POINTS);}
+","                     {return symbol(sym.VIRGULE);}
+";"                     {return symbol(sym.POINT_VIRGULE);}
+"["                     {return symbol(sym.CROCH_OUVR);}
+"]"                     {return symbol(sym.CROCH_FERM);}
+":="                    {return symbol(sym.AFFECT);}
+"."                     {return symbol(sym.POINT);}
+/*
+AND,         ARRAY,       BEGIN;
+DIV,         DO,          DOWNTO;
+ELSE,        END,         FOR;
+IF,          MOD,         NEW_LINE;
+NOT,         NULL,        OF;
+OR,          PROGRAM,     READ;
+THEN,        TO,          WHILE;
+WRITE;*/
 
 
 
