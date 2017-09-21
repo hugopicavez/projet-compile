@@ -274,7 +274,7 @@ WRITE          =(w|W)(r|R)(i|I)(t|T)(e|E)
 
 \n                     { }
 
-{COMMENTAIRE}          { }
+{COMMENTAIRE}          { System.out.println(yylex());}
 
 // opération
 "<"                     {return symbol(sym.INF);}
@@ -299,34 +299,58 @@ WRITE          =(w|W)(r|R)(i|I)(t|T)(e|E)
 ":="                    {return symbol(sym.AFFECT);}
 "."                     {return symbol(sym.POINT);}
 
-{AND}                    { return symbol(sym.AND);}
-{ARRAY}                    { return symbol(sym.ARRAY);}
-{BEGIN}                    { return symbol(sym.BEGIN);}
-{DIV}                    { return symbol(sym.DIV);}
+{AND}                   { return symbol(sym.AND);}
+{ARRAY}                 { return symbol(sym.ARRAY);}
+{BEGIN}                 { return symbol(sym.BEGIN);}
+{DIV}                   { return symbol(sym.DIV);}
 {DO}                    { return symbol(sym.DO);}
-{DOWNTO}                    { return symbol(sym.DOWNTO);}
-{ELSE}                    { return symbol(sym.ELSE);}
-{END}                    { return symbol(sym.END);}
-{FOR}                    { return symbol(sym.FOR);}
+{DOWNTO}                { return symbol(sym.DOWNTO);}
+{ELSE}                  { return symbol(sym.ELSE);}
+{END}                   { return symbol(sym.END);}
+{FOR}                   { return symbol(sym.FOR);}
 {IF}                    { return symbol(sym.IF);}
-{MOD}                    { return symbol(sym.MOD);}
-{NEW_LINE}                    { return symbol(sym.NEW_LINE);}
-{NOT}                    { return symbol(sym.NOT);}
-{NULL}                    { return symbol(sym.NULL);}
+{MOD}                   { return symbol(sym.MOD);}
+{NEW_LINE}              { return symbol(sym.NEW_LINE);}
+{NOT}                   { return symbol(sym.NOT);}
+{NULL}                  { return symbol(sym.NULL);}
 {OF}                    { return symbol(sym.OF);}
 {OR}                    { return symbol(sym.OR);}
-{PROGRAM}                    { return symbol(sym.PROGRAM);}
-{READ}                    { return symbol(sym.READ);}
-{THEN}                    { return symbol(sym.THEN);}
+{PROGRAM}               { return symbol(sym.PROGRAM);}
+{READ}                  { return symbol(sym.READ);}
+{THEN}                  { return symbol(sym.THEN);}
 {TO}                    { return symbol(sym.TO);}
-{WHILE}                    { return symbol(sym.WHILE);}
-{WRITE}                    { return symbol(sym.WRITE);}
+{WHILE}                 { return symbol(sym.WHILE);}
+{WRITE}                 { return symbol(sym.WRITE);}
 
 
 {IDF}                   { return symbol(sym.IDF);}
-{CONST_ENT}             { return symbol(sym.CONST_ENT);}
-{CONST_REEL}            { return symbol(sym.CONST_REEL);}
-{CONST_CHAINE}          { return symbol(sym.CONST_CHAINE);}
+
+
+{CONST_ENT}             {  try {
+                                return symbol(sym.CONST_ENT,
+                           new Integer(yytext()));
+                           } catch (NumberFormatException e) {
+                                e.printStackTrace();
+                                throw new ErreurLexicale();
+                           }
+                        }
+{CONST_REEL}            { try {
+                                return symbol(sym.CONST_REEL,
+                          new Double(yytext()));
+                          } catch (NumberFormatException e) {
+                               throw new ErreurLexicale();
+                          }
+                        }
+{CONST_CHAINE}          {
+                            String valueBase = yylex();
+                            String value = "";
+                            for(int i = 0; i < valueBase.length(); i++){
+                                if(valueBase.charAt(i) == '"')
+                                    continue;
+                                value += valueBase.charAt(i);
+                            }
+                            return symbol(sym.CONST_CHAINE,value);
+                        }
 
 
 

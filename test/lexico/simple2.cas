@@ -1,0 +1,6 @@
+program
+begin
+    -- ceci est un commentaire
+   null;
+end.
+
