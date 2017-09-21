@@ -239,7 +239,7 @@ CHAINE_CAR     = \040|\041|[\043-\176]
 CONST_CHAINE   = \"({CHAINE_CAR}|(\"\"))*\"
 COMM_CAR       = \t|[\040-\176]
 COMMENTAIRE    = "--"{COMM_CAR}*
-ERROR          = (\041|[\043-\072][\074-\176])*|\"
+ERROR          = (\041|[\043-\072]|[\074-\176])*|\"
 
 
 AND            =(a|A)(n|N)(d|D)
@@ -342,6 +342,10 @@ WRITE          =(w|W)(r|R)(i|I)(t|T)(e|E)
                                throw new ErreurLexicale();
                           }
                         }
+
+
+{END}.			{return symbol(sym.END) ;}
+
 {CONST_CHAINE}          {
                             String valueBase = yytext();
                             String value = "";
