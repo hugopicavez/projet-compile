@@ -239,6 +239,7 @@ CHAINE_CAR     = \040|\041|[\043-\176]
 CONST_CHAINE   = \"({CHAINE_CAR}|(\"\"))*\"
 COMM_CAR       = \t|[\040-\176]
 COMMENTAIRE    = "--"{COMM_CAR}*
+ERROR          = (\041|[\043-\072][\074-\176])*|\"
 
 
 AND            =(a|A)(n|N)(d|D)
@@ -355,7 +356,7 @@ WRITE          =(w|W)(r|R)(i|I)(t|T)(e|E)
 
 
 
-.                      { System.out.println("Erreur Lexicale : '" +
+{ERROR}                      { System.out.println("Erreur Lexicale : '" +
                             yytext() + "' non reconnu ... ligne " + 
                             numLigne()) ;
                          throw new ErreurLexicale() ; }
