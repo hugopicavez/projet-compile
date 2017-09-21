@@ -1,4 +1,4 @@
-<project name="compilation" basedir=".">
+<project name="compilation" basedir="." default="runlex">
 
 	<property name="src.dir" value="src"/>
 	<property name="classes.dir" value="classes"/>

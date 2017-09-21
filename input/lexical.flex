@@ -274,7 +274,7 @@ WRITE          =(w|W)(r|R)(i|I)(t|T)(e|E)
 
 \n                     { }
 
-{COMMENTAIRE}          { System.out.println(yylex());}
+{COMMENTAIRE}          { }
 
 // opération
 "<"                     {return symbol(sym.INF);}
@@ -342,7 +342,7 @@ WRITE          =(w|W)(r|R)(i|I)(t|T)(e|E)
                           }
                         }
 {CONST_CHAINE}          {
-                            String valueBase = yylex();
+                            String valueBase = yytext();
                             String value = "";
                             for(int i = 0; i < valueBase.length(); i++){
                                 if(valueBase.charAt(i) == '"')
