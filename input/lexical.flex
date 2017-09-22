@@ -239,7 +239,9 @@ CHAINE_CAR     = \040|\041|[\043-\176]
 CONST_CHAINE   = \"({CHAINE_CAR}|(\"\"))*\"
 COMM_CAR       = \t|[\040-\176]
 COMMENTAIRE    = "--"{COMM_CAR}*
+ERROR          = (\041|[\043-\072]|[\074-\176])*|\"   
 
+   	
 
 AND            =(a|A)(n|N)(d|D)
 ARRAY          =(a|A)(r|R)(r|R)(a|A)(y|Y)
@@ -274,7 +276,7 @@ WRITE          =(w|W)(r|R)(i|I)(t|T)(e|E)
 
 \n                     { }
 
-{COMMENTAIRE}          { System.out.println(yylex());}
+{COMMENTAIRE}          { }
 
 // opération
 "<"                     {return symbol(sym.INF);}
@@ -341,8 +343,9 @@ WRITE          =(w|W)(r|R)(i|I)(t|T)(e|E)
                                throw new ErreurLexicale();
                           }
                         }
+
 {CONST_CHAINE}          {
-                            String valueBase = yylex();
+                            String valueBase = yytext();
                             String value = "";
                             for(int i = 0; i < valueBase.length(); i++){
                                 if(valueBase.charAt(i) == '"')
@@ -355,7 +358,7 @@ WRITE          =(w|W)(r|R)(i|I)(t|T)(e|E)
 
 
 
-.                      { System.out.println("Erreur Lexicale : '" +
+.                { System.out.println("Erreur Lexicale : '" +
                             yytext() + "' non reconnu ... ligne " + 
                             numLigne()) ;
                          throw new ErreurLexicale() ; }
