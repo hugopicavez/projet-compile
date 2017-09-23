@@ -149,10 +149,9 @@ liste_decl ::= liste_decl:a1 decl:a2 POINT_VIRGULE
 // ---------------------------------------------
 
 
-
 decl ::= liste_idf:a1 DEUX_POINTS type:a2
    {:
-	RESULT = Arbre.creation2(Noeud.Decl, a1, a2, a2.getNumLigne());      
+	RESULT = Arbre.creation2(Noeud.Decl, a1, a2,parser.numLigne());      
    :}
    ;
 liste_idf ::= liste_idf:a1 VIRGULE idf:a2
@@ -161,7 +160,8 @@ liste_idf ::= liste_idf:a1 VIRGULE idf:a2
    :}
    |  idf:a
    {:
-     	 RESULT = a;
+     	 RESULT = Arbre.creation2(Noeud.ListeIdent, Arbre.creation0(Noeud.Vide,parser.numLigne()), a, a.getNumLigne());
+
    :}
    ;
 
@@ -220,7 +220,7 @@ liste_inst ::= liste_inst:a1 inst:a2 POINT_VIRGULE
    :}
    |  inst:a POINT_VIRGULE
    {:
-        RESULT = a; 
+        RESULT = Arbre.creation2(Noeud.ListeInst, Arbre.creation0(Noeud.Vide, a.getNumLigne()),a,a.getNumLigne());
    :}
    ;
 
@@ -234,7 +234,7 @@ inst ::= NULL
    :}
    |  FOR pas:a1 DO liste_inst:a2 END
    {:
-      	RESULT = Arbre.creation2(Noeud.Affect,a1, a2, a2.getNumLigne());
+      	RESULT = Arbre.creation2(Noeud.Pour,a1, a2, a2.getNumLigne());
    :}
    |  WHILE exp:a1 DO liste_inst:a2 END
    {:
@@ -276,9 +276,9 @@ liste_exp ::= liste_exp:a1 VIRGULE exp:a2
    {:
       RESULT = Arbre.creation2(Noeud.ListeExp,a1, a2, a2.getNumLigne());
    :}
-   |  exp
+   |  exp:a
    {:
-      RESULT = Arbre.creation0(Noeud.Ligne, parser.numLigne());
+       RESULT = Arbre.creation2(Noeud.ListeExp, Arbre.creation0(Noeud.Vide, parser.numLigne()),	a, a.getNumLigne());
    :}
    ;
    
@@ -358,7 +358,7 @@ exp ::= facteur:a
 
 facteur ::= CONST_ENT:a1
    {:
-	RESULT = Arbre.creationEntier(a1, a1left);
+	RESULT = Arbre.creationEntier(a1,a1left);
    :}
    |  CONST_REEL:a1
    {: 
@@ -387,3 +387,4 @@ place ::= idf:a
       RESULT = Arbre.creation2(Noeud.Index, a1, a2, a2.getNumLigne());
    :}
    ;
+
