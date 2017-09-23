@@ -161,7 +161,7 @@ liste_idf ::= liste_idf:a1 VIRGULE idf:a2
    :}
    |  idf:a
    {:
-	RESULT = a;
+     	 RESULT = a;
    :}
    ;
 
@@ -199,9 +199,9 @@ constante ::= PLUS const:a
    :}
    ;
 
-const ::= CONST_ENT
+const ::= CONST_ENT:a
    {:
-      RESULT = Arbre.creation0(Noeud.Entier, parser.numLigne());
+      RESULT = Arbre.creationEntier(a, aleft);
    :}
    |  idf:a
    {:
@@ -220,7 +220,7 @@ liste_inst ::= liste_inst:a1 inst:a2 POINT_VIRGULE
    :}
    |  inst:a POINT_VIRGULE
    {:
-     
+        RESULT = a; 
    :}
    ;
 
