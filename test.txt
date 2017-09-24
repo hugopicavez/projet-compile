@@ -1,0 +1,84 @@
+-----------------------------------------------------
+mettre default=runsyntax dans build.xml
+----------------------------------------------------------
+
+
+----------- Build : build.xml
+Buildfile: /home/user/Bureau/projet-compile/build.xml
+
+compile:
+
+jar:
+
+runsyntax:
+     [java] Noeud.Programme                                              -- ligne : 1
+     [java] . Noeud.Vide                                                 -- ligne : 2
+     [java] . Noeud.Nop                                                  -- ligne : 3
+     [java] program
+     [java] begin
+     [java] 
+     [java] Arbre incorrect : Noeud.ListeInst attendu
+     [java] Noeud trouve : Noeud.Nop -- ligne 3
+
+BUILD SUCCESSFUL
+Total time: 1 second
+-------------------------------------
+---------------------------------------------------------------------
+Fichier : exemple.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 3
+. . Noeud.ListeDecl                                          -- ligne : 2
+. . . Noeud.Vide                                             -- ligne : 2
+. . . Noeud.Decl                                             -- ligne : 2
+. . . . Noeud.Ident "T"                                      -- ligne : 2
+. . . . Noeud.Tableau                                        -- ligne : 2
+. . . . . Noeud.Intervalle                                   -- ligne : 2
+. . . . . . Noeud.Entier 1                                   -- ligne : 2
+. . . . . . Noeud.Entier 5                                   -- ligne : 2
+. . . . . Noeud.Tableau                                      -- ligne : 2
+. . . . . . Noeud.Intervalle                                 -- ligne : 2
+. . . . . . . Noeud.Entier 1                                 -- ligne : 2
+. . . . . . . Noeud.Entier 10                                -- ligne : 2
+. . . . . . Noeud.Ident "integer"                            -- ligne : 2
+. . Noeud.Decl                                               -- ligne : 3
+. . . Noeud.Ident "i"                                        -- ligne : 3
+. . . Noeud.Intervalle                                       -- ligne : 3
+. . . . Noeud.Entier 1                                       -- ligne : 3
+. . . . Noeud.Entier 5                                       -- ligne : 3
+. Noeud.ListeInst                                            -- ligne : 9
+. . Noeud.ListeInst                                          -- ligne : 8
+. . . Noeud.Affect                                           -- ligne : 6
+. . . . Noeud.Increment                                      -- ligne : 5
+. . . . . Noeud.Ident "i"                                    -- ligne : 5
+. . . . . Noeud.Entier 1                                     -- ligne : 5
+. . . . . Noeud.Entier 5                                     -- ligne : 5
+. . . . Noeud.Affect                                         -- ligne : 6
+. . . . . Noeud.Index                                        -- ligne : 6
+. . . . . . Noeud.Index                                      -- ligne : 6
+. . . . . . . Noeud.Ident "T"                                -- ligne : 6
+. . . . . . . Noeud.Ident "i"                                -- ligne : 6
+. . . . . . Noeud.Entier 1                                   -- ligne : 6
+. . . . . Noeud.Entier 0                                     -- ligne : 6
+. . . Noeud.Ecriture                                         -- ligne : 8
+. . . . Noeud.Ligne                                          -- ligne : 8
+. . Noeud.Ligne                                              -- ligne : 9
+program
+   
+Arbre incorrect : Noeud.ListeIdent attendu
+Noeud trouve : Noeud.Ident -- ligne 2
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : simple.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.Vide                                                 -- ligne : 2
+. Noeud.Nop                                                  -- ligne : 3
+program
+begin
+
+Arbre incorrect : Noeud.ListeInst attendu
+Noeud trouve : Noeud.Nop -- ligne 3
+---------------------------------------------------------------------
+Appuyer sur Return
