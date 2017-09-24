@@ -242,11 +242,11 @@ inst ::= NULL
    :}
    |  IF exp:a1 THEN liste_inst:a2 END
    {:
-      	RESULT = Arbre.creation2(Noeud.Si,a1, a2, a1.getNumLigne());
+      	RESULT = Arbre.creation3(Noeud.Si,a1, a2, Arbre.creation2(Noeud.ListeInst, Arbre.creation0(Noeud.Vide,parser.numLigne()),Arbre.creation0(Noeud.Nop,a2.getNumLigne()),a2.getNumLigne()), a1.getNumLigne());
    :}
    |  IF exp:a1 THEN liste_inst:a2 ELSE liste_inst:a3 END
    {:
-   	RESULT = Arbre.creation3(Noeud.Si,a1, a2, a3, a3.getNumLigne());
+   	RESULT = Arbre.creation3(Noeud.Si,a1, a2, a3, a1.getNumLigne());
    :}
    |  WRITE PAR_OUVR liste_exp:a PAR_FERM
    {:
