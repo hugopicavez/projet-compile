@@ -220,7 +220,7 @@ liste_inst ::= liste_inst:a1 inst:a2 POINT_VIRGULE
    :}
    |  inst:a POINT_VIRGULE
    {:
-        RESULT = Arbre.creation2(Noeud.ListeInst, Arbre.creation0(Noeud.Vide, a.getNumLigne()),a,a.getNumLigne());
+        RESULT = Arbre.creation2(Noeud.ListeInst, Arbre.creation0(Noeud.Vide,parser.numLigne()),a,a.getNumLigne());
    :}
    ;
 
@@ -230,23 +230,23 @@ inst ::= NULL
    :}
    |  place:a1 AFFECT exp:a2
    {:
-	RESULT = Arbre.creation2(Noeud.Affect,a1, a2, a2.getNumLigne());
+	RESULT = Arbre.creation2(Noeud.Affect,a1, a2, a1.getNumLigne());
    :}
    |  FOR pas:a1 DO liste_inst:a2 END
    {:
-      	RESULT = Arbre.creation2(Noeud.Pour,a1, a2, a2.getNumLigne());
+      	RESULT = Arbre.creation2(Noeud.Pour,a1, a2, a1.getNumLigne());
    :}
    |  WHILE exp:a1 DO liste_inst:a2 END
    {:
-      	RESULT = Arbre.creation2(Noeud.TantQue,a1, a2, a2.getNumLigne());
+      	RESULT = Arbre.creation2(Noeud.TantQue,a1, a2, a1.getNumLigne());
    :}
    |  IF exp:a1 THEN liste_inst:a2 END
    {:
-      	RESULT = Arbre.creation2(Noeud.Si,a1, a2, a2.getNumLigne());
+      	RESULT = Arbre.creation3(Noeud.Si,a1, a2, Arbre.creation2(Noeud.ListeInst, Arbre.creation0(Noeud.Vide,parser.numLigne()),Arbre.creation0(Noeud.Nop,a2.getNumLigne()),a2.getNumLigne()), a1.getNumLigne());
    :}
    |  IF exp:a1 THEN liste_inst:a2 ELSE liste_inst:a3 END
    {:
-   	RESULT = Arbre.creation3(Noeud.Si,a1, a2, a3, a3.getNumLigne());
+   	RESULT = Arbre.creation3(Noeud.Si,a1, a2, a3, a1.getNumLigne());
    :}
    |  WRITE PAR_OUVR liste_exp:a PAR_FERM
    {:
@@ -288,27 +288,27 @@ exp ::= facteur:a
    :}
    |  exp:a1 AND exp:a2
    {:
-      RESULT = Arbre.creation2(Noeud.Et, a1, a2, a2.getNumLigne());
+      RESULT = Arbre.creation2(Noeud.Et, a1, a2, a1.getNumLigne());
    :}
    |  exp:a1 OR exp:a2
    {:
-      RESULT = Arbre.creation2(Noeud.Ou, a1, a2, a2.getNumLigne());
+      RESULT = Arbre.creation2(Noeud.Ou, a1, a2, a1.getNumLigne());
    :}
    |  exp:a1 EGAL exp:a2
    {:
-      RESULT = Arbre.creation2(Noeud.Egal, a1, a2, a2.getNumLigne());
+      RESULT = Arbre.creation2(Noeud.Egal, a1, a2, a1.getNumLigne());
    :}
    |  exp:a1 INF_EGAL exp:a2
    {:
-      RESULT = Arbre.creation2(Noeud.InfEgal, a1, a2, a2.getNumLigne());
+      RESULT = Arbre.creation2(Noeud.InfEgal, a1, a2, a1.getNumLigne());
    :}
    |  exp:a1 SUP_EGAL exp:a2
    {:
-      RESULT = Arbre.creation2(Noeud.SupEgal, a1, a2, a2.getNumLigne());
+      RESULT = Arbre.creation2(Noeud.SupEgal, a1, a2, a1.getNumLigne());
    :}
    |  exp:a1 DIFF exp:a2
    {:
-      RESULT = Arbre.creation2(Noeud.Moins, a1, a2, a2.getNumLigne());
+      RESULT = Arbre.creation2(Noeud.Moins, a1, a2, a1.getNumLigne());
    :}
    |  exp:a1 INF exp:a2
    {:

@@ -325,7 +325,7 @@ WRITE          =(w|W)(r|R)(i|I)(t|T)(e|E)
 {WRITE}                 { return symbol(sym.WRITE);}
 
 
-{IDF}                   { return symbol(sym.IDF, yytext());}
+{IDF}                   { return symbol(sym.IDF, yytext().toLowerCase());}
 
 
 {CONST_ENT}             {  try {
