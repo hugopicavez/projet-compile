@@ -358,7 +358,7 @@ WRITE          =(w|W)(r|R)(i|I)(t|T)(e|E)
 
 
 
-ERROR|.                { System.out.println("Erreur Lexicale : '" +
+{ERROR}|.                { System.out.println("Erreur Lexicale : '" +
                             yytext() + "' non reconnu ... ligne " + 
                             numLigne()) ;
                          throw new ErreurLexicale() ; }
