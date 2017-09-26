@@ -1,0 +1,8 @@
+program
+  x : integer;
+  aBC : integer;
+begin
+  X := 4;
+  AbC := 6;
+  null;
+end.

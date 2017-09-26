@@ -308,7 +308,7 @@ exp ::= facteur:a
    :}
    |  exp:a1 DIFF exp:a2
    {:
-      RESULT = Arbre.creation2(Noeud.Moins, a1, a2, a1.getNumLigne());
+      RESULT = Arbre.creation2(Noeud.NonEgal, a1, a2, a1.getNumLigne());
    :}
    |  exp:a1 INF exp:a2
    {:

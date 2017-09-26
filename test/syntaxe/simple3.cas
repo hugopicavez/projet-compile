@@ -1,0 +1,6 @@
+program
+	1x : integer ;
+begin
+	1x := 2 ;
+	null;
+end.
