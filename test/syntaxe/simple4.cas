@@ -9,7 +9,7 @@ begin
       if caca or coco then
          if 3 > 2 then
             x := x/y ;
-            x := x//y ;
+            x := x/y ;
          end ;
       end ;
    end ;

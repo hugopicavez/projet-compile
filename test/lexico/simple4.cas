@@ -1,12 +1,15 @@
 program
+   x : integer ;
+   y : integer ;
+   i : integer ;
 begin
-   int x ;
-   int y ;
-   for 8 downto 0 do
+   x := 4 ;
+   y := 9 ;
+   for i := 8 downto 0 do
       if caca or coco then
-         if 3>2 then
+         if 3 > 2 then
             x := x/y ;
-            x := x//y ;
+            x := x/y ;
          end ;
       end ;
    end ;
