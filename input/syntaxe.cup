@@ -264,11 +264,11 @@ inst ::= NULL
 
 pas ::= idf:a1 AFFECT exp:a2 TO exp:a3
    {:
-      RESULT = Arbre.creation3(Noeud.Increment, a1, a2, a3, a3.getNumLigne());
+      RESULT = Arbre.creation3(Noeud.Increment, a1, a2, a3, a1.getNumLigne());
    :}
    |  idf:a1 AFFECT exp:a2 DOWNTO exp:a3
    {: 
-      RESULT = Arbre.creation3(Noeud.Decrement, a1, a2, a3 ,a3.getNumLigne());
+      RESULT = Arbre.creation3(Noeud.Decrement, a1, a2, a3 ,a1.getNumLigne());
    :}
    ;
 

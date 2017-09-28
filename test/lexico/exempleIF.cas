@@ -9,4 +9,6 @@ begin
      else
         y := -100;
      end;
+     write("txt1""txt2");
+     write(""); 
 end.

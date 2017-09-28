@@ -1,3 +1,4 @@
+-- test commentaire 
 program 
 		T : array[1 .. 5] of array[1 .. 10] of integer ; 
 		i : 1 .. 5 ; 
