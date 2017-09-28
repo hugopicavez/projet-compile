@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html land="fr">
+  <head>
+    <title>TP CS410 - Langages et compilation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="../style/css/bootstrap.min.css" rel="stylesheet" media="screen">    
+	<link href="../style/css/cs410.css" rel="stylesheet" media="screen">    
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+	<div class="container">
+		<div class="header">
+			<ul class="nav nav-pills pull-right">
+			<li class="active"><a href="../index.html">Projet</a></li>
+			<li><a href="about.html">À propos de</a></li>			
+			</ul>
+			<a href="../"><img src="../images/esisar.gif"/></a>
+		</div>
+		<div>
+			<div class="page-header">
+				<h1><a href="../">TP Langages et Compilation</a> > Passe 3</h1>
+			</div>
+			<br/>			
+			<p/>
+
+   <h3>Cours</h3>
+   <p>
+   <a href="Transparents/passe3.pdf" class="btn btn-default">
+      Transparents du cours</a>
+
+   <br><br><hr>
+
+   <h3>Installation de la machine abstraite</h3>
+
+
+   <p>
+   Pour exécuter les programmes assembleurs générés, il est nécessaire
+   d'installer l'interprète de machine abstraite (<code>ima</code>).
+
+   <p>
+   La spécification de la machine abstraite se trouve dans 
+   <a href="Doc/MachineAbstraite.txt">ProjetCompil/Global/Doc/MachineAbstraite.txt</a>, 
+   la documentation utilisateur se trouve dans
+   <a href="Doc/Ima.txt">ProjetCompil/Global/Doc/Ima.txt</a>.
+
+   <p>
+   <a href="ima.html">Installer la machine abstraite</a>
+
+<br><br>
+<hr>
+
+   <h3>Passe 3</h3>
+
+   <p>
+   Le but de la passe 3 est de générer du code pour la machine abstraite.
+   <p>
+   On a un programme JCas, contextuellement correct, et on cherche
+   à produire un fichier assembleur qui contient le code
+   correspondant à ce programme.
+   <p>
+   La passe 3 peut ne pas réussir à générer du code ; dans ce cas la 
+   compilation doit être interrompue et un message d'erreur s'affiche, 
+   avec le numéro de ligne ayant généré l'erreur dans le programme source.
+
+   <p>
+   <h4>Classes fournies</h4>
+   La classe principale du compilateur JCas est <code>JCasc</code> 
+   ("JCas compiler"), dans le paquetage <code>ProjetCompil.Gencode.Src</code>. 
+   Dans le répertoire <code>ProjetCompil/Gencode/Test</code>, la commande 
+   <code>jcasc fich.cas</code> produit, si la compilation réussit, un fichier 
+   assembleur <code>fich.ass</code> dans le même répertoire.
+
+   <p>
+   Ce fichier peut être exécuté par l'interprète de machine abstraite : 
+   <code>ima fich.ass</code>.
+
+   <p>
+   Le paquetage <code>ProjetCompil.Global.Src3</code> fournit des 
+   primitives pour manipuler le programme assembleur généré. Le 
+   programme est une suite de lignes. Une ligne comporte une étiquette, 
+   une instruction et un commentaire (chacun de ces éléments étant 
+   optionnel). Une instruction comporte une opération et 0, 1 ou 2 opérandes. 
+   (cf. classes <code>Prog</code>, <code>Ligne</code>, <code>Inst</code>, 
+   <code>Etiq</code>, <code>Operation</code>, <code>Operande</code>, 
+   <code>NatureOperande</code>).
+
+
+   <h4>Travail à effectuer</h4> 
+
+   <ul>
+      <li>Coder la passe 3 (programmes Java dans <code>Gencode/Src</code>)</li>
+      <li>Ecrire des jeux de tests (dans <code>Gencode/Test</code>) </li>
+      <li>Rédiger une documentation (dans <code>Gencode/Doc</code>) décrivant :
+      <ul>
+         <li>les messages d'erreur (limitations du compilateur),</li>
+         <li>l'architecture de la passe 3,</li>
+         <li>les différents algorithmes utilisés en passe 3.</li>
+      </ul>
+      </li>
+   </ul>
+   </p>
+
+   <h4>Conseil</h4>
+   Il est important de pouvoir tester efficacement le code écrit. Pour cela, 
+   il faut non seulement générer du code pour la machine abstraite, mais 
+   également pouvoir tester ce code (avec la commande <code>ima</code>).
+   <strong>Il est donc fortement recommandé de commencer par coder les 
+   instructions <code>write</code> et <code>new_line</code>,</strong> afin 
+   de pouvoir exécuter les programmes assembleur générés et vérifier 
+   qu'ils affichent ce que l'on attend.
+
+   <br><br>
+   <hr/>
+	
+   <a name="rendu"></a>
+   <h3> Rendu de la passe 3 </h3>
+   <p>
+   <span class="label label-danger">Important</span> 
+   <strong>Respecter impérativement les consignes suivantes : </strong>
+   <ul>
+      <li> Supprimer toutes les traces (en particulier l'affichage 
+      de l'arbre abstrait, du programme décompilé ou du programme 
+      assembleur généré).</li>
+
+      <li> Mettre un fichier read_me.txt dans le répertoire ProjetCompil, 
+      avec vos noms, prénoms, login et adresses mail.</li>
+
+      <li>déposer sur Chamilo  l'ensemble de l'arborescence ProjetCompil, 
+      sous la forme d'un fichier <code>ProjetCompil.tar.gz</code>.</li>
+   </ul>
+   </p>
+   <hr/>
+					
+
+			
+		</div>
+	</div> <!-- container -->
+	<br/><br/><br/>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!--script src="../style/js/jquery.js"></script-->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../style/js/bootstrap.min.js"></script>
+  </body>
+</html>
+

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html land="fr">
+  <head>
+    <title>TP CS410 - Langages et compilation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="../style/css/bootstrap.min.css" rel="stylesheet" media="screen">    
+	<link href="../style/css/cs410.css" rel="stylesheet" media="screen">    
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+	<div class="container">
+		<div class="header">
+			<ul class="nav nav-pills pull-right">
+			<li class="active"><a href="../index.html">Projet</a></li>
+			<li><a href="about.html">À propos de</a></li>			
+			</ul>
+			<a href="../"><img src="../images/esisar.gif"/></a>
+		</div>
+		<div>
+			<div class="page-header">
+				<h1><a href="../">TP Langages et Compilation</a> > Passe 2</h1>
+			</div>
+			<br/>			
+			<p/>
+				<h3>Travail à effectuer </h3>
+					<p>
+					<a href="Transparents/passe2.pdf" class="btn btn-default">Transparents du cours</a>
+					<ul>
+					<li>Programmes (dans <code>Verif/Src</code>)</li>
+					<li>Jeux de tests (dans <code>Verif/Test</code>) - <span class="label label-danger">à faire</span> à la dernière séance de la passe 2: <a href="cobertura.html">test avec Cobertura</a></li>
+					<li>Documentation (dans <code>Verif/Doc</code>) décrivant :</li>
+					<ul>
+					<li>les messages d'erreurs,</li>
+					<li>l'architecture de la passe 2,</li>
+					<li>la méthodologie de test.</li>
+					</ul>
+					</ul>
+					</p>
+					<hr/>
+	
+					<a name="rendu"></a>
+					<h3> Rendu de la passe 2 </h3>
+					<p>
+					<span class="label label-danger">Important</span> <strong>Respecter impérativement les consignes suivantes : </strong>
+					<ul>
+					<li>
+
+					Supprimer toutes les traces (en particulier l'affichage de l'arbre abstrait ou
+					du programme d&eacute;compil&eacute;).
+
+					<li>
+					Mettre un fichier read_me.txt dans le répertoire ProjetCompil, avec vos noms, prénoms, login et adresses mail.
+
+					<li>déposer sur Chamilo  l'ensemble de l'arborescence ProjetCompil, 
+					sous la forme d'un fichier <code>ProjetCompil.tar.gz</code>.
+					</ul>
+					</p>
+					<hr/>
+					
+					<a name="indications"></a>
+					
+				<h3> Indications sur l'&eacute;valuation de la passe 2 du projet </h3>
+				<blockquote class="danger">
+					<p>
+					Nous &eacute;valuons votre travail sur les points suivants:
+					<ul>
+					<li> <code>Compilateur</code> : votre compilateurs est &eacute;valu&eacute; en faisant passer une base 
+					de tests. Notre base de tests comporte : 
+					<ul>
+					<li> des tests incorrects (programmes JCas qui ne sont pas 
+					contextuellement correct). Nous v&eacute;rifions que vous affichez 
+					un message d'erreur pertinent. Nous v&eacute;rifions en particulier 
+					le num&eacute;ro de ligne de la premi&egrave;re erreur d&eacute;tect&eacute;e.
+					<li> des tests corrects. Nous v&eacute;rifions que ces tests sont 
+					accept&eacute;s par votre compiltateur et que l'arbre abstrait d&eacute;cor&eacute; 
+					construit est correct.
+					</ul>
+					<br>
+					<li> <code>Tests</code> : votre base de tests est &eacute;valu&eacute;e : 
+					<ul>
+					<li> d'une part en examinant sa couverture sur notre compilateur de r&eacute;f&eacute;rence ; 
+					<li> d'autre part en calculant un score mutationnel. 
+					Pour cela, nous disposons d'environ 40 compilateurs comportant chacun un bug.
+					Nous examinons si votre base de test permet de d&eacute;tecter chacun de ces bugs.
+					</ul>
+					<br>
+					<li> <code>Clart&eacute; des programmes sources</code>
+					<br>
+					<br>
+					<li> <code>Documentation </code>
+					</ul>
+					</p>
+				</blockquote>
+
+			
+		</div>
+	</div> <!-- container -->
+	<br/><br/><br/>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!--script src="../style/js/jquery.js"></script-->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../style/js/bootstrap.min.js"></script>
+  </body>
+</html>
+

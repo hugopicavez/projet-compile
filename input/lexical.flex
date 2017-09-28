@@ -233,17 +233,38 @@ NUM            = {CHIFFRE}{CHIFFRE}*
 SIGNE          = "+"|"-"|""
 EXP            = ("E"{SIGNE}{NUM})|("e"{SIGNE}{NUM})
 DEC            = {NUM}"."{NUM}
-INT            = NUM
-REEL           = DEC
+CONST_ENT      = {NUM}
+CONST_REEL     = {DEC}
+CHAINE_CAR     = \040|\041|[\043-\176]
+CONST_CHAINE   = \"({CHAINE_CAR}|(\"\"))*\"
+COMM_CAR       = \t|[\040-\176]
+COMMENTAIRE    = "--"{COMM_CAR}*
+SEPARATEUR     = \040|\n|\t|COMMENTAIRE
+ERROR          = ([^\040\n\t"-""+""<"">""=""/""*""("")""."":"","";""[""]"])+
 
-Les constantes numériques sont définies par :
 
-   - Constantes entières :  INT  =   NUM
-   - Constantes réelles :   REEL =   DEC + DEC EXP
-
-// ------------
-// A COMPLETER
-// ------------
+AND            =(a|A)(n|N)(d|D)
+ARRAY          =(a|A)(r|R)(r|R)(a|A)(y|Y)
+BEGIN          =(b|B)(e|E)(g|G)(i|I)(n|N)
+DIV            =(d|D)(i|I)(v|V)
+DO             =(d|D)(o|O)
+DOWNTO         =(d|D)(o|O)(w|W)(n|N)(t|T)(o|O)
+ELSE           =(e|E)(l|L)(s|S)(e|E)
+END            =(e|E)(n|N)(d|D)
+FOR            =(f|F)(o|O)(r|R)
+IF             =(i|I)(f|F)
+MOD            =(m|M)(o|O)(d|D)
+NEW_LINE       =(n|N)(e|E)(w|W)(_|_)(l|L)(i|I)(n|N)(e|E)
+NOT            =(n|N)(o|O)(t|T)
+NULL           =(n|N)(u|U)(l|L)(l|L)
+OF             =(o|O)(f|F)
+OR             =(o|O)(r|R)
+PROGRAM        =(p|P)(r|R)(o|O)(g|G)(r|R)(a|A)(m|M)
+READ           =(r|R)(e|E)(a|A)(d|D)
+THEN           =(t|T)(h|H)(e|E)(n|N)
+TO             =(t|T)(o|O)
+WHILE          =(w|W)(h|H)(i|I)(l|L)(e|E)
+WRITE          =(w|W)(r|R)(i|I)(t|T)(e|E)
 
 %%
 
@@ -255,9 +276,89 @@ Les constantes numériques sont définies par :
 
 \n                     { }
 
-"+"                    { return symbol(sym.PLUS); }
+{COMMENTAIRE}          { }
 
-.                      { System.out.println("Erreur Lexicale : '" +
+// opération
+"<"                     {return symbol(sym.INF);}
+">"                     {return symbol(sym.SUP);}
+"="                     {return symbol(sym.EGAL);}
+"/="                    {return symbol(sym.DIFF);}
+"<="                    {return symbol(sym.INF_EGAL);}
+">="                    {return symbol(sym.SUP_EGAL);}
+"+"                     {return symbol(sym.PLUS);}
+"-"                     {return symbol(sym.MOINS);}
+"*"                     {return symbol(sym.MULT);}
+"/"                     {return symbol(sym.DIV_REEL);}
+
+"("                     {return symbol(sym.PAR_OUVR);}
+")"                     {return symbol(sym.PAR_FERM);}
+".."                    {return symbol(sym.DOUBLE_POINT);}
+":"                     {return symbol(sym.DEUX_POINTS);}
+","                     {return symbol(sym.VIRGULE);}
+";"                     {return symbol(sym.POINT_VIRGULE);}
+"["                     {return symbol(sym.CROCH_OUVR);}
+"]"                     {return symbol(sym.CROCH_FERM);}
+":="                    {return symbol(sym.AFFECT);}
+"."                     {return symbol(sym.POINT);}
+
+{AND}                   { return symbol(sym.AND);}
+{ARRAY}                 { return symbol(sym.ARRAY);}
+{BEGIN}                 { return symbol(sym.BEGIN);}
+{DIV}                   { return symbol(sym.DIV);}
+{DO}                    { return symbol(sym.DO);}
+{DOWNTO}                { return symbol(sym.DOWNTO);}
+{ELSE}                  { return symbol(sym.ELSE);}
+{END}                   { return symbol(sym.END);}
+{FOR}                   { return symbol(sym.FOR);}
+{IF}                    { return symbol(sym.IF);}
+{MOD}                   { return symbol(sym.MOD);}
+{NEW_LINE}              { return symbol(sym.NEW_LINE);}
+{NOT}                   { return symbol(sym.NOT);}
+{NULL}                  { return symbol(sym.NULL);}
+{OF}                    { return symbol(sym.OF);}
+{OR}                    { return symbol(sym.OR);}
+{PROGRAM}               { return symbol(sym.PROGRAM);}
+{READ}                  { return symbol(sym.READ);}
+{THEN}                  { return symbol(sym.THEN);}
+{TO}                    { return symbol(sym.TO);}
+{WHILE}                 { return symbol(sym.WHILE);}
+{WRITE}                 { return symbol(sym.WRITE);}
+
+
+{IDF}                   { return symbol(sym.IDF, yytext().toLowerCase());}
+
+
+{CONST_ENT}             {  try {
+                                return symbol(sym.CONST_ENT,
+                           new Integer(yytext()));
+                           } catch (NumberFormatException e) {
+                                e.printStackTrace();
+                                throw new ErreurLexicale();
+                           }
+                        }
+{CONST_REEL}            { try {
+                                return symbol(sym.CONST_REEL,
+                          new Double(yytext()));
+                          } catch (NumberFormatException e) {
+                               throw new ErreurLexicale();
+                          }
+                        }
+
+{CONST_CHAINE}          {
+                            String valueBase = yytext();
+                            String value = "";
+                            for(int i = 0; i < valueBase.length(); i++){
+                                if(valueBase.charAt(i) == '"')
+                                    continue;
+                                value += valueBase.charAt(i);
+                            }
+                            return symbol(sym.CONST_CHAINE,value);
+                        }
+
+
+
+
+{ERROR}|.                { System.out.println("Erreur Lexicale : '" +
                             yytext() + "' non reconnu ... ligne " + 
                             numLigne()) ;
                          throw new ErreurLexicale() ; }

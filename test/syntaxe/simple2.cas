@@ -1,0 +1,9 @@
+program
+begin
+	-- ceci est un commentaire
+	int x?;
+	int y?; 
+
+   null;
+end.
+

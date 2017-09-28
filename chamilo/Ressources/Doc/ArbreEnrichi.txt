@@ -1,0 +1,183 @@
+
+              Enrichissement et décoration de l'arbre en passe 2 
+              --------------------------------------------------
+
+
+1) Enrichissement de l'arbre : ajouts de Noeud.Conversion
+---------------------------------------------------------
+
+Ce noeud indique qu'il y a une conversion du type entier au type
+réel dans un programme JCas.
+
+Soit le contexte de déclarations  r : real ; i : integer. 
+
+
+
+
+L'instruction r := i + 0.1 est représentée par l'arbre primitif :
+
+             Noeud.Affect
+               /     \
+              /       \
+             /         \
+      Noeud.Ident   Noeud.Plus
+          "r"        /     \
+                    /       \
+                   /         \
+             Noeud.Ident  Noeud.Reel
+                  "i"        0.1
+
+
+Après enrichissement, on obtient l'arbre : 
+
+             Noeud.Affect
+               /     \
+              /       \
+             /         \
+      Noeud.Ident   Noeud.Plus
+          "r"        /     \
+                    /       \
+                   /         \
+          Noeud.Conversion Noeud.Reel
+                  |          0.1
+                  |
+                  |
+             Noeud.Ident
+                 "i"
+
+
+
+
+
+L'instruction r := i + 1 est représentée par l'arbre primitif :
+
+             Noeud.Affect
+               /     \
+              /       \
+             /         \
+      Noeud.Ident   Noeud.Plus
+          "r"        /     \
+                    /       \
+                   /         \
+             Noeud.Ident  Noeud.Entier
+                  "i"          1
+
+
+Après enrichissement, on obtient l'arbre : 
+
+             Noeud.Affect
+               /     \
+              /       \
+             /         \
+      Noeud.Ident  Noeud.Conversion
+          "r"           | 
+                        |
+                        |
+                    Noeud.Plus
+                     /     \
+                    /       \
+                   /         \
+             Noeud.Ident  Noeud.Entier
+                  "i"          1
+
+
+
+
+
+2) Décoration de l'arbre
+------------------------
+
+Un décor est un triplet
+   (Defn defn, Type type, int infoCode)
+
+ . 'defn'  n'est rattaché qu'aux noeuds 'Noeud.Ident'.
+
+ . 'type' n'est rattaché qu'aux noeuds 'Noeud.Affect', 'Noeud.Conversion', 
+    et à tous les noeuds obtenus par la règle EXP de la grammaire d'arbres 
+    (voir ArbreAbstrait.txt).
+
+    Remarque : 
+       'type' sera rattaché aux noeuds 'Noeud.Ident' correspondant 
+       à un identificateur apparaissant dans les instructions. 
+
+ . 'infoCode' peut etre rattaché à tous les noeuds de l'arbre.
+
+    Remarque : 
+       'infoCode' servira uniquement dans la passe de génération de code
+       (par exemple, nombre de registres nécessaires à l'évaluation
+       d'une expression)
+
+Voir les spécifications détaillees dans Decor.java, Defn.java et Type.java.
+
+On utilise une "sémantique de partage" : les defns et les types
+sont partagés autant que possible.
+Par exemple, les noeuds 'Noeud.Ident' correspondant à la même définition
+ont tous la même defn et le même type. 
+
+
+
+3) Exemple complet 
+------------------
+
+
+     1	-- Exemple de programme JCas
+     2	program
+     3	   T : array[1 .. 5] of real ; 
+     4	begin
+     5	   T[1] := 0 ; 
+     6	end.
+
+
+
+
+
+
+
+
+Arbre abstrait enrichi et décoré correspondant :
+
+(Remarque : le champ 'Taille' des types sera mis a jour lors de 
+la passe 3.)
+
+Noeud.Programme                                              -- ligne : 2
+. Noeud.ListeDecl                                            -- ligne : 3
+. . Noeud.Vide                                               -- ligne : 3
+. . Noeud.Decl                                               -- ligne : 3
+. . . Noeud.ListeIdent                                       -- ligne : 3
+. . . . Noeud.Vide                                           -- ligne : 3
+. . . . Noeud.Ident "t"                                      -- ligne : 3
+. . . . -- defn :
+. . . . --    (NatureDefn.Var, NatureType.Array(NatureType.Interval(1, 5),
+NatureType.Real))
+. . . Noeud.Tableau                                          -- ligne : 3
+. . . . Noeud.Intervalle                                     -- ligne : 3
+. . . . . Noeud.Entier 1                                     -- ligne : 3
+. . . . . Noeud.Entier 5                                     -- ligne : 3
+. . . . Noeud.Ident "real"                                   -- ligne : 3
+. . . . -- defn :
+. . . . --    (NatureDefn.Type, NatureType.Real)
+. Noeud.ListeInst                                            -- ligne : 5
+. . Noeud.Vide                                               -- ligne : 6
+. . Noeud.Affect                                             -- ligne : 5
+. . -- type :
+. . --    NatureType.Real
+. . . Noeud.Index                                            -- ligne : 5
+. . . -- type :
+. . . --    NatureType.Real
+. . . . Noeud.Ident "t"                                      -- ligne : 5
+. . . . -- defn :
+. . . . --    (NatureDefn.Var, NatureType.Array(NatureType.Interval(1, 5),
+NatureType.Real))
+. . . . -- type :
+. . . . --    NatureType.Array(NatureType.Interval(1, 5), NatureType.Real)
+. . . . Noeud.Entier 1                                       -- ligne : 5
+. . . . -- type :
+. . . . --    Type.Integer
+. . . Noeud.Conversion                                       -- ligne : 5
+. . . -- type :
+. . . --    NatureType.Real
+. . . . Noeud.Entier 0                                       -- ligne : 5
+. . . . -- type :
+. . . . --    Type.Integer
+
+

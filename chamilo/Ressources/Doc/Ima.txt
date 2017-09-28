@@ -1,0 +1,230 @@
+
+
+
+
+               **************************************************
+               ** Descriptif d'utilisation de l'interprète ima **
+               **************************************************
+
+
+
+ima est un interprète-metteur au point (débogueur) de l'assembleur de la 
+machine abstraite décrit dans le fichier MachineAbstraite.txt
+
+1.   Appel de ima
+-----------------
+L'appel de l'interprète s'effectue en exécutant la commande
+
+   ima [-d | -t | -r] nom_de_fichier_assembleur
+
+Sans option, le programme est directement assemblé et exécuté.
+
+Options (les trois options sont exclusives) :
+
+ -d : appel du metteur au point.
+ -t : exécution directe sans entrer dans le metteur au point, avec
+      affichage du temps d'exécution à la fin du programme si
+      aucune erreur ne s'est produite.
+ -r : exécution directe sans entrer dans le metteur au point, avec
+      passage à la ligne à chaque écriture d'entier, de réel ou de chaîne.
+
+2.   Utilisation de ima en mode metteur au point
+------------------------------------------------
+L'appel d'ima avec l'option -d réalise l'analyse, l'assemblage et le
+chargement du fichier assembleur. Si aucune erreur n'a été détectée,
+on entre dans l'environnement d'interprétation-mise au point. Diverses
+commandes sont proposées sous la forme du menu suivant :
+
++----------------------------------------------------------------------+
+| d : Demarrer l'execution jusqu'au premier point d'arret              |
+| c : Continuer l'execution jusqu'au point d'arret suivant             |
+| a : Ajouter un point d'arret                                         |
+| e : Enlever un point d'arret                                         |
+| s : Initialiser l'execution en mode pas a pas                        |
+| x : Executer l'instruction courante                                  |
+| i : Afficher l'instruction courante                                  |
+| r : Contenu des registres et des codes-condition                     |
+| p : Afficher tout le programme avec les points d'arret               |
+| l : Afficher le programme entre deux lignes, avec les points d'arret |
+| m : Contenu de la pile entre 2 adresses relatives a GB               |
+| t : Temps d'execution depuis le debut de l'execution                 |
+| ? ou h : Afficher ce menu                                            |
+| q : Quitter                                                          |
++----------------------------------------------------------------------+
+
+L'invite
+
+(ima) 
+
+permet d'entrer une des commandes, dont la description suit.
+
+d : Initialise les registres et la mémoire, puis commence l'exécution du 
+    programme, soit jusqu'à la première erreur d'exécution, soit jusqu'au 
+    premier point d'arrêt rencontré s'il n'y a pas d'erreur, soit jusqu'à
+    la fin du programme (instruction HALT) si aucune erreur ni aucun point 
+    d'arrêt n'a été rencontré. La commande d peut être demandée à tout moment, 
+    provoquant la réinitialisation et la réexécution.
+
+c : Lorsque l'exécution est interrompue par un point d'arrêt ou lorsqu'on est 
+    en mode pas à pas (voir ci-dessous), continue l'exécution du programme de 
+    la même façon qu'avec la commande d.
+ 
+a : Permet de positionner un point d'arrêt. On doit indiquer un numéro de 
+    ligne du fichier source. Le point d'arrêt est positionné sur la première 
+    instruction rencontrée dans le texte à partir de la ligne indiquée.
+    Par exemple, supposons que le fichier assembleur contient les lignes
+
+         1           LOAD #3, R1
+         2    ; Commentaire
+         3   etiquette :
+         4
+         5           LOAD #1, R0 ; Comment
+         6           PUSH R1
+         7   etiq :  CMP R0, R1
+
+       - Un point d'arrêt demandé en ligne 2, 3, 4 ou 5 est positionné en 
+         ligne 5.
+       - Un point d'arrêt demandé en ligne 7 est positionné en ligne 7.
+
+    Si on lance l'exécution avec ces deux points d'arrêt, l'interprète
+    exécute LOAD #3, R1 puis s'arrête sur la ligne 5, avant son exécution, car 
+    c'est un point d'arrêt. La ligne du point d'arrêt est affichée avec son
+    numéro, sous la forme :
+                                     5 : LOAD #1, R0
+
+    On peut alors continuer l'exécution par la commande c.  Les lignes 5 et 
+    6 sont alors exécutees, et l'interprète s'arrête sur la ligne 7, en 
+    affichant
+                                     7 : CMP R0, R1
+
+    On peut alors continuer avec c; la ligne 7 est exécutée, et on obtient 
+    ensuite le message d'erreur
+
+           ** IMA ** ERREUR ** Plus d'instructions !!
+
+    car l'exécution ne peut pas continuer et l'interprète n'a pas rencontré 
+    d'instruction HALT.
+
+e : Permet de supprimer un point d'arrêt précédemment positionné.  La logique 
+    de la commande est la même que pour la commande a : sur le programme 
+    précédent avec ses deux points d'arrêt en lignes 5 et 7, enlever un point 
+    d'arrêt en ligne 2, 3, 4 ou 5 enlève celui de la ligne 5, enlever un point 
+    d'arrêt en ligne 6 n'a pas d'effet, enlever un point d'arrêt en ligne 7 
+    enlève celui de la ligne 7.
+
+s : Initialise les registres et la mémoire, et s'arrête sur la première 
+    instruction en l'affichant, par exemple sur l'exemple précédent :
+
+                                     1 : LOAD #3, R1
+
+    De même que d, s peut etre demandée à tout moment.
+
+x : Exécute l'instruction sur laquelle s'est arreté l'interprète, soit parce 
+    que c'est un point d'arrêt, soit parce que l'instruction précédente a été 
+    exécutée par la commande x.  L'instruction suivante est ensuite affichée. 
+    Par exemple, apres s, x exécute LOAD #3, R1 et affiche
+
+                                     5 : LOAD #1, R0
+
+    Le x suivant exécute cette dernière instruction, et affiche
+
+                                     6 : PUSH R1
+
+    On peut bien sûr à tout moment continuer l'exécution par c.
+
+i : Réaffiche la prochaine instruction a exécuter (utile lorsqu'elle a disparu 
+    de l'écran suite à des commandes r , m, p ou l).
+
+p : Affiche le programme avec les numéros de ligne, la position de PC (sous la 
+    forme -->) et les points d'arrêt (sous la forme ##). Par exemple, sur 
+    l'exemple avec les points d'arrêt spécifies plus haut, avant toute 
+    exécution ou après une commande s, on obtient l'affichage
+
+    -->     1|               LOAD #3, R1
+            2|         ; Commentaire
+            3|        etiquette :
+            4|
+         ## 5|               LOAD #1, R0
+            6|               PUSH R1
+         ## 7|        etiq :  CMP R0, R1
+
+    Après une commande d, on obtient pour p le résultat
+
+            1|               LOAD #3, R1
+            2|         ; Commentaire
+            3|        etiquette :
+            4|
+    -->  ## 5|               LOAD #1, R0
+            6|               PUSH R1
+         ## 7|        etiq :  CMP R0, R1
+
+
+l : Idem p, mais permet d'indiquer un intervalle de lignes.
+
+r : Affiche la valeur des registres SP, GB, LB et des Ri. Affiche également 
+    les codes-condition positionnés à vrai. Les valeurs d'adresse mémoire sont 
+    indiquées relativement à GB et LB. Sur l'exemple, avant toute exécution, 
+    on obtient
+
+    SP  : @ mem : 0(GB) , 0(LB)
+    GB  : @ mem : 0(GB) , 0(LB)
+    LB  : @ mem : 0(GB) , 0(LB)
+    R0  : <indefini>                      R1  : <indefini>
+    R2  : <indefini>                      R3  : <indefini>
+    R4  : <indefini>                      R5  : <indefini>
+    R6  : <indefini>                      R7  : <indefini>
+    R8  : <indefini>                      R9  : <indefini>
+    R10 : <indefini>                      R11 : <indefini>
+    R12 : <indefini>                      R13 : <indefini>
+    R14 : <indefini>                      R15 : <indefini>
+    Codes-condition vrais : NE GE GT
+
+    Noter que les codes-conditions initialement vrais.
+
+    Après d et c, on obtient pour la commande r l'affichage
+
+    SP  : @ mem : 1(GB) , 1(LB)
+    GB  : @ mem : 0(GB) , 0(LB)
+    LB  : @ mem : 0(GB) , 0(LB)
+    R0  : 1                               R1  : 3
+    R2  : <indefini>                      R3  : <indefini>
+    R4  : <indefini>                      R5  : <indefini>
+    R6  : <indefini>                      R7  : <indefini>
+    R8  : <indefini>                      R9  : <indefini>
+    R10 : <indefini>                      R11 : <indefini>
+    R12 : <indefini>                      R13 : <indefini>
+    R14 : <indefini>                      R15 : <indefini>
+    Codes-condition vrais : NE GE GT
+
+
+m : Affiche le contenu de la pile entre deux adresses, désignées par des 
+    déplacements relativement à GB. Indique le cas échéant où pointent SP et 
+    LB. Une valeur d'adresse mémoire est indiquée sous la même forme que pour 
+    l'affichage des valeurs des registres, une valeur d'adresse de code 
+    (présente lors de l'empilement d'une adresse de retour) est présentée sous 
+    la forme
+
+    @ code ligne 47 : SUB #4, R8
+
+    si l'adresse de retour est celle de l'instruction SUB #4, R8 de la ligne 
+    47. Sur l'exemple, apres d et c, la commande m, en indiquant les 
+    déplacements 1 et 5 produit :
+
+             7 | <indefini>
+             6 | <indefini>
+             5 | <indefini>
+             4 | <indefini>
+             3 | <indefini>
+             2 | <indefini>
+    SP ----> 1 | 3
+
+t : Affiche le temps d'exécution du programme depuis le dernier démarrage.
+    Le temps total d'exécution est dans tous les cas affiché à la
+    fin du programme si aucune erreur n'a été rencontrée.
+
+? : Affiche le menu.
+
+h : Affiche le menu.
+
+q : Sort de l'interprète-metteur au point.
+

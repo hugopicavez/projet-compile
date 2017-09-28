@@ -1,0 +1,21 @@
+program
+   x : integer ;
+   y : integer ;
+   i : integer ;
+begin
+   x := 4 ;
+   y := 9 ;
+   for i := 8 downto 0 do
+      if caca or coco then
+         if 3 > 2 then
+            x := x/y ;
+            x := x/y ;
+         end ;
+      end ;
+   end ;
+   if x /= y then
+      if x//=y then
+         x := x mod y ;
+      end ;
+   end ;
+end.

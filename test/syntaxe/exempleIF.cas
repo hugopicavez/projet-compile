@@ -1,0 +1,12 @@
+program
+	y, x : integer ;
+begin
+     if x = y then
+        x := +10;
+     end;
+     if T[milieu] < val then
+        x := 10;
+     else
+        y := -100;
+     end;
+end.

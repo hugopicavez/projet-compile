@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html land="fr">
+  <head>
+    <title>TP CS444 - Langages et compilation</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="style/css/bootstrap.min.css" rel="stylesheet" media="screen">   
+
+	<link href="style/css/cs410.css" rel="stylesheet" media="screen">    
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+	<div class="container">
+		<div class="header">
+			<ul class="nav nav-pills pull-right">
+			<li class="active"><a href="#">Projet</a></li>
+			<li><a href="Ressources/about.html">À propos de</a></li>			
+			</ul>
+			<img src="images/esisar.gif"/> 
+		</div>
+		<div>
+			<div class="page-header">
+				<h1>Projet Langages et Compilation</h1>
+			</div>
+			<br/>
+			Ce projet a été mis en place par Catherine Oriat, maître de conférences en Informatique à Grenoble INP - Ensimag.
+			<br/> 
+             Bassem Debbabi, Attaché Temporaire d'Enseignement et de Recherche à Grenoble INP - Esisar (2012-2014), a construit ce site.
+ 			<br/> 
+			<br/> 
+             Le projet est à réaliser par équipe de 4 élèves. En dehors de son objectif d'acquisition de compétences en compilation, il vise à développer votre autonomie et renforcer votre compétence en conduite de projet. A cet effet, plusieurs documents techniques sont mis à votre disposition contenant l'essentiel des informations dont vous avez besoin pour mener à bien ce travail. Avant de solliciter vos enseignants, assurez-vous que vous avez bien épuisé tout autre moyen de recherche d'information présent sur ce site!  
+ 			<br/><br/>
+			<h2>Vue d'ensemble</h2>
+			<p>
+			Le compilateur à développer, appelé JCas, comporte trois passes (le programme va être parcouru trois fois). 
+			<div class="row well">
+				<div class="col-xs-4 col-md-3 "><a href="Ressources/intro.html" class="btn btn-success">Introduction</a><p>
+					<ul><li>Récupération et installation du projet</li></ul>
+					</p></div>
+				<div class="col-xs-4 col-md-3"><a href="Ressources/passe1.html" class="btn btn-default">Passe 1</a><p>
+					<ul>
+						<li>Analyse lexicale</li>
+						<li>Analyse syntaxique</li>
+						<li>Construction de l'arbre abstrait du programme</li>
+					</ul>
+					</p></div>
+				<div class="col-xs-4 col-md-3"><a href="Ressources/passe2.html" class="btn btn-default">Passe 2</a><p>
+					<ul>
+						<li>Vérifier qu'un programme JCas est contextuellement correct.</li>
+						<li>Décorer l'arbre abstrait du programme. </li>
+					</ul>
+					</p></div>
+				<div class="col-xs-4 col-md-3" ><a href="Ressources/passe3.html" class="btn btn-default">Passe 3</a><p>
+					<ul>
+						<li>Parcourir l'arbre abstrait décoré une seconde fois et produire du code exécutable. </li> 
+					</ul>
+					</p></div>
+			</div>
+			
+			</p>
+			<h2>Planning</h2>
+			<p>
+			Voici le calendrier de cette année. Vous devrez  consulter le calendrier officiel de l'école (ADE) pour des éventuels changements non prévus et les salles utilisées.
+			</p>
+			<p>
+				<table class="table table-condensed table-hover table-striped">			
+					<tr class="active"><th  >Séance</th><th>Date</th><th style="width:200px;">Salle</th><th>Objectif</th></tr>
+					<tr class="active"><td>1</td><td><span class="label label-info">Ven. 9/9/2016</span></td><td> <span class="label label-default">cf. ADE</span></td><td><a href="Ressources/intro.html">Introduction</a> + début <a href="Ressources/passe1.html">passe 1</a></td></tr>
+					<tr class="active"><td>2</td><td><span class="label label-info">Ven. 16/9/2016</span></td><td> <span class="label label-default">cf. ADE</span></td><td>Fin <a href="Ressources/passe2.html">passe 1</a> :  <br/><p class="text-danger"><span class="label label-warning">Warning</span> La passe 1 du projet est à rendre le jeudi 22 septembre, avant 18h.</p></td></tr>
+					<tr class="active"><td>3</td><td><span class="label label-info">Ven. 23/9/2016</span></td><td><span class="label label-default">cf. ADE</span></td><td><a href="Ressources/passe2.html">Début de la passe 2</a></td></tr>
+					<tr class="active"><td>4</td><td><span class="label label-info">Mer. 28/9/2016</span></td><td> <span class="label label-default">cf. ADE</span></td><td><a href="Ressources/passe2.html">Passe 2</a></td></tr>
+					<tr class="active"><td>5</td><td><span class="label label-info">Ven. 7/10/2016</span></td><td> <span class="label label-default">cf. ADE</span></td><td>Fin <a href="Ressources/passe2.html">passe 2</a> : </br><span class="label label-danger">à faire</span> <a href="Ressources/cobertura.html">test avec Cobertura</a><br/><p class="text-danger"><span class="label label-warning">Warning</span> La passe 2 du projet est à rendre le vendredi 14 octobre, avant 18h.</p></td></tr>
+					<tr class="active"><td>6 </td><td><span class="label label-info">Mer. 26/10/2016</span></td><td> <span class="label label-default">cf. ADE</span></td><td><a href="Ressources/passe3.html">Passe 3</a> : Passe 3 - séance de démarrage</td></tr>
+					<tr class="active"><td>7</td><td><span class="label label-info">Mer. 9/11/2015</span></td><td> <span class="label label-default">cf. ADE</span></td><td><a href="Ressources/passe3.html">Passe 3</a> : Architecture - développement</td></tr>
+					<tr class="active"><td>8</td><td><span class="label label-info">Ven. 18/11/2016</span></td><td> <span class="label label-default">cf. ADE</span></td><td><a href="Ressources/passe3.html">Passe 3</a> : Développement</td></tr>
+					<tr class="success"><td>9</td><td><span class="label label-info">Ven. 25/11/2016</span></td><td> <span class="label label-default">cf. ADE
+					<tr><td>10</td><td><span class="label label-info">Ven. 2/12/2016</span></td><td> <span class="label label-default">cf. ADE</span></td><td><a href="Ressources/passe3.html">Passe 3</a> : Fin du projet.<br/><p  class="text-danger"><span class="label label-warning">Warning</span> La passe 3 du projet est à rendre le vendredi 02 décembre, avant 18h.</p></td></tr>					
+				</table>
+			</p>
+			
+			
+
+
+			<h2>Ressources</h2>
+			<p>
+				<ul>									
+					<li><a href="Ressources/intro.html">Introduction</a></li>
+					<li><a href="Ressources/passe1.html">Passe 1</a></li>
+					<li><a href="Ressources/passe2.html">Passe 2</a></li>
+					<li><a href="Ressources/passe3.html">Passe 3</a></li>
+					<li><a href="Ressources/ProjetCompil.tar.gz">ProjetCompil.tar.gz</a> (Code source de base)</li>
+					<li><span class="label label-danger">pdf</span> <a href="Projet_Compil.pdf">Spécifications</a>
+						<ul>
+							<li>  <a href="Ressources/Doc/Exemples.txt">Exemples.txt</a></li>
+							<li>  <a href="Ressources/Doc/Lexicographie.txt">Lexicographie.txt</a></li>
+							<li>  <a href="Ressources/Doc/Syntaxe.txt">Syntaxe.txt</a></li>
+							<li>  <a href="Ressources/Doc/Context.txt">Context.txt</a></li>
+							<li>  <a href="Ressources/Doc/ArbreAbstrait.txt">ArbreAbstrait.txt</a></li>
+							<li>  <a href="Ressources/Doc/ArbreEnrichi.txt">ArbreEnrichi.txt</a></li>
+							<li>  <a href="Ressources/Doc/MachineAbstraite.txt">MachineAbstraite.txt</a></li>
+							<li>  <a href="Ressources/Doc/Ima.txt">Ima.txt</a></li>
+						</ul>
+					</li>
+					<li> <a href="Ressources/Html/index.html">Lien sur les javadocs</a> 
+					<li> <a href="http://jflex.de/manual.html">Manuel de JFlex</a></li>
+					<li> <a href="http://www2.cs.tum.edu/projects/cup/manual.html">Manuel de Cup</a>
+			</p>
+			
+			<h2>Enseignants</h2>
+			<p>
+				<ul>
+					<li>Catherine Oriat (Catherine.Oriat@imag.fr)  </li>
+					<li>Ioannis Parissis (Ioannis.Parissis@grenoble-inp.fr)  </li>
+
+				</ul>
+			</p>
+			<br/><br/>
+		</div>
+	</div> <!-- container -->
+	<br/><br/><br/>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="style/js/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="style/js/bootstrap.min.js"></script>
+  </body>
+</html>
+

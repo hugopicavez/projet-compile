@@ -1,0 +1,196 @@
+
+                  Syntaxe abstraite pour le langage JCas 
+                  --------------------------------------
+
+
+La syntaxe abstraite du langage JCas est décrite à l'aide d'une grammaire 
+d'arbres.
+
+L'axiome de la grammaire est le non-terminal PROGRAMME.
+
+Les règles de la grammaire sont de la forme :
+
+   C --> A1 | A2 | ... | An                  (avec n >= 1) 
+
+où :
+   - C est le non-terminal correspondant à une classe d'arbres
+     (toujours noté en majuscules) ;
+   - les Ai sont des arbres.
+
+Chaque Ai est noté :
+
+   nd(C1, C2, ..., Cp)                       (avec p >= 0)
+
+où : 
+   - nd est un nom de noeud d'arité p ; 
+   - les Ci sont des classes d'arbres (non-terminaux de la grammaire d'arbres).
+
+
+Par exemple, la règle 
+
+   EXP -> Noeud.Plus(EXP, EXP)
+
+peut être représentée graphiquement par : 
+
+                            EXP ->   Noeud.Plus
+                                       /    \
+                                      /      \
+                                    EXP      EXP
+                       
+
+
+Tous les noeuds de l'arbre possèdent un attribut numligne (numéro de
+ligne du texte correspondant dans le fichier source). 
+
+Certaines feuilles de l'arbre possèdent un attribut supplémentaire :
+
+    Noeud.Ident  : attribut Chaine ;
+    Noeud.Entier : attribut Entier ;
+    Noeud.Reel   : attribut Reel ;
+    Noeud.Chaine : attribut Chaine. 
+
+D'autres attributs seront définis ultérieurement (pour la passe de 
+vérification contextuelle).
+
+
+Un noeud de l'arbre n'a pas de correspondance dans la syntaxe concrete :
+c'est le noeud Noeud.Conversion (qui sera utilisé
+pour dénoter la conversion d'une expression entière en réel).
+
+
+Exemple : 
+
+     1  -- Exemple de programme JCas
+     2  program 
+     3     T : array[1 .. 5] of array[1 .. 10] of integer ; 
+     4     i : 1 .. 5 ; 
+     5  begin
+     6     for i := 1 to 5 do
+     7        T[i][1] := 0 ; 
+     8     end ; 
+     9     write("ok") ; 
+    10     new_line ;
+    11  end.
+
+
+Arbre (presenté sous forme préfixée avec indentation selon la profondeur)
+
+Noeud.Programme                                              -- ligne : 2
+. Noeud.ListeDecl                                            -- ligne : 4
+. . Noeud.ListeDecl                                          -- ligne : 3
+. . . Noeud.Vide                                             -- ligne : 3
+. . . Noeud.Decl                                             -- ligne : 3
+. . . . Noeud.ListeIdent                                     -- ligne : 3
+. . . . . Noeud.Vide                                         -- ligne : 3
+. . . . . Noeud.Ident "t"                                    -- ligne : 3
+. . . . Noeud.Tableau                                        -- ligne : 3
+. . . . . Noeud.Intervalle                                   -- ligne : 3
+. . . . . . Noeud.Entier 1                                   -- ligne : 3
+. . . . . . Noeud.Entier 5                                   -- ligne : 3
+. . . . . Noeud.Tableau                                      -- ligne : 3
+. . . . . . Noeud.Intervalle                                 -- ligne : 3
+. . . . . . . Noeud.Entier 1                                 -- ligne : 3
+. . . . . . . Noeud.Entier 10                                -- ligne : 3
+. . . . . . Noeud.Ident "integer"                            -- ligne : 3
+. . Noeud.Decl                                               -- ligne : 4
+. . . Noeud.ListeIdent                                       -- ligne : 4
+. . . . Noeud.Vide                                           -- ligne : 4
+. . . . Noeud.Ident "i"                                      -- ligne : 4
+. . . Noeud.Intervalle                                       -- ligne : 4
+. . . . Noeud.Entier 1                                       -- ligne : 4
+. . . . Noeud.Entier 5                                       -- ligne : 4
+. Noeud.ListeInst                                            -- ligne : 10
+. . Noeud.ListeInst                                          -- ligne : 9
+. . . Noeud.ListeInst                                        -- ligne : 6
+. . . . Noeud.Vide                                           -- ligne : 9
+. . . . Noeud.Pour                                           -- ligne : 6
+. . . . . Noeud.Increment                                    -- ligne : 6
+. . . . . . Noeud.Ident "i"                                  -- ligne : 6
+. . . . . . Noeud.Entier 1                                   -- ligne : 6
+. . . . . . Noeud.Entier 5                                   -- ligne : 6
+. . . . . Noeud.ListeInst                                    -- ligne : 7
+. . . . . . Noeud.Vide                                       -- ligne : 8
+. . . . . . Noeud.Affect                                     -- ligne : 7
+. . . . . . . Noeud.Index                                    -- ligne : 7
+. . . . . . . . Noeud.Index                                  -- ligne : 7
+. . . . . . . . . Noeud.Ident "t"                            -- ligne : 7
+. . . . . . . . . Noeud.Ident "i"                            -- ligne : 7
+. . . . . . . . Noeud.Entier 1                               -- ligne : 7
+. . . . . . . Noeud.Entier 0                                 -- ligne : 7
+. . . Noeud.Ecriture                                         -- ligne : 9
+. . . . Noeud.ListeExp                                       -- ligne : 9
+. . . . . Noeud.Vide                                         -- ligne : 9
+. . . . . Noeud.Chaine "ok"                                  -- ligne : 9
+. . Noeud.Ligne                                              -- ligne : 10
+
+
+Grammaire d'arbres définissant la syntaxe abstraite du langage JCas
+-------------------------------------------------------------------
+
+PROGRAMME 	-> Noeud.Programme(LISTE_DECL, LISTE_INST) 
+
+LISTE_DECL 	-> Noeud.ListeDecl(LISTE_DECL, DECL) 
+		|  Noeud.Vide 
+
+DECL	 	-> Noeud.Decl(LISTE_IDENT, TYPE)
+
+LISTE_IDENT 	-> Noeud.ListeIdent(LISTE_IDENT, IDENT) 
+		|  Noeud.Vide
+
+IDENT 		-> Noeud.Ident                   -- attribut de type Chaine
+
+TYPE		-> IDENT
+		|  TYPE_INTERVALLE
+		|  Noeud.Tableau(TYPE_INTERVALLE, TYPE) 
+
+TYPE_INTERVALLE -> Noeud.Intervalle(EXP_CONST, EXP_CONST)
+
+EXP_CONST 	-> IDENT
+                |  Noeud.Entier                  -- attribut de type Entier
+		|  Noeud.PlusUnaire(EXP_CONST)
+		|  Noeud.MoinsUnaire(EXP_CONST)
+
+LISTE_INST 	-> Noeud.Vide 
+		|  Noeud.ListeInst(LISTE_INST, INST) 
+
+INST		-> Noeud.Nop
+		|  Noeud.Affect(PLACE, EXP) 
+		|  Noeud.Pour(PAS, LISTE_INST) 
+		|  Noeud.TantQue(EXP, LISTE_INST) 
+		|  Noeud.Si(EXP, LISTE_INST, LISTE_INST) 
+		|  Noeud.Lecture(PLACE)
+		|  Noeud.Ecriture(LISTE_EXP) 
+                |  Noeud.Ligne
+
+PAS 		-> Noeud.Increment(IDENT, EXP, EXP) 
+		|  Noeud.Decrement(IDENT, EXP, EXP) 
+
+PLACE 		-> IDENT
+		|  Noeud.Index(PLACE, EXP) 
+
+LISTE_EXP   	-> Noeud.Vide
+		|  Noeud.ListeExp(LISTE_EXP, EXP) 
+
+EXP 		-> Noeud.Et(EXP, EXP) 
+  		|  Noeud.Ou(EXP, EXP) 
+		|  Noeud.Egal(EXP, EXP)
+		|  Noeud.InfEgal(EXP, EXP)
+		|  Noeud.SupEgal(EXP, EXP)
+		|  Noeud.NonEgal(EXP, EXP)
+		|  Noeud.Inf(EXP, EXP)
+		|  Noeud.Sup(EXP, EXP)
+		|  Noeud.Plus(EXP, EXP)
+		|  Noeud.Moins(EXP, EXP)
+		|  Noeud.Mult(EXP, EXP)
+		|  Noeud.DivReel(EXP, EXP)
+		|  Noeud.Reste(EXP, EXP)
+		|  Noeud.Quotient(EXP, EXP)
+		|  Noeud.Index(PLACE, EXP) 
+		|  Noeud.PlusUnaire(EXP) 
+		|  Noeud.MoinsUnaire(EXP) 
+		|  Noeud.Non(EXP)
+		|  Noeud.Conversion(EXP) 
+		|  Noeud.Entier                  -- attribut de type Entier
+		|  Noeud.Reel                    -- attribut de type Reel
+		|  Noeud.Chaine                  -- attribut de type Chaine
+		|  IDENT            
