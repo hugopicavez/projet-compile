@@ -15,7 +15,7 @@ public class ReglesTypage {
     */
 
    static ResultatAffectCompatible affectCompatible(Type t1, Type t2) {
-      return null; // A MODIFER
+      t1.getNature();return null; // A MODIFER
    }
 
    /**
