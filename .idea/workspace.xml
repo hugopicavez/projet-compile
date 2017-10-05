@@ -12,100 +12,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="Environ.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/fr/esisar/compilation/global/src/Environ.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1100">
-              <caret line="48" column="15" lean-forward="false" selection-start-line="48" selection-start-column="15" selection-end-line="48" selection-end-column="15" />
-              <folding>
-                <element signature="e#1281#1282#0" expanded="true" />
-                <element signature="e#1313#1314#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ErreurContext.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/fr/esisar/compilation/verif/ErreurContext.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ErreurReglesTypage.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/fr/esisar/compilation/verif/ErreurReglesTypage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ErreurInterneVerif.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/fr/esisar/compilation/verif/ErreurInterneVerif.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TypeArray.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/fr/esisar/compilation/global/src/TypeArray.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Verif.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Verif.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/fr/esisar/compilation/verif/Verif.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="127" column="54" lean-forward="true" selection-start-line="127" selection-start-column="41" selection-end-line="127" selection-end-column="54" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Defn.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/fr/esisar/compilation/global/src/Defn.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="11" column="21" lean-forward="false" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="21" />
+            <state relative-caret-position="2625">
+              <caret line="135" column="9" lean-forward="true" selection-start-line="135" selection-start-column="9" selection-end-line="135" selection-end-column="9" />
               <folding>
-                <element signature="e#2289#2290#0" expanded="true" />
-                <element signature="e#2369#2370#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#369#370#0" expanded="true" />
+                <element signature="e#404#405#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ArbreChaine.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/fr/esisar/compilation/global/src/ArbreChaine.java">
+      <file leaf-file-name="ReglesTypage.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/fr/esisar/compilation/verif/ReglesTypage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="14" column="9" lean-forward="false" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
-              <folding>
-                <element signature="e#533#534#0" expanded="true" />
-                <element signature="e#562#563#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TypeInterval.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/fr/esisar/compilation/global/src/TypeInterval.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+            <state relative-caret-position="772">
+              <caret line="84" column="48" lean-forward="false" selection-start-line="84" selection-start-column="48" selection-end-line="84" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -114,8 +39,21 @@
       <file leaf-file-name="Type.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/fr/esisar/compilation/global/src/Type.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="900">
+            <state relative-caret-position="-2549">
               <caret line="36" column="13" lean-forward="false" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
+              <folding>
+                <element signature="e#4074#4075#0" expanded="true" />
+                <element signature="e#4135#4136#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TypeArray.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/fr/esisar/compilation/global/src/TypeArray.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="6" column="15" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -143,10 +81,10 @@
         <option value="$PROJECT_DIR$/test/lexico/simple2.cas" />
         <option value="$PROJECT_DIR$/test/syntaxe/exempleIF.cas" />
         <option value="$PROJECT_DIR$/input/lexical.flex" />
-        <option value="$PROJECT_DIR$/src/fr/esisar/compilation/verif/ReglesTypage.java" />
         <option value="$PROJECT_DIR$/input/syntaxe.cup" />
         <option value="$PROJECT_DIR$/src/fr/esisar/compilation/verif/ErreurContext.java" />
         <option value="$PROJECT_DIR$/src/fr/esisar/compilation/verif/Verif.java" />
+        <option value="$PROJECT_DIR$/src/fr/esisar/compilation/verif/ReglesTypage.java" />
       </list>
     </option>
   </component>
@@ -170,8 +108,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -200,21 +136,6 @@
               <item name="projet-compile" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="compilation" type="462c0819:PsiDirectoryNode" />
-              <item name="global" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ProjetCompilJCas" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projet-compile" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="compilation" type="462c0819:PsiDirectoryNode" />
-              <item name="global" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ProjetCompilJCas" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projet-compile" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="compilation" type="462c0819:PsiDirectoryNode" />
               <item name="verif" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -228,6 +149,8 @@
       </pane>
       <pane id="PackagesPane" />
       <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -353,7 +276,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-11" y="-11" width="1942" height="1042" extended-state="7" />
+    <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -368,7 +291,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26918918" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27405405" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -376,11 +299,30 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26918918" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -666,26 +608,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/fr/esisar/compilation/global/src/TypeArray.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/fr/esisar/compilation/verif/ReglesTypage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="17" column="12" lean-forward="false" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/fr/esisar/compilation/verif/ErreurVerif.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
           <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -708,15 +634,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/fr/esisar/compilation/global/src/Type.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
-          <caret line="36" column="13" lean-forward="false" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -757,7 +674,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -773,117 +689,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1761">
           <caret line="207" column="21" lean-forward="false" selection-start-line="207" selection-start-column="21" selection-end-line="207" selection-end-column="21" />
-          <folding>
-            <marker date="1506857891416" expanded="true" signature="417:1457" ph="{...}" />
-            <marker date="1506857891416" expanded="true" signature="1500:1643" ph="{...}" />
-            <marker date="1506857891416" expanded="true" signature="1648:1708" ph="/**...*/" />
-            <marker date="1506857891416" expanded="true" signature="1797:1836" ph="{...}" />
-            <marker date="1506857891416" expanded="true" signature="1841:1894" ph="/**...*/" />
-            <marker date="1506857891416" expanded="true" signature="1920:2046" ph="{...}" />
-            <marker date="1506857891416" expanded="true" signature="4129:4256" ph="{...}" />
-            <marker date="1506857891416" expanded="true" signature="4320:4327" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="4395:4399" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="4424:4431" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="4487:4491" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="4695:4697" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="4760:4770" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="4825:4901" ph="{...}" />
-            <marker date="1506857891416" expanded="true" signature="4921:5044" ph="{...}" />
-            <marker date="1506857891416" expanded="true" signature="5073:5080" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="5091:5095" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="5127:5134" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="5145:5149" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="5221:5228" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="5294:5298" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="5371:5451" ph="{...}" />
-            <marker date="1506857891416" expanded="true" signature="5492:5499" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="5561:5565" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="5593:5602" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="5666:5670" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="5692:5699" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="5710:5714" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="5750:5757" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="5797:5801" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="5821:5827" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="5838:5844" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="5871:5879" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="5918:5922" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="5987:5995" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="6061:6065" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="6100:6220" ph="{...}" />
-            <marker date="1506857891416" expanded="true" signature="6248:6250" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="6305:6309" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="6346:6348" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="6412:6416" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="6462:6470" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="6532:6536" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="6584:6592" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="6657:6661" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="6708:6922" ph="{...}" />
-            <marker date="1506857891416" expanded="true" signature="6988:6993" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="7057:7061" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="7111:7120" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="7180:7184" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="7229:7238" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="7297:7301" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="7324:7332" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="7389:7393" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="7446:7529" ph="{...}" />
-            <marker date="1506857891416" expanded="true" signature="7578:7662" ph="{...}" />
-            <marker date="1506857891416" expanded="true" signature="7718:7725" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="7791:7795" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="7815:7936" ph="{...}" />
-            <marker date="1506857891416" expanded="true" signature="7971:7979" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="7991:7995" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="8027:8034" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="8095:8099" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="8130:8137" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="8198:8202" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="8235:8242" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="8305:8309" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="8346:8353" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="8419:8423" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="8460:8467" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="8533:8537" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="8570:8577" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="8643:8647" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="8679:8686" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="8748:8752" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="8784:8791" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="8853:8857" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="8890:8897" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="8960:8964" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="8998:9005" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="9069:9073" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="9106:9113" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="9176:9180" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="9217:9224" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="9290:9294" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="9326:9333" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="9397:9401" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="9433:9440" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="9507:9511" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="9541:9549" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="9614:9618" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="9649:9657" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="9722:9726" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="9755:9763" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="9820:9824" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="9863:9865" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="9906:9910" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="9938:9941" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="9981:9985" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="10015:10017" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="10059:10063" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="10086:10093" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="10104:10108" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="10147:10154" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="10165:10169" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="10199:10207" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="10218:10222" ph=" }" />
-            <marker date="1506857891416" expanded="true" signature="10274:10281" ph=" { " />
-            <marker date="1506857891416" expanded="true" signature="10345:10349" ph=" }" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -908,8 +713,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/fr/esisar/compilation/verif/Verif.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="127" column="54" lean-forward="true" selection-start-line="127" selection-start-column="41" selection-end-line="127" selection-end-column="54" />
+        <state relative-caret-position="2625">
+          <caret line="135" column="9" lean-forward="true" selection-start-line="135" selection-start-column="9" selection-end-line="135" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#369#370#0" expanded="true" />
+            <element signature="e#404#405#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/fr/esisar/compilation/global/src/TypeArray.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="6" column="15" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/fr/esisar/compilation/global/src/Type.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2549">
+          <caret line="36" column="13" lean-forward="false" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
+          <folding>
+            <element signature="e#4074#4075#0" expanded="true" />
+            <element signature="e#4135#4136#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/fr/esisar/compilation/verif/ReglesTypage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="772">
+          <caret line="84" column="48" lean-forward="false" selection-start-line="84" selection-start-column="48" selection-end-line="84" selection-end-column="48" />
           <folding />
         </state>
       </provider>

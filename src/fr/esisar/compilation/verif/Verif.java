@@ -2,6 +2,8 @@ package fr.esisar.compilation.verif;
 
 import fr.esisar.compilation.global.src.*;
 
+import java.util.ArrayList;
+
 /**
  * Cette classe permet de réaliser la vérification et la décoration
  * de l'arbre abstrait d'un programme.
@@ -27,6 +29,19 @@ public class Verif {
      */
     public void verifierDecorer(Arbre a) throws ErreurVerif {
         verifier_PROGRAMME(a);
+        ajout_Decor(a);
+    }
+
+    private void ajout_Decor(Arbre a) {
+        ArrayList<Arbre> arbres = new ArrayList<>();
+        arbres.add(a);
+        while (arbres.size() != 0){
+            a = arbres.remove(0);
+            if(a.getDecor() == null)
+                a.setDecor(new Decor());
+            for(int i = 0; i < a.getArite(); i++)
+                arbres.add(a.getFils(i));
+        }
     }
 
     /**
@@ -89,7 +104,7 @@ public class Verif {
                 break;
             default:
                 throw new ErreurInterneVerif(
-                        "Arbre incorrect dans verifier_LISTE_INST");
+                        "Arbre incorrect dans verifier_LISTE_DECL");
         }
     }
 
@@ -101,7 +116,7 @@ public class Verif {
                 break;
             default:
                 throw new ErreurInterneVerif(
-                        "Arbre incorrect dans verifier_LISTE_INST");
+                        "Arbre incorrect dans verifier_DECL");
         }
     }
 
@@ -117,17 +132,17 @@ public class Verif {
                 break;
             default:
                 throw new ErreurInterneVerif(
-                        "Arbre incorrect dans verifier_LISTE_INST");
+                        "Arbre incorrect dans verifier_LISTE_IDF");
         }
     }
 
     private Type verifier_TYPE(Arbre a) throws ErreurVerif {
-        ErreurContext.ErreurNonRepertoriee.leverErreurContext("",1);
         switch (a.getNoeud()) {
             case Ident:
                 Defn defn = env.chercher(a.getChaine());
                 if (defn == null || defn.getNature() != NatureDefn.Type)
                     throw new ErreurReglesTypage();
+                a.setDecor(new Decor(defn));
                 return defn.getType();
             case Intervalle:
                 return verifier_INTERVALLE(a);
@@ -136,7 +151,7 @@ public class Verif {
                 return Type.creationArray(intervale, verifier_TYPE(a.getFils2()));
             default:
                 throw new ErreurInterneVerif(
-                        "Arbre incorrect dans verifier_LISTE_INST");
+                        "Arbre incorrect dans verifier_TYPE");
         }
 
     }
@@ -144,7 +159,7 @@ public class Verif {
     private Type verifier_INTERVALLE(Arbre a) throws ErreurVerif {
         if (a.getNoeud() != Noeud.Intervalle)
             throw new ErreurInterneVerif(
-                    "Arbre incorrect dans verifier_LISTE_INST");
+                    "Arbre incorrect dans verifier_INTERVALLE");
         int inf = verifier_CONSTANTE(a.getFils1());
         int sup = verifier_CONSTANTE(a.getFils2());
         return Type.creationInterval(inf, sup);
@@ -160,12 +175,13 @@ public class Verif {
                 return -a.getEntier();
             case Ident:
                 Defn defn = env.chercher(a.getChaine());
-                if (defn == null)
+                if (defn == null || defn.getNature() != NatureDefn.ConstInteger)
                     throw new ErreurReglesTypage();
+                a.setDecor(new Decor(defn));
                 return defn.getValeurInteger();
             default:
                 throw new ErreurInterneVerif(
-                        "Arbre incorrect dans verifier_LISTE_INST");
+                        "Arbre incorrect dans verifier_CONSTANTE");
         }
     }
 
