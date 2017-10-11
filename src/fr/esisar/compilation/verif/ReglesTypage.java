@@ -44,37 +44,63 @@ public class ReglesTypage {
 
     static ResultatBinaireCompatible binaireCompatible(Noeud noeud, Type t1, Type t2) {
         ResultatBinaireCompatible binaireOk =new ResultatBinaireCompatible();
-        ResultatAffectCompatible affectOK = new ResultatAffectCompatible();
-        affectOK = affectCompatible(t1, t2);
-        if (!affectOK.getOk()) {
-            affectOK = affectCompatible(t2, t1);
-            binaireOk.setOk(affectOK.getOk());
-            binaireOk.setConv1(affectOK.getConv2());
-        } else {
-            binaireOk.setOk(affectOK.getOk());
-            binaireOk.setConv2(affectOK.getConv2());
-        }
+        binaireOk.setOk(false);
+        binaireOk.setConv1(false);
+        binaireOk.setConv2(false);
         switch (noeud) {
-            case Affect:
-                binaireOk.setTypeRes(t1);
+            case Et:
+            case Ou:
+                if (t1.getNature().equals(NatureType.Boolean) && t1.getNature().equals(NatureType.Boolean))
+                {
+                    binaireOk.setOk(true);
+                    binaireOk.setTypeRes(Type.Boolean);
+                }
                 break;
             case Egal:
-            case Et:
             case Inf:
-            case InfEgal:
-            case NonEgal:
-            case Ou:
             case Sup:
+            case NonEgal:
+            case InfEgal:
             case SupEgal:
-                binaireOk.setTypeRes(Type.Boolean);
+                if((t1.getNature().equals(NatureType.Interval) || t1.getNature().equals(NatureType.Real)) && (t2.getNature().equals(NatureType.Interval) || t2.getNature().equals(NatureType.Real)))
+                {
+                    binaireOk.setOk(true);
+                    binaireOk.setTypeRes(Type.Boolean);
+                }
+                break;
+            case Plus:
+            case Moins:
+            case Mult:
+                if((t1.getNature().equals(NatureType.Interval) || t1.getNature().equals(NatureType.Real)) && (t2.getNature().equals(NatureType.Interval) || t2.getNature().equals(NatureType.Real)))
+                {
+                    binaireOk.setOk(true);
+                    if (t1.getNature().equals(NatureType.Interval) && t2.getNature().equals(NatureType.Interval))
+                    {
+                        binaireOk.setTypeRes(Type.Integer);
+                    }
+                    else
+                    {
+                        binaireOk.setTypeRes(Type.Real);
+                    }
+                }
+                break;
+            case Quotient:
+            case Reste:
+                if (t1.getNature().equals(NatureType.Interval) && t2.getNature().equals(NatureType.Interval))
+                {
+                    binaireOk.setOk(true);
+                    binaireOk.setTypeRes(Type.Integer);
+                }
                 break;
             case DivReel:
-                binaireOk.setTypeRes(Type.Real);
+                if((t1.getNature().equals(NatureType.Interval) || t1.getNature().equals(NatureType.Real)) && (t2.getNature().equals(NatureType.Interval) || t2.getNature().equals(NatureType.Real)))
+                {
+                    binaireOk.setOk(true);
+                    binaireOk.setTypeRes(Type.Real);
+                }
                 break;
-
-
         }
-        return null;
+        return binaireOk;
     }
 
     /**
@@ -82,8 +108,30 @@ public class ReglesTypage {
      * dans noeud.
      */
     static ResultatUnaireCompatible unaireCompatible(Noeud noeud, Type t) {
-        ResultatUnaireCompatible unaireOK = null;
-
+        ResultatUnaireCompatible unaireOK = new ResultatUnaireCompatible();
+        unaireOK.setOk(false);
+        switch (noeud){
+            case Non:
+                if (t.getNature().equals(NatureType.Boolean))
+                {
+                    unaireOK.setOk(true);
+                    unaireOK.setTypeRes(Type.Boolean);
+                }
+                break;
+            case MoinsUnaire:
+            case PlusUnaire:
+                if (t.getNature().equals(NatureType.Interval))
+                {
+                    unaireOK.setOk(true);
+                    unaireOK.setTypeRes(Type.Integer);
+                }
+                if (t.getNature().equals(NatureType.Real))
+                {
+                    unaireOK.setOk(true);
+                    unaireOK.setTypeRes(Type.Real);
+                }
+                break;
+        }
         return unaireOK;
     }
 
