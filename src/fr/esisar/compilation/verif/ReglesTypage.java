@@ -109,10 +109,10 @@ public class ReglesTypage {
                 {
                     binaireOk.setOk(true);
                     binaireOk.setTypeRes(Type.Real);
-                    if(t1.getNature().equals(NatureType.Interval) && t2.getNature().equals(NatureType.Real)){
+                    if(t1.getNature().equals(NatureType.Interval)){
                         binaireOk.setConv1(true);
                     }
-                    if(t1.getNature().equals(NatureType.Real) && t2.getNature().equals(NatureType.Interval)){
+                    if(t2.getNature().equals(NatureType.Interval)){
                         binaireOk.setConv2(true);
                     }
                 }
