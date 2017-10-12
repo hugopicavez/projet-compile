@@ -35,11 +35,11 @@ public class Verif {
     private void ajout_Decor(Arbre a) {
         ArrayList<Arbre> arbres = new ArrayList<>();
         arbres.add(a);
-        while (arbres.size() != 0){
+        while (arbres.size() != 0) {
             a = arbres.remove(0);
-            if(a.getDecor() == null)
+            if (a.getDecor() == null)
                 a.setDecor(new Decor());
-            for(int i = 0; i < a.getArite(); i++)
+            for (int i = 1; i <= a.getArite(); i++)
                 arbres.add(a.getFils(i));
         }
     }
@@ -128,7 +128,7 @@ public class Verif {
                 verifier_LISTE_IDF(a.getFils1(), type);
                 Defn defn = Defn.creationVar(type);
                 if (env.enrichir(a.getFils2().getChaine(), defn))
-                    throw new ErreurReglesTypage();
+                    ErreurContext.ErreurVariableDejaDeffinit.leverErreurContext(a.getFils2().getChaine(), a.getNumLigne());
                 break;
             default:
                 throw new ErreurInterneVerif(
@@ -141,7 +141,7 @@ public class Verif {
             case Ident:
                 Defn defn = env.chercher(a.getChaine());
                 if (defn == null || defn.getNature() != NatureDefn.Type)
-                    throw new ErreurReglesTypage();
+                    ErreurContext.ErreurTypeInvalid.leverErreurContext(a.getChaine(), a.getNumLigne());
                 a.setDecor(new Decor(defn));
                 return defn.getType();
             case Intervalle:
