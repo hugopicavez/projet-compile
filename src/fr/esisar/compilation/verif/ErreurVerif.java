@@ -6,7 +6,6 @@ package fr.esisar.compilation.verif;
  */
 
 public class ErreurVerif extends Exception {
+  
 
 }
-
-
