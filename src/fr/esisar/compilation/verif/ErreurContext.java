@@ -12,6 +12,8 @@
 package fr.esisar.compilation.verif;
 
 public enum ErreurContext {
+   ErreurTypeNonCompatible,
+   ErreurTypeBolleanAttendu,
    ErreurTypeInvalid,
    ErreurVariableDejaDeffinit,
    ErreurNonRepertoriee;

@@ -117,6 +117,9 @@ public class ReglesTypage {
                     }
                 }
                 break;
+            default:
+                throw new ErreurInterneVerif(
+                        "Arbre incorrect dans binaireCompatible");
         }
         return binaireOk;
     }
@@ -149,6 +152,9 @@ public class ReglesTypage {
                     unaireOK.setTypeRes(Type.Real);
                 }
                 break;
+            default:
+                throw new ErreurInterneVerif(
+                        "Arbre incorrect dans binaireCompatible");
         }
         return unaireOK;
     }
