@@ -117,6 +117,14 @@ public class ReglesTypage {
                     }
                 }
                 break;
+            case Tableau:
+                if(t1.getNature().equals(NatureType.Array) && t2.getNature().equals(NatureType.Interval)){
+                    if(t1.getIndice().getNature().equals(NatureType.Interval)){
+                        binaireOk.setOk(true);
+                        binaireOk.setTypeRes(t1.getElement());
+                    }
+                }
+                break;
             default:
                 throw new ErreurInterneVerif(
                         "Arbre incorrect dans binaireCompatible");
