@@ -4,6 +4,6 @@ c : integer;
 begin
    a := 30;
    b := 10;
-   c := a and b  -- erreur attend des booleans non des entiers
+   c := a and b;  -- erreur attend des booleans non des entiers
 end.
 

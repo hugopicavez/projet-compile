@@ -4,6 +4,6 @@ c : integer;
 begin
    a := 30;
    c := 10;
-   b := a / c;  -- erreur : b doit être real
+   b := a / c;  -- erreur : b doit etre real
 end.
 
