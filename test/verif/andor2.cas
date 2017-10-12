@@ -1,0 +1,9 @@
+program
+a, b: integer;
+c : boolean;
+begin
+   a := 30;
+   b := 10;
+   c := a or b -- erreur sur l'opération or : opérandes doivent etre booleans
+end.
+
