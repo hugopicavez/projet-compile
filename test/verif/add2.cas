@@ -1,0 +1,9 @@
+program
+a, b : integer ;
+c : real;
+begin
+   a := 3;
+   b := 8;
+   c := a + b; -- conversion eniers vers réel
+end.
+

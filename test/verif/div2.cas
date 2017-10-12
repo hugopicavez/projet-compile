@@ -1,0 +1,9 @@
+program
+a, b : integer ;
+c : integer;
+begin
+   a := 30;
+   c := 10;
+   b := a / c;  -- erreur : b doit être réel
+end.
+
