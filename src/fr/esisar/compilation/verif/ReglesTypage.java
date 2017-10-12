@@ -66,6 +66,12 @@ public class ReglesTypage {
                 {
                     binaireOk.setOk(true);
                     binaireOk.setTypeRes(Type.Boolean);
+                    if(t1.getNature().equals(NatureType.Interval) && t2.getNature().equals(NatureType.Real)){
+                        binaireOk.setConv1(true);
+                    }
+                    if(t1.getNature().equals(NatureType.Real) && t2.getNature().equals(NatureType.Interval)){
+                        binaireOk.setConv2(true);
+                    }
                 }
                 break;
             case Plus:
@@ -80,6 +86,12 @@ public class ReglesTypage {
                     }
                     else
                     {
+                        if(t1.getNature().equals(NatureType.Interval)){
+                            binaireOk.setConv1(true);
+                        }
+                        if(t2.getNature().equals(NatureType.Interval)){
+                            binaireOk.setConv2(true);
+                        }
                         binaireOk.setTypeRes(Type.Real);
                     }
                 }
@@ -97,6 +109,12 @@ public class ReglesTypage {
                 {
                     binaireOk.setOk(true);
                     binaireOk.setTypeRes(Type.Real);
+                    if(t1.getNature().equals(NatureType.Interval) && t2.getNature().equals(NatureType.Real)){
+                        binaireOk.setConv1(true);
+                    }
+                    if(t1.getNature().equals(NatureType.Real) && t2.getNature().equals(NatureType.Interval)){
+                        binaireOk.setConv2(true);
+                    }
                 }
                 break;
         }
