@@ -11,12 +11,15 @@ import java.util.ArrayList;
 public class Verif {
 
     private Environ env; // L'environnement des identificateurs
+    private ReglesTypage reglesType;
+
 
     /**
      * Constructeur.
      */
     public Verif() {
         env = new Environ();
+        reglesType = new ReglesTypage();
     }
 
     /**
@@ -172,7 +175,7 @@ public class Verif {
             case MoinsUnaire:
                 return -verifier_CONSTANTE(a.getFils1());
             case Entier:
-                return -a.getEntier();
+                return a.getEntier();
             case Ident:
                 Defn defn = env.chercher(a.getChaine());
                 if (defn == null || defn.getNature() != NatureDefn.ConstInteger)
@@ -188,253 +191,251 @@ public class Verif {
     /**************************************************************************
      * LISTE_INST
      **************************************************************************/
-     private void verifier_LISTE_INST(Arbre a) throws ErreurVerif {
-      switch (a.getNoeud()){
-        case Vide :
-          break ;
-        case ListeInst :
-          verifier_LISTE_INST(a.getFils1());
-          verifier_LISTE_INST(a.getFils2());
-          break ;
-        default :
-          throw new ErreurInterneVerif( "Arbre incorrect dans verifier_LISTE_INST") ;
-     }
-   }
+    private void verifier_LISTE_INST(Arbre a) throws ErreurVerif {
+        switch (a.getNoeud()) {
+            case Vide:
+                break;
+            case ListeInst:
+                verifier_LISTE_INST(a.getFils1());
+                verifier_INST(a.getFils2());
+                break;
+            default:
+                throw new ErreurInterneVerif("Arbre incorrect dans verifier_LISTE_INST");
+        }
+    }
 
 
-   private void verifier_LISTE_EXP(Arbre a) throws ErreurVerif{
-     switch(a.getNoeud()){
-       case ListeExp :
-        verifier_LISTE_EXP(a.getFils1());
+    private void verifier_INST(Arbre a) throws ErreurVerif {
+        switch (a.getNoeud()) {
+            case Nop:
+                break;
+            case Affect:
+                verifier_AFFECT(a);
+                break;
+            case Pour:
+                verifier_POUR(a);
+                break;
+            case TantQue:
+                verifier_TANTQUE(a);
+                break;
+            case Si:
+                verifier_SI(a);
+                break;
+            case Ecriture:
+                verifier_ECRITURE(a);
+                break;
+            case Lecture:
+                verifier_LECTURE(a);
+                break;
+            case Ligne:
+                break;
+            default:
+                throw new ErreurInterneVerif("Arvre incorrect dans verifier_INST");
+        }
+    }
+
+    private void verifier_AFFECT(Arbre a) throws ErreurVerif {  //place:a1 AFFECT exp:a2
+        verifier_PLACE(a.getFils1());
         verifier_EXP(a.getFils2());
-        break;
-      case Vide :
-        break ;
-      default :
-        throw new ErreurInterneVerif( "Arbre incorrect dans verifier_LISTE_EXP") ;
-       }
-   }
 
- private void verifier_INST(Arbre a) throws ErreurVerif {
-   switch (a.getNoeud()){
-     case Nop:
-       break ;
-     case Affect:
-       verifier_AFFECT(a);
-        break ;
-     case Pour:
-        verifier_POUR(a);
-        break ;
-     case TantQue:
-         verifier_TANTQUE(a);
-         break ;
-     case Si:
-         verifier_SI(a);
-         break ;
-     case Ecriture:
-         verifier_ECRITURE(a);
-         break ;
-     case Lecture:
-         verifier_LECTURE(a);
-         break ;
-     case Ligne:
-         verifier_LIGNE(a);
-         break ;
-      default :
-      throw new ErreurInterneVerif( "Arvre incorrect dans verifier_INST") ;
-      }
+        ResultatAffectCompatible affectComp = reglesType.affectCompatible(a.getFils1().getDecor().getType(), a.getFils2().getDecor().getType());
+        if (affectComp.getOk()) {
+            if (affectComp.getConv2()) {
+                a.setFils2(Arbre.creation1(Noeud.Conversion, a.getFils2(), a.getFils2().getNumLigne()));
+                a.getFils2().setDecor(new Decor(Type.Real));
+            }
+        } else
+            ErreurContext.ErreurTypeNonCompatible.leverErreurContext("=> Affect", a.getNumLigne());
     }
 
-    private void verifier_AFFECT(Arbre a) throws ErreurVerif{  //place:a1 AFFECT exp:a2
-      verifier_PLACE(a.getFils1());
-      verifier_EXP(a.getFils2());
-
-      Defn defn1 = env.chercher(a.getFils1().getChaine());
-      Defn defn2 = env.chercher(a.getFils2().getChaine()) ;
-
-      if (defn1 == null || defn1.getNature() != NatureDefn.Var )
-          throw new ErreurReglesTypage();
-
-      ResultatAffectCompatible affectComp  = reglesType.affectCompatible(defn1.getType() , a.getFils2().getDecor().getType());
-      if (true == affectComp.getOk())
-          if (true == affectComp.getConv2()){
-            a.setFils2(Arbre.creation1(Noeud.Conversion, a.getFils2(), a.getFils2().getNumLigne()));
-					  a.getFils2().setDecor(new Decor(Type.Real));
-          }
-      else
-        ErreurContext.ErreurTypeNonCompatible.leverErreurContext( "=> Affect",  a.getNumLigne());
-   }
-
-    private void verifier_POUR(Arbre a) throws ErreurVerif{// FOR pas:a1 DO liste_inst:a2 END
-      verifier_PAS(a.getFils1());
-      verifier_LISTE_INST(a.getFils2());
+    private void verifier_POUR(Arbre a) throws ErreurVerif {// FOR pas:a1 DO liste_inst:a2 END
+        verifier_PAS(a.getFils1());
+        verifier_LISTE_INST(a.getFils2());
     }
 
 
-    private void verifier_TANTQUE(Arbre a) throws ErreurVerif{
-      verifier_EXP(a.getFils1());
-      if( ! (Type.Boolean == a.getFils1().getDecor().getType()))
-          ErreurContext.ErreurTypeBolleanAttendu.leverErreurContext( "While -->",  a.getNumLigne());
-      verifier_LISTE_INST(a.getFils2());
+    private void verifier_PAS(Arbre a) throws ErreurVerif {  //idf:a1 AFFECT exp:a2 TO (ou DOWNTO) exp:a3
+        if (!(a.getNoeud() == Noeud.Increment || a.getNoeud().equals(Noeud.Decrement)))
+            throw new ErreurInterneVerif("PAS :  " + a.getNumLigne());
+        verifier_IDF(a.getFils1());
+        verifier_EXP(a.getFils2());
+        verifier_EXP(a.getFils3());
+    }
+
+    private void verifier_TANTQUE(Arbre a) throws ErreurVerif {
+        verifier_EXP(a.getFils1());
+        if (Type.Boolean != a.getFils1().getDecor().getType())
+            ErreurContext.ErreurTypeBolleanAttendu.leverErreurContext("While -->", a.getNumLigne());
+        verifier_LISTE_INST(a.getFils2());
 
     }
 
 
-    private void verifier_SI(Arbre a) throws ErreurVerif{
-      verifier_EXP(a.getFils1());
-      if( ! (Type.Boolean == a.getFils1().getDecor().getType()))
-        ErreurContext.ErreurTypeBolleanAttendu.leverErreurContext( "Si -->",  a.getNumLigne());
-      verifier_LISTE_INST(a.getFils2());
-      verifier_LISTE_INST(a.getFils3());
+    private void verifier_SI(Arbre a) throws ErreurVerif {
+        verifier_EXP(a.getFils1());
+        if (Type.Boolean != a.getFils1().getDecor().getType())
+            ErreurContext.ErreurTypeBolleanAttendu.leverErreurContext("Si -->", a.getNumLigne());
+        verifier_LISTE_INST(a.getFils2());
+        verifier_LISTE_INST(a.getFils3());
     }
 
-/* Instruction write : les expressions doivent être de type Type.Interval,
-  Type.Real ou Type.String. */
-    private void verifier_ECRITURE(Arbre a) throws ErreurVerif{  //WRITE PAR_OUVR liste_exp:a PAR_FERM et  liste_exp ::= liste_exp VIRGULE exp
-      verifier_LISTE_EXP(a.getFils1());
-      Arbre listeEXP = a.getFils1();
-      while (Noeud.Vide != listeEXP.getNoeud() ){
-      NatureType natureTypeExp = listeEXP.getFils2().getDecor().getType().getNature() ;
-       if( !( natureTypeExp == NatureType.Real || natureTypeExp == NatureType.String || natureTypeExp == NatureType.Interval))
-          ErreurContext.ErreurTypeNonCompatible.leverErreurContext( "write -->",  a.getNumLigne());
-        listeEXP = listeEXP.getFils1();
-      }
+    /* Instruction write : les expressions doivent être de type Type.Interval,
+      Type.Real ou Type.String. */
+    private void verifier_ECRITURE(Arbre a) throws ErreurVerif {  //WRITE PAR_OUVR liste_exp:a PAR_FERM et  liste_exp ::= liste_exp VIRGULE exp
+        verifier_LISTE_EXP(a.getFils1());
+        Arbre listeEXP = a.getFils1();
+        while (Noeud.Vide != listeEXP.getNoeud()) {
+            NatureType natureTypeExp = listeEXP.getFils2().getDecor().getType().getNature();
+            if (!(natureTypeExp == NatureType.Real || natureTypeExp == NatureType.String || natureTypeExp == NatureType.Interval))
+                ErreurContext.ErreurTypeNonCompatible.leverErreurContext("write -->", a.getNumLigne());
+            listeEXP = listeEXP.getFils1();
+        }
     }
 
-// Instruction read : la place doit etre de type Type.Interval ou Type.Real.
-    private void verifier_LECTURE(Arbre a) throws ErreurVerif{  //READ PAR_OUVR place:a PAR_FERM
-      verifier_PLACE(a.getFils1());
-      NatureType natureTypeExp = a.getFils1().getDecor().getType().getNature() ;
-       if( !( natureTypeExp == NatureType.Real || natureTypeExp == NatureType.Interval))
-          ErreurContext.ErreurTypeNonCompatible.leverErreurContext( "read -->",  a.getNumLigne());
+    private void verifier_LISTE_EXP(Arbre a) throws ErreurVerif {
+        switch (a.getNoeud()) {
+            case ListeExp:
+                verifier_LISTE_EXP(a.getFils1());
+                verifier_EXP(a.getFils2());
+                break;
+            case Vide:
+                break;
+            default:
+                throw new ErreurInterneVerif("Arbre incorrect dans verifier_LISTE_EXP");
+        }
     }
 
+    // Instruction read : la place doit etre de type Type.Interval ou Type.Real.
 
-    private void verifier_LIGNE(Arbre a) throws ErreurVerif{
+    private void verifier_LECTURE(Arbre a) throws ErreurVerif {  //READ PAR_OUVR place:a PAR_FERM
+        verifier_PLACE(a.getFils1());
+        NatureType natureTypeExp = a.getFils1().getDecor().getType().getNature();
+        if (!(natureTypeExp == NatureType.Real || natureTypeExp == NatureType.Interval))
+            ErreurContext.ErreurTypeNonCompatible.leverErreurContext("read -->", a.getNumLigne());
     }
+    
 
     private void verifier_PLACE(Arbre a) throws ErreurVerif, ErreurInterneVerif {
-      switch (a.getNoeud()) {
-     case Ident:
-      verifier_IDF(a);
-     case Index:
-      verifier_INDEX(a);
-     default:
-       throw new ErreurInterneVerif("Place : "+a.getFils1().getNumLigne());
-      }
+        switch (a.getNoeud()) {
+            case Ident:
+                verifier_IDF(a);
+            case Index:
+                verifier_INDEX(a);
+            default:
+                throw new ErreurInterneVerif("Place : " + a.getFils1().getNumLigne());
+        }
     }
 
-    private void verifier_INDEX (Arbre a) throws ErreurVerif { //place:a1 CROCH_OUVR exp:a2 CROCH_FERM
+    private void verifier_INDEX(Arbre a) throws ErreurVerif { //place:a1 CROCH_OUVR exp:a2 CROCH_FERM
         verifier_PLACE(a.getFils1());
-
+        verifier_EXP(a.getFils2());
+        if(a.getFils2().getDecor().getType().getNature() != NatureType.Interval)
+            ErreurContext.ErreurTypeNonCompatible.leverErreurContext("", a.getNumLigne());
+        if(a.getFils1().getDecor().getType().getNature() != NatureType.Array)
+            ErreurContext.ErreurTypeNonCompatible.leverErreurContext("", a.getNumLigne());
+        a.setDecor(new Decor(a.getFils1().getDecor().getType().getElement()));
     }
 
 
-   private void verifier_EXP (Arbre a) throws ErreurVerif {
-      switch (a.getNoeud()) {
-       case Entier :
-       case Reel :
-       case Index:
-       case Ident:
-       case Chaine :
-        this.verifier_FACTEUR(a);
-       case Et:
-       case Ou:
-       case Egal:
-       case InfEgal:
-       case SupEgal:
-       case NonEgal:
-       case Inf:
-       case Sup:
-       case Plus:
-       case Moins:
-       case Mult:
-       case DivReel:
-       case Reste:
-       case Quotient:
-         this.verifier_DEUX_EXP(a);
-          break ;
-       case Non:
-       case MoinsUnaire :
-       case PlusUnaire :
-         this.verifier_UNAIRE(a);
-          break ;
-        default :
-      }
+    private void verifier_EXP(Arbre a) throws ErreurVerif {
+        switch (a.getNoeud()) {
+            case Entier:
+            case Reel:
+            case Index:
+            case Ident:
+            case Chaine:
+                this.verifier_FACTEUR(a);
+            case Et:
+            case Ou:
+            case Egal:
+            case InfEgal:
+            case SupEgal:
+            case NonEgal:
+            case Inf:
+            case Sup:
+            case Plus:
+            case Moins:
+            case Mult:
+            case DivReel:
+            case Reste:
+            case Quotient:
+                this.verifier_DEUX_EXP(a);
+                break;
+            case Non:
+            case MoinsUnaire:
+            case PlusUnaire:
+                this.verifier_UNAIRE(a);
+                break;
+            default:
+        }
     }
 
 
-    private ReglesTypage reglesType = new ReglesTypage();
-
-    private void verifier_UNAIRE(Arbre a) throws ErreurVerif{ //exp:a1 AND exp:a2
-            verifier_FACTEUR(a.getFils1());
-      			Type t= a.getFils1().getDecor().getType();
-      			ResultatUnaireCompatible res2 = reglesType.unaireCompatible(a.getNoeud(), t);
-      			if(res2.getOk()== true){
-      				a.setDecor(new Decor(res2.getTypeRes()));
-      			}
-      			else {
-      				ErreurContext err = ErreurContext.ErreurTypeNonCompatible;
-      				err.leverErreurContext(a.getNoeud()+"=>"+"("+t.toString()+")", a.getNumLigne());
-      			}
-
-    }
-
-    private void verifier_DEUX_EXP(Arbre a) throws ErreurVerif{ //exp:a1 AND exp:a2
-            verifier_EXP(a.getFils1());
-      			verifier_EXP(a.getFils2());
-      			Type t1= a.getFils1().getDecor().getType();
-      			Type t2= a.getFils2().getDecor().getType();
-      			ResultatBinaireCompatible res = reglesType.binaireCompatible(a.getNoeud(), t1, t2);
-      			if(res.getOk()== true){
-      				if(res.getConv1()==true){
-      					a.setFils1(Arbre.creation1(Noeud.Conversion, a.getFils1(), a.getFils1().getNumLigne()));
-      					a.getFils1().setDecor(new Decor(Type.Real));
-      				}
-      				if(res.getConv2()==true){
-      					a.setFils2(Arbre.creation1(Noeud.Conversion, a.getFils2(), a.getFils2().getNumLigne()));
-      					a.getFils2().setDecor(new Decor(Type.Real));
-      				}
-      				a.setDecor(new Decor(res.getTypeRes()));
-      			}
-      			else
-      				ErreurContext.ErreurTypeNonCompatible.leverErreurContext(a.getNoeud()+"=>"+"("+t1.toString()+","+t2.toString()+")", a.getNumLigne());
-
-    }
 
     private void verifier_FACTEUR(Arbre a) throws ErreurVerif {
-      switch (a.getNoeud()) {
-      		case Entier:
-      			a.setDecor(new Decor(Type.Integer));
-      			break;
-      		case Reel:
-      			a.setDecor(new Decor(Type.Real));
-      			break;
-      		case Chaine:
-      			a.setDecor(new Decor(Type.String));
-      			break;
-      		case Index:
-      			verifier_PLACE(a);
-      			break;
-      		case Ident:
+        switch (a.getNoeud()) {
+            case Entier:
+                a.setDecor(new Decor(Type.Integer));
+                break;
+            case Reel:
+                a.setDecor(new Decor(Type.Real));
+                break;
+            case Chaine:
+                a.setDecor(new Decor(Type.String));
+                break;
+            case Index:
+                verifier_PLACE(a);
+                break;
+            case Ident:
 
-      			break;
-      		default:
-      			throw new ErreurInterneVerif("Facteur : "+a.getNumLigne());
-      		}
+                break;
+            default:
+                throw new ErreurInterneVerif("Facteur : " + a.getNumLigne());
+        }
     }
 
-    private void verifier_IDF(Arbre a) throws ErreurVerif{
-       if (!a.getNoeud().equals( Noeud.Ident) )
-         throw new ErreurInterneVerif("Idf : "+a.getNumLigne());
+    private void verifier_DEUX_EXP(Arbre a) throws ErreurVerif { //exp:a1 AND exp:a2
+        verifier_EXP(a.getFils1());
+        verifier_EXP(a.getFils2());
+        Type t1 = a.getFils1().getDecor().getType();
+        Type t2 = a.getFils2().getDecor().getType();
+        ResultatBinaireCompatible res = reglesType.binaireCompatible(a.getNoeud(), t1, t2);
+        if (res.getOk() == true) {
+            if (res.getConv1() == true) {
+                a.setFils1(Arbre.creation1(Noeud.Conversion, a.getFils1(), a.getFils1().getNumLigne()));
+                a.getFils1().setDecor(new Decor(Type.Real));
+            }
+            if (res.getConv2() == true) {
+                a.setFils2(Arbre.creation1(Noeud.Conversion, a.getFils2(), a.getFils2().getNumLigne()));
+                a.getFils2().setDecor(new Decor(Type.Real));
+            }
+            a.setDecor(new Decor(res.getTypeRes()));
+        } else
+            ErreurContext.ErreurTypeNonCompatible.leverErreurContext(a.getNoeud() + "=>" + "(" + t1.toString() + "," + t2.toString() + ")", a.getNumLigne());
 
     }
 
-    private void verifier_PAS(Arbre a) throws ErreurVerif{  //idf:a1 AFFECT exp:a2 TO (ou DOWNTO) exp:a3
-      if (! (a.getNoeud() == Noeud.Increment || a.getNoeud().equals(Noeud.Decrement)))
-        throw new ErreurInterneVerif("PAS :  "+a.getNumLigne());
-      verifier_IDF(a.getFils1());
-      verifier_EXP(a.getFils2());
-      verifier_EXP(a.getFils3());
+    private void verifier_UNAIRE(Arbre a) throws ErreurVerif { //exp:a1 AND exp:a2
+        verifier_FACTEUR(a.getFils1());
+        Type t = a.getFils1().getDecor().getType();
+        ResultatUnaireCompatible res2 = reglesType.unaireCompatible(a.getNoeud(), t);
+        if (res2.getOk() == true) {
+            a.setDecor(new Decor(res2.getTypeRes()));
+        } else {
+            ErreurContext err = ErreurContext.ErreurTypeNonCompatible;
+            err.leverErreurContext(a.getNoeud() + "=>" + "(" + t.toString() + ")", a.getNumLigne());
+        }
+
+    }
+
+    private void verifier_IDF(Arbre a) throws ErreurVerif {
+        if (!a.getNoeud().equals(Noeud.Ident))
+            throw new ErreurInterneVerif("Idf : " + a.getNumLigne());
+        Defn defn = env.chercher(a.getChaine());
+        if(defn == null)
+            ErreurContext.ErreurVariableInconnue.leverErreurContext("", a.getNumLigne());
+        if(defn.getNature() != NatureDefn.Var)
+            ErreurContext.ErreurIdentificateurInvalide.leverErreurContext("", a.getNumLigne());
+        a.setDecor(new Decor(defn, defn.getType()));
     }
 }
