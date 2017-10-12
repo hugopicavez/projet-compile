@@ -12,7 +12,12 @@
 package fr.esisar.compilation.verif;
 
 public enum ErreurContext {
-   
+   ErreurIdentificateurInvalide,
+   ErreurVariableInconnue,
+   ErreurTypeNonCompatible,
+   ErreurTypeBolleanAttendu,
+   ErreurTypeInvalid,
+   ErreurVariableDejaDeffinit,
    ErreurNonRepertoriee;
 
    void leverErreurContext(String s, int numLigne) throws ErreurVerif {
