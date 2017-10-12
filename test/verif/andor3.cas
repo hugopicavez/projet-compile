@@ -4,6 +4,6 @@ c : boolean;
 begin
    a := true;
    b := false;
-   c := a and b;  -- correct
+   c := a and b;  -- correct (Houleye)
 end.
 

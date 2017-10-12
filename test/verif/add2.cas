@@ -4,6 +4,6 @@ c : real;
 begin
    a := 3;
    b := 8;
-   c := a + b; -- conversion eniers vers réel
+   c := a + b; -- conversion entiers vers real
 end.
 

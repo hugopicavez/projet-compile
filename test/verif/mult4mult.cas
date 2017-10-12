@@ -6,6 +6,6 @@ begin
    a := 30;
    b := 10;
    c := 5;
-   d := a * b * c;   -- erreur : c réel implique d réel or d integer
+   d := a * b * c;   -- erreur : c real implique d real or d integer
 end.
 

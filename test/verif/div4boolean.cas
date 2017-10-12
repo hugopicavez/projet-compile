@@ -4,6 +4,6 @@ c : boolean;
 begin
    a := 30;
    b := 10;
-   c := a / b;  -- c doit être réel
+   c := a / b;  -- c doit être real
 end.
 
