@@ -127,9 +127,10 @@ public class Verif {
         switch (a.getNoeud()) {
             case Vide:
                 break;
-            case ListeDecl:
+            case ListeIdent:
                 verifier_LISTE_IDF(a.getFils1(), type);
                 Defn defn = Defn.creationVar(type);
+                a.getFils2().setDecor(new Decor(defn));
                 if (env.enrichir(a.getFils2().getChaine(), defn))
                     ErreurContext.ErreurVariableDejaDeffinit.leverErreurContext(a.getFils2().getChaine(), a.getNumLigne());
                 break;
@@ -244,6 +245,7 @@ public class Verif {
                 a.setFils2(Arbre.creation1(Noeud.Conversion, a.getFils2(), a.getFils2().getNumLigne()));
                 a.getFils2().setDecor(new Decor(Type.Real));
             }
+            a.setDecor(new Decor(a.getFils1().getDecor().getType()));
         } else
             ErreurContext.ErreurTypeNonCompatible.leverErreurContext("=> Affect", a.getNumLigne());
     }
@@ -254,13 +256,20 @@ public class Verif {
     }
 
 
-    private void verifier_PAS(Arbre a) throws ErreurVerif {  //idf:a1 AFFECT exp:a2 TO (ou DOWNTO) exp:a3
-        if (!(a.getNoeud() == Noeud.Increment || a.getNoeud().equals(Noeud.Decrement)))
-            throw new ErreurInterneVerif("PAS :  " + a.getNumLigne());
+    private void verifier_PAS(Arbre a) throws ErreurVerif{  //idf:a1 AFFECT exp:a2 TO (ou DOWNTO) exp:a3
+        if (! (a.getNoeud() == Noeud.Increment || a.getNoeud().equals(Noeud.Decrement)))
+          throw new ErreurInterneVerif("PAS :  "+a.getNumLigne());
         verifier_IDF(a.getFils1());
+        Defn defn1 = env.chercher(a.getFils1().getChaine());
+        if (defn1 == null || defn1.getNature() != NatureDefn.Var )
+            throw new ErreurReglesTypage();
         verifier_EXP(a.getFils2());
         verifier_EXP(a.getFils3());
-    }
+        NatureType natureTypeExp2 = a.getFils2().getDecor().getType().getNature() ;
+        NatureType natureTypeExp3 = a.getFils3().getDecor().getType().getNature() ;
+         if( !( natureTypeExp2 == NatureType.Interval && natureTypeExp3 == NatureType.Interval))
+            ErreurContext.ErreurTypeNonCompatible.leverErreurContext( "pas -->",  a.getNumLigne());
+  }
 
     private void verifier_TANTQUE(Arbre a) throws ErreurVerif {
         verifier_EXP(a.getFils1());
@@ -313,14 +322,17 @@ public class Verif {
         if (!(natureTypeExp == NatureType.Real || natureTypeExp == NatureType.Interval))
             ErreurContext.ErreurTypeNonCompatible.leverErreurContext("read -->", a.getNumLigne());
     }
-    
+
 
     private void verifier_PLACE(Arbre a) throws ErreurVerif, ErreurInterneVerif {
+        System.out.println("--> " + a.getNoeud());
         switch (a.getNoeud()) {
             case Ident:
                 verifier_IDF(a);
+                break;
             case Index:
                 verifier_INDEX(a);
+                break;
             default:
                 throw new ErreurInterneVerif("Place : " + a.getFils1().getNumLigne());
         }
@@ -345,6 +357,7 @@ public class Verif {
             case Ident:
             case Chaine:
                 this.verifier_FACTEUR(a);
+                break;
             case Et:
             case Ou:
             case Egal:
@@ -370,8 +383,6 @@ public class Verif {
         }
     }
 
-
-
     private void verifier_FACTEUR(Arbre a) throws ErreurVerif {
         switch (a.getNoeud()) {
             case Entier:
@@ -387,7 +398,10 @@ public class Verif {
                 verifier_PLACE(a);
                 break;
             case Ident:
-
+                Defn defn = env.chercher(a.getChaine());
+                if (defn == null)
+                  ErreurContext.ErreurVariableInconnue.leverErreurContext("", a.getNumLigne());
+                a.setDecor(new Decor(defn, defn.getType()));
                 break;
             default:
                 throw new ErreurInterneVerif("Facteur : " + a.getNumLigne());
