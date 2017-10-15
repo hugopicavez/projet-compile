@@ -1,0 +1,8 @@
+program
+	a : array [false .. true] of integer;
+	b : real;
+	c : integer;
+begin
+	b := 7.8;
+	c := a[b]; -- indices booleens
+end.

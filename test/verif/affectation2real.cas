@@ -1,0 +1,6 @@
+program
+	a: real;
+begin
+   a := 8; -- correct
+end.
+

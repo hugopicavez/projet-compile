@@ -1,0 +1,7 @@
+program
+	a : array [1..9] of real;
+	b : array [1..9] of integer;
+	c : array [1..9] of integer;
+begin
+	c := a mod b;  -- erreur types
+end.

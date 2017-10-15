@@ -1,0 +1,10 @@
+program
+	a : real;
+	b : 1..14;
+begin
+	for a := b to 20 do 
+      		null ; -- erreur idem for 1
+  	end ; 
+	
+end.
+	

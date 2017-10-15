@@ -1,9 +1,0 @@
-program
-a, b: integer;
-c : boolean;
-begin
-   a := 30;
-   b := 10;
-   c := a or b ; -- erreur sur l'operation or : operandes doivent etre booleans
-end.
-

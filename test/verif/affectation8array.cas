@@ -1,0 +1,6 @@
+program
+	a : array [1..9] of boolean;
+	b : boolean;
+begin
+	a := b;  -- erreur a est un tableau de bool
+end.

@@ -1,0 +1,5 @@
+program
+	a : max_int;
+begin
+	a := true;  -- ne peut pas trouver le type de a
+end.

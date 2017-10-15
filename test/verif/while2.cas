@@ -1,0 +1,7 @@
+program
+	a : 1..9;
+begin
+	while (a) do
+		NULL;
+	end;
+end.

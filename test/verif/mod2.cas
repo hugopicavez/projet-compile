@@ -1,9 +1,0 @@
-program
-a, b: real;
-c : integer;
-begin
-   a := 30.6;
-   b := 10;
-   c := a mod b;  -- erreure : les operandes doivent etres des entiers
-end.
-

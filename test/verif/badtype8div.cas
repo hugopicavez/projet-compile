@@ -1,0 +1,7 @@
+program
+	a : array [1..9] of boolean;
+	b : array [1..9] of integer;
+	c : 3..11;
+begin
+	c := a / b;  -- erreur types
+end.

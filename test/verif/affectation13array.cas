@@ -1,0 +1,5 @@
+program
+   a : integer;
+begin
+   a[18] := 7;  -- erreur : mauvais type
+end.

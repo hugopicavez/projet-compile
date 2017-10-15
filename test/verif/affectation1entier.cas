@@ -1,0 +1,6 @@
+program
+	a: integer;
+begin
+	a := 30.4; -- erreur affectation real et non integer
+end.
+

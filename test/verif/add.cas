@@ -1,9 +1,0 @@
-program
-a, b: integer;
-c : real;
-begin
-   a := 30.4; -- erreur affectation entier
-   b := 10;
-   c := a + b;
-end.
-

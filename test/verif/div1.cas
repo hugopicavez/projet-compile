@@ -1,9 +1,0 @@
-program
-a, b : integer ;
-c : real;
-begin
-   a := 30;
-   b := 10;
-   c := a / b; -- correct
-end.
-

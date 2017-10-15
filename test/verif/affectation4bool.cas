@@ -1,0 +1,6 @@
+program
+	a: integer;
+	b: boolean;
+begin
+    b := a; -- mauvais type de a
+end.

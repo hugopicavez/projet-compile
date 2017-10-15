@@ -1,0 +1,8 @@
+program
+	a : array [1..9] of integer;
+	b : real;
+	c : 3..15;
+begin
+	b := 18.3;
+	c := a / b;  -- erreur type
+end.

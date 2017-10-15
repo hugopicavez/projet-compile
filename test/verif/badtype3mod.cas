@@ -1,0 +1,7 @@
+program
+	a : real;
+	b : 1..6;
+	c : 1..9;
+begin
+	c := a mod b;
+end.

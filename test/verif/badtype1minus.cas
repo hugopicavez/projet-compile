@@ -1,0 +1,6 @@
+program
+	a : boolean;
+begin
+	a := -a;
+end.
+	

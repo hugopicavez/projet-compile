@@ -1,0 +1,7 @@
+program
+   a : 1..5;
+   b : real;
+begin
+	b := 3.8;
+    a := b;
+end.

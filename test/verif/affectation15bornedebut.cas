@@ -1,0 +1,6 @@
+program
+   a : array [1..19] of real;
+   b : array [4..19] of real;
+begin
+   b := a;   -- erreur bornes différentes
+end.

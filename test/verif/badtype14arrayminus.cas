@@ -1,0 +1,7 @@
+program
+	a : real;
+	b : array [1..9] of integer;
+	c : array [1..9] of integer;
+begin
+	a := b - c;  -- erreur types
+end.

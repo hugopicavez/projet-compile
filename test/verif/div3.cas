@@ -1,9 +1,0 @@
-program
-a, b : real ;
-c : real;
-begin
-   a := 30;
-   c := 10.5;
-   b := a / c;  -- correct (houleye)
-end.
-
