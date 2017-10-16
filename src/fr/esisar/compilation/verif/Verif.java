@@ -349,7 +349,7 @@ public class Verif {
     }
 
 
-    private void verifier_EXP(Arbre a) throws ErreurVerif {
+    private void verifier_EXP(Arbre a) throws ErreurInterneVerif, ErreurVerif{
         switch (a.getNoeud()) {
             case Entier:
             case Reel:
@@ -380,6 +380,7 @@ public class Verif {
                 this.verifier_UNAIRE(a);
                 break;
             default:
+              throw new ErreurInterneVerif("Arbre incorrect dans verifier_EXP");
         }
     }
 

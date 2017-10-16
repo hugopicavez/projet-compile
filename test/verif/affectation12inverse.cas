@@ -1,5 +1,0 @@
-program
-	a : real;
-begin
-	54.5 := a; -- declaration impossible
-end.

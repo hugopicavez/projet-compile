@@ -1,0 +1,1997 @@
+---------------------------------------------------------------------
+Fichier : affectation10.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 2
+. . Noeud.Vide                                               -- ligne : 2
+. . Noeud.Decl                                               -- ligne : 2
+. . . Noeud.ListeIdent                                       -- ligne : 2
+. . . . Noeud.Vide                                           -- ligne : 2
+. . . . Noeud.Ident "a"                                      -- ligne : 2
+. . . Noeud.Ident "max_int"                                  -- ligne : 2
+. Noeud.ListeInst                                            -- ligne : 4
+. . Noeud.Vide                                               -- ligne : 5
+. . Noeud.Affect                                             -- ligne : 4
+. . . Noeud.Ident "a"                                        -- ligne : 4
+. . . Noeud.Ident "true"                                     -- ligne : 4
+program
+   a : max_int; 
+begin
+   a := true;
+end.
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : affectation11.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 2
+. . Noeud.Vide                                               -- ligne : 2
+. . Noeud.Decl                                               -- ligne : 2
+. . . Noeud.ListeIdent                                       -- ligne : 2
+. . . . Noeud.Vide                                           -- ligne : 2
+. . . . Noeud.Ident "a"                                      -- ligne : 2
+. . . Noeud.Ident "salade"                                   -- ligne : 2
+. Noeud.ListeInst                                            -- ligne : 4
+. . Noeud.Vide                                               -- ligne : 5
+. . Noeud.Affect                                             -- ligne : 4
+. . . Noeud.Ident "a"                                        -- ligne : 4
+. . . Noeud.Entier 19                                        -- ligne : 4
+program
+   a : salade; 
+begin
+   a := 19;
+end.
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : affectation12inverse.cas
+---------------------------------------------------------------------
+Erreur de syntaxe ... ligne 4
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : affectation13array.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 2
+. . Noeud.Vide                                               -- ligne : 2
+. . Noeud.Decl                                               -- ligne : 2
+. . . Noeud.ListeIdent                                       -- ligne : 2
+. . . . Noeud.Vide                                           -- ligne : 2
+. . . . Noeud.Ident "a"                                      -- ligne : 2
+. . . Noeud.Ident "integer"                                  -- ligne : 2
+. Noeud.ListeInst                                            -- ligne : 4
+. . Noeud.Vide                                               -- ligne : 5
+. . Noeud.Affect                                             -- ligne : 4
+. . . Noeud.Index                                            -- ligne : 4
+. . . . Noeud.Ident "a"                                      -- ligne : 4
+. . . . Noeud.Entier 18                                      -- ligne : 4
+. . . Noeud.Entier 7                                         -- ligne : 4
+program
+   a : integer; 
+begin
+   a[18] := 7;
+end.
+--> Noeud.Index
+--> Noeud.Ident
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : affectation14array.cas
+---------------------------------------------------------------------
+Erreur Lexicale : 'érentes' non reconnu ... ligne 5
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : affectation15bornedebut.cas
+---------------------------------------------------------------------
+Erreur Lexicale : 'érentes' non reconnu ... ligne 5
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : affectation16bornefin.cas
+---------------------------------------------------------------------
+Erreur Lexicale : 'érentes' non reconnu ... ligne 5
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : affectation17double.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 3
+. . Noeud.ListeDecl                                          -- ligne : 2
+. . . Noeud.Vide                                             -- ligne : 2
+. . . Noeud.Decl                                             -- ligne : 2
+. . . . Noeud.ListeIdent                                     -- ligne : 2
+. . . . . Noeud.Vide                                         -- ligne : 2
+. . . . . Noeud.Ident "a"                                    -- ligne : 2
+. . . . Noeud.Tableau                                        -- ligne : 2
+. . . . . Noeud.Intervalle                                   -- ligne : 2
+. . . . . . Noeud.Entier 1                                   -- ligne : 2
+. . . . . . Noeud.Entier 19                                  -- ligne : 2
+. . . . . Noeud.Ident "real"                                 -- ligne : 2
+. . Noeud.Decl                                               -- ligne : 3
+. . . Noeud.ListeIdent                                       -- ligne : 3
+. . . . Noeud.Vide                                           -- ligne : 3
+. . . . Noeud.Ident "a"                                      -- ligne : 3
+. . . Noeud.Tableau                                          -- ligne : 3
+. . . . Noeud.Intervalle                                     -- ligne : 3
+. . . . . Noeud.Entier 1                                     -- ligne : 3
+. . . . . Noeud.Entier 15                                    -- ligne : 3
+. . . . Noeud.Ident "integer"                                -- ligne : 3
+. Noeud.ListeInst                                            -- ligne : 5
+. . Noeud.Vide                                               -- ligne : 6
+. . Noeud.Nop                                                -- ligne : 5
+program
+   a : array [1 .. 19] of real; 
+   a : array [1 .. 15] of integer; 
+begin
+   null;
+end.
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : affectation18incode.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 2
+. . Noeud.Vide                                               -- ligne : 2
+. . Noeud.Decl                                               -- ligne : 2
+. . . Noeud.ListeIdent                                       -- ligne : 2
+. . . . Noeud.Vide                                           -- ligne : 2
+. . . . Noeud.Ident "a"                                      -- ligne : 2
+. . . Noeud.Ident "integer"                                  -- ligne : 2
+. Noeud.ListeInst                                            -- ligne : 4
+. . Noeud.Vide                                               -- ligne : 5
+. . Noeud.Affect                                             -- ligne : 4
+. . . Noeud.Ident "a"                                        -- ligne : 4
+. . . Noeud.Ident "real"                                     -- ligne : 4
+program
+   a : integer; 
+begin
+   a := real;
+end.
+--> Noeud.Ident
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : affectation1entier.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 2
+. . Noeud.Vide                                               -- ligne : 2
+. . Noeud.Decl                                               -- ligne : 2
+. . . Noeud.ListeIdent                                       -- ligne : 2
+. . . . Noeud.Vide                                           -- ligne : 2
+. . . . Noeud.Ident "a"                                      -- ligne : 2
+. . . Noeud.Ident "integer"                                  -- ligne : 2
+. Noeud.ListeInst                                            -- ligne : 4
+. . Noeud.Vide                                               -- ligne : 5
+. . Noeud.Affect                                             -- ligne : 4
+. . . Noeud.Ident "a"                                        -- ligne : 4
+. . . Noeud.Reel 30.4                                        -- ligne : 4
+program
+   a : integer; 
+begin
+   a := 30.4;
+end.
+--> Noeud.Ident
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : affectation2real.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 2
+. . Noeud.Vide                                               -- ligne : 2
+. . Noeud.Decl                                               -- ligne : 2
+. . . Noeud.ListeIdent                                       -- ligne : 2
+. . . . Noeud.Vide                                           -- ligne : 2
+. . . . Noeud.Ident "a"                                      -- ligne : 2
+. . . Noeud.Ident "real"                                     -- ligne : 2
+. Noeud.ListeInst                                            -- ligne : 4
+. . Noeud.Vide                                               -- ligne : 5
+. . Noeud.Affect                                             -- ligne : 4
+. . . Noeud.Ident "a"                                        -- ligne : 4
+. . . Noeud.Entier 8                                         -- ligne : 4
+program
+   a : real; 
+begin
+   a := 8;
+end.
+--> Noeud.Ident
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 2
+. . Noeud.Vide                                               -- ligne : 2
+. . Noeud.Decl                                               -- ligne : 2
+. . . Noeud.ListeIdent                                       -- ligne : 2
+. . . . Noeud.Vide                                           -- ligne : 2
+. . . . Noeud.Ident "a"                                      -- ligne : 2
+. . . . -- defn :
+. . . . --    (NatureDefn.Var, NatureType.Real)
+. . . Noeud.Ident "real"                                     -- ligne : 2
+. . . -- defn :
+. . . --    (NatureDefn.Type, NatureType.Real)
+. Noeud.ListeInst                                            -- ligne : 4
+. . Noeud.Vide                                               -- ligne : 5
+. . Noeud.Affect                                             -- ligne : 4
+. . -- type :
+. . --    NatureType.Real
+. . . Noeud.Ident "a"                                        -- ligne : 4
+. . . -- defn :
+. . . --    (NatureDefn.Var, NatureType.Real)
+. . . -- type :
+. . . --    NatureType.Real
+. . . Noeud.Conversion                                       -- ligne : 4
+. . . -- type :
+. . . --    NatureType.Real
+. . . . Noeud.Entier 8                                       -- ligne : 4
+. . . . -- type :
+. . . . --    Type.Integer
+program
+   a
+   -- defn :
+   --    (NatureDefn.Var, NatureType.Real)
+     : real
+       -- defn :
+       --    (NatureDefn.Type, NatureType.Real)
+           ; 
+begin
+   a
+   -- defn :
+   --    (NatureDefn.Var, NatureType.Real)
+   -- type :
+   --    NatureType.Real
+     := 
+     -- type :
+     --    NatureType.Real
+        -- Noeud.Conversion 
+         -- type :
+         --    NatureType.Real
+                            8
+                            -- type :
+                            --    Type.Integer
+                             ;
+end.
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : affectation3bool.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 3
+. . Noeud.ListeDecl                                          -- ligne : 2
+. . . Noeud.Vide                                             -- ligne : 2
+. . . Noeud.Decl                                             -- ligne : 2
+. . . . Noeud.ListeIdent                                     -- ligne : 2
+. . . . . Noeud.Vide                                         -- ligne : 2
+. . . . . Noeud.Ident "a"                                    -- ligne : 2
+. . . . Noeud.Ident "integer"                                -- ligne : 2
+. . Noeud.Decl                                               -- ligne : 3
+. . . Noeud.ListeIdent                                       -- ligne : 3
+. . . . Noeud.Vide                                           -- ligne : 3
+. . . . Noeud.Ident "b"                                      -- ligne : 3
+. . . Noeud.Ident "boolean"                                  -- ligne : 3
+. Noeud.ListeInst                                            -- ligne : 6
+. . Noeud.ListeInst                                          -- ligne : 5
+. . . Noeud.Vide                                             -- ligne : 6
+. . . Noeud.Affect                                           -- ligne : 5
+. . . . Noeud.Ident "b"                                      -- ligne : 5
+. . . . Noeud.Ident "true"                                   -- ligne : 5
+. . Noeud.Affect                                             -- ligne : 6
+. . . Noeud.Ident "a"                                        -- ligne : 6
+. . . Noeud.Ident "b"                                        -- ligne : 6
+program
+   a : integer; 
+   b : boolean; 
+begin
+   b := true;
+   a := b;
+end.
+--> Noeud.Ident
+--> Noeud.Ident
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : affectation4bool.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 3
+. . Noeud.ListeDecl                                          -- ligne : 2
+. . . Noeud.Vide                                             -- ligne : 2
+. . . Noeud.Decl                                             -- ligne : 2
+. . . . Noeud.ListeIdent                                     -- ligne : 2
+. . . . . Noeud.Vide                                         -- ligne : 2
+. . . . . Noeud.Ident "a"                                    -- ligne : 2
+. . . . Noeud.Ident "integer"                                -- ligne : 2
+. . Noeud.Decl                                               -- ligne : 3
+. . . Noeud.ListeIdent                                       -- ligne : 3
+. . . . Noeud.Vide                                           -- ligne : 3
+. . . . Noeud.Ident "b"                                      -- ligne : 3
+. . . Noeud.Ident "boolean"                                  -- ligne : 3
+. Noeud.ListeInst                                            -- ligne : 5
+. . Noeud.Vide                                               -- ligne : 6
+. . Noeud.Affect                                             -- ligne : 5
+. . . Noeud.Ident "b"                                        -- ligne : 5
+. . . Noeud.Ident "a"                                        -- ligne : 5
+program
+   a : integer; 
+   b : boolean; 
+begin
+   b := a;
+end.
+--> Noeud.Ident
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : affectation5interval.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 3
+. . Noeud.ListeDecl                                          -- ligne : 2
+. . . Noeud.Vide                                             -- ligne : 2
+. . . Noeud.Decl                                             -- ligne : 2
+. . . . Noeud.ListeIdent                                     -- ligne : 2
+. . . . . Noeud.Vide                                         -- ligne : 2
+. . . . . Noeud.Ident "a"                                    -- ligne : 2
+. . . . Noeud.Intervalle                                     -- ligne : 2
+. . . . . Noeud.Entier 1                                     -- ligne : 2
+. . . . . Noeud.Entier 5                                     -- ligne : 2
+. . Noeud.Decl                                               -- ligne : 3
+. . . Noeud.ListeIdent                                       -- ligne : 3
+. . . . Noeud.Vide                                           -- ligne : 3
+. . . . Noeud.Ident "b"                                      -- ligne : 3
+. . . Noeud.Ident "real"                                     -- ligne : 3
+. Noeud.ListeInst                                            -- ligne : 6
+. . Noeud.ListeInst                                          -- ligne : 5
+. . . Noeud.Vide                                             -- ligne : 6
+. . . Noeud.Affect                                           -- ligne : 5
+. . . . Noeud.Ident "b"                                      -- ligne : 5
+. . . . Noeud.Reel 3.8                                       -- ligne : 5
+. . Noeud.Affect                                             -- ligne : 6
+. . . Noeud.Ident "a"                                        -- ligne : 6
+. . . Noeud.Ident "b"                                        -- ligne : 6
+program
+   a : 1 .. 5; 
+   b : real; 
+begin
+   b := 3.8;
+   a := b;
+end.
+--> Noeud.Ident
+--> Noeud.Ident
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : affectation6interval.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 3
+. . Noeud.ListeDecl                                          -- ligne : 2
+. . . Noeud.Vide                                             -- ligne : 2
+. . . Noeud.Decl                                             -- ligne : 2
+. . . . Noeud.ListeIdent                                     -- ligne : 2
+. . . . . Noeud.Vide                                         -- ligne : 2
+. . . . . Noeud.Ident "a"                                    -- ligne : 2
+. . . . Noeud.Intervalle                                     -- ligne : 2
+. . . . . Noeud.Entier 1                                     -- ligne : 2
+. . . . . Noeud.Entier 5                                     -- ligne : 2
+. . Noeud.Decl                                               -- ligne : 3
+. . . Noeud.ListeIdent                                       -- ligne : 3
+. . . . Noeud.Vide                                           -- ligne : 3
+. . . . Noeud.Ident "b"                                      -- ligne : 3
+. . . Noeud.Ident "real"                                     -- ligne : 3
+. Noeud.ListeInst                                            -- ligne : 5
+. . Noeud.Vide                                               -- ligne : 6
+. . Noeud.Affect                                             -- ligne : 5
+. . . Noeud.Ident "b"                                        -- ligne : 5
+. . . Noeud.Ident "a"                                        -- ligne : 5
+program
+   a : 1 .. 5; 
+   b : real; 
+begin
+   b := a;
+end.
+--> Noeud.Ident
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 3
+. . Noeud.ListeDecl                                          -- ligne : 2
+. . . Noeud.Vide                                             -- ligne : 2
+. . . Noeud.Decl                                             -- ligne : 2
+. . . . Noeud.ListeIdent                                     -- ligne : 2
+. . . . . Noeud.Vide                                         -- ligne : 2
+. . . . . Noeud.Ident "a"                                    -- ligne : 2
+. . . . . -- defn :
+. . . . . --    (NatureDefn.Var, NatureType.Interval(1, 5))
+. . . . Noeud.Intervalle                                     -- ligne : 2
+. . . . . Noeud.Entier 1                                     -- ligne : 2
+. . . . . Noeud.Entier 5                                     -- ligne : 2
+. . Noeud.Decl                                               -- ligne : 3
+. . . Noeud.ListeIdent                                       -- ligne : 3
+. . . . Noeud.Vide                                           -- ligne : 3
+. . . . Noeud.Ident "b"                                      -- ligne : 3
+. . . . -- defn :
+. . . . --    (NatureDefn.Var, NatureType.Real)
+. . . Noeud.Ident "real"                                     -- ligne : 3
+. . . -- defn :
+. . . --    (NatureDefn.Type, NatureType.Real)
+. Noeud.ListeInst                                            -- ligne : 5
+. . Noeud.Vide                                               -- ligne : 6
+. . Noeud.Affect                                             -- ligne : 5
+. . -- type :
+. . --    NatureType.Real
+. . . Noeud.Ident "b"                                        -- ligne : 5
+. . . -- defn :
+. . . --    (NatureDefn.Var, NatureType.Real)
+. . . -- type :
+. . . --    NatureType.Real
+. . . Noeud.Conversion                                       -- ligne : 5
+. . . -- type :
+. . . --    NatureType.Real
+. . . . Noeud.Ident "a"                                      -- ligne : 5
+. . . . -- defn :
+. . . . --    (NatureDefn.Var, NatureType.Interval(1, 5))
+. . . . -- type :
+. . . . --    NatureType.Interval(1, 5)
+program
+   a
+   -- defn :
+   --    (NatureDefn.Var, NatureType.Interval(1, 5))
+     : 1 .. 5; 
+   b
+   -- defn :
+   --    (NatureDefn.Var, NatureType.Real)
+     : real
+       -- defn :
+       --    (NatureDefn.Type, NatureType.Real)
+           ; 
+begin
+   b
+   -- defn :
+   --    (NatureDefn.Var, NatureType.Real)
+   -- type :
+   --    NatureType.Real
+     := 
+     -- type :
+     --    NatureType.Real
+        -- Noeud.Conversion 
+         -- type :
+         --    NatureType.Real
+                            a
+                            -- defn :
+                            --    (NatureDefn.Var, NatureType.Interval(1, 5))
+                            -- type :
+                            --    NatureType.Interval(1, 5)
+                             ;
+end.
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : affectation7interval.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 3
+. . Noeud.ListeDecl                                          -- ligne : 2
+. . . Noeud.Vide                                             -- ligne : 2
+. . . Noeud.Decl                                             -- ligne : 2
+. . . . Noeud.ListeIdent                                     -- ligne : 2
+. . . . . Noeud.Vide                                         -- ligne : 2
+. . . . . Noeud.Ident "a"                                    -- ligne : 2
+. . . . Noeud.Intervalle                                     -- ligne : 2
+. . . . . Noeud.Entier 1                                     -- ligne : 2
+. . . . . Noeud.Entier 3                                     -- ligne : 2
+. . Noeud.Decl                                               -- ligne : 3
+. . . Noeud.ListeIdent                                       -- ligne : 3
+. . . . Noeud.Vide                                           -- ligne : 3
+. . . . Noeud.Ident "b"                                      -- ligne : 3
+. . . Noeud.Ident "boolean"                                  -- ligne : 3
+. Noeud.ListeInst                                            -- ligne : 5
+. . Noeud.Vide                                               -- ligne : 6
+. . Noeud.Affect                                             -- ligne : 5
+. . . Noeud.Ident "b"                                        -- ligne : 5
+. . . Noeud.Ident "a"                                        -- ligne : 5
+program
+   a : 1 .. 3; 
+   b : boolean; 
+begin
+   b := a;
+end.
+--> Noeud.Ident
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : affectation8array.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 3
+. . Noeud.ListeDecl                                          -- ligne : 2
+. . . Noeud.Vide                                             -- ligne : 2
+. . . Noeud.Decl                                             -- ligne : 2
+. . . . Noeud.ListeIdent                                     -- ligne : 2
+. . . . . Noeud.Vide                                         -- ligne : 2
+. . . . . Noeud.Ident "a"                                    -- ligne : 2
+. . . . Noeud.Tableau                                        -- ligne : 2
+. . . . . Noeud.Intervalle                                   -- ligne : 2
+. . . . . . Noeud.Entier 1                                   -- ligne : 2
+. . . . . . Noeud.Entier 9                                   -- ligne : 2
+. . . . . Noeud.Ident "boolean"                              -- ligne : 2
+. . Noeud.Decl                                               -- ligne : 3
+. . . Noeud.ListeIdent                                       -- ligne : 3
+. . . . Noeud.Vide                                           -- ligne : 3
+. . . . Noeud.Ident "b"                                      -- ligne : 3
+. . . Noeud.Ident "boolean"                                  -- ligne : 3
+. Noeud.ListeInst                                            -- ligne : 5
+. . Noeud.Vide                                               -- ligne : 6
+. . Noeud.Affect                                             -- ligne : 5
+. . . Noeud.Ident "a"                                        -- ligne : 5
+. . . Noeud.Ident "b"                                        -- ligne : 5
+program
+   a : array [1 .. 9] of boolean; 
+   b : boolean; 
+begin
+   a := b;
+end.
+--> Noeud.Ident
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : affectation9array.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 3
+. . Noeud.ListeDecl                                          -- ligne : 2
+. . . Noeud.Vide                                             -- ligne : 2
+. . . Noeud.Decl                                             -- ligne : 2
+. . . . Noeud.ListeIdent                                     -- ligne : 2
+. . . . . Noeud.Vide                                         -- ligne : 2
+. . . . . Noeud.Ident "a"                                    -- ligne : 2
+. . . . Noeud.Tableau                                        -- ligne : 2
+. . . . . Noeud.Intervalle                                   -- ligne : 2
+. . . . . . Noeud.Entier 1                                   -- ligne : 2
+. . . . . . Noeud.Entier 9                                   -- ligne : 2
+. . . . . Noeud.Ident "boolean"                              -- ligne : 2
+. . Noeud.Decl                                               -- ligne : 3
+. . . Noeud.ListeIdent                                       -- ligne : 3
+. . . . Noeud.Vide                                           -- ligne : 3
+. . . . Noeud.Ident "b"                                      -- ligne : 3
+. . . Noeud.Ident "boolean"                                  -- ligne : 3
+. Noeud.ListeInst                                            -- ligne : 5
+. . Noeud.Vide                                               -- ligne : 6
+. . Noeud.Affect                                             -- ligne : 5
+. . . Noeud.Ident "b"                                        -- ligne : 5
+. . . Noeud.Ident "a"                                        -- ligne : 5
+program
+   a : array [1 .. 9] of boolean; 
+   b : boolean; 
+begin
+   b := a;
+end.
+--> Noeud.Ident
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : array1.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 4
+. . Noeud.ListeDecl                                          -- ligne : 3
+. . . Noeud.ListeDecl                                        -- ligne : 2
+. . . . Noeud.Vide                                           -- ligne : 2
+. . . . Noeud.Decl                                           -- ligne : 2
+. . . . . Noeud.ListeIdent                                   -- ligne : 2
+. . . . . . Noeud.Vide                                       -- ligne : 2
+. . . . . . Noeud.Ident "a"                                  -- ligne : 2
+. . . . . Noeud.Tableau                                      -- ligne : 2
+. . . . . . Noeud.Intervalle                                 -- ligne : 2
+. . . . . . . Noeud.Entier 1                                 -- ligne : 2
+. . . . . . . Noeud.Entier 9                                 -- ligne : 2
+. . . . . . Noeud.Ident "integer"                            -- ligne : 2
+. . . Noeud.Decl                                             -- ligne : 3
+. . . . Noeud.ListeIdent                                     -- ligne : 3
+. . . . . Noeud.Vide                                         -- ligne : 3
+. . . . . Noeud.Ident "b"                                    -- ligne : 3
+. . . . Noeud.Ident "real"                                   -- ligne : 3
+. . Noeud.Decl                                               -- ligne : 4
+. . . Noeud.ListeIdent                                       -- ligne : 4
+. . . . Noeud.Vide                                           -- ligne : 4
+. . . . Noeud.Ident "c"                                      -- ligne : 4
+. . . Noeud.Ident "integer"                                  -- ligne : 4
+. Noeud.ListeInst                                            -- ligne : 7
+. . Noeud.ListeInst                                          -- ligne : 6
+. . . Noeud.Vide                                             -- ligne : 7
+. . . Noeud.Affect                                           -- ligne : 6
+. . . . Noeud.Ident "b"                                      -- ligne : 6
+. . . . Noeud.Reel 7.8                                       -- ligne : 6
+. . Noeud.Affect                                             -- ligne : 7
+. . . Noeud.Ident "c"                                        -- ligne : 7
+. . . Noeud.Index                                            -- ligne : 7
+. . . . Noeud.Ident "a"                                      -- ligne : 7
+. . . . Noeud.Ident "b"                                      -- ligne : 7
+program
+   a : array [1 .. 9] of integer; 
+   b : real; 
+   c : integer; 
+begin
+   b := 7.8;
+   c := a[b];
+end.
+--> Noeud.Ident
+--> Noeud.Ident
+--> Noeud.Index
+--> Noeud.Ident
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : array2.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 4
+. . Noeud.ListeDecl                                          -- ligne : 3
+. . . Noeud.ListeDecl                                        -- ligne : 2
+. . . . Noeud.Vide                                           -- ligne : 2
+. . . . Noeud.Decl                                           -- ligne : 2
+. . . . . Noeud.ListeIdent                                   -- ligne : 2
+. . . . . . Noeud.Vide                                       -- ligne : 2
+. . . . . . Noeud.Ident "a"                                  -- ligne : 2
+. . . . . Noeud.Tableau                                      -- ligne : 2
+. . . . . . Noeud.Intervalle                                 -- ligne : 2
+. . . . . . . Noeud.Ident "false"                            -- ligne : 2
+. . . . . . . Noeud.Ident "true"                             -- ligne : 2
+. . . . . . Noeud.Ident "boolean"                            -- ligne : 2
+. . . Noeud.Decl                                             -- ligne : 3
+. . . . Noeud.ListeIdent                                     -- ligne : 3
+. . . . . Noeud.Vide                                         -- ligne : 3
+. . . . . Noeud.Ident "b"                                    -- ligne : 3
+. . . . Noeud.Ident "real"                                   -- ligne : 3
+. . Noeud.Decl                                               -- ligne : 4
+. . . Noeud.ListeIdent                                       -- ligne : 4
+. . . . Noeud.Vide                                           -- ligne : 4
+. . . . Noeud.Ident "c"                                      -- ligne : 4
+. . . Noeud.Ident "integer"                                  -- ligne : 4
+. Noeud.ListeInst                                            -- ligne : 7
+. . Noeud.ListeInst                                          -- ligne : 6
+. . . Noeud.Vide                                             -- ligne : 7
+. . . Noeud.Affect                                           -- ligne : 6
+. . . . Noeud.Ident "b"                                      -- ligne : 6
+. . . . Noeud.Reel 7.8                                       -- ligne : 6
+. . Noeud.Affect                                             -- ligne : 7
+. . . Noeud.Ident "c"                                        -- ligne : 7
+. . . Noeud.Index                                            -- ligne : 7
+. . . . Noeud.Ident "a"                                      -- ligne : 7
+. . . . Noeud.Ident "b"                                      -- ligne : 7
+program
+   a : array [false .. true] of boolean; 
+   b : real; 
+   c : integer; 
+begin
+   b := 7.8;
+   c := a[b];
+end.
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : array3.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 4
+. . Noeud.ListeDecl                                          -- ligne : 3
+. . . Noeud.ListeDecl                                        -- ligne : 2
+. . . . Noeud.Vide                                           -- ligne : 2
+. . . . Noeud.Decl                                           -- ligne : 2
+. . . . . Noeud.ListeIdent                                   -- ligne : 2
+. . . . . . Noeud.Vide                                       -- ligne : 2
+. . . . . . Noeud.Ident "a"                                  -- ligne : 2
+. . . . . Noeud.Tableau                                      -- ligne : 2
+. . . . . . Noeud.Intervalle                                 -- ligne : 2
+. . . . . . . Noeud.Ident "false"                            -- ligne : 2
+. . . . . . . Noeud.Ident "true"                             -- ligne : 2
+. . . . . . Noeud.Ident "integer"                            -- ligne : 2
+. . . Noeud.Decl                                             -- ligne : 3
+. . . . Noeud.ListeIdent                                     -- ligne : 3
+. . . . . Noeud.Vide                                         -- ligne : 3
+. . . . . Noeud.Ident "b"                                    -- ligne : 3
+. . . . Noeud.Ident "real"                                   -- ligne : 3
+. . Noeud.Decl                                               -- ligne : 4
+. . . Noeud.ListeIdent                                       -- ligne : 4
+. . . . Noeud.Vide                                           -- ligne : 4
+. . . . Noeud.Ident "c"                                      -- ligne : 4
+. . . Noeud.Ident "integer"                                  -- ligne : 4
+. Noeud.ListeInst                                            -- ligne : 7
+. . Noeud.ListeInst                                          -- ligne : 6
+. . . Noeud.Vide                                             -- ligne : 7
+. . . Noeud.Affect                                           -- ligne : 6
+. . . . Noeud.Ident "b"                                      -- ligne : 6
+. . . . Noeud.Reel 7.8                                       -- ligne : 6
+. . Noeud.Affect                                             -- ligne : 7
+. . . Noeud.Ident "c"                                        -- ligne : 7
+. . . Noeud.Index                                            -- ligne : 7
+. . . . Noeud.Ident "a"                                      -- ligne : 7
+. . . . Noeud.Ident "b"                                      -- ligne : 7
+program
+   a : array [false .. true] of integer; 
+   b : real; 
+   c : integer; 
+begin
+   b := 7.8;
+   c := a[b];
+end.
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : badtype10div.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 4
+. . Noeud.ListeDecl                                          -- ligne : 3
+. . . Noeud.ListeDecl                                        -- ligne : 2
+. . . . Noeud.Vide                                           -- ligne : 2
+. . . . Noeud.Decl                                           -- ligne : 2
+. . . . . Noeud.ListeIdent                                   -- ligne : 2
+. . . . . . Noeud.Vide                                       -- ligne : 2
+. . . . . . Noeud.Ident "a"                                  -- ligne : 2
+. . . . . Noeud.Tableau                                      -- ligne : 2
+. . . . . . Noeud.Intervalle                                 -- ligne : 2
+. . . . . . . Noeud.Entier 1                                 -- ligne : 2
+. . . . . . . Noeud.Entier 9                                 -- ligne : 2
+. . . . . . Noeud.Ident "integer"                            -- ligne : 2
+. . . Noeud.Decl                                             -- ligne : 3
+. . . . Noeud.ListeIdent                                     -- ligne : 3
+. . . . . Noeud.Vide                                         -- ligne : 3
+. . . . . Noeud.Ident "b"                                    -- ligne : 3
+. . . . Noeud.Ident "real"                                   -- ligne : 3
+. . Noeud.Decl                                               -- ligne : 4
+. . . Noeud.ListeIdent                                       -- ligne : 4
+. . . . Noeud.Vide                                           -- ligne : 4
+. . . . Noeud.Ident "c"                                      -- ligne : 4
+. . . Noeud.Intervalle                                       -- ligne : 4
+. . . . Noeud.Entier 3                                       -- ligne : 4
+. . . . Noeud.Entier 15                                      -- ligne : 4
+. Noeud.ListeInst                                            -- ligne : 7
+. . Noeud.ListeInst                                          -- ligne : 6
+. . . Noeud.Vide                                             -- ligne : 7
+. . . Noeud.Affect                                           -- ligne : 6
+. . . . Noeud.Ident "b"                                      -- ligne : 6
+. . . . Noeud.Reel 18.3                                      -- ligne : 6
+. . Noeud.Affect                                             -- ligne : 7
+. . . Noeud.Ident "c"                                        -- ligne : 7
+. . . Noeud.DivReel                                          -- ligne : 7
+. . . . Noeud.Ident "a"                                      -- ligne : 7
+. . . . Noeud.Ident "b"                                      -- ligne : 7
+program
+   a : array [1 .. 9] of integer; 
+   b : real; 
+   c : 3 .. 15; 
+begin
+   b := 18.3;
+   c := a / b;
+end.
+--> Noeud.Ident
+--> Noeud.Ident
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : badtype11div.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 4
+. . Noeud.ListeDecl                                          -- ligne : 3
+. . . Noeud.ListeDecl                                        -- ligne : 2
+. . . . Noeud.Vide                                           -- ligne : 2
+. . . . Noeud.Decl                                           -- ligne : 2
+. . . . . Noeud.ListeIdent                                   -- ligne : 2
+. . . . . . Noeud.Vide                                       -- ligne : 2
+. . . . . . Noeud.Ident "a"                                  -- ligne : 2
+. . . . . Noeud.Tableau                                      -- ligne : 2
+. . . . . . Noeud.Intervalle                                 -- ligne : 2
+. . . . . . . Noeud.Entier 1                                 -- ligne : 2
+. . . . . . . Noeud.Entier 9                                 -- ligne : 2
+. . . . . . Noeud.Ident "real"                               -- ligne : 2
+. . . Noeud.Decl                                             -- ligne : 3
+. . . . Noeud.ListeIdent                                     -- ligne : 3
+. . . . . Noeud.Vide                                         -- ligne : 3
+. . . . . Noeud.Ident "b"                                    -- ligne : 3
+. . . . Noeud.Tableau                                        -- ligne : 3
+. . . . . Noeud.Intervalle                                   -- ligne : 3
+. . . . . . Noeud.Entier 1                                   -- ligne : 3
+. . . . . . Noeud.Entier 9                                   -- ligne : 3
+. . . . . Noeud.Ident "integer"                              -- ligne : 3
+. . Noeud.Decl                                               -- ligne : 4
+. . . Noeud.ListeIdent                                       -- ligne : 4
+. . . . Noeud.Vide                                           -- ligne : 4
+. . . . Noeud.Ident "c"                                      -- ligne : 4
+. . . Noeud.Ident "real"                                     -- ligne : 4
+. Noeud.ListeInst                                            -- ligne : 6
+. . Noeud.Vide                                               -- ligne : 7
+. . Noeud.Affect                                             -- ligne : 6
+. . . Noeud.Ident "c"                                        -- ligne : 6
+. . . Noeud.DivReel                                          -- ligne : 6
+. . . . Noeud.Ident "a"                                      -- ligne : 6
+. . . . Noeud.Ident "b"                                      -- ligne : 6
+program
+   a : array [1 .. 9] of real; 
+   b : array [1 .. 9] of integer; 
+   c : real; 
+begin
+   c := a / b;
+end.
+--> Noeud.Ident
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : badtype12div.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 4
+. . Noeud.ListeDecl                                          -- ligne : 3
+. . . Noeud.ListeDecl                                        -- ligne : 2
+. . . . Noeud.Vide                                           -- ligne : 2
+. . . . Noeud.Decl                                           -- ligne : 2
+. . . . . Noeud.ListeIdent                                   -- ligne : 2
+. . . . . . Noeud.Vide                                       -- ligne : 2
+. . . . . . Noeud.Ident "a"                                  -- ligne : 2
+. . . . . Noeud.Tableau                                      -- ligne : 2
+. . . . . . Noeud.Intervalle                                 -- ligne : 2
+. . . . . . . Noeud.Entier 1                                 -- ligne : 2
+. . . . . . . Noeud.Entier 9                                 -- ligne : 2
+. . . . . . Noeud.Ident "real"                               -- ligne : 2
+. . . Noeud.Decl                                             -- ligne : 3
+. . . . Noeud.ListeIdent                                     -- ligne : 3
+. . . . . Noeud.Vide                                         -- ligne : 3
+. . . . . Noeud.Ident "b"                                    -- ligne : 3
+. . . . Noeud.Tableau                                        -- ligne : 3
+. . . . . Noeud.Intervalle                                   -- ligne : 3
+. . . . . . Noeud.Entier 1                                   -- ligne : 3
+. . . . . . Noeud.Entier 9                                   -- ligne : 3
+. . . . . Noeud.Ident "integer"                              -- ligne : 3
+. . Noeud.Decl                                               -- ligne : 4
+. . . Noeud.ListeIdent                                       -- ligne : 4
+. . . . Noeud.Vide                                           -- ligne : 4
+. . . . Noeud.Ident "c"                                      -- ligne : 4
+. . . Noeud.Tableau                                          -- ligne : 4
+. . . . Noeud.Intervalle                                     -- ligne : 4
+. . . . . Noeud.Entier 1                                     -- ligne : 4
+. . . . . Noeud.Entier 9                                     -- ligne : 4
+. . . . Noeud.Ident "integer"                                -- ligne : 4
+. Noeud.ListeInst                                            -- ligne : 6
+. . Noeud.Vide                                               -- ligne : 7
+. . Noeud.Affect                                             -- ligne : 6
+. . . Noeud.Ident "c"                                        -- ligne : 6
+. . . Noeud.DivReel                                          -- ligne : 6
+. . . . Noeud.Ident "a"                                      -- ligne : 6
+. . . . Noeud.Ident "b"                                      -- ligne : 6
+program
+   a : array [1 .. 9] of real; 
+   b : array [1 .. 9] of integer; 
+   c : array [1 .. 9] of integer; 
+begin
+   c := a / b;
+end.
+--> Noeud.Ident
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : badtype13mod.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 4
+. . Noeud.ListeDecl                                          -- ligne : 3
+. . . Noeud.ListeDecl                                        -- ligne : 2
+. . . . Noeud.Vide                                           -- ligne : 2
+. . . . Noeud.Decl                                           -- ligne : 2
+. . . . . Noeud.ListeIdent                                   -- ligne : 2
+. . . . . . Noeud.Vide                                       -- ligne : 2
+. . . . . . Noeud.Ident "a"                                  -- ligne : 2
+. . . . . Noeud.Tableau                                      -- ligne : 2
+. . . . . . Noeud.Intervalle                                 -- ligne : 2
+. . . . . . . Noeud.Entier 1                                 -- ligne : 2
+. . . . . . . Noeud.Entier 9                                 -- ligne : 2
+. . . . . . Noeud.Ident "real"                               -- ligne : 2
+. . . Noeud.Decl                                             -- ligne : 3
+. . . . Noeud.ListeIdent                                     -- ligne : 3
+. . . . . Noeud.Vide                                         -- ligne : 3
+. . . . . Noeud.Ident "b"                                    -- ligne : 3
+. . . . Noeud.Tableau                                        -- ligne : 3
+. . . . . Noeud.Intervalle                                   -- ligne : 3
+. . . . . . Noeud.Entier 1                                   -- ligne : 3
+. . . . . . Noeud.Entier 9                                   -- ligne : 3
+. . . . . Noeud.Ident "integer"                              -- ligne : 3
+. . Noeud.Decl                                               -- ligne : 4
+. . . Noeud.ListeIdent                                       -- ligne : 4
+. . . . Noeud.Vide                                           -- ligne : 4
+. . . . Noeud.Ident "c"                                      -- ligne : 4
+. . . Noeud.Tableau                                          -- ligne : 4
+. . . . Noeud.Intervalle                                     -- ligne : 4
+. . . . . Noeud.Entier 1                                     -- ligne : 4
+. . . . . Noeud.Entier 9                                     -- ligne : 4
+. . . . Noeud.Ident "integer"                                -- ligne : 4
+. Noeud.ListeInst                                            -- ligne : 6
+. . Noeud.Vide                                               -- ligne : 7
+. . Noeud.Affect                                             -- ligne : 6
+. . . Noeud.Ident "c"                                        -- ligne : 6
+. . . Noeud.Reste                                            -- ligne : 6
+. . . . Noeud.Ident "a"                                      -- ligne : 6
+. . . . Noeud.Ident "b"                                      -- ligne : 6
+program
+   a : array [1 .. 9] of real; 
+   b : array [1 .. 9] of integer; 
+   c : array [1 .. 9] of integer; 
+begin
+   c := a mod b;
+end.
+--> Noeud.Ident
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : badtype14arrayminus.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 4
+. . Noeud.ListeDecl                                          -- ligne : 3
+. . . Noeud.ListeDecl                                        -- ligne : 2
+. . . . Noeud.Vide                                           -- ligne : 2
+. . . . Noeud.Decl                                           -- ligne : 2
+. . . . . Noeud.ListeIdent                                   -- ligne : 2
+. . . . . . Noeud.Vide                                       -- ligne : 2
+. . . . . . Noeud.Ident "a"                                  -- ligne : 2
+. . . . . Noeud.Ident "real"                                 -- ligne : 2
+. . . Noeud.Decl                                             -- ligne : 3
+. . . . Noeud.ListeIdent                                     -- ligne : 3
+. . . . . Noeud.Vide                                         -- ligne : 3
+. . . . . Noeud.Ident "b"                                    -- ligne : 3
+. . . . Noeud.Tableau                                        -- ligne : 3
+. . . . . Noeud.Intervalle                                   -- ligne : 3
+. . . . . . Noeud.Entier 1                                   -- ligne : 3
+. . . . . . Noeud.Entier 9                                   -- ligne : 3
+. . . . . Noeud.Ident "integer"                              -- ligne : 3
+. . Noeud.Decl                                               -- ligne : 4
+. . . Noeud.ListeIdent                                       -- ligne : 4
+. . . . Noeud.Vide                                           -- ligne : 4
+. . . . Noeud.Ident "c"                                      -- ligne : 4
+. . . Noeud.Tableau                                          -- ligne : 4
+. . . . Noeud.Intervalle                                     -- ligne : 4
+. . . . . Noeud.Entier 1                                     -- ligne : 4
+. . . . . Noeud.Entier 9                                     -- ligne : 4
+. . . . Noeud.Ident "integer"                                -- ligne : 4
+. Noeud.ListeInst                                            -- ligne : 6
+. . Noeud.Vide                                               -- ligne : 7
+. . Noeud.Affect                                             -- ligne : 6
+. . . Noeud.Ident "a"                                        -- ligne : 6
+. . . Noeud.Moins                                            -- ligne : 6
+. . . . Noeud.Ident "b"                                      -- ligne : 6
+. . . . Noeud.Ident "c"                                      -- ligne : 6
+program
+   a : real; 
+   b : array [1 .. 9] of integer; 
+   c : array [1 .. 9] of integer; 
+begin
+   a := b - c;
+end.
+--> Noeud.Ident
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : badtype15if.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 2
+. . Noeud.Vide                                               -- ligne : 2
+. . Noeud.Decl                                               -- ligne : 2
+. . . Noeud.ListeIdent                                       -- ligne : 2
+. . . . Noeud.Vide                                           -- ligne : 2
+. . . . Noeud.Ident "a"                                      -- ligne : 2
+. . . Noeud.Ident "integer"                                  -- ligne : 2
+. Noeud.ListeInst                                            -- ligne : 5
+. . Noeud.ListeInst                                          -- ligne : 4
+. . . Noeud.Vide                                             -- ligne : 5
+. . . Noeud.Affect                                           -- ligne : 4
+. . . . Noeud.Ident "a"                                      -- ligne : 4
+. . . . Noeud.Entier 7                                       -- ligne : 4
+. . Noeud.Si                                                 -- ligne : 5
+. . . Noeud.Ident "a"                                        -- ligne : 5
+. . . Noeud.ListeInst                                        -- ligne : 6
+. . . . Noeud.Vide                                           -- ligne : 7
+. . . . Noeud.Nop                                            -- ligne : 6
+. . . Noeud.ListeInst                                        -- ligne : 6
+. . . . Noeud.Vide                                           -- ligne : 7
+. . . . Noeud.Nop                                            -- ligne : 6
+program
+   a : integer; 
+begin
+   a := 7;
+   if a then 
+      null;
+   else
+      null;
+   end;
+end.
+--> Noeud.Ident
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : badtype16if.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 2
+. . Noeud.Vide                                               -- ligne : 2
+. . Noeud.Decl                                               -- ligne : 2
+. . . Noeud.ListeIdent                                       -- ligne : 2
+. . . . Noeud.Vide                                           -- ligne : 2
+. . . . Noeud.Ident "a"                                      -- ligne : 2
+. . . Noeud.Ident "real"                                     -- ligne : 2
+. Noeud.ListeInst                                            -- ligne : 5
+. . Noeud.ListeInst                                          -- ligne : 4
+. . . Noeud.Vide                                             -- ligne : 5
+. . . Noeud.Affect                                           -- ligne : 4
+. . . . Noeud.Ident "a"                                      -- ligne : 4
+. . . . Noeud.Reel 7.8                                       -- ligne : 4
+. . Noeud.Si                                                 -- ligne : 5
+. . . Noeud.Non                                              -- ligne : 5
+. . . . Noeud.Ident "a"                                      -- ligne : 5
+. . . Noeud.ListeInst                                        -- ligne : 6
+. . . . Noeud.Vide                                           -- ligne : 7
+. . . . Noeud.Nop                                            -- ligne : 6
+. . . Noeud.ListeInst                                        -- ligne : 6
+. . . . Noeud.Vide                                           -- ligne : 7
+. . . . Noeud.Nop                                            -- ligne : 6
+program
+   a : real; 
+begin
+   a := 7.8;
+   if not a then 
+      null;
+   else
+      null;
+   end;
+end.
+--> Noeud.Ident
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : badtype17write.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 2
+. . Noeud.Vide                                               -- ligne : 2
+. . Noeud.Decl                                               -- ligne : 2
+. . . Noeud.ListeIdent                                       -- ligne : 2
+. . . . Noeud.Vide                                           -- ligne : 2
+. . . . Noeud.Ident "a"                                      -- ligne : 2
+. . . Noeud.Tableau                                          -- ligne : 2
+. . . . Noeud.Intervalle                                     -- ligne : 2
+. . . . . Noeud.Entier 1                                     -- ligne : 2
+. . . . . Noeud.Entier 9                                     -- ligne : 2
+. . . . Noeud.Ident "real"                                   -- ligne : 2
+. Noeud.ListeInst                                            -- ligne : 4
+. . Noeud.Vide                                               -- ligne : 5
+. . Noeud.Ecriture                                           -- ligne : 4
+. . . Noeud.ListeExp                                         -- ligne : 4
+. . . . Noeud.Vide                                           -- ligne : 4
+. . . . Noeud.Ident "a"                                      -- ligne : 4
+program
+   a : array [1 .. 9] of real; 
+begin
+   write(a);
+end.
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : badtype1minus.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 2
+. . Noeud.Vide                                               -- ligne : 2
+. . Noeud.Decl                                               -- ligne : 2
+. . . Noeud.ListeIdent                                       -- ligne : 2
+. . . . Noeud.Vide                                           -- ligne : 2
+. . . . Noeud.Ident "a"                                      -- ligne : 2
+. . . Noeud.Ident "boolean"                                  -- ligne : 2
+. Noeud.ListeInst                                            -- ligne : 4
+. . Noeud.Vide                                               -- ligne : 5
+. . Noeud.Affect                                             -- ligne : 4
+. . . Noeud.Ident "a"                                        -- ligne : 4
+. . . Noeud.MoinsUnaire                                      -- ligne : 4
+. . . . Noeud.Ident "a"                                      -- ligne : 4
+program
+   a : boolean; 
+begin
+   a := -a;
+end.
+--> Noeud.Ident
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : badtype2or.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 4
+. . Noeud.ListeDecl                                          -- ligne : 3
+. . . Noeud.ListeDecl                                        -- ligne : 2
+. . . . Noeud.Vide                                           -- ligne : 2
+. . . . Noeud.Decl                                           -- ligne : 2
+. . . . . Noeud.ListeIdent                                   -- ligne : 2
+. . . . . . Noeud.Vide                                       -- ligne : 2
+. . . . . . Noeud.Ident "a"                                  -- ligne : 2
+. . . . . Noeud.Ident "boolean"                              -- ligne : 2
+. . . Noeud.Decl                                             -- ligne : 3
+. . . . Noeud.ListeIdent                                     -- ligne : 3
+. . . . . Noeud.Vide                                         -- ligne : 3
+. . . . . Noeud.Ident "b"                                    -- ligne : 3
+. . . . Noeud.Intervalle                                     -- ligne : 3
+. . . . . Noeud.Entier 1                                     -- ligne : 3
+. . . . . Noeud.Entier 5                                     -- ligne : 3
+. . Noeud.Decl                                               -- ligne : 4
+. . . Noeud.ListeIdent                                       -- ligne : 4
+. . . . Noeud.Vide                                           -- ligne : 4
+. . . . Noeud.Ident "c"                                      -- ligne : 4
+. . . Noeud.Ident "real"                                     -- ligne : 4
+. Noeud.ListeInst                                            -- ligne : 6
+. . Noeud.Vide                                               -- ligne : 7
+. . Noeud.Affect                                             -- ligne : 6
+. . . Noeud.Ident "a"                                        -- ligne : 6
+. . . Noeud.Ou                                               -- ligne : 6
+. . . . Noeud.Ident "b"                                      -- ligne : 6
+. . . . Noeud.Ident "c"                                      -- ligne : 6
+program
+   a : boolean; 
+   b : 1 .. 5; 
+   c : real; 
+begin
+   a := b or c;
+end.
+--> Noeud.Ident
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : badtype3mod.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 4
+. . Noeud.ListeDecl                                          -- ligne : 3
+. . . Noeud.ListeDecl                                        -- ligne : 2
+. . . . Noeud.Vide                                           -- ligne : 2
+. . . . Noeud.Decl                                           -- ligne : 2
+. . . . . Noeud.ListeIdent                                   -- ligne : 2
+. . . . . . Noeud.Vide                                       -- ligne : 2
+. . . . . . Noeud.Ident "a"                                  -- ligne : 2
+. . . . . Noeud.Ident "real"                                 -- ligne : 2
+. . . Noeud.Decl                                             -- ligne : 3
+. . . . Noeud.ListeIdent                                     -- ligne : 3
+. . . . . Noeud.Vide                                         -- ligne : 3
+. . . . . Noeud.Ident "b"                                    -- ligne : 3
+. . . . Noeud.Intervalle                                     -- ligne : 3
+. . . . . Noeud.Entier 1                                     -- ligne : 3
+. . . . . Noeud.Entier 6                                     -- ligne : 3
+. . Noeud.Decl                                               -- ligne : 4
+. . . Noeud.ListeIdent                                       -- ligne : 4
+. . . . Noeud.Vide                                           -- ligne : 4
+. . . . Noeud.Ident "c"                                      -- ligne : 4
+. . . Noeud.Intervalle                                       -- ligne : 4
+. . . . Noeud.Entier 1                                       -- ligne : 4
+. . . . Noeud.Entier 9                                       -- ligne : 4
+. Noeud.ListeInst                                            -- ligne : 6
+. . Noeud.Vide                                               -- ligne : 7
+. . Noeud.Affect                                             -- ligne : 6
+. . . Noeud.Ident "c"                                        -- ligne : 6
+. . . Noeud.Reste                                            -- ligne : 6
+. . . . Noeud.Ident "a"                                      -- ligne : 6
+. . . . Noeud.Ident "b"                                      -- ligne : 6
+program
+   a : real; 
+   b : 1 .. 6; 
+   c : 1 .. 9; 
+begin
+   c := a mod b;
+end.
+--> Noeud.Ident
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : badtype4not.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 3
+. . Noeud.ListeDecl                                          -- ligne : 2
+. . . Noeud.Vide                                             -- ligne : 2
+. . . Noeud.Decl                                             -- ligne : 2
+. . . . Noeud.ListeIdent                                     -- ligne : 2
+. . . . . Noeud.Vide                                         -- ligne : 2
+. . . . . Noeud.Ident "a"                                    -- ligne : 2
+. . . . Noeud.Ident "integer"                                -- ligne : 2
+. . Noeud.Decl                                               -- ligne : 3
+. . . Noeud.ListeIdent                                       -- ligne : 3
+. . . . Noeud.Vide                                           -- ligne : 3
+. . . . Noeud.Ident "b"                                      -- ligne : 3
+. . . Noeud.Ident "boolean"                                  -- ligne : 3
+. Noeud.ListeInst                                            -- ligne : 7
+. . Noeud.ListeInst                                          -- ligne : 6
+. . . Noeud.ListeInst                                        -- ligne : 5
+. . . . Noeud.Vide                                           -- ligne : 6
+. . . . Noeud.Affect                                         -- ligne : 5
+. . . . . Noeud.Ident "a"                                    -- ligne : 5
+. . . . . Noeud.Entier 4                                     -- ligne : 5
+. . . Noeud.Affect                                           -- ligne : 6
+. . . . Noeud.Ident "b"                                      -- ligne : 6
+. . . . Noeud.Ident "false"                                  -- ligne : 6
+. . Noeud.Affect                                             -- ligne : 7
+. . . Noeud.Ident "b"                                        -- ligne : 7
+. . . Noeud.Non                                              -- ligne : 7
+. . . . Noeud.Ident "a"                                      -- ligne : 7
+program
+   a : integer; 
+   b : boolean; 
+begin
+   a := 4;
+   b := false;
+   b := not a;
+end.
+--> Noeud.Ident
+--> Noeud.Ident
+--> Noeud.Ident
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : badtype5and.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 4
+. . Noeud.ListeDecl                                          -- ligne : 3
+. . . Noeud.ListeDecl                                        -- ligne : 2
+. . . . Noeud.Vide                                           -- ligne : 2
+. . . . Noeud.Decl                                           -- ligne : 2
+. . . . . Noeud.ListeIdent                                   -- ligne : 2
+. . . . . . Noeud.Vide                                       -- ligne : 2
+. . . . . . Noeud.Ident "a"                                  -- ligne : 2
+. . . . . Noeud.Ident "boolean"                              -- ligne : 2
+. . . Noeud.Decl                                             -- ligne : 3
+. . . . Noeud.ListeIdent                                     -- ligne : 3
+. . . . . Noeud.Vide                                         -- ligne : 3
+. . . . . Noeud.Ident "b"                                    -- ligne : 3
+. . . . Noeud.Ident "integer"                                -- ligne : 3
+. . Noeud.Decl                                               -- ligne : 4
+. . . Noeud.ListeIdent                                       -- ligne : 4
+. . . . Noeud.Vide                                           -- ligne : 4
+. . . . Noeud.Ident "c"                                      -- ligne : 4
+. . . Noeud.Ident "integer"                                  -- ligne : 4
+. Noeud.ListeInst                                            -- ligne : 6
+. . Noeud.Vide                                               -- ligne : 7
+. . Noeud.Affect                                             -- ligne : 6
+. . . Noeud.Ident "a"                                        -- ligne : 6
+. . . Noeud.Et                                               -- ligne : 6
+. . . . Noeud.Ident "b"                                      -- ligne : 6
+. . . . Noeud.Ident "c"                                      -- ligne : 6
+program
+   a : boolean; 
+   b : integer; 
+   c : integer; 
+begin
+   a := b and c;
+end.
+--> Noeud.Ident
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : badtype6superior.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 4
+. . Noeud.ListeDecl                                          -- ligne : 3
+. . . Noeud.ListeDecl                                        -- ligne : 2
+. . . . Noeud.Vide                                           -- ligne : 2
+. . . . Noeud.Decl                                           -- ligne : 2
+. . . . . Noeud.ListeIdent                                   -- ligne : 2
+. . . . . . Noeud.Vide                                       -- ligne : 2
+. . . . . . Noeud.Ident "a"                                  -- ligne : 2
+. . . . . Noeud.Intervalle                                   -- ligne : 2
+. . . . . . Noeud.Entier 1                                   -- ligne : 2
+. . . . . . Noeud.Entier 15                                  -- ligne : 2
+. . . Noeud.Decl                                             -- ligne : 3
+. . . . Noeud.ListeIdent                                     -- ligne : 3
+. . . . . Noeud.Vide                                         -- ligne : 3
+. . . . . Noeud.Ident "b"                                    -- ligne : 3
+. . . . Noeud.Ident "boolean"                                -- ligne : 3
+. . Noeud.Decl                                               -- ligne : 4
+. . . Noeud.ListeIdent                                       -- ligne : 4
+. . . . Noeud.Vide                                           -- ligne : 4
+. . . . Noeud.Ident "c"                                      -- ligne : 4
+. . . Noeud.Tableau                                          -- ligne : 4
+. . . . Noeud.Intervalle                                     -- ligne : 4
+. . . . . Noeud.Entier 1                                     -- ligne : 4
+. . . . . Noeud.Entier 14                                    -- ligne : 4
+. . . . Noeud.Ident "boolean"                                -- ligne : 4
+. Noeud.ListeInst                                            -- ligne : 6
+. . Noeud.Vide                                               -- ligne : 7
+. . Noeud.Affect                                             -- ligne : 6
+. . . Noeud.Ident "b"                                        -- ligne : 6
+. . . Noeud.Sup                                              -- ligne : 6
+. . . . Noeud.Ident "a"                                      -- ligne : 6
+. . . . Noeud.Ident "c"                                      -- ligne : 6
+program
+   a : 1 .. 15; 
+   b : boolean; 
+   c : array [1 .. 14] of boolean; 
+begin
+   b := a > c;
+end.
+--> Noeud.Ident
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : badtype7lessequal.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 4
+. . Noeud.ListeDecl                                          -- ligne : 3
+. . . Noeud.ListeDecl                                        -- ligne : 2
+. . . . Noeud.Vide                                           -- ligne : 2
+. . . . Noeud.Decl                                           -- ligne : 2
+. . . . . Noeud.ListeIdent                                   -- ligne : 2
+. . . . . . Noeud.Vide                                       -- ligne : 2
+. . . . . . Noeud.Ident "a"                                  -- ligne : 2
+. . . . . Noeud.Intervalle                                   -- ligne : 2
+. . . . . . Noeud.Entier 1                                   -- ligne : 2
+. . . . . . Noeud.Entier 15                                  -- ligne : 2
+. . . Noeud.Decl                                             -- ligne : 3
+. . . . Noeud.ListeIdent                                     -- ligne : 3
+. . . . . Noeud.Vide                                         -- ligne : 3
+. . . . . Noeud.Ident "b"                                    -- ligne : 3
+. . . . Noeud.Ident "boolean"                                -- ligne : 3
+. . Noeud.Decl                                               -- ligne : 4
+. . . Noeud.ListeIdent                                       -- ligne : 4
+. . . . Noeud.Vide                                           -- ligne : 4
+. . . . Noeud.Ident "c"                                      -- ligne : 4
+. . . Noeud.Tableau                                          -- ligne : 4
+. . . . Noeud.Intervalle                                     -- ligne : 4
+. . . . . Noeud.Entier 1                                     -- ligne : 4
+. . . . . Noeud.Entier 14                                    -- ligne : 4
+. . . . Noeud.Ident "int"                                    -- ligne : 4
+. Noeud.ListeInst                                            -- ligne : 6
+. . Noeud.Vide                                               -- ligne : 7
+. . Noeud.Affect                                             -- ligne : 6
+. . . Noeud.Ident "b"                                        -- ligne : 6
+. . . Noeud.InfEgal                                          -- ligne : 6
+. . . . Noeud.Ident "a"                                      -- ligne : 6
+. . . . Noeud.Ident "c"                                      -- ligne : 6
+program
+   a : 1 .. 15; 
+   b : boolean; 
+   c : array [1 .. 14] of int; 
+begin
+   b := a <= c;
+end.
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : badtype8div.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 4
+. . Noeud.ListeDecl                                          -- ligne : 3
+. . . Noeud.ListeDecl                                        -- ligne : 2
+. . . . Noeud.Vide                                           -- ligne : 2
+. . . . Noeud.Decl                                           -- ligne : 2
+. . . . . Noeud.ListeIdent                                   -- ligne : 2
+. . . . . . Noeud.Vide                                       -- ligne : 2
+. . . . . . Noeud.Ident "a"                                  -- ligne : 2
+. . . . . Noeud.Tableau                                      -- ligne : 2
+. . . . . . Noeud.Intervalle                                 -- ligne : 2
+. . . . . . . Noeud.Entier 1                                 -- ligne : 2
+. . . . . . . Noeud.Entier 9                                 -- ligne : 2
+. . . . . . Noeud.Ident "boolean"                            -- ligne : 2
+. . . Noeud.Decl                                             -- ligne : 3
+. . . . Noeud.ListeIdent                                     -- ligne : 3
+. . . . . Noeud.Vide                                         -- ligne : 3
+. . . . . Noeud.Ident "b"                                    -- ligne : 3
+. . . . Noeud.Tableau                                        -- ligne : 3
+. . . . . Noeud.Intervalle                                   -- ligne : 3
+. . . . . . Noeud.Entier 1                                   -- ligne : 3
+. . . . . . Noeud.Entier 9                                   -- ligne : 3
+. . . . . Noeud.Ident "integer"                              -- ligne : 3
+. . Noeud.Decl                                               -- ligne : 4
+. . . Noeud.ListeIdent                                       -- ligne : 4
+. . . . Noeud.Vide                                           -- ligne : 4
+. . . . Noeud.Ident "c"                                      -- ligne : 4
+. . . Noeud.Intervalle                                       -- ligne : 4
+. . . . Noeud.Entier 3                                       -- ligne : 4
+. . . . Noeud.Entier 11                                      -- ligne : 4
+. Noeud.ListeInst                                            -- ligne : 6
+. . Noeud.Vide                                               -- ligne : 7
+. . Noeud.Affect                                             -- ligne : 6
+. . . Noeud.Ident "c"                                        -- ligne : 6
+. . . Noeud.DivReel                                          -- ligne : 6
+. . . . Noeud.Ident "a"                                      -- ligne : 6
+. . . . Noeud.Ident "b"                                      -- ligne : 6
+program
+   a : array [1 .. 9] of boolean; 
+   b : array [1 .. 9] of integer; 
+   c : 3 .. 11; 
+begin
+   c := a / b;
+end.
+--> Noeud.Ident
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : badtype9array.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 4
+. . Noeud.ListeDecl                                          -- ligne : 3
+. . . Noeud.ListeDecl                                        -- ligne : 2
+. . . . Noeud.Vide                                           -- ligne : 2
+. . . . Noeud.Decl                                           -- ligne : 2
+. . . . . Noeud.ListeIdent                                   -- ligne : 2
+. . . . . . Noeud.Vide                                       -- ligne : 2
+. . . . . . Noeud.Ident "a"                                  -- ligne : 2
+. . . . . Noeud.Ident "boolean"                              -- ligne : 2
+. . . Noeud.Decl                                             -- ligne : 3
+. . . . Noeud.ListeIdent                                     -- ligne : 3
+. . . . . Noeud.Vide                                         -- ligne : 3
+. . . . . Noeud.Ident "b"                                    -- ligne : 3
+. . . . Noeud.Ident "boolean"                                -- ligne : 3
+. . Noeud.Decl                                               -- ligne : 4
+. . . Noeud.ListeIdent                                       -- ligne : 4
+. . . . Noeud.Vide                                           -- ligne : 4
+. . . . Noeud.Ident "c"                                      -- ligne : 4
+. . . Noeud.Tableau                                          -- ligne : 4
+. . . . Noeud.Intervalle                                     -- ligne : 4
+. . . . . Noeud.Entier 1                                     -- ligne : 4
+. . . . . Noeud.Entier 9                                     -- ligne : 4
+. . . . Noeud.Ident "boolean"                                -- ligne : 4
+. Noeud.ListeInst                                            -- ligne : 6
+. . Noeud.Vide                                               -- ligne : 7
+. . Noeud.Affect                                             -- ligne : 6
+. . . Noeud.Ident "a"                                        -- ligne : 6
+. . . Noeud.Et                                               -- ligne : 6
+. . . . Noeud.Ident "b"                                      -- ligne : 6
+. . . . Noeud.Ident "c"                                      -- ligne : 6
+program
+   a : boolean; 
+   b : boolean; 
+   c : array [1 .. 9] of boolean; 
+begin
+   a := b and c;
+end.
+--> Noeud.Ident
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 4
+. . Noeud.ListeDecl                                          -- ligne : 3
+. . . Noeud.ListeDecl                                        -- ligne : 2
+. . . . Noeud.Vide                                           -- ligne : 2
+. . . . Noeud.Decl                                           -- ligne : 2
+. . . . . Noeud.ListeIdent                                   -- ligne : 2
+. . . . . . Noeud.Vide                                       -- ligne : 2
+. . . . . . Noeud.Ident "a"                                  -- ligne : 2
+. . . . . . -- defn :
+. . . . . . --    (NatureDefn.Var, NatureType.Boolean)
+. . . . . Noeud.Ident "boolean"                              -- ligne : 2
+. . . . . -- defn :
+. . . . . --    (NatureDefn.Type, NatureType.Boolean)
+. . . Noeud.Decl                                             -- ligne : 3
+. . . . Noeud.ListeIdent                                     -- ligne : 3
+. . . . . Noeud.Vide                                         -- ligne : 3
+. . . . . Noeud.Ident "b"                                    -- ligne : 3
+. . . . . -- defn :
+. . . . . --    (NatureDefn.Var, NatureType.Boolean)
+. . . . Noeud.Ident "boolean"                                -- ligne : 3
+. . . . -- defn :
+. . . . --    (NatureDefn.Type, NatureType.Boolean)
+. . Noeud.Decl                                               -- ligne : 4
+. . . Noeud.ListeIdent                                       -- ligne : 4
+. . . . Noeud.Vide                                           -- ligne : 4
+. . . . Noeud.Ident "c"                                      -- ligne : 4
+. . . . -- defn :
+. . . . --    (NatureDefn.Var, NatureType.Array(NatureType.Interval(1, 9), NatureType.Boolean))
+. . . Noeud.Tableau                                          -- ligne : 4
+. . . . Noeud.Intervalle                                     -- ligne : 4
+. . . . . Noeud.Entier 1                                     -- ligne : 4
+. . . . . Noeud.Entier 9                                     -- ligne : 4
+. . . . Noeud.Ident "boolean"                                -- ligne : 4
+. . . . -- defn :
+. . . . --    (NatureDefn.Type, NatureType.Boolean)
+. Noeud.ListeInst                                            -- ligne : 6
+. . Noeud.Vide                                               -- ligne : 7
+. . Noeud.Affect                                             -- ligne : 6
+. . -- type :
+. . --    NatureType.Boolean
+. . . Noeud.Ident "a"                                        -- ligne : 6
+. . . -- defn :
+. . . --    (NatureDefn.Var, NatureType.Boolean)
+. . . -- type :
+. . . --    NatureType.Boolean
+. . . Noeud.Et                                               -- ligne : 6
+. . . -- type :
+. . . --    NatureType.Boolean
+. . . . Noeud.Ident "b"                                      -- ligne : 6
+. . . . -- defn :
+. . . . --    (NatureDefn.Var, NatureType.Boolean)
+. . . . -- type :
+. . . . --    NatureType.Boolean
+. . . . Noeud.Ident "c"                                      -- ligne : 6
+. . . . -- defn :
+. . . . --    (NatureDefn.Var, NatureType.Array(NatureType.Interval(1, 9), NatureType.Boolean))
+. . . . -- type :
+. . . . --    NatureType.Array(NatureType.Interval(1, 9), NatureType.Boolean)
+program
+   a
+   -- defn :
+   --    (NatureDefn.Var, NatureType.Boolean)
+     : boolean
+       -- defn :
+       --    (NatureDefn.Type, NatureType.Boolean)
+              ; 
+   b
+   -- defn :
+   --    (NatureDefn.Var, NatureType.Boolean)
+     : boolean
+       -- defn :
+       --    (NatureDefn.Type, NatureType.Boolean)
+              ; 
+   c
+   -- defn :
+   --    (NatureDefn.Var, NatureType.Array(NatureType.Interval(1, 9), NatureType.Boolean))
+     : array [1 .. 9] of boolean
+                         -- defn :
+                         --    (NatureDefn.Type, NatureType.Boolean)
+                                ; 
+begin
+   a
+   -- defn :
+   --    (NatureDefn.Var, NatureType.Boolean)
+   -- type :
+   --    NatureType.Boolean
+     := 
+     -- type :
+     --    NatureType.Boolean
+        b
+        -- defn :
+        --    (NatureDefn.Var, NatureType.Boolean)
+        -- type :
+        --    NatureType.Boolean
+          and 
+         -- type :
+         --    NatureType.Boolean
+              c
+              -- defn :
+              --    (NatureDefn.Var, NatureType.Array(NatureType.Interval(1, 9), NatureType.Boolean))
+              -- type :
+              --    NatureType.Array(NatureType.Interval(1, 9), NatureType.Boolean)
+               ;
+end.
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : for1.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 4
+. . Noeud.ListeDecl                                          -- ligne : 3
+. . . Noeud.ListeDecl                                        -- ligne : 2
+. . . . Noeud.Vide                                           -- ligne : 2
+. . . . Noeud.Decl                                           -- ligne : 2
+. . . . . Noeud.ListeIdent                                   -- ligne : 2
+. . . . . . Noeud.Vide                                       -- ligne : 2
+. . . . . . Noeud.Ident "a"                                  -- ligne : 2
+. . . . . Noeud.Ident "real"                                 -- ligne : 2
+. . . Noeud.Decl                                             -- ligne : 3
+. . . . Noeud.ListeIdent                                     -- ligne : 3
+. . . . . Noeud.Vide                                         -- ligne : 3
+. . . . . Noeud.Ident "b"                                    -- ligne : 3
+. . . . Noeud.Intervalle                                     -- ligne : 3
+. . . . . Noeud.Entier 1                                     -- ligne : 3
+. . . . . Noeud.Entier 9                                     -- ligne : 3
+. . Noeud.Decl                                               -- ligne : 4
+. . . Noeud.ListeIdent                                       -- ligne : 4
+. . . . Noeud.Vide                                           -- ligne : 4
+. . . . Noeud.Ident "c"                                      -- ligne : 4
+. . . Noeud.Ident "integer"                                  -- ligne : 4
+. Noeud.ListeInst                                            -- ligne : 7
+. . Noeud.ListeInst                                          -- ligne : 6
+. . . Noeud.Vide                                             -- ligne : 7
+. . . Noeud.Affect                                           -- ligne : 6
+. . . . Noeud.Ident "c"                                      -- ligne : 6
+. . . . Noeud.Entier 3                                       -- ligne : 6
+. . Noeud.Pour                                               -- ligne : 7
+. . . Noeud.Increment                                        -- ligne : 7
+. . . . Noeud.Ident "a"                                      -- ligne : 7
+. . . . Noeud.Ident "c"                                      -- ligne : 7
+. . . . Noeud.Ident "b"                                      -- ligne : 7
+. . . Noeud.ListeInst                                        -- ligne : 8
+. . . . Noeud.Vide                                           -- ligne : 9
+. . . . Noeud.Nop                                            -- ligne : 8
+program
+   a : real; 
+   b : 1 .. 9; 
+   c : integer; 
+begin
+   c := 3;
+   for a := c to b do 
+      null;
+   end;
+end.
+--> Noeud.Ident
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 4
+. . Noeud.ListeDecl                                          -- ligne : 3
+. . . Noeud.ListeDecl                                        -- ligne : 2
+. . . . Noeud.Vide                                           -- ligne : 2
+. . . . Noeud.Decl                                           -- ligne : 2
+. . . . . Noeud.ListeIdent                                   -- ligne : 2
+. . . . . . Noeud.Vide                                       -- ligne : 2
+. . . . . . Noeud.Ident "a"                                  -- ligne : 2
+. . . . . . -- defn :
+. . . . . . --    (NatureDefn.Var, NatureType.Real)
+. . . . . Noeud.Ident "real"                                 -- ligne : 2
+. . . . . -- defn :
+. . . . . --    (NatureDefn.Type, NatureType.Real)
+. . . Noeud.Decl                                             -- ligne : 3
+. . . . Noeud.ListeIdent                                     -- ligne : 3
+. . . . . Noeud.Vide                                         -- ligne : 3
+. . . . . Noeud.Ident "b"                                    -- ligne : 3
+. . . . . -- defn :
+. . . . . --    (NatureDefn.Var, NatureType.Interval(1, 9))
+. . . . Noeud.Intervalle                                     -- ligne : 3
+. . . . . Noeud.Entier 1                                     -- ligne : 3
+. . . . . Noeud.Entier 9                                     -- ligne : 3
+. . Noeud.Decl                                               -- ligne : 4
+. . . Noeud.ListeIdent                                       -- ligne : 4
+. . . . Noeud.Vide                                           -- ligne : 4
+. . . . Noeud.Ident "c"                                      -- ligne : 4
+. . . . -- defn :
+. . . . --    (NatureDefn.Var, Type.Integer)
+. . . Noeud.Ident "integer"                                  -- ligne : 4
+. . . -- defn :
+. . . --    (NatureDefn.Type, Type.Integer)
+. Noeud.ListeInst                                            -- ligne : 7
+. . Noeud.ListeInst                                          -- ligne : 6
+. . . Noeud.Vide                                             -- ligne : 7
+. . . Noeud.Affect                                           -- ligne : 6
+. . . -- type :
+. . . --    Type.Integer
+. . . . Noeud.Ident "c"                                      -- ligne : 6
+. . . . -- defn :
+. . . . --    (NatureDefn.Var, Type.Integer)
+. . . . -- type :
+. . . . --    Type.Integer
+. . . . Noeud.Entier 3                                       -- ligne : 6
+. . . . -- type :
+. . . . --    Type.Integer
+. . Noeud.Pour                                               -- ligne : 7
+. . . Noeud.Increment                                        -- ligne : 7
+. . . . Noeud.Ident "a"                                      -- ligne : 7
+. . . . -- defn :
+. . . . --    (NatureDefn.Var, NatureType.Real)
+. . . . -- type :
+. . . . --    NatureType.Real
+. . . . Noeud.Ident "c"                                      -- ligne : 7
+. . . . -- defn :
+. . . . --    (NatureDefn.Var, Type.Integer)
+. . . . -- type :
+. . . . --    Type.Integer
+. . . . Noeud.Ident "b"                                      -- ligne : 7
+. . . . -- defn :
+. . . . --    (NatureDefn.Var, NatureType.Interval(1, 9))
+. . . . -- type :
+. . . . --    NatureType.Interval(1, 9)
+. . . Noeud.ListeInst                                        -- ligne : 8
+. . . . Noeud.Vide                                           -- ligne : 9
+. . . . Noeud.Nop                                            -- ligne : 8
+program
+   a
+   -- defn :
+   --    (NatureDefn.Var, NatureType.Real)
+     : real
+       -- defn :
+       --    (NatureDefn.Type, NatureType.Real)
+           ; 
+   b
+   -- defn :
+   --    (NatureDefn.Var, NatureType.Interval(1, 9))
+     : 1 .. 9; 
+   c
+   -- defn :
+   --    (NatureDefn.Var, Type.Integer)
+     : integer
+       -- defn :
+       --    (NatureDefn.Type, Type.Integer)
+              ; 
+begin
+   c
+   -- defn :
+   --    (NatureDefn.Var, Type.Integer)
+   -- type :
+   --    Type.Integer
+     := 
+     -- type :
+     --    Type.Integer
+        3
+        -- type :
+        --    Type.Integer
+         ;
+   for a
+       -- defn :
+       --    (NatureDefn.Var, NatureType.Real)
+       -- type :
+       --    NatureType.Real
+         := c
+            -- defn :
+            --    (NatureDefn.Var, Type.Integer)
+            -- type :
+            --    Type.Integer
+              to b
+                 -- defn :
+                 --    (NatureDefn.Var, NatureType.Interval(1, 9))
+                 -- type :
+                 --    NatureType.Interval(1, 9)
+                   do 
+      null;
+   end;
+end.
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : for2.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 3
+. . Noeud.ListeDecl                                          -- ligne : 2
+. . . Noeud.Vide                                             -- ligne : 2
+. . . Noeud.Decl                                             -- ligne : 2
+. . . . Noeud.ListeIdent                                     -- ligne : 2
+. . . . . Noeud.Vide                                         -- ligne : 2
+. . . . . Noeud.Ident "a"                                    -- ligne : 2
+. . . . Noeud.Ident "real"                                   -- ligne : 2
+. . Noeud.Decl                                               -- ligne : 3
+. . . Noeud.ListeIdent                                       -- ligne : 3
+. . . . Noeud.Vide                                           -- ligne : 3
+. . . . Noeud.Ident "b"                                      -- ligne : 3
+. . . Noeud.Intervalle                                       -- ligne : 3
+. . . . Noeud.Entier 1                                       -- ligne : 3
+. . . . Noeud.Entier 9                                       -- ligne : 3
+. Noeud.ListeInst                                            -- ligne : 5
+. . Noeud.Vide                                               -- ligne : 9
+. . Noeud.Pour                                               -- ligne : 5
+. . . Noeud.Increment                                        -- ligne : 5
+. . . . Noeud.Ident "b"                                      -- ligne : 5
+. . . . Noeud.Ident "a"                                      -- ligne : 5
+. . . . Noeud.Entier 20                                      -- ligne : 5
+. . . Noeud.ListeInst                                        -- ligne : 6
+. . . . Noeud.Vide                                           -- ligne : 7
+. . . . Noeud.Nop                                            -- ligne : 6
+program
+   a : real; 
+   b : 1 .. 9; 
+begin
+   for b := a to 20 do 
+      null;
+   end;
+end.
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : for3.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 3
+. . Noeud.ListeDecl                                          -- ligne : 2
+. . . Noeud.Vide                                             -- ligne : 2
+. . . Noeud.Decl                                             -- ligne : 2
+. . . . Noeud.ListeIdent                                     -- ligne : 2
+. . . . . Noeud.Vide                                         -- ligne : 2
+. . . . . Noeud.Ident "a"                                    -- ligne : 2
+. . . . Noeud.Ident "real"                                   -- ligne : 2
+. . Noeud.Decl                                               -- ligne : 3
+. . . Noeud.ListeIdent                                       -- ligne : 3
+. . . . Noeud.Vide                                           -- ligne : 3
+. . . . Noeud.Ident "b"                                      -- ligne : 3
+. . . Noeud.Intervalle                                       -- ligne : 3
+. . . . Noeud.Entier 1                                       -- ligne : 3
+. . . . Noeud.Entier 14                                      -- ligne : 3
+. Noeud.ListeInst                                            -- ligne : 5
+. . Noeud.Vide                                               -- ligne : 9
+. . Noeud.Pour                                               -- ligne : 5
+. . . Noeud.Increment                                        -- ligne : 5
+. . . . Noeud.Ident "a"                                      -- ligne : 5
+. . . . Noeud.Ident "b"                                      -- ligne : 5
+. . . . Noeud.Entier 20                                      -- ligne : 5
+. . . Noeud.ListeInst                                        -- ligne : 6
+. . . . Noeud.Vide                                           -- ligne : 7
+. . . . Noeud.Nop                                            -- ligne : 6
+program
+   a : real; 
+   b : 1 .. 14; 
+begin
+   for a := b to 20 do 
+      null;
+   end;
+end.
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 3
+. . Noeud.ListeDecl                                          -- ligne : 2
+. . . Noeud.Vide                                             -- ligne : 2
+. . . Noeud.Decl                                             -- ligne : 2
+. . . . Noeud.ListeIdent                                     -- ligne : 2
+. . . . . Noeud.Vide                                         -- ligne : 2
+. . . . . Noeud.Ident "a"                                    -- ligne : 2
+. . . . . -- defn :
+. . . . . --    (NatureDefn.Var, NatureType.Real)
+. . . . Noeud.Ident "real"                                   -- ligne : 2
+. . . . -- defn :
+. . . . --    (NatureDefn.Type, NatureType.Real)
+. . Noeud.Decl                                               -- ligne : 3
+. . . Noeud.ListeIdent                                       -- ligne : 3
+. . . . Noeud.Vide                                           -- ligne : 3
+. . . . Noeud.Ident "b"                                      -- ligne : 3
+. . . . -- defn :
+. . . . --    (NatureDefn.Var, NatureType.Interval(1, 14))
+. . . Noeud.Intervalle                                       -- ligne : 3
+. . . . Noeud.Entier 1                                       -- ligne : 3
+. . . . Noeud.Entier 14                                      -- ligne : 3
+. Noeud.ListeInst                                            -- ligne : 5
+. . Noeud.Vide                                               -- ligne : 9
+. . Noeud.Pour                                               -- ligne : 5
+. . . Noeud.Increment                                        -- ligne : 5
+. . . . Noeud.Ident "a"                                      -- ligne : 5
+. . . . -- defn :
+. . . . --    (NatureDefn.Var, NatureType.Real)
+. . . . -- type :
+. . . . --    NatureType.Real
+. . . . Noeud.Ident "b"                                      -- ligne : 5
+. . . . -- defn :
+. . . . --    (NatureDefn.Var, NatureType.Interval(1, 14))
+. . . . -- type :
+. . . . --    NatureType.Interval(1, 14)
+. . . . Noeud.Entier 20                                      -- ligne : 5
+. . . . -- type :
+. . . . --    Type.Integer
+. . . Noeud.ListeInst                                        -- ligne : 6
+. . . . Noeud.Vide                                           -- ligne : 7
+. . . . Noeud.Nop                                            -- ligne : 6
+program
+   a
+   -- defn :
+   --    (NatureDefn.Var, NatureType.Real)
+     : real
+       -- defn :
+       --    (NatureDefn.Type, NatureType.Real)
+           ; 
+   b
+   -- defn :
+   --    (NatureDefn.Var, NatureType.Interval(1, 14))
+     : 1 .. 14; 
+begin
+   for a
+       -- defn :
+       --    (NatureDefn.Var, NatureType.Real)
+       -- type :
+       --    NatureType.Real
+         := b
+            -- defn :
+            --    (NatureDefn.Var, NatureType.Interval(1, 14))
+            -- type :
+            --    NatureType.Interval(1, 14)
+              to 20
+                 -- type :
+                 --    Type.Integer
+                    do 
+      null;
+   end;
+end.
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : for4.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 4
+. . Noeud.ListeDecl                                          -- ligne : 3
+. . . Noeud.ListeDecl                                        -- ligne : 2
+. . . . Noeud.Vide                                           -- ligne : 2
+. . . . Noeud.Decl                                           -- ligne : 2
+. . . . . Noeud.ListeIdent                                   -- ligne : 2
+. . . . . . Noeud.Vide                                       -- ligne : 2
+. . . . . . Noeud.Ident "a"                                  -- ligne : 2
+. . . . . Noeud.Intervalle                                   -- ligne : 2
+. . . . . . Noeud.Entier 1                                   -- ligne : 2
+. . . . . . Noeud.Entier 5                                   -- ligne : 2
+. . . Noeud.Decl                                             -- ligne : 3
+. . . . Noeud.ListeIdent                                     -- ligne : 3
+. . . . . Noeud.Vide                                         -- ligne : 3
+. . . . . Noeud.Ident "b"                                    -- ligne : 3
+. . . . Noeud.Intervalle                                     -- ligne : 3
+. . . . . Noeud.Entier 1                                     -- ligne : 3
+. . . . . Noeud.Entier 9                                     -- ligne : 3
+. . Noeud.Decl                                               -- ligne : 4
+. . . Noeud.ListeIdent                                       -- ligne : 4
+. . . . Noeud.Vide                                           -- ligne : 4
+. . . . Noeud.Ident "c"                                      -- ligne : 4
+. . . Noeud.Ident "boolean"                                  -- ligne : 4
+. Noeud.ListeInst                                            -- ligne : 7
+. . Noeud.ListeInst                                          -- ligne : 6
+. . . Noeud.Vide                                             -- ligne : 7
+. . . Noeud.Affect                                           -- ligne : 6
+. . . . Noeud.Ident "c"                                      -- ligne : 6
+. . . . Noeud.Ident "true"                                   -- ligne : 6
+. . Noeud.Pour                                               -- ligne : 7
+. . . Noeud.Increment                                        -- ligne : 7
+. . . . Noeud.Ident "a"                                      -- ligne : 7
+. . . . Noeud.Ident "b"                                      -- ligne : 7
+. . . . Noeud.Ident "c"                                      -- ligne : 7
+. . . Noeud.ListeInst                                        -- ligne : 8
+. . . . Noeud.Vide                                           -- ligne : 9
+. . . . Noeud.Nop                                            -- ligne : 8
+program
+   a : 1 .. 5; 
+   b : 1 .. 9; 
+   c : boolean; 
+begin
+   c := true;
+   for a := b to c do 
+      null;
+   end;
+end.
+--> Noeud.Ident
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : while1.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 2
+. . Noeud.Vide                                               -- ligne : 2
+. . Noeud.Decl                                               -- ligne : 2
+. . . Noeud.ListeIdent                                       -- ligne : 2
+. . . . Noeud.Vide                                           -- ligne : 2
+. . . . Noeud.Ident "a"                                      -- ligne : 2
+. . . Noeud.Ident "real"                                     -- ligne : 2
+. Noeud.ListeInst                                            -- ligne : 5
+. . Noeud.ListeInst                                          -- ligne : 4
+. . . Noeud.Vide                                             -- ligne : 5
+. . . Noeud.Affect                                           -- ligne : 4
+. . . . Noeud.Ident "a"                                      -- ligne : 4
+. . . . Noeud.Entier 5                                       -- ligne : 4
+. . Noeud.TantQue                                            -- ligne : 5
+. . . Noeud.Ident "a"                                        -- ligne : 5
+. . . Noeud.ListeInst                                        -- ligne : 6
+. . . . Noeud.Vide                                           -- ligne : 7
+. . . . Noeud.Nop                                            -- ligne : 6
+program
+   a : real; 
+begin
+   a := 5;
+   while a do
+      null;
+   end;
+end.
+--> Noeud.Ident
+---------------------------------------------------------------------
+Appuyer sur Return
+---------------------------------------------------------------------
+Fichier : while2.cas
+---------------------------------------------------------------------
+Noeud.Programme                                              -- ligne : 1
+. Noeud.ListeDecl                                            -- ligne : 2
+. . Noeud.Vide                                               -- ligne : 2
+. . Noeud.Decl                                               -- ligne : 2
+. . . Noeud.ListeIdent                                       -- ligne : 2
+. . . . Noeud.Vide                                           -- ligne : 2
+. . . . Noeud.Ident "a"                                      -- ligne : 2
+. . . Noeud.Intervalle                                       -- ligne : 2
+. . . . Noeud.Entier 1                                       -- ligne : 2
+. . . . Noeud.Entier 9                                       -- ligne : 2
+. Noeud.ListeInst                                            -- ligne : 4
+. . Noeud.Vide                                               -- ligne : 7
+. . Noeud.TantQue                                            -- ligne : 4
+. . . Noeud.Ident "a"                                        -- ligne : 4
+. . . Noeud.ListeInst                                        -- ligne : 5
+. . . . Noeud.Vide                                           -- ligne : 6
+. . . . Noeud.Nop                                            -- ligne : 5
+program
+   a : 1 .. 9; 
+begin
+   while a do
+      null;
+   end;
+end.
+---------------------------------------------------------------------
+Appuyer sur Return

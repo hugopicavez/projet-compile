@@ -27,7 +27,7 @@ import java.util.Hashtable;
 // On crée un analyseur lexical compatible avec Cup.
 %cup
 
-// Active le comptage des lignes 
+// Active le comptage des lignes
 %line
 
 // Declaration des exceptions qui peuvent etre levees par l'analyseur lexical
@@ -37,11 +37,11 @@ import java.util.Hashtable;
 
 %{
    /**
-    * Le dictionnaire associe à chaque mot réservé le code du lexème 
+    * Le dictionnaire associe à chaque mot réservé le code du lexème
     * correspondant.
     */
-   private final Hashtable<String,Integer> 
-      dictionnaire = initialiserDictionnaire(); 
+   private final Hashtable<String,Integer>
+      dictionnaire = initialiserDictionnaire();
 
    /**
     * Initialisation du dictionnaire.
@@ -93,7 +93,7 @@ import java.util.Hashtable;
     */
    static String toString(int code_lexeme) {
       switch (code_lexeme) {
-         case sym.IDF: 
+         case sym.IDF:
             return "IDF";
          case sym.CONST_ENT:
             return "CONST_ENT";
@@ -338,7 +338,7 @@ WRITE          =(w|W)(r|R)(i|I)(t|T)(e|E)
                         }
 {CONST_REEL}            { try {
                                 return symbol(sym.CONST_REEL,
-                          new Double(yytext()));
+                          new Float(yytext()));
                           } catch (NumberFormatException e) {
                                throw new ErreurLexicale();
                           }
@@ -359,7 +359,7 @@ WRITE          =(w|W)(r|R)(i|I)(t|T)(e|E)
 
 
 {ERROR}|.                { System.out.println("Erreur Lexicale : '" +
-                            yytext() + "' non reconnu ... ligne " + 
+                            yytext() + "' non reconnu ... ligne " +
                             numLigne()) ;
                          throw new ErreurLexicale() ; }
 

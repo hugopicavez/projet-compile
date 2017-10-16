@@ -1,0 +1,131 @@
+Erreur contextuelle : 
+non repertoriee ... ligne 2
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+Erreur contextuelle : 
+non repertoriee ... ligne 2
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+Erreur contextuelle : 
+non repertoriee ... ligne 4
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+Erreur contextuelle : 
+non repertoriee ... ligne 3
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+Erreur contextuelle : 
+non repertoriee ... ligne 4
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+Erreur contextuelle : 
+non repertoriee ... ligne 4
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+Erreur contextuelle : 
+non repertoriee ... ligne 6
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+Erreur contextuelle : 
+non repertoriee ... ligne 5
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+Erreur contextuelle : 
+non repertoriee ... ligne 6
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+Erreur contextuelle : 
+non repertoriee ... ligne 5
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+Erreur contextuelle : 
+non repertoriee ... ligne 5
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+Erreur contextuelle : 
+non repertoriee ... ligne 5
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+Erreur contextuelle : 
+non repertoriee ... ligne 7
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+Exception in thread "main" fr.esisar.compilation.verif.ErreurReglesTypage
+	at fr.esisar.compilation.verif.Verif.verifier_CONSTANTE(Verif.java:183)
+	at fr.esisar.compilation.verif.Verif.verifier_INTERVALLE(Verif.java:167)
+	at fr.esisar.compilation.verif.Verif.verifier_TYPE(Verif.java:154)
+	at fr.esisar.compilation.verif.Verif.verifier_DECL(Verif.java:117)
+	at fr.esisar.compilation.verif.Verif.verifier_LISTE_DECL(Verif.java:106)
+	at fr.esisar.compilation.verif.Verif.verifier_LISTE_DECL(Verif.java:105)
+	at fr.esisar.compilation.verif.Verif.verifier_LISTE_DECL(Verif.java:105)
+	at fr.esisar.compilation.verif.Verif.verifier_PROGRAMME(Verif.java:93)
+	at fr.esisar.compilation.verif.Verif.verifierDecorer(Verif.java:34)
+	at fr.esisar.compilation.verif.TestVerif.main(TestVerif.java:30)
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+Exception in thread "main" fr.esisar.compilation.verif.ErreurReglesTypage
+	at fr.esisar.compilation.verif.Verif.verifier_CONSTANTE(Verif.java:183)
+	at fr.esisar.compilation.verif.Verif.verifier_INTERVALLE(Verif.java:167)
+	at fr.esisar.compilation.verif.Verif.verifier_TYPE(Verif.java:154)
+	at fr.esisar.compilation.verif.Verif.verifier_DECL(Verif.java:117)
+	at fr.esisar.compilation.verif.Verif.verifier_LISTE_DECL(Verif.java:106)
+	at fr.esisar.compilation.verif.Verif.verifier_LISTE_DECL(Verif.java:105)
+	at fr.esisar.compilation.verif.Verif.verifier_LISTE_DECL(Verif.java:105)
+	at fr.esisar.compilation.verif.Verif.verifier_PROGRAMME(Verif.java:93)
+	at fr.esisar.compilation.verif.Verif.verifierDecorer(Verif.java:34)
+	at fr.esisar.compilation.verif.TestVerif.main(TestVerif.java:30)
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+Erreur contextuelle : 
+non repertoriee ... ligne 7
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+Erreur contextuelle : 
+non repertoriee ... ligne 6
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+Erreur contextuelle : 
+non repertoriee ... ligne 6
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+Erreur contextuelle : 
+non repertoriee ... ligne 6
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+Erreur contextuelle : 
+non repertoriee ... ligne 6
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+Erreur contextuelle : 
+non repertoriee ... ligne 5
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+Erreur contextuelle : 
+non repertoriee ... ligne 5
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+Erreur contextuelle : 
+non repertoriee ... ligne 4
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+Erreur contextuelle : 
+non repertoriee ... ligne 4
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+Erreur contextuelle : 
+non repertoriee ... ligne 6
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+Erreur contextuelle : 
+non repertoriee ... ligne 6
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+Erreur contextuelle : 
+non repertoriee ... ligne 7
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+Erreur contextuelle : 
+non repertoriee ... ligne 6
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+Erreur contextuelle : 
+non repertoriee ... ligne 6
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+Erreur contextuelle : 
+non repertoriee ... ligne 4
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+Erreur contextuelle : 
+non repertoriee ... ligne 6
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+Erreur contextuelle : 
+non repertoriee ... ligne 5
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+Erreur contextuelle : 
+non repertoriee ... ligne 7
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+Erreur contextuelle : 
+non repertoriee ... ligne 5
+./verif.sh: ligne 10 : cd: ../../classes: Aucun fichier ou dossier de ce type
+Erreur contextuelle : 
+non repertoriee ... ligne 4
