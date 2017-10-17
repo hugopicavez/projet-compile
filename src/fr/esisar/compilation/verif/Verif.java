@@ -437,7 +437,7 @@ public class Verif {
             a.setDecor(new Decor(res2.getTypeRes()));
         } else {
             ErreurContext err = ErreurContext.ErreurTypeNonCompatible;
-            err.leverErreurContext(a.getNoeud() + "=>" + "(" + t.toString() + ")", a.getNumLigne());
+            err.leverErreurContext(res2.getTypeRes().getNature() + "=>" + "(" + t.getNature() + ")", a.getNumLigne());
         }
 
     }
@@ -447,9 +447,9 @@ public class Verif {
             throw new ErreurInterneVerif("Idf : " + a.getNumLigne());
         Defn defn = env.chercher(a.getChaine());
         if(defn == null)
-            ErreurContext.ErreurVariableInconnue.leverErreurContext("", a.getNumLigne());
+            ErreurContext.ErreurVariableInconnue.leverErreurContext(a.getChaine(), a.getNumLigne());
         if(defn.getNature() != NatureDefn.Var)
-            ErreurContext.ErreurIdentificateurInvalide.leverErreurContext("", a.getNumLigne());
+            ErreurContext.ErreurIdentificateurInvalide.leverErreurContext(a.getChaine(), a.getNumLigne());
         a.setDecor(new Decor(defn, defn.getType()));
     }
 }
