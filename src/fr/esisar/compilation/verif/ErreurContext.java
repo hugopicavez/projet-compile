@@ -14,6 +14,7 @@ package fr.esisar.compilation.verif;
 public enum ErreurContext {
    ErreurIdentificateurInvalide,
    ErreurVariableInconnue,
+   ErreurConstanteInvalide ,
    ErreurTypeNonCompatible,
    ErreurTypeBolleanAttendu,
    ErreurTypeInvalid,
@@ -26,6 +27,9 @@ public enum ErreurContext {
          case ErreurIdentificateurInvalide:
             System.err.print("identificateur invalide : "+s);
             break ;
+      case ErreurConstanteInvalide:
+           System.err.print("constante invalide : "+s);
+           break;
         case ErreurVariableInconnue:
              System.err.print("variable inconnu : "+s);
              break;

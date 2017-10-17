@@ -169,7 +169,7 @@ public class Verif {
         return Type.creationInterval(inf, sup);
     }
 
-    private int verifier_CONSTANTE(Arbre a) {
+    private int verifier_CONSTANTE(Arbre a) throws ErreurVerif {
         switch (a.getNoeud()) {
             case PlusUnaire:
                 return verifier_CONSTANTE(a.getFils1());
@@ -180,7 +180,7 @@ public class Verif {
             case Ident:
                 Defn defn = env.chercher(a.getChaine());
                 if (defn == null || defn.getNature() != NatureDefn.ConstInteger)
-                    throw new ErreurReglesTypage();
+                      ErreurContext.ErreurConstanteInvalide.leverErreurContext(a.getChaine(), a.getNumLigne());
                 a.setDecor(new Decor(defn));
                 return defn.getValeurInteger();
             default:
@@ -325,7 +325,6 @@ public class Verif {
 
 
     private void verifier_PLACE(Arbre a) throws ErreurVerif, ErreurInterneVerif {
-        System.out.println("--> " + a.getNoeud());
         switch (a.getNoeud()) {
             case Ident:
                 verifier_IDF(a);
