@@ -1,6 +1,5 @@
 program
-	a : boolean; -- Dans ce test il n est pas cense y avoir d erreur lors de la compilation
-	b : boolean;
+	a,b : boolean; -- Dans ce test il n est pas cense y avoir d erreur lors de la compilation
 	c : boolean;
 	d : integer;
 	e : integer;
@@ -16,6 +15,7 @@ program
 	m : array [-9 .. 12] of real;
 	n : array [1 .. 9] of real;
 	o : array [3 .. 6] of array [1 .. 9] of integer;
+	p : array [-max_int .. +max_int] of integer;
 
 
 begin
@@ -28,6 +28,9 @@ begin
 	e := 9;
 	f := 3.14159;
 	g := 5.6123;
+	
+	write("coucou",d);
+	new_line;
 	
 	a := (d = e); -- cense etre faux (false)
 	b := (f >= e); -- cense etre faux
@@ -68,6 +71,7 @@ begin
 	l[h] := d; -- array(interval,type),interval -> type
 	n := l; -- array of real takes array of integer with same size
 	g := n[6]; -- real takes array of real value
+	g := n[6]-n[8]; -- operation on indices
 	d := l[1]; -- integer takes array of integer value
 	o[4] := l; -- double array takes an array of integer as a variable
 	l := o[4]; -- swap

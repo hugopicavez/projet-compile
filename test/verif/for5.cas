@@ -1,0 +1,9 @@
+program
+	a : 3;
+	b : 19;
+begin
+	for i := a to b do 
+      		null ; 
+	end ; 
+end.
+	

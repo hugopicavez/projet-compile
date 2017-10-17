@@ -1,0 +1,5 @@
+program
+	a : boolean;
+begin
+	c := 5; -- erreur c non declare
+end.

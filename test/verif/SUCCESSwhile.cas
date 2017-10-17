@@ -1,0 +1,13 @@
+program  -- while
+	k : array [1..15] of integer;
+	a : integer;
+	b : integer;
+	c : integer;
+begin
+	a := 20;
+	k[15] := 3;
+	while (a > 0) and (k[15] > 2) do
+		k[a] := 1;
+		a := a-1;
+	end;
+end.

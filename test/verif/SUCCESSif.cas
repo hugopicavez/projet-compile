@@ -1,0 +1,21 @@
+program   -- test if
+	a : integer;
+	b : integer;
+	C : integer;
+	d : integer;
+begin
+	a := 2;
+	b := a;
+	c := 4;
+	if (a=b) then
+		d := 2*a;
+	end;
+	
+	if (a=b) then
+		if (c=d) then
+			a := 2;
+		else
+			b := 2;
+		end;
+	end;
+end.
