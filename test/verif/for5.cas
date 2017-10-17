@@ -1,6 +1,6 @@
 program
-	a : 3;
-	b : 19;
+	a : integer;
+	b : integer;
 begin
 	for i := a to b do 
       		null ; 
