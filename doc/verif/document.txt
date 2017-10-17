@@ -1,0 +1,23 @@
+messages d'erreurs:
+
+Nous avons regroupé l'ensemble des exceptions délivré par notre code dans la classe d'énumération ErreurContext.
+
+ErreurIdentificateurInvalide : quand la NatureDefn est incorrecte.
+ErreurVariableInconnue : quand un identificateur est utilisé alors qu’il n’a pas été déclaré précédemment. 
+ErreurConstanteInvalide : dans les déclaration quand un identificateur de type de constante est attendu mais que l’on reçoit un autre type
+ErreurTypeNonCompatible : quand on cherche à faire une opération mais que les types ne sont pas compatibles pour cette opération
+ErreurTypeBoleanAttendu : quand on attend un booléen et qu’on reçoit un autre type 
+ErreurTypeInvalid : quand on obtient pas le type attendu
+ErreurVariableDejaDefinit : quand on essaye de redéclarer une variable
+ErreurNonRepertoriee : cas par défaut quand une erreur inconnu survient
+
+
+methodologie de test :
+
+Nous avons testé chacunes des erreurs de façon unitaire en créant un ensemble de programmes simples contenant une seule erreur.
+Puis nous avons effectué quelques tests valides afin de valider le fonctionnement global.
+
+Architecture :
+
+Nous avons créé une fonction par règle du fichier syntaxe.cup
+

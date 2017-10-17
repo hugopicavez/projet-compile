@@ -50,11 +50,7 @@ public class ReglesTypage {
         switch (noeud) {
             case Et:
             case Ou:
-                if (t1.getNature().equals(NatureType.Boolean) && t1.getNature().equals(NatureType.Boolean))
-                {
-                    binaireOk.setOk(true);
-                }
-                binaireOk.setTypeRes(Type.Boolean);
+                verifier_Condition_Bool(binaireOk, t1);
                 break;
             case Egal:
             case Inf:
@@ -62,71 +58,22 @@ public class ReglesTypage {
             case NonEgal:
             case InfEgal:
             case SupEgal:
-                if((t1.getNature().equals(NatureType.Interval) || t1.getNature().equals(NatureType.Real)) && (t2.getNature().equals(NatureType.Interval) || t2.getNature().equals(NatureType.Real)))
-                {
-                    binaireOk.setOk(true);
-                    if(t1.getNature().equals(NatureType.Interval) && t2.getNature().equals(NatureType.Real)){
-                        binaireOk.setConv1(true);
-                    }
-                    if(t1.getNature().equals(NatureType.Real) && t2.getNature().equals(NatureType.Interval)){
-                        binaireOk.setConv2(true);
-                    }
-                }
-                binaireOk.setTypeRes(Type.Boolean);
+                verifier_Compatible_Comparaison(binaireOk,t1,t2);
                 break;
             case Plus:
             case Moins:
             case Mult:
-                if((t1.getNature().equals(NatureType.Interval) || t1.getNature().equals(NatureType.Real)) && (t2.getNature().equals(NatureType.Interval) || t2.getNature().equals(NatureType.Real)))
-                {
-                    binaireOk.setOk(true);
-                    if (t1.getNature().equals(NatureType.Interval) && t2.getNature().equals(NatureType.Interval))
-                    {
-                        binaireOk.setTypeRes(Type.Integer);
-                    }
-                    else
-                    {
-                        if(t1.getNature().equals(NatureType.Interval)){
-                            binaireOk.setConv1(true);
-                        }
-                        if(t2.getNature().equals(NatureType.Interval)){
-                            binaireOk.setConv2(true);
-                        }
-                        binaireOk.setTypeRes(Type.Real);
-                    }
-                }
-                else
-                    binaireOk.setTypeRes(Type.Real);
+                verifier_Compatible_Plus_Moins_Mult(binaireOk, t1,t2);
                 break;
             case Quotient:
             case Reste:
-                if (t1.getNature().equals(NatureType.Interval) && t2.getNature().equals(NatureType.Interval))
-                {
-                    binaireOk.setOk(true);
-                }
-                binaireOk.setTypeRes(Type.Integer);
+                verifier_Compatible_Reste(binaireOk, t1,t2);
                 break;
             case DivReel:
-                if((t1.getNature().equals(NatureType.Interval) || t1.getNature().equals(NatureType.Real)) && (t2.getNature().equals(NatureType.Interval) || t2.getNature().equals(NatureType.Real)))
-                {
-                    binaireOk.setOk(true);
-                    if(t1.getNature().equals(NatureType.Interval)){
-                        binaireOk.setConv1(true);
-                    }
-                    if(t2.getNature().equals(NatureType.Interval)){
-                        binaireOk.setConv2(true);
-                    }
-                }
-                binaireOk.setTypeRes(Type.Real);
+                verifier_Compatible_DivReel(binaireOk, t1,t2);
                 break;
             case Tableau:
-                if(t1.getNature().equals(NatureType.Array) && t2.getNature().equals(NatureType.Interval)){
-                    if(t1.getIndice().getNature().equals(NatureType.Interval)){
-                        binaireOk.setOk(true);
-                        binaireOk.setTypeRes(t1.getElement());
-                    }
-                }
-                else binaireOk.setTypeRes(Type.creationInterval(0,0));
+                verifier_Compatible_Tableau(binaireOk, t1,t2);
                 break;
             default:
                 throw new ErreurInterneVerif(
@@ -134,6 +81,82 @@ public class ReglesTypage {
         }
         return binaireOk;
     }
+    private static void verifier_Condition_Bool(ResultatBinaireCompatible binaireOk , Type t1){
+      if (t1.getNature().equals(NatureType.Boolean) && t1.getNature().equals(NatureType.Boolean))
+      {
+          binaireOk.setOk(true);
+      }
+      binaireOk.setTypeRes(Type.Boolean);
+    }
+
+    private static void verifier_Compatible_Comparaison(ResultatBinaireCompatible binaireOk , Type t1, Type t2){
+      if((t1.getNature().equals(NatureType.Interval) || t1.getNature().equals(NatureType.Real)) && (t2.getNature().equals(NatureType.Interval) || t2.getNature().equals(NatureType.Real)))
+      {
+          binaireOk.setOk(true);
+          if(t1.getNature().equals(NatureType.Interval) && t2.getNature().equals(NatureType.Real)){
+              binaireOk.setConv1(true);
+          }
+          if(t1.getNature().equals(NatureType.Real) && t2.getNature().equals(NatureType.Interval)){
+              binaireOk.setConv2(true);
+          }
+      }
+      binaireOk.setTypeRes(Type.Boolean);
+    }
+
+    private static void verifier_Compatible_Plus_Moins_Mult(ResultatBinaireCompatible binaireOk , Type t1, Type t2){
+      if((t1.getNature().equals(NatureType.Interval) || t1.getNature().equals(NatureType.Real)) && (t2.getNature().equals(NatureType.Interval) || t2.getNature().equals(NatureType.Real)))
+      {
+          binaireOk.setOk(true);
+          if (t1.getNature().equals(NatureType.Interval) && t2.getNature().equals(NatureType.Interval))
+          {
+              binaireOk.setTypeRes(Type.Integer);
+          }
+          else
+          {
+              if(t1.getNature().equals(NatureType.Interval)){
+                  binaireOk.setConv1(true);
+              }
+              if(t2.getNature().equals(NatureType.Interval)){
+                  binaireOk.setConv2(true);
+              }
+              binaireOk.setTypeRes(Type.Real);
+          }
+      }
+      else
+          binaireOk.setTypeRes(Type.Real);
+    }
+
+      private static void verifier_Compatible_Reste(ResultatBinaireCompatible binaireOk , Type t1, Type t2){
+        if (t1.getNature().equals(NatureType.Interval) && t2.getNature().equals(NatureType.Interval))
+        {
+            binaireOk.setOk(true);
+        }
+        binaireOk.setTypeRes(Type.Integer);
+      }
+
+      private static void verifier_Compatible_DivReel(ResultatBinaireCompatible binaireOk , Type t1, Type t2){
+        if((t1.getNature().equals(NatureType.Interval) || t1.getNature().equals(NatureType.Real)) && (t2.getNature().equals(NatureType.Interval) || t2.getNature().equals(NatureType.Real)))
+        {
+            binaireOk.setOk(true);
+            if(t1.getNature().equals(NatureType.Interval)){
+                binaireOk.setConv1(true);
+            }
+            if(t2.getNature().equals(NatureType.Interval)){
+                binaireOk.setConv2(true);
+            }
+        }
+        binaireOk.setTypeRes(Type.Real);
+      }
+
+      private static void verifier_Compatible_Tableau(ResultatBinaireCompatible binaireOk , Type t1, Type t2){
+        if(t1.getNature().equals(NatureType.Array) && t2.getNature().equals(NatureType.Interval)){
+            if(t1.getIndice().getNature().equals(NatureType.Interval)){
+                binaireOk.setOk(true);
+                binaireOk.setTypeRes(t1.getElement());
+            }
+        }
+        else binaireOk.setTypeRes(Type.creationInterval(0,0));
+      }
 
     /**
      * Teste si le type t est compatible pour l'opération binaire représentée
@@ -144,26 +167,11 @@ public class ReglesTypage {
         unaireOK.setOk(false);
         switch (noeud){
             case Non:
-                if (t.getNature().equals(NatureType.Boolean))
-                {
-                    unaireOK.setOk(true);
-                }
-                unaireOK.setTypeRes(Type.Boolean);
+                verifier_CompatibleUnaire_Non(unaireOK, t);
                 break;
             case MoinsUnaire:
             case PlusUnaire:
-                if (t.getNature().equals(NatureType.Interval))
-                {
-                    unaireOK.setOk(true);
-                    unaireOK.setTypeRes(Type.Integer);
-                }
-                else if (t.getNature().equals(NatureType.Real))
-                {
-                    unaireOK.setOk(true);
-                    unaireOK.setTypeRes(Type.Real);
-                }
-                else
-                    unaireOK.setTypeRes(Type.Real);
+                verifier_CompatibleUnaire_Plus_Moins(unaireOK, t);
                 break;
             default:
                 throw new ErreurInterneVerif(
@@ -172,4 +180,26 @@ public class ReglesTypage {
         return unaireOK;
     }
 
+    private static void verifier_CompatibleUnaire_Non(ResultatUnaireCompatible unaireOK , Type t){
+      if (t.getNature().equals(NatureType.Boolean))
+      {
+          unaireOK.setOk(true);
+      }
+      unaireOK.setTypeRes(Type.Boolean);
+    }
+
+    private static void verifier_CompatibleUnaire_Plus_Moins(ResultatUnaireCompatible unaireOK , Type t){
+      if (t.getNature().equals(NatureType.Interval))
+      {
+          unaireOK.setOk(true);
+          unaireOK.setTypeRes(Type.Integer);
+      }
+      else if (t.getNature().equals(NatureType.Real))
+      {
+          unaireOK.setOk(true);
+          unaireOK.setTypeRes(Type.Real);
+      }
+      else
+          unaireOK.setTypeRes(Type.Real);
+    }
 }

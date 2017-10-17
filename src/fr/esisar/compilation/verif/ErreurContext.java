@@ -16,9 +16,9 @@ public enum ErreurContext {
    ErreurVariableInconnue,
    ErreurConstanteInvalide ,
    ErreurTypeNonCompatible,
-   ErreurTypeBolleanAttendu,
+   ErreurTypeBooleanAttendu,
    ErreurTypeInvalid,
-   ErreurVariableDejaDeffinit,
+   ErreurVariableDejaDefinit,
    ErreurNonRepertoriee;
 
    void leverErreurContext(String s, int numLigne) throws ErreurVerif {
@@ -36,14 +36,15 @@ public enum ErreurContext {
         case ErreurTypeNonCompatible:
             System.err.print("type non compatible : "+s);
             break;
-        case ErreurTypeBolleanAttendu:
+        case ErreurTypeBooleanAttendu:
           System.err.print("boolean attendu : "+s);
           break;
         case ErreurTypeInvalid:
           System.err.print("type invalide : "+s);
           break;
-        case ErreurVariableDejaDeffinit:
-          System.err.print("vvariable déja définie : "+s);
+        case ErreurVariableDejaDefinit:
+          System.err.print("variable déja définie : "+s);
+          break ;
          default:
             System.err.print("non repertoriee : "+s);
       }
