@@ -30,6 +30,7 @@ begin
 	g := 5.6123;
 	
 	write("coucou",d);
+	read(d);
 	new_line;
 	
 	a := (d = e); -- cense etre faux (false)
