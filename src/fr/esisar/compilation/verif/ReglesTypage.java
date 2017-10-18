@@ -72,9 +72,6 @@ public class ReglesTypage {
             case DivReel:
                 verifier_Compatible_DivReel(binaireOk, t1,t2);
                 break;
-            case Tableau:
-                verifier_Compatible_Tableau(binaireOk, t1,t2);
-                break;
             default:
                 throw new ErreurInterneVerif(
                         "Arbre incorrect dans binaireCompatible");
@@ -146,16 +143,6 @@ public class ReglesTypage {
             }
         }
         binaireOk.setTypeRes(Type.Real);
-      }
-
-      private static void verifier_Compatible_Tableau(ResultatBinaireCompatible binaireOk , Type t1, Type t2){
-        if(t1.getNature().equals(NatureType.Array) && t2.getNature().equals(NatureType.Interval)){
-            if(t1.getIndice().getNature().equals(NatureType.Interval)){
-                binaireOk.setOk(true);
-                binaireOk.setTypeRes(t1.getElement());
-            }
-        }
-        else binaireOk.setTypeRes(Type.creationInterval(0,0));
       }
 
     /**
