@@ -76,6 +76,7 @@ begin
 	d := l[1]; -- integer takes array of integer value
 	o[4] := l; -- double array takes an array of integer as a variable
 	l := o[4]; -- swap
+	n[5] := l[4];
 	d := o[4][6]; -- double array affects value of an integer
 	d := o[ibis][6]; -- with one interval...
 	d := o[ibis][ibis2]; -- with two intervals...
