@@ -1,0 +1,11 @@
+program
+	a : real;
+	b : 1..9;
+	c : integer;
+begin
+	c := 3;
+	for a := c to b do 
+      		null ; -- erreur la variable de controle ainsi que les deux expressions doivent etre interval
+  	end ; 
+end.
+	

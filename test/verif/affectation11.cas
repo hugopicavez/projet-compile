@@ -1,0 +1,5 @@
+program
+	a : salade;
+begin
+	a := 19;  -- ne peut pas trouver le type de a
+end.

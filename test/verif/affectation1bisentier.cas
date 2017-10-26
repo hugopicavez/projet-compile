@@ -1,0 +1,5 @@
+program
+begin
+	integer := 10; -- erreur mot cle
+end.
+

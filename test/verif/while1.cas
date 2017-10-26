@@ -1,0 +1,8 @@
+program
+	a : real;
+begin
+	a := 5;
+	while (a) do
+		NULL;
+	end;
+end.

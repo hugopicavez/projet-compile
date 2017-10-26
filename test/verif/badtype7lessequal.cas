@@ -1,0 +1,7 @@
+program
+	a : 1..15;
+	b : boolean;
+	c : array [1..14] of int;
+begin
+	b := a <= c;  -- erreur types de variables dans operation
+end.

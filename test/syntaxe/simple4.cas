@@ -14,7 +14,7 @@ begin
       end ;
    end ;
    if x /= y then
-      if x//=y then
+      if x /=y then
          x := x mod y ;
       end ;
    end ;

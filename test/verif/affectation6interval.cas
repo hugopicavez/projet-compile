@@ -1,0 +1,6 @@
+program
+   a : 1..5;
+   b : real;
+begin
+    b := a;  -- b attend un real
+end.

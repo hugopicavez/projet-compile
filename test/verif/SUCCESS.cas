@@ -1,0 +1,85 @@
+program
+	a,b : boolean; -- Dans ce test il n est pas cense y avoir d erreur lors de la compilation
+	c : boolean;
+	d : integer;
+	e : integer;
+	f : real;
+	g : real;
+	h : 1 .. 8;
+	i : 3 .. 7;
+	ibis : 4 .. 5;
+	ibis2 : 3 .. 7;
+	j : real;
+	k : integer;
+	l : array [1 .. 9] of integer;
+	m : array [-9 .. 12] of real;
+	n : array [1 .. 9] of real;
+	o : array [3 .. 6] of array [1 .. 9] of integer;
+	p : array [-max_int .. +max_int] of integer;
+
+
+begin
+	a := true;
+	b := not(a);  -- b est faux
+	c := a and not(b); -- c est vrai
+	a := b or not(c); -- a est faux
+	
+	d := 6;
+	e := 9;
+	f := 3.14159;
+	g := 5.6123;
+	
+	write("coucou",d);
+	read(d);
+	new_line;
+	
+	a := (d = e); -- cense etre faux (false)
+	b := (f >= e); -- cense etre faux
+	c := (f /= d); -- cense etre vrai (true)
+	b := (f <= e); -- cense etre vrai
+	a := (f < e); -- cense etre vrai
+	a := (d > f); -- cense etre vrai
+	
+	f := e + f; -- addition d integer et de real
+	d := e + d; -- addition integer et integer
+	f := f - e; -- soustraction d integer et de real
+	d := d - e; -- soustraction integer et integer
+	
+	e := +d; -- + ou - integer --> integer
+	d := -e; -- + ou - integer --> integer
+	g := -f; -- + ou - real --> real
+	d := -i; -- + ou - interval --> integer
+	g := h - f; -- interval - real --> real
+	d := h - i; -- interval - interval --> integer
+	g := f - h; -- real - interval ---> real
+	j := g - f; -- real real real
+	j := g * f; -- pareil
+	j := g + f; -- pareil
+	d := h * i; -- interval * interval --> integer
+	d := e * i; -- interval * interval --> integer
+	j := g * h; -- real * interval --> real
+	
+	k := d div e;
+	k := d mod e;
+	
+	j := k / e; -- integer / integer --> real
+	j := f / g; -- real / real --> real
+	j := i / g; -- interval / real --> real
+	j := g / i; -- real / interval --> real
+	j := h / i; -- interval / interval --> real
+	
+	m[4] := f; -- array of real takes real
+	l[h] := d; -- array(interval,type),interval -> type
+	n := l; -- array of real takes array of integer with same size
+	g := n[6]; -- real takes array of real value
+	g := n[6]-n[8]; -- operation on indices
+	d := l[1]; -- integer takes array of integer value
+	o[4] := l; -- double array takes an array of integer as a variable
+	l := o[4]; -- swap
+	n[5] := l[4];
+	d := o[4][6]; -- double array affects value of an integer
+	d := o[ibis][6]; -- with one interval...
+	d := o[ibis][ibis2]; -- with two intervals...
+	
+end.
+	

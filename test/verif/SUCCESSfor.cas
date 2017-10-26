@@ -1,0 +1,13 @@
+program   -- test for
+	a : integer;
+	b : integer;
+	k : 1 .. 13;
+	i : integer;
+begin
+	a := 20;
+	b := a;
+	i := a - 1;
+	for i := a downto 1 do
+		b := b * i;
+	end;
+end.

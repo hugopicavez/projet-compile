@@ -1,0 +1,5 @@
+program
+	a : array [1..9] of real;
+begin
+	write(a) ; -- ne peut pas write ce type
+end.

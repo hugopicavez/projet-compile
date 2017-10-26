@@ -1,0 +1,29 @@
+Document pour la Phase 2 :
+
+1) Liste des errreurs du fichier ErreurContext.java :
+
+	Nous avons regroupé l'ensemble des exceptions délivré par notre code dans la classe d'énumération ErreurContext.
+
+	-	ErreurIdentificateurInvalide : 	quand la NatureDefn est incorrecte.
+	-	ErreurVariableInconnue	     : 	quand un identificateur est utilisé alors qu’il n’a pas été déclaré précédemment. 
+	-	ErreurConstanteInvalide      :	dans les déclaration quand un identificateur de type de constante est attendu mais que l’on reçoit un autre type
+	-	ErreurTypeNonCompatible      :	quand on cherche à faire une opération mais que les types ne sont pas compatibles pour cette opération
+	-	ErreurTypeBoleanAttendu      : 	quand on attend un booléen et qu’on reçoit un autre type 
+	-	ErreurTypeInvalid            :	quand on obtient pas le type attendu
+	-	ErreurVariableDejaDefinit    :	quand on essaye de redéclarer une variable
+	-	ErreurNonRepertoriee         :	cas par défaut quand une erreur inconnu survient
+
+
+2) Methodologie de test :
+
+	Pour tester la phase 2 nous avons décider de faire des tests qui nous provoquerons des erreurs et d'autres qui doivent s'exécuter correctement.
+Ainsi les tests qui sont des tests qui amène à un succes sont ceux qui commence pas SUCCES. Les autres sont essentiellement des tests d'erreurs.
+Les tests d'erreurs sont des tests que l'on peut qualifié d'unitaire, en effets il permettent de tester une erreurs particulières.
+	Une fois nos tests réalisé nous avons utilisé l'outil cobertura pour maximiser la performance de nos tests. 
+
+3)	Architecture :
+
+	La réalistion de cette phase c'est faites à patir du fichier syntaxe.cup de la partie 1 et des différents fichiers se trouvant sur chamilo. Notamment le 
+fichier Context.txt
+	Nous avons séparer chaque cas en fonction tout en évitant de faire du code inutile. 
+

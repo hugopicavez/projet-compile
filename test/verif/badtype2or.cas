@@ -1,0 +1,7 @@
+program
+   a: boolean;
+   b: 1..5;
+   c: real;
+begin
+    a := b or c; -- b et c doivent etres booleens
+end.

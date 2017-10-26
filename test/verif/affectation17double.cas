@@ -1,0 +1,6 @@
+program
+   a : array [1..19] of real;
+   a : array [1..15] of integer;
+begin
+   null;   -- a deux fois declare
+end.

@@ -1,0 +1,11 @@
+program
+	a : 1..5;
+	b : 1..9;
+	c : boolean;
+begin
+	c := true;
+	for a := b to c do 
+      		null ; -- erreur la variable de controle ainsi que les deux expressions doivent etre interval
+  	end ; 
+end.
+	

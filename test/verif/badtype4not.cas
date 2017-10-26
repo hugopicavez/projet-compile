@@ -1,0 +1,8 @@
+program
+	a: integer;
+	b: boolean;
+begin
+	a := 4;
+	b := false;
+	b := not(a); -- mauvais type de a
+end.

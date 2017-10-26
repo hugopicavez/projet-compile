@@ -1,0 +1,9 @@
+program
+	a : integer;
+	b : integer;
+begin
+	for i := a to b do 
+      		null ; 
+	end ; 
+end.
+	

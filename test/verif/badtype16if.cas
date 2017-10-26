@@ -1,0 +1,9 @@
+program
+	a : real;
+begin
+	a := 7.8;
+	if (not(a)) then
+		null;
+	end;
+	
+end.
