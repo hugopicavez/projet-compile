@@ -1,0 +1,4 @@
+LOAD #3, R1
+LOAD #1, R0
+PUSH R1
+CMP R0, R1
