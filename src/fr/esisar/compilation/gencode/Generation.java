@@ -16,9 +16,6 @@ class Generation {
    static Prog coder(Arbre a) {
       Prog.ajouterGrosComment("Programme généré par JCasc");
 
-      // -----------
-      // A COMPLETER
-      // -----------
 
 
       // Fin du programme
@@ -29,6 +26,34 @@ class Generation {
 
       // On retourne le programme assembleur généré
       return Prog.instance(); 
+   }
+
+   static Registre GenExpr(Arbre a) {
+      Noeud n = a.getNoeud();
+      Registre resultat=null;
+      switch(n){
+          case Et:
+          case Ou:
+          case Egal:
+          case Inf:
+          case Sup:
+          case NonEgal:
+          case InfEgal:
+          case SupEgal:
+          case Plus:
+          case Moins:
+          case Mult:
+          case Quotient:
+          case Reste:
+          case DivReel:
+
+              break;
+          case Non:
+          case MoinsUnaire:
+          case PlusUnaire:
+              break;
+      }
+      return resultat;
    }
 }
 
