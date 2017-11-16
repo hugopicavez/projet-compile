@@ -12,7 +12,7 @@ public class PullRegistre {
     }
 
     public Registre checkregistre(){
-        Registre resultat=null;
+        Registre resultat;
         int indice=-1;
         for(int i=0;i<16 && pullregistre[i] == true;i++){
             indice=i;
@@ -36,8 +36,12 @@ public class PullRegistre {
 
     public Registre getRegistreAlreadyUse(Registre ... need){
         for(int i = 0; i < this.pullregistre.length; i++)
-            if(Arrays.binarySearch(need, this.pullregistre[i]) == -1)
+            if(Arrays.binarySearch(need, Registre.values()[i]) == -1)
                 return Registre.values()[i];
         return null;
+    }
+
+    public boolean isFree(Registre registre){
+        return !this.pullregistre[Arrays.binarySearch(Registre.values(), registre)];
     }
 }
