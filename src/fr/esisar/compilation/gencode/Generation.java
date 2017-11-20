@@ -1,82 +1,36 @@
 package fr.esisar.compilation.gencode;
 
-import fr.esisar.compilation.global.src.*;
+import fr.esisar.compilation.global.src.Arbre;
+import fr.esisar.compilation.global.src.NatureType;
+import fr.esisar.compilation.global.src.Noeud;
+import fr.esisar.compilation.global.src.Type;
 import fr.esisar.compilation.global.src3.*;
 import fr.esisar.compilation.verif.ErreurInterneVerif;
-import fr.esisar.compilation.verif.ErreurVerif;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
-/**
- * Génération de code pour un programme JCas à partir d'un arbre décoré.
- */
+public class Generation {
 
-class Generation {
-<<<<<<< HEAD
-   
-   /**
-    * Méthode principale de génération de code.
-    * Génère du code pour l'arbre décoré a.
-    */
-   static Prog coder(Arbre a) {
-      Prog.ajouterGrosComment("Programme généré par JCasc");
+    //TODO erreur débordement indice tableau
+    //TODO erreur débordement interval
+    //TODO erreur div par zero
 
 
+    private static Memoire memoire;
+    public static int numberEti = 0;
 
-      // Fin du programme
-      // L'instruction "HALT"
-      Inst inst = Inst.creation0(Operation.HALT);
-      // On ajoute l'instruction à la fin du programme
-      Prog.ajouter(inst);
-
-      // On retourne le programme assembleur généré
-      return Prog.instance(); 
-   }
-
-   static Registre GenExpr(Arbre a) {
-      Noeud n = a.getNoeud();
-      Registre resultat=null;
-      switch(n){
-          case Et:
-          case Ou:
-          case Egal:
-          case Inf:
-          case Sup:
-          case NonEgal:
-          case InfEgal:
-          case SupEgal:
-          case Plus:
-          case Moins:
-          case Mult:
-          case Quotient:
-          case Reste:
-          case DivReel:
-
-              break;
-          case Non:
-          case MoinsUnaire:
-          case PlusUnaire:
-              break;
-      }
-      return resultat;
-   }
-=======
-    //TODO vérifier état pile a chaque fois.
-    private static PullRegistre pullRegistre;
-    private static int numberEti = 0;
-
-    /**
-     * Méthode principale de génération de code.
-     * Génère du code pour l'arbre décoré a.
-     */
     static Prog coder(Arbre a) {
-        pullRegistre = new PullRegistre();
+        memoire = new Memoire();
         numberEti = 0;
         Prog.ajouterGrosComment("Programme généré par JCasc");
 
-        int size = gene_LISTE_DECL(a.getFils1(), 0);
-        Prog.instance().getListeLignes().add(0, new Ligne(null, Inst.creation1(Operation.ADDSP,
-                Operande.creationOpEntier(size)), null));
+        int size = gene_LISTE_DECL(a.getFils1(), 1);
+        memoire.testePile(size);
+        memoire.setPileUse(size);
+        Prog.ajouter(Inst.creation1(Operation.ADDSP,
+                Operande.creationOpEntier(size)));
 
         gene_LISTE_INST(a.getFils2());
 
@@ -120,29 +74,24 @@ class Generation {
                 break;
             case ListeIdent:
                 index = gene_LISTE_IDF(a.getFils1(), index);
-                a.getFils2().getDecor().setInfoCode(index);
-                Type type = a.getFils2().getDecor().getType();
+                a.getFils2().getDecor().getDefn().setOperande(Operande.creationOpIndirect(index, Registre.GB));
+                Type type = a.getFils2().getDecor().getDefn().getType();
                 if (type.getNature() != NatureType.Array) {
                     index++;
                     break;
                 }
-                index = gene_TABLEAU(type, index);
+                index += sizeTableau(type);
         }
         return index;
     }
 
-    private static int gene_TABLEAU(Type type, int index) {
-        int start = index;
-        int size = type.getIndice().getBorneSup() - type.getIndice().getBorneInf();
-        index += size;
-        if (type.getElement().getNature() == NatureType.Array) {
-            for (int i = start; i < start + size; i++) {
-                Prog.ajouter(Inst.creation2(Operation.LOAD, Operande.creationOpEntier(index), Operande.R0));
-                Prog.ajouter(Inst.creation2(Operation.STORE, Operande.R0, Operande.creationOpIndirect(i, Registre.GB)));
-                index = gene_TABLEAU(type.getElement(), index);
-            }
+    private static int sizeTableau(Type type) {
+        int size = 0;
+        while (type.getNature() == NatureType.Array) {
+            size = (type.getBorneSup() - type.getBorneInf()) * size;
+            type = type.getElement();
         }
-        return index;
+        return size;
     }
 
     private static void gene_LISTE_INST(Arbre a) {
@@ -183,8 +132,7 @@ class Generation {
                 break;
             case Ligne:
                 Prog.ajouter(Inst.creation0(Operation.WNL));
-            default:
-                throw new ErreurInterneVerif("Arvre incorrect dans verifier_INST");
+                break;
         }
     }
 
@@ -193,86 +141,119 @@ class Generation {
         if (type.getNature() == NatureType.Array)
             gene_Affect_Tableau(a);
         else {
-            boolean alreadyUse = false;
-            Registre registre = pullRegistre.checkregistre();
-            if (registre == null) {
-                registre = pullRegistre.getRegistreAlreadyUse();
-                alreadyUse = true;
-                Prog.ajouter(Inst.creation1(Operation.PUSH, Operande.opDirect(registre)));
+            Registre registre = memoire.get();
+            Operande operande = gene_Exp(a.getFils2(), registre);
+            if (operande.getNature() != NatureOperande.OpDirect)
+                Prog.ajouter(Inst.creation2(Operation.LOAD, operande, Operande.opDirect(registre)));
+            if (a.getFils1().getNoeud() != Noeud.Index)
+                Prog.ajouter(Inst.creation2(Operation.STORE, Operande.opDirect(registre),
+                        a.getFils1().getDecor().getDefn().getOperande()));
+            else {
+                Registre emplacement = memoire.get(registre);
+                emplacement_Variable(a, emplacement);
+                Prog.ajouter(Inst.creation2(Operation.STORE, Operande.opDirect(registre),
+                        Operande.creationOpIndirect(0, emplacement)));
+                memoire.free(emplacement);
             }
-            gene_Exp(a.getFils2(), registre);
-            Prog.ajouter(Inst.creation2(Operation.STORE, Operande.opDirect(registre),
-                    Operande.creationOpIndirect(a.getFils1().getDecor().getInfoCode(), Registre.GB)));
-            if (alreadyUse)
-                Prog.ajouter(Inst.creation1(Operation.POP, Operande.opDirect(registre)));
-            else
-                pullRegistre.libere(registre);
+            memoire.free(registre);
         }
     }
 
     private static void gene_Affect_Tableau(Arbre a) {
-        //TODO faire
+        Etiq startEti = Etiq.nouvelle("eti" + numberEti++);
+        Etiq endEti = Etiq.nouvelle("eti" + numberEti++);
+        Registre result = memoire.get();
+        Registre start = memoire.get(result);
+        Registre end = memoire.get(result, start);
+        Registre value = memoire.get(result, start, end);
+        int size = sizeTableau(emplacement_Variable(a.getFils1(), result));
+        gene_Exp(a.getFils2(), start);
+        Prog.ajouter(Inst.creation2(Operation.LEA, Operande.creationOpIndirect(size, start), Operande.opDirect(end)));
+        Prog.ajouter(startEti);
+        Prog.ajouter(Inst.creation2(Operation.CMP, Operande.opDirect(start), Operande.opDirect(end)));
+        Prog.ajouter(Inst.creation1(Operation.BEQ, Operande.creationOpEtiq(endEti)));
+        Prog.ajouter(Inst.creation2(Operation.LOAD, Operande.creationOpIndirect(0, start), Operande.opDirect(value)));
+        Prog.ajouter(Inst.creation2(Operation.STORE, Operande.opDirect(value), Operande.creationOpIndirect(0, result)));
+        Prog.ajouter(Inst.creation2(Operation.ADD, Operande.creationOpEntier(1), Operande.opDirect(result)));
+        Prog.ajouter(Inst.creation2(Operation.ADD, Operande.creationOpEntier(1), Operande.opDirect(start)));
+        Prog.ajouter(Inst.creation1(Operation.BRA, Operande.creationOpEtiq(startEti)));
+        Prog.ajouter(endEti);
+        memoire.free(value);
+        memoire.free(end);
+        memoire.free(start);
+        memoire.free(result);
+    }
+
+    private static Type emplacement_Variable(Arbre a, Registre registre) {
+        switch (a.getNoeud()) {
+            case Ident:
+                Prog.ajouter(Inst.creation2(Operation.LEA,
+                        a.getDecor().getDefn().getOperande(),
+                        Operande.opDirect(registre)));
+                return a.getDecor().getType();
+            case Index:
+                Type type = gene_Lecture_Tableau(a.getFils1(), registre);
+                int size = sizeTableau(type.getElement());
+                Registre index = memoire.get(registre);
+                gene_Exp(a.getFils2(), index);
+                Prog.ajouter(Inst.creation2(Operation.SUB, Operande.creationOpEntier(type.getBorneInf()), Operande.opDirect(index)));
+                Prog.ajouter(Inst.creation2(Operation.MUL, Operande.creationOpEntier(size), Operande.opDirect(index)));
+                Prog.ajouter(Inst.creation2(Operation.ADD, Operande.opDirect(index), Operande.opDirect(registre)));
+                memoire.free(index);
+                return type.getElement();
+            default:
+                throw new ErreurInterneVerif("Place : " + a.getFils1().getNumLigne());
+        }
     }
 
     private static void gene_POUR(Arbre a) {
-        Registre variable = pullRegistre.checkregistre();
-        Registre fin = pullRegistre.checkregistre();
+        Registre variable = memoire.get();
+        Registre fin = memoire.get(variable);
         Etiq debutEti = Etiq.nouvelle("eti" + numberEti++);
         Etiq finEti = Etiq.nouvelle("eti" + numberEti++);
-        boolean alreadyUseVariable = false;
-        if(variable == null ){
-            fin = pullRegistre.getRegistreAlreadyUse();
-            alreadyUseVariable = true;
-            Prog.ajouter(Inst.creation1(Operation.PUSH, Operande.opDirect(variable)));
-        }
-        boolean alreadyUseFin = false;
-        if(fin == null ){
-            fin = pullRegistre.getRegistreAlreadyUse(variable);
-            alreadyUseFin = true;
-            Prog.ajouter(Inst.creation1(Operation.PUSH, Operande.opDirect(fin)));
-        }
-        gene_Exp(a.getFils1().getFils2(), variable);
-        gene_Exp(a.getFils1().getFils3(), fin);
+        Operande operande = gene_Exp(a.getFils1().getFils2(), variable);
+        if (operande.getNature() != NatureOperande.OpDirect)
+            Prog.ajouter(Inst.creation2(Operation.LOAD, operande, Operande.opDirect(variable)));
+        Operande operandeFin = gene_Exp(a.getFils1().getFils3(), fin);
+        if (operandeFin.getNature() != NatureOperande.OpDirect)
+            Prog.ajouter(Inst.creation2(Operation.LOAD, operandeFin, Operande.opDirect(fin)));
         Prog.ajouter(debutEti);
         Prog.ajouter(Inst.creation2(Operation.CMP, Operande.opDirect(variable), Operande.opDirect(fin)));
         Prog.ajouter(Inst.creation1(Operation.BEQ, Operande.creationOpEtiq(finEti)));
-
+        gene_LISTE_INST(a.getFils2());
+        if (a.getFils1().getNoeud() == Noeud.Increment)
+            Prog.ajouter(Inst.creation2(Operation.ADD, Operande.creationOpEntier(1), Operande.opDirect(variable)));
+        else
+            Prog.ajouter(Inst.creation2(Operation.ADD, Operande.creationOpEntier(-1), Operande.opDirect(variable)));
+        Prog.ajouter(Inst.creation1(Operation.BRA, Operande.creationOpEtiq(debutEti)));
+        Prog.ajouter(finEti);
+        memoire.free(fin);
+        memoire.free(variable);
     }
 
     private static void gene_TANTQUE(Arbre a) {
         Etiq debut = Etiq.nouvelle("eti" + numberEti++);
         Etiq fin = Etiq.nouvelle("eti" + numberEti++);
-        boolean alreadyUse = false;
-        Registre registre = pullRegistre.checkregistre();
-        if (registre == null) {
-            registre = pullRegistre.getRegistreAlreadyUse();
-            alreadyUse = true;
-            Prog.ajouter(Inst.creation1(Operation.PUSH, Operande.opDirect(registre)));
-        }
+        Registre registre = memoire.get();
         Prog.ajouter(debut);
-        gene_Exp(a.getFils1(), registre);
+        Operande operande = gene_Exp(a.getFils1(), registre);
+        if (operande.getNature() != NatureOperande.OpDirect)
+            Prog.ajouter(Inst.creation2(Operation.LOAD, operande, Operande.opDirect(registre)));
         Prog.ajouter(Inst.creation2(Operation.CMP, Operande.creationOpEntier(0), Operande.opDirect(registre)));
         Prog.ajouter(Inst.creation1(Operation.BEQ, Operande.creationOpEtiq(fin)));
         gene_LISTE_INST(a.getFils2());
         Prog.ajouter(Inst.creation1(Operation.BRA, Operande.creationOpEtiq(debut)));
         Prog.ajouter(fin);
-        if (alreadyUse)
-            Prog.ajouter(Inst.creation1(Operation.POP, Operande.opDirect(registre)));
-        else
-            pullRegistre.libere(registre);
+        memoire.free(registre);
     }
 
     private static void gene_SI(Arbre a) {
         Etiq els = Etiq.nouvelle("eti" + numberEti++);
         Etiq fin = Etiq.nouvelle("eti" + numberEti++);
-        boolean alreadyUse = false;
-        Registre registre = pullRegistre.checkregistre();
-        if (registre == null) {
-            registre = pullRegistre.getRegistreAlreadyUse();
-            alreadyUse = true;
-            Prog.ajouter(Inst.creation1(Operation.PUSH, Operande.opDirect(registre)));
-        }
-        gene_Exp(a.getFils1(), registre);
+        Registre registre = memoire.get();
+        Operande operande = gene_Exp(a.getFils1(), registre);
+        if (operande.getNature() != NatureOperande.OpDirect)
+            Prog.ajouter(Inst.creation2(Operation.LOAD, operande, Operande.opDirect(registre)));
         Prog.ajouter(Inst.creation2(Operation.CMP, Operande.creationOpEntier(0), Operande.opDirect(registre)));
         Prog.ajouter(Inst.creation1(Operation.BEQ, Operande.creationOpEtiq(els)));
         gene_LISTE_INST(a.getFils2());
@@ -280,27 +261,26 @@ class Generation {
         Prog.ajouter(els);
         gene_LISTE_INST(a.getFils3());
         Prog.ajouter(fin);
-        if (alreadyUse)
-            Prog.ajouter(Inst.creation1(Operation.POP, Operande.opDirect(registre)));
-        else
-            pullRegistre.libere(registre);
+        memoire.free(registre);
     }
 
     private static void gene_ECRITURE(Arbre a) {
         Arbre noeud_Exp = a.getFils1();
         boolean alreadyUse = false;
-        while (noeud_Exp.getNoeud() != Noeud.Vide){
+        while (noeud_Exp.getNoeud() != Noeud.Vide) {
             Arbre exp = noeud_Exp.getFils2();
             noeud_Exp = noeud_Exp.getFils1();
-            if(exp.getDecor().getType() == Type.String)
+            if (exp.getDecor().getType() == Type.String)
                 Prog.ajouter(Inst.creation1(Operation.WSTR, Operande.creationOpChaine(exp.getChaine())));
             else {
-                if (!alreadyUse && !pullRegistre.isFree(Registre.R1)) {
+                if (!alreadyUse && !memoire.isFree(Registre.R1)) {
                     alreadyUse = true;
-                    Prog.ajouter(Inst.creation1(Operation.PUSH, Operande.R1));
+                    memoire.push(Registre.R1);
                 }
-                gene_Exp(exp, Registre.R1);
-                if (a.getFils1().getDecor().getType().getNature() == NatureType.Real)
+                Operande operande = gene_Exp(exp, Registre.R1);
+                if (operande.getNature() != NatureOperande.OpDirect)
+                    Prog.ajouter(Inst.creation2(Operation.LOAD, operande, Operande.R1));
+                if (exp.getDecor().getType().getNature() == NatureType.Real)
                     Prog.ajouter(Inst.creation0(Operation.WFLOAT));
                 else
                     Prog.ajouter(Inst.creation0(Operation.WINT));
@@ -312,137 +292,160 @@ class Generation {
 
     private static void gene_LECTURE(Arbre a) {
         boolean alreadyUse = false;
-        if (!pullRegistre.isFree(Registre.R1)) {
+        if (!memoire.isFree(Registre.R1)) {
             alreadyUse = true;
+            memoire.testePile(1);
             Prog.ajouter(Inst.creation1(Operation.PUSH, Operande.R1));
         }
         if (a.getFils1().getDecor().getType().getNature() == NatureType.Real)
             Prog.ajouter(Inst.creation0(Operation.RFLOAT));
         else
             Prog.ajouter(Inst.creation0(Operation.RINT));
+
+        Registre registre = memoire.get(Registre.R1);
+        emplacement_Variable(a, registre);
+        Inst.creation2(Operation.LOAD, Operande.R1, Operande.creationOpIndirect(0, registre));
+        memoire.free(registre);
         if (alreadyUse)
             Prog.ajouter(Inst.creation1(Operation.POP, Operande.R1));
     }
 
-    private static void gene_Exp(Arbre a, Registre registre) {
+    private static Operande gene_Exp(Arbre a, Registre registre) {
         switch (a.getNoeud()) {
             case Entier:
             case Reel:
             case Index:
             case Ident:
-                gene_lecture_variable(a, registre);
-                break;
+                return gene_Lecture_variable(a, registre);
             case Non:
             case MoinsUnaire:
             case PlusUnaire:
-                gene_expression_Unitaire(a, registre);
-                break;
+            case Conversion:
+                return gene_expression_Unitaire(a, registre);
             case Et:
             case Ou:
-                gene_expression_Logique(a, registre);
-                break;
+                return gene_expression_Logique(a, registre);
             case Egal:
             case InfEgal:
             case SupEgal:
             case NonEgal:
             case Inf:
             case Sup:
-                gene_comparaison(a, registre);
-                break;
+                return gene_comparaison(a, registre);
             case Plus:
             case Moins:
             case Mult:
             case DivReel:
             case Reste:
             case Quotient:
-                //TODO faire
-                break;
-
+                return gene_arith(a, registre);
         }
+        return null;
     }
 
-    private static void gene_lecture_variable(Arbre a, Registre registre) {
+    private static Operande gene_Lecture_variable(Arbre a, Registre registre) {
         switch (a.getNoeud()) {
             case Entier:
-                Prog.ajouter(Inst.creation2(Operation.LOAD, Operande.creationOpEntier(a.getEntier()), Operande.opDirect(registre)));
-                break;
+                return Operande.creationOpEntier(a.getEntier());
             case Reel:
-                Prog.ajouter(Inst.creation2(Operation.LOAD, Operande.creationOpReel(a.getReel()), Operande.opDirect(registre)));
-                break;
+                return Operande.creationOpReel(a.getReel());
             case Index:
                 gene_Lecture_Tableau(a, registre);
-                break;
+                return Operande.opDirect(registre);
             case Ident:
-                Prog.ajouter(Inst.creation2(Operation.LOAD,
-                        Operande.creationOpIndirect(a.getDecor().getInfoCode(), Registre.GB),
-                        Operande.opDirect(registre)));
-                break;
+                if (a.getChaine() == "true")
+                    return Operande.creationOpEntier(1);
+                if (a.getChaine() == "false")
+                    return Operande.creationOpEntier(0);
+                if (a.getChaine() == "max_int")
+                    return Operande.creationOpEntier(Integer.MAX_VALUE);
+                return a.getDecor().getDefn().getOperande();
         }
+        return null;
     }
 
-    private static void gene_Lecture_Tableau(Arbre a, Registre registre) {
+    private static Type gene_Lecture_Tableau(Arbre a, Registre registre) {
         switch (a.getNoeud()) {
             case Ident:
-                Prog.ajouter(Inst.creation2(Operation.LOAD,
-                        Operande.creationOpIndirect(a.getDecor().getInfoCode(), Registre.GB),
+                Prog.ajouter(Inst.creation2(Operation.LEA,
+                        a.getDecor().getDefn().getOperande(),
                         Operande.opDirect(registre)));
-                break;
+                return a.getDecor().getType();
             case Index:
-                gene_Exp(a.getFils2(), registre);
-                boolean alreadyUse = false;
-                Registre temp = pullRegistre.checkregistre();
-                if (temp == null) {
-                    temp = pullRegistre.getRegistreAlreadyUse(registre);
-                    alreadyUse = true;
-                    Prog.ajouter(Inst.creation1(Operation.PUSH, Operande.opDirect(temp)));
-                }
-                Prog.ajouter(Inst.creation2(Operation.LOAD,
-                        Operande.creationOpIndexe(0, registre, temp),
-                        Operande.opDirect(registre)));
-                if (alreadyUse)
-                    Prog.ajouter(Inst.creation1(Operation.POP, Operande.opDirect(temp)));
-                else
-                    pullRegistre.libere(temp);
-                break;
+                Type type = gene_Lecture_Tableau(a.getFils1(), registre);
+                int size = sizeTableau(type.getElement());
+                Registre index = memoire.get();
+                gene_Exp(a.getFils2(), index);
+                Prog.ajouter(Inst.creation2(Operation.SUB, Operande.creationOpEntier(type.getBorneInf()), Operande.opDirect(index)));
+                Prog.ajouter(Inst.creation2(Operation.MUL, Operande.creationOpEntier(size), Operande.opDirect(index)));
+                if (type.getElement().getNature() == NatureType.Array)
+                    Prog.ajouter(Inst.creation2(Operation.ADD, Operande.opDirect(index), Operande.opDirect(registre)));
+                else Prog.ajouter(Inst.creation2(Operation.LOAD,
+                        Operande.creationOpIndexe(0, index, registre), Operande.opDirect(registre)));
+                memoire.free(index);
+                return type.getElement();
             default:
                 throw new ErreurInterneVerif("Place : " + a.getFils1().getNumLigne());
         }
+
     }
 
-    private static void gene_expression_Unitaire(Arbre a, Registre registre) {
+    private static Operande gene_expression_Unitaire(Arbre a, Registre registre) {
+        Operande operande;
         switch (a.getNoeud()) {
             case Non:
-                Etiq vrai = Etiq.lEtiq("eti" + numberEti++);
-                Etiq fin = Etiq.nouvelle("eti" + numberEti++);
+                operande = gene_Exp(a.getFils1(), registre);
+                if (operande.getNature() == NatureOperande.OpEntier)
+                    return Operande.creationOpEntier(1 - operande.getEntier());
+                if (operande.getNature() != NatureOperande.OpDirect)
+                    Prog.ajouter(Inst.creation2(Operation.LOAD, operande, Operande.opDirect(registre)));
                 Prog.ajouter(Inst.creation2(Operation.CMP, Operande.creationOpEntier(0), Operande.opDirect(registre)));
-                Prog.ajouter(Inst.creation1(Operation.BEQ, Operande.creationOpEtiq(vrai)));
-                Prog.ajouter(Inst.creation2(Operation.LOAD, Operande.creationOpEntier(0), Operande.opDirect(registre)));
-                Prog.ajouter(Inst.creation1(Operation.BRA, Operande.creationOpEtiq(fin)));
-                Prog.ajouter(vrai);
-                Prog.ajouter(Inst.creation2(Operation.LOAD, Operande.creationOpEntier(1), Operande.opDirect(registre)));
-                Prog.ajouter(fin);
-                break;
+                Prog.ajouter(Inst.creation1(Operation.SEQ, Operande.opDirect(registre)));
+                return Operande.opDirect(registre);
             case MoinsUnaire:
-                gene_Exp(a.getFils1(), registre);
+                operande = gene_Exp(a.getFils1(), registre);
+                if (operande.getNature() == NatureOperande.OpEntier)
+                    return Operande.creationOpEntier(-operande.getEntier());
+                if (operande.getNature() == NatureOperande.OpReel)
+                    return Operande.creationOpReel(-operande.getReel());
+                if (operande.getNature() != NatureOperande.OpDirect)
+                    Prog.ajouter(Inst.creation2(Operation.LOAD, operande, Operande.opDirect(registre)));
                 Prog.ajouter(Inst.creation2(Operation.MUL, Operande.creationOpEntier(-1), Operande.opDirect(registre)));
-                break;
+                return Operande.opDirect(registre);
             case PlusUnaire:
-                gene_Exp(a.getFils1(), registre);
-                break;
+                return gene_Exp(a.getFils1(), registre);
+            case Conversion:
+                operande = gene_Exp(a.getFils1(), registre);
+                if (operande.getNature() == NatureOperande.OpEntier)
+                    return Operande.creationOpReel(operande.getEntier());
+                Prog.ajouter(Inst.creation2(Operation.FLOAT, operande, Operande.opDirect(registre)));
+                return Operande.opDirect(registre);
         }
+        return null;
     }
 
-    private static void gene_expression_Logique(Arbre a, Registre registre) {
+    private static Operande gene_expression_Logique(Arbre a, Registre registre) {
+        List<Ligne> stateBefore = (List<Ligne>) ((ArrayList) Prog.instance().getListeLignes()).clone();
+        Operande operande1 = gene_Exp(a.getFils1(), registre);
+        if (operande1.getNature() == NatureOperande.OpEntier)
+            gene_Simplification_expression_Logique(a, registre, a.getFils2(), operande1);
         Etiq autre = Etiq.nouvelle("eti" + numberEti++);
         Etiq fin = Etiq.nouvelle("eti" + numberEti++);
-        gene_Exp(a.getFils1(), registre);
+        if (operande1.getNature() != NatureOperande.OpDirect)
+            Prog.ajouter(Inst.creation2(Operation.LOAD, operande1, Operande.opDirect(registre)));
         Prog.ajouter(Inst.creation2(Operation.CMP, Operande.creationOpEntier(0), Operande.opDirect(registre)));
         if (a.getNoeud() == Noeud.Et)
             Prog.ajouter(Inst.creation1(Operation.BEQ, Operande.creationOpEtiq(autre)));
         else
             Prog.ajouter(Inst.creation1(Operation.BEQ, Operande.creationOpEtiq(autre)));
-        gene_Exp(a.getFils2(), registre);
-        Prog.ajouter(Inst.creation2(Operation.CMP, Operande.creationOpEntier(0), Operande.opDirect(registre)));
+        Operande operande2 = gene_Exp(a.getFils2(), registre);
+        if (operande2.getNature() == NatureOperande.OpEntier) {
+            Prog.instance().getListeLignes().clear();
+            Prog.instance().getListeLignes().addAll(stateBefore);
+            gene_Simplification_expression_Logique(a, registre, a.getFils1(), operande2);
+        }
+        if (operande2.getNature() != NatureOperande.OpDirect)
+            Prog.ajouter(Inst.creation2(Operation.LOAD, operande2, Operande.opDirect(registre)));
         Prog.ajouter(Inst.creation1(Operation.BRA, Operande.creationOpEtiq(fin)));
         Prog.ajouter(autre);
         if (a.getNoeud() == Noeud.Et)
@@ -450,46 +453,119 @@ class Generation {
         else
             Prog.ajouter(Inst.creation2(Operation.LOAD, Operande.creationOpEntier(1), Operande.opDirect(registre)));
         Prog.ajouter(fin);
+        return Operande.opDirect(registre);
     }
 
-    private static void gene_comparaison(Arbre a, Registre registre) {
-        Etiq vrai = Etiq.lEtiq("eti" + numberEti++);
-        Etiq fin = Etiq.nouvelle("eti" + numberEti++);
-        boolean alreadyUse = false;
-        Registre temp = pullRegistre.checkregistre();
-        if (temp == null) {
-            temp = pullRegistre.getRegistreAlreadyUse(registre);
-            alreadyUse = true;
-            Prog.ajouter(Inst.creation1(Operation.PUSH, Operande.opDirect(temp)));
+    private static Operande gene_Simplification_expression_Logique(Arbre a, Registre registre, Arbre fils, Operande operande) {
+        if (a.getNoeud() == Noeud.Et && operande.getEntier() == 0)
+            return Operande.creationOpEntier(0);
+        else if (a.getNoeud() == Noeud.Ou && operande.getEntier() == 1)
+            return Operande.creationOpEntier(1);
+        return gene_Exp(fils, registre);
+    }
+
+    private static Operande gene_comparaison(Arbre a, Registre registre) {
+        List<Ligne> stateBefore = (List<Ligne>) ((ArrayList) Prog.instance().getListeLignes()).clone();
+        Registre temp = memoire.get(registre);
+        Operande operande1 = gene_Exp(a.getFils1(), registre);
+        Operande operande2 = gene_Exp(a.getFils2(), temp);
+        if (operande1.getNature() == NatureOperande.OpEntier && operande2.getNature() == NatureOperande.OpEntier) {
+            memoire.free(temp);
+            return gene_Simplification_Comparaison(a, operande1.getEntier(), operande2.getEntier(), stateBefore);
         }
-        gene_Exp(a.getFils1(), registre);
-        gene_Exp(a.getFils2(), temp);
+        if (operande1.getNature() == NatureOperande.OpReel && operande2.getNature() == NatureOperande.OpReel) {
+            memoire.free(temp);
+            return gene_Simplification_Comparaison(a, operande1.getReel(), operande2.getReel(), stateBefore);
+        }
         Prog.ajouter(Inst.creation2(Operation.CMP, Operande.opDirect(registre), Operande.opDirect(temp)));
         if (a.getNoeud() == Noeud.Egal)
-            Prog.ajouter(Inst.creation1(Operation.BEQ, Operande.creationOpEtiq(vrai)));
+            Prog.ajouter(Inst.creation1(Operation.SEQ, Operande.opDirect(registre)));
         else if (a.getNoeud() == Noeud.InfEgal)
-            Prog.ajouter(Inst.creation1(Operation.BLE, Operande.creationOpEtiq(vrai)));
+            Prog.ajouter(Inst.creation1(Operation.SLE, Operande.opDirect(registre)));
         else if (a.getNoeud() == Noeud.SupEgal)
-            Prog.ajouter(Inst.creation1(Operation.BGE, Operande.creationOpEtiq(vrai)));
+            Prog.ajouter(Inst.creation1(Operation.SGE, Operande.opDirect(registre)));
         else if (a.getNoeud() == Noeud.NonEgal)
-            Prog.ajouter(Inst.creation1(Operation.BNE, Operande.creationOpEtiq(vrai)));
+            Prog.ajouter(Inst.creation1(Operation.SNE, Operande.opDirect(registre)));
         else if (a.getNoeud() == Noeud.Inf)
-            Prog.ajouter(Inst.creation1(Operation.BLT, Operande.creationOpEtiq(vrai)));
+            Prog.ajouter(Inst.creation1(Operation.SLT, Operande.opDirect(registre)));
         else if (a.getNoeud() == Noeud.Sup)
-            Prog.ajouter(Inst.creation1(Operation.BGT, Operande.creationOpEtiq(vrai)));
-        Prog.ajouter(Inst.creation2(Operation.LOAD, Operande.creationOpEntier(0), Operande.opDirect(registre)));
-        Prog.ajouter(Inst.creation1(Operation.BRA, Operande.creationOpEtiq(fin)));
-        Prog.ajouter(vrai);
-        Prog.ajouter(Inst.creation2(Operation.LOAD, Operande.creationOpEntier(1), Operande.opDirect(registre)));
-        Prog.ajouter(fin);
-        if (alreadyUse)
-            Prog.ajouter(Inst.creation1(Operation.POP, Operande.opDirect(temp)));
-        else
-            pullRegistre.libere(temp);
+            Prog.ajouter(Inst.creation1(Operation.SGT, Operande.opDirect(registre)));
+        memoire.free(temp);
+        return Operande.opDirect(registre);
     }
 
->>>>>>> phase3
+    private static Operande gene_Simplification_Comparaison(Arbre a, float operande1, float operande2, List<Ligne> stateBefore) {
+        Prog.instance().getListeLignes().clear();
+        Prog.instance().getListeLignes().addAll(stateBefore);
+        if (a.getNoeud() == Noeud.Egal)
+            return operande1 == operande2 ? Operande.creationOpEntier(1) : Operande.creationOpEntier(0);
+        if (a.getNoeud() == Noeud.InfEgal)
+            return operande1 <= operande2 ? Operande.creationOpEntier(1) : Operande.creationOpEntier(0);
+        if (a.getNoeud() == Noeud.SupEgal)
+            return operande1 >= operande2 ? Operande.creationOpEntier(1) : Operande.creationOpEntier(0);
+        if (a.getNoeud() == Noeud.NonEgal)
+            return operande1 != operande2 ? Operande.creationOpEntier(1) : Operande.creationOpEntier(0);
+        if (a.getNoeud() == Noeud.Inf)
+            return operande1 < operande2 ? Operande.creationOpEntier(1) : Operande.creationOpEntier(0);
+        if (a.getNoeud() == Noeud.Sup)
+            return operande1 > operande2 ? Operande.creationOpEntier(1) : Operande.creationOpEntier(0);
+        return null;
+    }
+
+
+    private static Operande gene_arith(Arbre a, Registre registre) {
+        if(memoire.getNumberFree() >= 2){
+            Operande operande1 = gene_Exp(a.getFils1(), registre);
+            if(operande1.getNature() != NatureOperande.OpDirect){
+                Operande operande2 = gene_Exp(a.getFils2(), registre);
+                if(operande2.getNature() != NatureOperande.OpDirect){
+                    Prog.ajouter(Inst.creation2(Operation.LOAD,operande2, Operande.opDirect(registre)));
+                    operande2 = Operande.opDirect(registre);
+                }
+                gene_arith(a, operande1, operande2);
+                return Operande.opDirect(registre);
+            }
+            Registre registre1 = memoire.get(registre);
+            Operande operande2 = gene_Exp(a.getFils2(), registre1);
+            gene_arith(a, operande2, operande1);
+            memoire.free(registre1);
+        }
+        else{
+            Operande operande = gene_Exp(a.getFils2(), registre);
+            if(operande.getNature() != NatureOperande.OpDirect){
+                Operande operande2 = gene_Exp(a.getFils1(), registre);
+                if(operande2.getNature() != NatureOperande.OpDirect){
+                    Prog.ajouter(Inst.creation2(Operation.LOAD,operande2, Operande.opDirect(registre)));
+                    operande2 = Operande.opDirect(registre);
+                }
+                gene_arith(a, operande, operande2);
+                return Operande.opDirect(registre);
+            }
+            Operande temp = memoire.createVariableTemp();
+            Prog.ajouter(Inst.creation2(Operation.STORE,Operande.opDirect(registre), temp));
+            operande = gene_Exp(a.getFils1(), registre);
+            if(operande.getNature() != NatureOperande.OpDirect){
+                Prog.ajouter(Inst.creation2(Operation.LOAD,operande, Operande.opDirect(registre)));
+            }
+            gene_arith(a, temp, Operande.opDirect(registre));
+            return Operande.opDirect(registre);
+
+        }
+        return null;
+    }
+
+    private static void gene_arith(Arbre a, Operande operande1, Operande operande2){
+        if(a.getNoeud() == Noeud.Plus)
+            Prog.ajouter(Inst.creation2(Operation.ADD, operande1, operande2));
+        if(a.getNoeud() == Noeud.Moins)
+            Prog.ajouter(Inst.creation2(Operation.SUB, operande1, operande2));
+        if(a.getNoeud() == Noeud.Mult)
+            Prog.ajouter(Inst.creation2(Operation.MUL, operande1, operande2));
+        if(a.getNoeud() == Noeud.DivReel)
+            Prog.ajouter(Inst.creation2(Operation.DIV, operande1, operande2));
+        if(a.getNoeud() == Noeud.Reste)
+            Prog.ajouter(Inst.creation2(Operation.MOD, operande1, operande2));
+        if(a.getNoeud() == Noeud.Quotient)
+            Prog.ajouter(Inst.creation2(Operation.DIV, operande1, operande2));
+    }
 }
-
-
-
