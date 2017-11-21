@@ -486,7 +486,14 @@ public class Generation {
             memoire.free(temp);
             return gene_Simplification_Comparaison(a, operande1.getReel(), operande2.getReel(), stateBefore);
         }
-        Prog.ajouter(Inst.creation2(Operation.CMP, Operande.opDirect(registre), Operande.opDirect(temp)));
+        if(operande1.getNature() == NatureOperande.OpDirect)
+            Prog.ajouter(Inst.creation2(Operation.CMP,operande2, Operande.opDirect(registre)));
+        else if(operande2.getNature() == NatureOperande.OpDirect)
+            Prog.ajouter(Inst.creation2(Operation.CMP,operande1, Operande.opDirect(temp)));
+        else {
+            Prog.ajouter(Inst.creation2(Operation.LOAD, operande1 ,Operande.opDirect(registre)));
+            Prog.ajouter(Inst.creation2(Operation.CMP,operande2, Operande.opDirect(registre)));
+        }
         if (a.getNoeud() == Noeud.Egal)
             Prog.ajouter(Inst.creation1(Operation.SEQ, Operande.opDirect(registre)));
         else if (a.getNoeud() == Noeud.InfEgal)
