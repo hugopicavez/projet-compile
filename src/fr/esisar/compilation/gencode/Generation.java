@@ -219,13 +219,19 @@ public class Generation {
         if (operandeFin.getNature() != NatureOperande.OpDirect)
             Prog.ajouter(Inst.creation2(Operation.LOAD, operandeFin, Operande.opDirect(fin)));
         Prog.ajouter(debutEti);
+        Prog.ajouter(Inst.creation2(Operation.STORE, Operande.opDirect(variable),
+                a.getFils1().getFils1().getDecor().getDefn().getOperande()));
         Prog.ajouter(Inst.creation2(Operation.CMP, Operande.opDirect(variable), Operande.opDirect(fin)));
-        Prog.ajouter(Inst.creation1(Operation.BEQ, Operande.creationOpEtiq(finEti)));
+        if (a.getFils1().getNoeud() == Noeud.Increment)
+            Prog.ajouter(Inst.creation1(Operation.BGT, Operande.creationOpEtiq(finEti)));
+        else
+            Prog.ajouter(Inst.creation1(Operation.BLT, Operande.creationOpEtiq(finEti)));
         gene_LISTE_INST(a.getFils2());
         if (a.getFils1().getNoeud() == Noeud.Increment)
             Prog.ajouter(Inst.creation2(Operation.ADD, Operande.creationOpEntier(1), Operande.opDirect(variable)));
         else
             Prog.ajouter(Inst.creation2(Operation.ADD, Operande.creationOpEntier(-1), Operande.opDirect(variable)));
+
         Prog.ajouter(Inst.creation1(Operation.BRA, Operande.creationOpEtiq(debutEti)));
         Prog.ajouter(finEti);
         memoire.free(fin);
@@ -271,7 +277,7 @@ public class Generation {
     }
 
     private static boolean gene_ECRICRE_GENE(Arbre a){
-        if(a.getFils2().getNoeud() == Noeud.Vide)
+        if(a.getNoeud() == Noeud.Vide)
             return false;
         boolean r = gene_ECRICRE_GENE(a.getFils1());
         Arbre exp = a.getFils2();
