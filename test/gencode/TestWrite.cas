@@ -1,0 +1,8 @@
+program
+begin
+       write("j'écrit du texte");
+       write("j'écrit un entier", 10);
+       write("j'écrit un float ", 10.5);
+       write("j'écrit un entier, un double", 2, 2.5);
+       write("j'écrit un entier, un double et un autre texte", 2, 2.5, "I was hiding");
+end.

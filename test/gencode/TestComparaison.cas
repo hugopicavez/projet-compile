@@ -1,0 +1,9 @@
+program
+begin
+   if (1 == 1) then
+        write("j'ai comparai avec succé deux entier");
+   else
+        write("j'ai comparai avec succé deux entier");
+   end
+
+end.

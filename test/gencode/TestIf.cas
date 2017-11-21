@@ -1,0 +1,14 @@
+program
+begin
+   if (true) then
+        write("je suis passer dans le if");
+   else
+        write("je suis passer au mauvais endroit");
+   end
+
+   if (false) then
+        write("je suis passer au mauvais endroit");
+   else
+        write("je suis passer dans le else");
+   end
+end.
