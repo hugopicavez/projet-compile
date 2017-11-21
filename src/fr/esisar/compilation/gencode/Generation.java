@@ -6,6 +6,7 @@ import fr.esisar.compilation.global.src.Noeud;
 import fr.esisar.compilation.global.src.Type;
 import fr.esisar.compilation.global.src3.*;
 import fr.esisar.compilation.verif.ErreurInterneVerif;
+import sun.security.krb5.internal.EncAPRepPart;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -340,7 +341,7 @@ public class Generation {
             case Quotient:
                 return gene_arith(a, registre);
         }
-        return null;
+        throw new Error();
     }
 
     private static Operande gene_Lecture_variable(Arbre a, Registre registre) {
@@ -353,15 +354,15 @@ public class Generation {
                 gene_Lecture_Tableau(a, registre);
                 return Operande.opDirect(registre);
             case Ident:
-                if (a.getChaine() == "true")
+                if (a.getChaine().equals("true"))
                     return Operande.creationOpEntier(1);
-                if (a.getChaine() == "false")
+                if (a.getChaine().equals("false"))
                     return Operande.creationOpEntier(0);
-                if (a.getChaine() == "max_int")
+                if (a.getChaine().equals("max_int"))
                     return Operande.creationOpEntier(Integer.MAX_VALUE);
                 return a.getDecor().getDefn().getOperande();
         }
-        return null;
+        throw new Error();
     }
 
     private static Type gene_Lecture_Tableau(Arbre a, Registre registre) {
@@ -421,7 +422,7 @@ public class Generation {
                 Prog.ajouter(Inst.creation2(Operation.FLOAT, operande, Operande.opDirect(registre)));
                 return Operande.opDirect(registre);
         }
-        return null;
+        throw new Error();
     }
 
     private static Operande gene_expression_Logique(Arbre a, Registre registre) {
@@ -495,6 +496,7 @@ public class Generation {
     }
 
     private static Operande gene_Simplification_Comparaison(Arbre a, float operande1, float operande2, List<Ligne> stateBefore) {
+
         Prog.instance().getListeLignes().clear();
         Prog.instance().getListeLignes().addAll(stateBefore);
         if (a.getNoeud() == Noeud.Egal)
@@ -509,7 +511,7 @@ public class Generation {
             return operande1 < operande2 ? Operande.creationOpEntier(1) : Operande.creationOpEntier(0);
         if (a.getNoeud() == Noeud.Sup)
             return operande1 > operande2 ? Operande.creationOpEntier(1) : Operande.creationOpEntier(0);
-        return null;
+        throw new Error();
     }
 
 
@@ -551,7 +553,7 @@ public class Generation {
             return Operande.opDirect(registre);
 
         }
-        return null;
+        throw new Error();
     }
 
     private static void gene_arith(Arbre a, Operande operande1, Operande operande2){

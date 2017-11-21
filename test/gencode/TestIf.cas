@@ -4,11 +4,12 @@ begin
         write("je suis passer dans le if");
    else
         write("je suis passer au mauvais endroit");
-   end
-
+   end;
+	new_line;
    if (false) then
         write("je suis passer au mauvais endroit");
    else
         write("je suis passer dans le else");
-   end
+   end;
+   	new_line;
 end.

@@ -1,0 +1,5 @@
+<root>
+    <item name='java.util.ArrayList java.lang.Object clone()'>
+        <annotation name='org.jetbrains.annotations.NotNull'/>
+    </item>
+</root>
