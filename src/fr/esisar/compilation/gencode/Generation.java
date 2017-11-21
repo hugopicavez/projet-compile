@@ -266,29 +266,31 @@ public class Generation {
     }
 
     private static void gene_ECRITURE(Arbre a) {
-        Arbre noeud_Exp = a.getFils1();
-        boolean alreadyUse = false;
-        while (noeud_Exp.getNoeud() != Noeud.Vide) {
-            Arbre exp = noeud_Exp.getFils2();
-            noeud_Exp = noeud_Exp.getFils1();
-            if (exp.getDecor().getType() == Type.String)
-                Prog.ajouter(Inst.creation1(Operation.WSTR, Operande.creationOpChaine(exp.getChaine())));
-            else {
-                if (!alreadyUse && !memoire.isFree(Registre.R1)) {
-                    alreadyUse = true;
-                    memoire.push(Registre.R1);
-                }
-                Operande operande = gene_Exp(exp, Registre.R1);
-                if (operande.getNature() != NatureOperande.OpDirect)
-                    Prog.ajouter(Inst.creation2(Operation.LOAD, operande, Operande.R1));
-                if (exp.getDecor().getType().getNature() == NatureType.Real)
-                    Prog.ajouter(Inst.creation0(Operation.WFLOAT));
-                else
-                    Prog.ajouter(Inst.creation0(Operation.WINT));
-            }
-        }
-        if (alreadyUse)
+        if (gene_ECRICRE_GENE(a.getFils1()))
             Prog.ajouter(Inst.creation1(Operation.POP, Operande.R1));
+    }
+
+    private static boolean gene_ECRICRE_GENE(Arbre a){
+        if(a.getFils2().getNoeud() == Noeud.Vide)
+            return false;
+        boolean r = gene_ECRICRE_GENE(a.getFils1());
+        Arbre exp = a.getFils2();
+        if (exp.getDecor().getType() == Type.String)
+            Prog.ajouter(Inst.creation1(Operation.WSTR, Operande.creationOpChaine(exp.getChaine())));
+        else {
+            if (!r && !memoire.isFree(Registre.R1)) {
+                r = true;
+                memoire.push(Registre.R1);
+            }
+            Operande operande = gene_Exp(exp, Registre.R1);
+            if (operande.getNature() != NatureOperande.OpDirect)
+                Prog.ajouter(Inst.creation2(Operation.LOAD, operande, Operande.R1));
+            if (exp.getDecor().getType().getNature() == NatureType.Real)
+                Prog.ajouter(Inst.creation0(Operation.WFLOAT));
+            else
+                Prog.ajouter(Inst.creation0(Operation.WINT));
+        }
+        return r;
     }
 
     private static void gene_LECTURE(Arbre a) {
