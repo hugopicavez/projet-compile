@@ -1,0 +1,32 @@
+; ----------------------------------------------------------------------
+; -----------                      Programme généré par JCasc-----------
+; ----------------------------------------------------------------------
+   TSTO #1 
+   BOV eti0.1 
+   BRA eti1.2 
+eti0.1: 
+   WSTR "erreur debordement" 
+   WNL 
+   HALT 
+eti1.2: 
+   ADDSP #1 
+   LOAD #1, R0 
+   CMP #0, R0 
+   BEQ eti2.3 
+   WSTR "je suis passer dans le if" 
+   BRA eti3.4 
+eti2.3: 
+   WSTR "je suis passer au mauvais endroit" 
+eti3.4: 
+   WNL 
+   LOAD #0, R0 
+   CMP #0, R0 
+   BEQ eti4.5 
+   WSTR "je suis passer au mauvais endroit" 
+   BRA eti5.6 
+eti4.5: 
+   WSTR "je suis passer dans le else" 
+eti5.6: 
+   WNL 
+   SUBSP #1 
+   HALT 

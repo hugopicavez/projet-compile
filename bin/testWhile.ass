@@ -1,0 +1,51 @@
+; ----------------------------------------------------------------------
+; -----------                      Programme généré par JCasc-----------
+; ----------------------------------------------------------------------
+   TSTO #2 
+   BOV eti0.1 
+   BRA eti1.2 
+eti0.1: 
+   WSTR "erreur debordement" 
+   WNL 
+   HALT 
+eti1.2: 
+   ADDSP #2 
+   LOAD #0, R0 
+   STORE R0, 1(GB) 
+eti2.3: 
+   LOAD 1(GB), R0 
+   CMP #4, R0 
+   SLT R0 
+   CMP #0, R0 
+   BEQ eti3.4 
+   WSTR "Test while (i<4) , valeur de i " 
+   LOAD 1(GB), R1 
+   WINT 
+   WNL 
+   LOAD #1, R1 
+   ADD 1(GB), R1 
+   STORE R1, 1(GB) 
+   BRA eti2.3 
+eti3.4: 
+eti4.5: 
+   LOAD #0, R0 
+   CMP #0, R0 
+   BEQ eti5.6 
+   WSTR "Test while false fail" 
+   WNL 
+   BRA eti4.5 
+eti5.6: 
+eti6.7: 
+   LOAD 1(GB), R0 
+   CMP #4, R0 
+   SLT R0 
+   CMP #0, R0 
+   BEQ eti7.8 
+   WSTR "Test while (i<4) fail" 
+   LOAD 1(GB), R1 
+   WINT 
+   WNL 
+   BRA eti6.7 
+eti7.8: 
+   SUBSP #2 
+   HALT 

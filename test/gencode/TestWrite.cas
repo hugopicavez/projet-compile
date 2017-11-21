@@ -6,6 +6,8 @@ begin
        	new_line;
        write("j'ecrit un float ", 10.5);
        	new_line;
-       write("j'ecrit un entier, un double et un autre texte", 2," I was hiding ",  2.5, );
+       write("j'ecrit un entier, un double", 2, 2.5);
+       	new_line;
+       write("j'ecrit un entier, un double et un autre texte", 2, 2.5, "I was hiding");
        	new_line;
 end.

@@ -1,0 +1,17 @@
+program
+	i:integer; 
+
+begin 
+	for i := 0 to 5 do 
+		write("(+) valeur de i: ", i) ; 
+		new_line; 
+	end ; 
+	for i := 5 downto -1 do 
+		write("(-) valeur de i: ", i) ; 
+		new_line; 
+	end ; 
+	for i:= 6 to 1 do
+		write("erreur for i=6 to 1");
+	end ; 
+end.
+

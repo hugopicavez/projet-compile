@@ -1,0 +1,23 @@
+program
+	i:integer; 
+	
+begin 
+	i := 0;
+	while (i<4) do
+		write("Test while (i<4) , valeur de i ", i) ; 
+		new_line; 
+		i:= i+1;
+	end;
+
+	while (false) do
+		write("Test while false fail") ; 
+		new_line; 
+	end;
+
+	while (i<4) do
+		write("Test while (i<4) fail", i ) ; 
+		new_line; 
+	end;
+end.
+
+
