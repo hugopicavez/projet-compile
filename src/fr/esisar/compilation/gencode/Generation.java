@@ -53,7 +53,7 @@ public class Generation {
             case Vide:
                 break;
             case ListeDecl:
-                gene_LISTE_DECL(a.getFils1(), index);
+                index = gene_LISTE_DECL(a.getFils1(), index);
                 index = gene_DECL(a.getFils2(), index);
                 break;
         }
@@ -63,8 +63,7 @@ public class Generation {
     private static int gene_DECL(Arbre a, int index) {
         switch (a.getNoeud()) {
             case Decl:
-                index = gene_LISTE_IDF(a.getFils1(), index);
-                break;
+                index =  gene_LISTE_IDF(a.getFils1(), index);
         }
         return index;
     }
@@ -76,10 +75,11 @@ public class Generation {
             case ListeIdent:
                 index = gene_LISTE_IDF(a.getFils1(), index);
                 a.getFils2().getDecor().getDefn().setOperande(Operande.creationOpIndirect(index, Registre.GB));
+                System.out.println(index);
                 Type type = a.getFils2().getDecor().getDefn().getType();
                 if (type.getNature() != NatureType.Array) {
                     index++;
-                    break;
+                    return index;
                 }
                 index += sizeTableau(type);
         }
@@ -89,7 +89,7 @@ public class Generation {
     private static int sizeTableau(Type type) {
         int size = 0;
         while (type.getNature() == NatureType.Array) {
-            size = (type.getBorneSup() - type.getBorneInf()) * size;
+            size = (type.getIndice().getBorneSup() - type.getIndice().getBorneInf()) * size;
             type = type.getElement();
         }
         return size;
@@ -309,10 +309,9 @@ public class Generation {
             Prog.ajouter(Inst.creation0(Operation.RFLOAT));
         else
             Prog.ajouter(Inst.creation0(Operation.RINT));
-
         Registre registre = memoire.get(Registre.R1);
         emplacement_Variable(a.getFils1(), registre);
-        Inst.creation2(Operation.LOAD, Operande.R1, Operande.creationOpIndirect(0, registre));
+        Prog.ajouter(Inst.creation2(Operation.STORE, Operande.R1, Operande.creationOpIndirect(0, registre)));
         memoire.free(registre);
         if (alreadyUse)
             memoire.pop(Registre.R1);
@@ -416,9 +415,7 @@ public class Generation {
                     return Operande.creationOpEntier(-operande.getEntier());
                 if (operande.getNature() == NatureOperande.OpReel)
                     return Operande.creationOpReel(-operande.getReel());
-                if (operande.getNature() != NatureOperande.OpDirect)
-                    Prog.ajouter(Inst.creation2(Operation.LOAD, operande, Operande.opDirect(registre)));
-                Prog.ajouter(Inst.creation2(Operation.MUL, Operande.creationOpEntier(-1), Operande.opDirect(registre)));
+                Prog.ajouter(Inst.creation2(Operation.OPP, operande, Operande.opDirect(registre)));
                 return Operande.opDirect(registre);
             case PlusUnaire:
                 return gene_Exp(a.getFils1(), registre);
@@ -540,6 +537,7 @@ public class Generation {
             Operande operande2 = gene_Exp(a.getFils2(), registre1);
             gene_arith(a, operande2, operande1);
             memoire.free(registre1);
+            return Operande.opDirect(registre);
         }
         else{
             Operande operande = gene_Exp(a.getFils2(), registre);
@@ -560,9 +558,7 @@ public class Generation {
             }
             gene_arith(a, temp, Operande.opDirect(registre));
             return Operande.opDirect(registre);
-
         }
-        throw new Error();
     }
 
     private static void gene_arith(Arbre a, Operande operande1, Operande operande2){

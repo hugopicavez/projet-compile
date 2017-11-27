@@ -68,6 +68,7 @@ begin
    else
        write("j ai echoue l inferioriter egal ");
    end;
+
    new_line;
 
    if (1.5 > 1) then

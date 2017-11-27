@@ -1,0 +1,14 @@
+program
+	a: integer; 
+	b: real;
+begin
+   write("Entrer un entier : ");	
+   read(a);
+   write("Valeur lu :", a);
+   new_line; 
+   write("Entrer un reel : ");	
+   read(b);
+   write("Valeur lu :", b);
+   new_line; 
+end.
+
