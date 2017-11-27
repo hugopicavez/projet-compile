@@ -223,9 +223,9 @@ public class Generation {
                 a.getFils1().getFils1().getDecor().getDefn().getOperande()));
         Prog.ajouter(Inst.creation2(Operation.CMP, Operande.opDirect(variable), Operande.opDirect(fin)));
         if (a.getFils1().getNoeud() == Noeud.Increment)
-            Prog.ajouter(Inst.creation1(Operation.BGT, Operande.creationOpEtiq(finEti)));
-        else
             Prog.ajouter(Inst.creation1(Operation.BLT, Operande.creationOpEtiq(finEti)));
+        else
+            Prog.ajouter(Inst.creation1(Operation.BGT, Operande.creationOpEtiq(finEti)));
         gene_LISTE_INST(a.getFils2());
         if (a.getFils1().getNoeud() == Noeud.Increment)
             Prog.ajouter(Inst.creation2(Operation.ADD, Operande.creationOpEntier(1), Operande.opDirect(variable)));
@@ -303,8 +303,7 @@ public class Generation {
         boolean alreadyUse = false;
         if (!memoire.isFree(Registre.R1)) {
             alreadyUse = true;
-            memoire.testePile(1);
-            Prog.ajouter(Inst.creation1(Operation.PUSH, Operande.R1));
+            memoire.push(Registre.R1);
         }
         if (a.getFils1().getDecor().getType().getNature() == NatureType.Real)
             Prog.ajouter(Inst.creation0(Operation.RFLOAT));
@@ -312,11 +311,11 @@ public class Generation {
             Prog.ajouter(Inst.creation0(Operation.RINT));
 
         Registre registre = memoire.get(Registre.R1);
-        emplacement_Variable(a, registre);
+        emplacement_Variable(a.getFils1(), registre);
         Inst.creation2(Operation.LOAD, Operande.R1, Operande.creationOpIndirect(0, registre));
         memoire.free(registre);
         if (alreadyUse)
-            Prog.ajouter(Inst.creation1(Operation.POP, Operande.R1));
+            memoire.pop(Registre.R1);
     }
 
     private static Operande gene_Exp(Arbre a, Registre registre) {
@@ -533,14 +532,9 @@ public class Generation {
     private static Operande gene_arith(Arbre a, Registre registre) {
         if(memoire.getNumberFree() >= 2){
             Operande operande1 = gene_Exp(a.getFils1(), registre);
-            if(operande1.getNature() != NatureOperande.OpDirect){
-                Operande operande2 = gene_Exp(a.getFils2(), registre);
-                if(operande2.getNature() != NatureOperande.OpDirect){
-                    Prog.ajouter(Inst.creation2(Operation.LOAD,operande2, Operande.opDirect(registre)));
-                    operande2 = Operande.opDirect(registre);
-                }
-                gene_arith(a, operande1, operande2);
-                return Operande.opDirect(registre);
+            if(operande1.getNature() != NatureOperande.OpDirect) {
+                Prog.ajouter(Inst.creation2(Operation.LOAD, operande1, Operande.opDirect(registre)));
+                operande1 = Operande.opDirect(registre);
             }
             Registre registre1 = memoire.get(registre);
             Operande operande2 = gene_Exp(a.getFils2(), registre1);

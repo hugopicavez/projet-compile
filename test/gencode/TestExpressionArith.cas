@@ -1,6 +1,6 @@
 program
 begin
-    write("devrait etre 3: ", 1+2, " (add entier ");
+    write("devrait etre 3: ", 1+2, " (add entier )");
 	new_line;
 	write("devrait etre -1: ", 1-2, " (sub entier ");
     new_line;

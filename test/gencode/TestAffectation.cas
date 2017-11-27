@@ -4,30 +4,45 @@ program
     t,y,u : real;
     t1, t2 : array [3 .. 6] of array [1 .. 9] of integer;
 begin
-   a = true;
-   b = a;
-   c = a AND false;
-   write("true : ", a);
+   a := true;
+   b := a;
+   c := a AND false;
+   write("true : ");
+   if ( a ) then
+        write("true");
+   else
+        write("false");
+   end;
    new_line();
-   write("true : ", b);
+   write("true : ");
+   if ( b ) then
+        write("true");
+   else
+        write("false");
+   end;
    new_line();
-   write("false : ", c);
-   new_line();
+   write("false : ");
+   if ( c ) then
+       write("true");
+   else
+       write("false");
+   end;
+   new_line;
 
-   d = 10;
-   e = d;
-   f = d + 20;
+   d := 10;
+   e := d;
+   f := d + 20;
    write("10 : ", d);
    new_line();
    write("10 : ", e);
    new_line();
    write("30 : ", f);
-   new_line();
+   new_line;
 
    for d := 3 to 6 do
         for e := 1 to 9 do
-            t1[d][e] = d+e;
-            t2[d][e] = t1[d][e];
+            t1[d][e] := d+e;
+            t2[d][e] := t1[d][e];
             write("value : ",d+e);
             write("t1 : ", t1[d][e]);
             write("t2 : ", t2[d][e]);

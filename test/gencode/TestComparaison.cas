@@ -3,35 +3,35 @@ begin
    if (1 = 1) then
         write("j ai teste  avec succe l egaliter entre deux entier egaux");
    else
-        write("j ai echoue à comparer l egaliter entre deux entier egaux");
+        write("j ai echoue a comparer l egaliter entre deux entier egaux");
    end;
    new_line;
    
    if (1 = 2) then
-       write("j ai echoue à comparer egaliter entre  deux entier diferent");
+       write("j ai echoue a comparer egaliter entre  deux entier diferent");
    else
        write("j ai comparai avec succe egaliter entre deux entier diferent");
    end;
    new_line;
    
    if (1 != 2) then
-        write("j ai teste  avec succe la non egaliter entre deux entier différent");
+        write("j ai teste  avec succe la non egaliter entre deux entier different");
    else
-        write("j ai echoue à comparer la non egaliter entre deux entier différent");
+        write("j ai echoue a comparer la non egaliter entre deux entier different");
    end;
    new_line;
       
    if (1 != 1) then
-        write("j ai echoue la non egaliter entre deux entier égaux");
+        write("j ai echoue la non egaliter entre deux entier egaux");
    else
-        write("j ai teste  avec succe à comparer la non egaliter entre deux entier egaux");
+        write("j ai teste  avec succe a comparer la non egaliter entre deux entier egaux");
    end;
    new_line;
 
    if (1 < 1.5) then
         write("j ai teste  avec succe l inferioriter ");
    else
-        write("j ai echoue à comparer l inferioriter ");
+        write("j ai echoue a comparer l inferioriter ");
    end;
    new_line;
 
@@ -52,7 +52,7 @@ begin
    if (1 <= 1.5) then
         write("j ai teste  avec succe l inferioriter egal");
    else
-        write("j ai echoue à comparer l inferioriter egal");
+        write("j ai echoue a comparer l inferioriter egal");
    end;
    new_line;
 
@@ -73,7 +73,7 @@ begin
    if (1.5 > 1) then
            write("j ai teste  avec succe l supperieur ");
       else
-           write("j ai echoue à comparer l supperieur ");
+           write("j ai echoue a comparer l supperieur ");
       end;
       new_line;
 
@@ -94,7 +94,7 @@ begin
       if (1.5 >= 1) then
            write("j ai teste  avec succe l supperieur egal");
       else
-           write("j ai echoue à comparer l supperieur egal");
+           write("j ai echoue a comparer l supperieur egal");
       end;
       new_line;
 
