@@ -18,7 +18,6 @@ public class Generation {
     //TODO erreur débordement interval
     //TODO erreur div par zero
 
-
     private static Memoire memoire;
     public static int numberEti = 0;
 
@@ -151,7 +150,7 @@ public class Generation {
                         a.getFils1().getDecor().getDefn().getOperande()));
             else {
                 Registre emplacement = memoire.get(registre);
-                emplacement_Variable(a, emplacement);
+                emplacement_Variable(a.getFils1(), emplacement);
                 Prog.ajouter(Inst.creation2(Operation.STORE, Operande.opDirect(registre),
                         Operande.creationOpIndirect(0, emplacement)));
                 memoire.free(emplacement);
