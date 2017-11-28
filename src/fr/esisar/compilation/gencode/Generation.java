@@ -197,7 +197,7 @@ public class Generation {
                 Registre index = memoire.get(registre);
                 Operande operande = gene_Exp(a.getFils2(), index);
                 if(operande.getNature() != NatureOperande.OpDirect)
-                    Prog.ajouter(Inst.creation2(Operation.STORE, operande, Operande.opDirect(index)));
+                    Prog.ajouter(Inst.creation2(Operation.LOAD, operande, Operande.opDirect(index)));
                 Prog.ajouter(Inst.creation2(Operation.SUB, Operande.creationOpEntier(type.getIndice().getBorneInf()), Operande.opDirect(index)));
                 Prog.ajouter(Inst.creation2(Operation.MUL, Operande.creationOpEntier(size), Operande.opDirect(index)));
                 Prog.ajouter(Inst.creation2(Operation.ADD, Operande.opDirect(index), Operande.opDirect(registre)));
@@ -385,7 +385,7 @@ public class Generation {
                 Registre index = memoire.get();
                 Operande operande = gene_Exp(a.getFils2(), index);
                 if(operande.getNature() != NatureOperande.OpDirect)
-                    Prog.ajouter(Inst.creation2(Operation.STORE, operande, Operande.opDirect(index)));
+                    Prog.ajouter(Inst.creation2(Operation.LOAD, operande, Operande.opDirect(index)));
                 Prog.ajouter(Inst.creation2(Operation.SUB, Operande.creationOpEntier(type.getIndice().getBorneInf()), Operande.opDirect(index)));
                 Prog.ajouter(Inst.creation2(Operation.MUL, Operande.creationOpEntier(size), Operande.opDirect(index)));
                 if (type.getElement().getNature() == NatureType.Array)
