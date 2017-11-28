@@ -22,8 +22,8 @@ eti2.3:
    LOAD 1(GB), R1 
    WINT 
    WNL 
-   LOAD #1, R1 
-   ADD 1(GB), R1 
+   LOAD 1(GB), R1 
+   ADD #1, R1 
    STORE R1, 1(GB) 
    BRA eti2.3 
 eti3.4: 

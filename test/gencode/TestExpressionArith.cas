@@ -34,7 +34,4 @@ begin
     new_line;
     write("devrait etre 1.57: ", 15.7/10, " (div float avec converssion ");
     new_line;
-
-    write("devrait etre 2 : ", ----b, " (moins unitaire)");
-    write("devrait etre 10 : ", +10, " (plus unitaire)");
 end.

@@ -1,0 +1,158 @@
+; ----------------------------------------------------------------------
+; -----------                      Programme généré par JCasc-----------
+; ----------------------------------------------------------------------
+   TSTO #1 
+   BOV eti0.1 
+   BRA eti1.2 
+eti0.1: 
+   WSTR "erreur debordement" 
+   WNL 
+   HALT 
+eti1.2: 
+   ADDSP #1 
+   LOAD #1, R0 
+   CMP #0, R0 
+   BEQ eti2.3 
+   WSTR "j ai teste  avec succe l egaliter entre deux entier egaux" 
+   BRA eti3.4 
+eti2.3: 
+   WSTR "j ai echoue a comparer l egaliter entre deux entier egaux" 
+eti3.4: 
+   WNL 
+   LOAD #0, R0 
+   CMP #0, R0 
+   BEQ eti4.5 
+   WSTR "j ai echoue a comparer egaliter entre  deux entier diferent" 
+   BRA eti5.6 
+eti4.5: 
+   WSTR "j ai comparai avec succe egaliter entre deux entier diferent" 
+eti5.6: 
+   WNL 
+   LOAD #1, R0 
+   CMP #0, R0 
+   BEQ eti6.7 
+   WSTR "j ai teste  avec succe la non egaliter entre deux entier different" 
+   BRA eti7.8 
+eti6.7: 
+   WSTR "j ai echoue a comparer la non egaliter entre deux entier different" 
+eti7.8: 
+   WNL 
+   LOAD #0, R0 
+   CMP #0, R0 
+   BEQ eti8.9 
+   WSTR "j ai echoue la non egaliter entre deux entier egaux" 
+   BRA eti9.10 
+eti8.9: 
+   WSTR "j ai teste  avec succe a comparer la non egaliter entre deux entier egaux" 
+eti9.10: 
+   WNL 
+   LOAD #1, R0 
+   CMP #0, R0 
+   BEQ eti10.11 
+   WSTR "j ai teste  avec succe l inferioriter " 
+   BRA eti11.12 
+eti10.11: 
+   WSTR "j ai echoue a comparer l inferioriter " 
+eti11.12: 
+   WNL 
+   LOAD #0, R0 
+   CMP #0, R0 
+   BEQ eti12.13 
+   WSTR "j ai echoue l inferioriter" 
+   BRA eti13.14 
+eti12.13: 
+   WSTR "j ai comparai avec succe l inferioriter" 
+eti13.14: 
+   WNL 
+   LOAD #0, R0 
+   CMP #0, R0 
+   BEQ eti14.15 
+   WSTR "j ai echoue l inferioriter" 
+   BRA eti15.16 
+eti14.15: 
+   WSTR "j ai comparai avec succe l inferioriter" 
+eti15.16: 
+   WNL 
+   LOAD #1, R0 
+   CMP #0, R0 
+   BEQ eti16.17 
+   WSTR "j ai teste  avec succe l inferioriter egal" 
+   BRA eti17.18 
+eti16.17: 
+   WSTR "j ai echoue a comparer l inferioriter egal" 
+eti17.18: 
+   WNL 
+   LOAD #0, R0 
+   CMP #0, R0 
+   BEQ eti18.19 
+   WSTR "j ai echoue l inferioriter egal" 
+   BRA eti19.20 
+eti18.19: 
+   WSTR "j ai comparai avec succe l inferioriter egal " 
+eti19.20: 
+   WNL 
+   LOAD #1, R0 
+   CMP #0, R0 
+   BEQ eti20.21 
+   WSTR "j ai comparai avec succe l inferioriter egal" 
+   BRA eti21.22 
+eti20.21: 
+   WSTR "j ai echoue l inferioriter egal " 
+eti21.22: 
+   WNL 
+   LOAD #1, R0 
+   CMP #0, R0 
+   BEQ eti22.23 
+   WSTR "j ai teste  avec succe l supperieur " 
+   BRA eti23.24 
+eti22.23: 
+   WSTR "j ai echoue a comparer l supperieur " 
+eti23.24: 
+   WNL 
+   LOAD #1, R0 
+   CMP #0, R0 
+   BEQ eti24.25 
+   WSTR "j ai comparai avec succe l supperieur" 
+   BRA eti25.26 
+eti24.25: 
+   WSTR "j ai echoue l supperieur" 
+eti25.26: 
+   WNL 
+   LOAD #0, R0 
+   CMP #0, R0 
+   BEQ eti26.27 
+   WSTR "j ai echoue l supperieur" 
+   BRA eti27.28 
+eti26.27: 
+   WSTR "j ai comparai avec succe l supperieur" 
+eti27.28: 
+   WNL 
+   LOAD #1, R0 
+   CMP #0, R0 
+   BEQ eti28.29 
+   WSTR "j ai teste  avec succe l supperieur egal" 
+   BRA eti29.30 
+eti28.29: 
+   WSTR "j ai echoue a comparer l supperieur egal" 
+eti29.30: 
+   WNL 
+   LOAD #0, R0 
+   CMP #0, R0 
+   BEQ eti30.31 
+   WSTR "j ai echoue l supperieur egal" 
+   BRA eti31.32 
+eti30.31: 
+   WSTR "j ai comparai avec succe l supperieur egal " 
+eti31.32: 
+   WNL 
+   LOAD #1, R0 
+   CMP #0, R0 
+   BEQ eti32.33 
+   WSTR "j ai comparai avec succe l supperieur egal" 
+   BRA eti33.34 
+eti32.33: 
+   WSTR "j ai echoue l supperieur egal " 
+eti33.34: 
+   WNL 
+   SUBSP #1 
+   HALT 

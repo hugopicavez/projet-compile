@@ -42,13 +42,23 @@ begin
    for d := 3 to 6 do
         for e := 1 to 9 do
             t1[d][e] := d+e;
-            --t2[d][e] := t1[d][e];
+            t2[d][e] := 2*t1[d][e];
             write("value : ",d+e);
-            write("t1 : ", t1[d][e]);
-            --write("t2 : ", t2[d][e]);
-        end;
+        	new_line;    
+	write("t1 : ", t1[d][e]);
+		new_line;
+            write("t2 : ", t2[d][e]);
+		new_line;        
+	end;
    end;
 
+	t1 := t2;
+   for d := 3 to 6 do
+        for e := 1 to 9 do
 
+write("t1 : ", t1[d][e], "   t2  : ", t2[d][e]);
+	new_line;
+	end;
+end;
 
 end.

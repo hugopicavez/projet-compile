@@ -16,7 +16,7 @@ eti1.2:
    WSTR "j ai teste  avec succe l egaliter entre deux entier egaux" 
    BRA eti3.4 
 eti2.3: 
-   WSTR "j ai teste  avec echec l egaliter entre deux entier egaux" 
+   WSTR "j ai echoue a comparer l egaliter entre deux entier egaux" 
 eti3.4: 
    WNL 
    LOAD #0, R0 
@@ -94,10 +94,10 @@ eti19.20:
    LOAD #1, R0 
    CMP #0, R0 
    BEQ eti20.21 
-   WSTR "j ai echoue l inferioriter egal " 
+   WSTR "j ai comparai avec succe l inferioriter egal" 
    BRA eti21.22 
 eti20.21: 
-   WSTR "j ai comparai avec succe l inferioriter egal" 
+   WSTR "j ai echoue l inferioriter egal " 
 eti21.22: 
    WNL 
    LOAD #1, R0 
@@ -112,10 +112,10 @@ eti23.24:
    LOAD #1, R0 
    CMP #0, R0 
    BEQ eti24.25 
-   WSTR "j ai echoue l supperieur" 
+   WSTR "j ai comparai avec succe l supperieur" 
    BRA eti25.26 
 eti24.25: 
-   WSTR "j ai comparai avec succe l supperieur" 
+   WSTR "j ai echoue l supperieur" 
 eti25.26: 
    WNL 
    LOAD #0, R0 
@@ -127,7 +127,7 @@ eti26.27:
    WSTR "j ai comparai avec succe l supperieur" 
 eti27.28: 
    WNL 
-   LOAD #0, R0 
+   LOAD #1, R0 
    CMP #0, R0 
    BEQ eti28.29 
    WSTR "j ai teste  avec succe l supperieur egal" 
@@ -136,7 +136,7 @@ eti28.29:
    WSTR "j ai echoue a comparer l supperieur egal" 
 eti29.30: 
    WNL 
-   LOAD #1, R0 
+   LOAD #0, R0 
    CMP #0, R0 
    BEQ eti30.31 
    WSTR "j ai echoue l supperieur egal" 
@@ -148,10 +148,10 @@ eti31.32:
    LOAD #1, R0 
    CMP #0, R0 
    BEQ eti32.33 
-   WSTR "j ai echoue l supperieur egal " 
+   WSTR "j ai comparai avec succe l supperieur egal" 
    BRA eti33.34 
 eti32.33: 
-   WSTR "j ai comparai avec succe l supperieur egal" 
+   WSTR "j ai echoue l supperieur egal " 
 eti33.34: 
    WNL 
    SUBSP #1 

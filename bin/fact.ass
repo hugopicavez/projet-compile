@@ -1,0 +1,51 @@
+; ----------------------------------------------------------------------
+; -----------                      Programme généré par JCasc-----------
+; ----------------------------------------------------------------------
+   TSTO #5 
+   BOV eti0.1 
+   BRA eti1.2 
+eti0.1: 
+   WSTR "erreur debordement" 
+   WNL 
+   HALT 
+eti1.2: 
+   ADDSP #5 
+   LOAD #1, R0 
+   STORE R0, 3(GB) 
+   LOAD #1, R0 
+   STORE R0, 1(GB) 
+eti2.3: 
+   LOAD 3(GB), R0 
+   CMP #10, R0 
+   SLE R0 
+   CMP #0, R0 
+   BEQ eti3.4 
+   LOAD 3(GB), R1 
+   STORE R1, 4(GB) 
+   LOAD #1, R1 
+   LOAD 4(GB), R2 
+eti4.5: 
+   STORE R1, 2(GB) 
+   CMP R1, R2 
+   BLT eti5.6 
+   LOAD 1(GB), R3 
+   MUL 2(GB), R3 
+   STORE R3, 1(GB) 
+   ADD #1, R1 
+   BRA eti4.5 
+eti5.6: 
+   LOAD 3(GB), R1 
+   WINT 
+   WSTR "! = " 
+   LOAD 1(GB), R1 
+   WINT 
+   WNL 
+   LOAD 3(GB), R1 
+   ADD #1, R1 
+   STORE R1, 3(GB) 
+   LOAD #1, R1 
+   STORE R1, 1(GB) 
+   BRA eti2.3 
+eti3.4: 
+   SUBSP #5 
+   HALT 

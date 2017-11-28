@@ -3,7 +3,7 @@ program
 begin
       a := true;
       b := false;
-      write("test OR "
+      write("test OR ");
       new_line;
       write("true : ");
       if ( a OR a ) then
@@ -33,10 +33,10 @@ begin
           write("false");
       end;
       new_line;
-      write("test et "
+      write("test et ");
       new_line;
       write("true : ");
-      if ( a ET a ) then
+      if ( a AND a ) then
           write("true");
       else
           write("false");
@@ -64,7 +64,7 @@ begin
       end;
       new_line;
 
-      write("test NOT "
+      write("test NOT ");
       new_line;
       write("false : ");
       if ( NOT a ) then

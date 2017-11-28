@@ -88,7 +88,7 @@ public class Generation {
     private static int sizeTableau(Type type) {
         int size = 1;
         while (type.getNature() == NatureType.Array) {
-            size = (type.getIndice().getBorneSup() - type.getIndice().getBorneInf()) * size;
+            size = (type.getIndice().getBorneSup() - type.getIndice().getBorneInf()+1) * size;
             type = type.getElement();
         }
         return size;
@@ -160,27 +160,17 @@ public class Generation {
     }
 
     private static void gene_Affect_Tableau(Arbre a) {
-        Etiq startEti = Etiq.nouvelle("eti" + numberEti++);
-        Etiq endEti = Etiq.nouvelle("eti" + numberEti++);
         Registre result = memoire.get();
-        Registre start = memoire.get(result);
-        Registre end = memoire.get(result, start);
-        Registre value = memoire.get(result, start, end);
+        Registre value = memoire.get(result);
+        Registre temp = memoire.get(result, value);
         int size = sizeTableau(emplacement_Variable(a.getFils1(), result));
-        gene_Exp(a.getFils2(), start);
-        Prog.ajouter(Inst.creation2(Operation.LEA, Operande.creationOpIndirect(size, start), Operande.opDirect(end)));
-        Prog.ajouter(startEti);
-        Prog.ajouter(Inst.creation2(Operation.CMP, Operande.opDirect(start), Operande.opDirect(end)));
-        Prog.ajouter(Inst.creation1(Operation.BEQ, Operande.creationOpEtiq(endEti)));
-        Prog.ajouter(Inst.creation2(Operation.LOAD, Operande.creationOpIndirect(0, start), Operande.opDirect(value)));
-        Prog.ajouter(Inst.creation2(Operation.STORE, Operande.opDirect(value), Operande.creationOpIndirect(0, result)));
-        Prog.ajouter(Inst.creation2(Operation.ADD, Operande.creationOpEntier(1), Operande.opDirect(result)));
-        Prog.ajouter(Inst.creation2(Operation.ADD, Operande.creationOpEntier(1), Operande.opDirect(start)));
-        Prog.ajouter(Inst.creation1(Operation.BRA, Operande.creationOpEtiq(startEti)));
-        Prog.ajouter(endEti);
+        emplacement_Variable(a.getFils2(), value);
+        for(int i = 0; i < size; i++){
+            Prog.ajouter(Inst.creation2(Operation.LOAD, Operande.creationOpIndirect(i, value), Operande.opDirect(temp)));
+            Prog.ajouter(Inst.creation2(Operation.STORE, Operande.opDirect(temp), Operande.creationOpIndirect(i,result)));
+        }
+        memoire.free(temp);
         memoire.free(value);
-        memoire.free(end);
-        memoire.free(start);
         memoire.free(result);
     }
 
@@ -200,7 +190,7 @@ public class Generation {
                     Prog.ajouter(Inst.creation2(Operation.LOAD, operande, Operande.opDirect(index)));
                 Prog.ajouter(Inst.creation2(Operation.SUB, Operande.creationOpEntier(type.getIndice().getBorneInf()), Operande.opDirect(index)));
                 Prog.ajouter(Inst.creation2(Operation.MUL, Operande.creationOpEntier(size), Operande.opDirect(index)));
-                Prog.ajouter(Inst.creation2(Operation.LEA, Operande.creationOpIndexe(0, index, registre), Operande.opDirect(registre)));
+                Prog.ajouter(Inst.creation2(Operation.LEA, Operande.creationOpIndexe(0, registre, index), Operande.opDirect(registre)));
                 memoire.free(index);
                 return type.getElement();
             default:
@@ -389,9 +379,9 @@ public class Generation {
                 Prog.ajouter(Inst.creation2(Operation.SUB, Operande.creationOpEntier(type.getIndice().getBorneInf()), Operande.opDirect(index)));
                 Prog.ajouter(Inst.creation2(Operation.MUL, Operande.creationOpEntier(size), Operande.opDirect(index)));
                 if (type.getElement().getNature() == NatureType.Array)
-                    Prog.ajouter(Inst.creation2(Operation.LEA, Operande.creationOpIndexe(0, index, registre), Operande.opDirect(registre)));
+                    Prog.ajouter(Inst.creation2(Operation.LEA, Operande.creationOpIndexe(0, registre, index), Operande.opDirect(registre)));
                 else Prog.ajouter(Inst.creation2(Operation.LOAD,
-                        Operande.creationOpIndexe(0, index, registre), Operande.opDirect(registre)));
+                        Operande.creationOpIndexe(0, registre, index), Operande.opDirect(registre)));
                 memoire.free(index);
                 return type.getElement();
             default:

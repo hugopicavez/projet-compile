@@ -48,12 +48,19 @@ public class Memoire {
         pile.add(false);
         testePile(1);
         for (int i = 0; i < this.registres.length; i++)
-            if (Arrays.binarySearch(needs, Registre.values()[i]) == -1) {
+            if (content(Registre.values()[i], needs)) {
                 Registre registre = Registre.values()[i];
                 Prog.ajouter(Inst.creation1(Operation.PUSH, Operande.opDirect(registre)));
                 return registre;
             }
         return null;
+    }
+
+    private boolean content(Registre registre, Registre[] needs){
+        for(int i = 0; i < needs.length; i++)
+            if(registre.equals(needs[i]))
+                return false;
+        return true;
     }
 
     public void free(Registre r) {

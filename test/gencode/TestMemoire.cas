@@ -1,0 +1,23 @@
+program 
+	a,b,c,d,e,f,g,h,j : integer;
+begin
+	for a := 0 to 1 do
+		for b := 1 to 2 do
+			for c := 0 to 4 do
+				for d := 1 to 2 do
+					for e := 5 to 5 do
+						for f := 0 to 1 do
+							for g := 0 to 1 do
+								for h := 0 to 1 do
+									for j := 0 to 1 do 
+										write(1);
+									end;
+								end;
+							end;
+						end;
+					end;
+				end;
+			end;
+		end;
+	end;
+end. 
