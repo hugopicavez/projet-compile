@@ -195,7 +195,9 @@ public class Generation {
                 Type type = gene_Lecture_Tableau(a.getFils1(), registre);
                 int size = sizeTableau(type.getElement());
                 Registre index = memoire.get(registre);
-                gene_Exp(a.getFils2(), index);
+                Operande operande = gene_Exp(a.getFils2(), index);
+                if(operande.getNature() == NatureOperande.OpDirect)
+                    Prog.ajouter(Inst.creation2(Operation.STORE, operande, Operande.opDirect(index)));
                 Prog.ajouter(Inst.creation2(Operation.SUB, Operande.creationOpEntier(type.getIndice().getBorneInf()), Operande.opDirect(index)));
                 Prog.ajouter(Inst.creation2(Operation.MUL, Operande.creationOpEntier(size), Operande.opDirect(index)));
                 Prog.ajouter(Inst.creation2(Operation.ADD, Operande.opDirect(index), Operande.opDirect(registre)));
@@ -381,7 +383,9 @@ public class Generation {
                 Type type = gene_Lecture_Tableau(a.getFils1(), registre);
                 int size = sizeTableau(type.getElement());
                 Registre index = memoire.get();
-                gene_Exp(a.getFils2(), index);
+                Operande operande = gene_Exp(a.getFils2(), index);
+                if(operande.getNature() == NatureOperande.OpDirect)
+                    Prog.ajouter(Inst.creation2(Operation.STORE, operande, Operande.opDirect(index)));
                 Prog.ajouter(Inst.creation2(Operation.SUB, Operande.creationOpEntier(type.getIndice().getBorneInf()), Operande.opDirect(index)));
                 Prog.ajouter(Inst.creation2(Operation.MUL, Operande.creationOpEntier(size), Operande.opDirect(index)));
                 if (type.getElement().getNature() == NatureType.Array)
@@ -393,7 +397,6 @@ public class Generation {
             default:
                 throw new ErreurInterneVerif("Place : " + a.getFils1().getNumLigne());
         }
-
     }
 
     private static Operande gene_expression_Unitaire(Arbre a, Registre registre) {
