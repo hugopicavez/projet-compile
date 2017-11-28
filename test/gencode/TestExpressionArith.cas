@@ -36,5 +36,5 @@ begin
     new_line;
 
     write("devrait etre 2 : ", ----b, " (moins unitaire)");
-    write("devrait etre 10 : ", ++++10, " (plus unitaire)");
+    write("devrait etre 10 : ", +10, " (plus unitaire)");
 end.

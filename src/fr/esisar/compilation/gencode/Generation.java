@@ -86,7 +86,7 @@ public class Generation {
     }
 
     private static int sizeTableau(Type type) {
-        int size = 0;
+        int size = 1;
         while (type.getNature() == NatureType.Array) {
             size = (type.getIndice().getBorneSup() - type.getIndice().getBorneInf()) * size;
             type = type.getElement();
@@ -200,7 +200,7 @@ public class Generation {
                     Prog.ajouter(Inst.creation2(Operation.LOAD, operande, Operande.opDirect(index)));
                 Prog.ajouter(Inst.creation2(Operation.SUB, Operande.creationOpEntier(type.getIndice().getBorneInf()), Operande.opDirect(index)));
                 Prog.ajouter(Inst.creation2(Operation.MUL, Operande.creationOpEntier(size), Operande.opDirect(index)));
-                Prog.ajouter(Inst.creation2(Operation.ADD, Operande.opDirect(index), Operande.opDirect(registre)));
+                Prog.ajouter(Inst.creation2(Operation.LEA, Operande.creationOpIndexe(0, index, registre), Operande.opDirect(registre)));
                 memoire.free(index);
                 return type.getElement();
             default:
