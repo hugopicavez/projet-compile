@@ -196,7 +196,7 @@ public class Generation {
                 int size = sizeTableau(type.getElement());
                 Registre index = memoire.get(registre);
                 gene_Exp(a.getFils2(), index);
-                Prog.ajouter(Inst.creation2(Operation.SUB, Operande.creationOpEntier(type.getBorneInf()), Operande.opDirect(index)));
+                Prog.ajouter(Inst.creation2(Operation.SUB, Operande.creationOpEntier(type.getIndice().getBorneInf()), Operande.opDirect(index)));
                 Prog.ajouter(Inst.creation2(Operation.MUL, Operande.creationOpEntier(size), Operande.opDirect(index)));
                 Prog.ajouter(Inst.creation2(Operation.ADD, Operande.opDirect(index), Operande.opDirect(registre)));
                 memoire.free(index);
@@ -382,7 +382,7 @@ public class Generation {
                 int size = sizeTableau(type.getElement());
                 Registre index = memoire.get();
                 gene_Exp(a.getFils2(), index);
-                Prog.ajouter(Inst.creation2(Operation.SUB, Operande.creationOpEntier(type.getBorneInf()), Operande.opDirect(index)));
+                Prog.ajouter(Inst.creation2(Operation.SUB, Operande.creationOpEntier(type.getIndice().getBorneInf()), Operande.opDirect(index)));
                 Prog.ajouter(Inst.creation2(Operation.MUL, Operande.creationOpEntier(size), Operande.opDirect(index)));
                 if (type.getElement().getNature() == NatureType.Array)
                     Prog.ajouter(Inst.creation2(Operation.ADD, Operande.opDirect(index), Operande.opDirect(registre)));
