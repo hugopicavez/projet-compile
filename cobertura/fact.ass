@@ -1,5 +1,5 @@
 ; ----------------------------------------------------------------------
-; -----------                      Programme généré par JCasc-----------
+; -----------                      Programme genere par JCasc-----------
 ; ----------------------------------------------------------------------
    TSTO #5 
    BOV eti0.1 
@@ -11,29 +11,65 @@ eti0.1:
 eti1.2: 
    ADDSP #5 
    LOAD #1, R0 
+   CMP #-2147483647, R0 
+   BLT eti2.3 
+   CMP #2147483647, R0 
+   BLE eti3.4 
+eti2.3: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti3.4: 
    STORE R0, 3(GB) 
    LOAD #1, R0 
+   CMP #-2147483647, R0 
+   BLT eti4.5 
+   CMP #2147483647, R0 
+   BLE eti5.6 
+eti4.5: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti5.6: 
    STORE R0, 1(GB) 
-eti2.3: 
+eti6.7: 
    LOAD 3(GB), R0 
    CMP #10, R0 
    SLE R0 
    CMP #0, R0 
-   BEQ eti3.4 
+   BEQ eti7.8 
    LOAD 3(GB), R1 
+   CMP #-2147483647, R1 
+   BLT eti8.9 
+   CMP #2147483647, R1 
+   BLE eti9.10 
+eti8.9: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti9.10: 
    STORE R1, 4(GB) 
    LOAD #1, R1 
    LOAD 4(GB), R2 
-eti4.5: 
+eti10.11: 
    STORE R1, 2(GB) 
    CMP R1, R2 
-   BLT eti5.6 
+   BLT eti11.12 
    LOAD 1(GB), R3 
    MUL 2(GB), R3 
+   CMP #-2147483647, R3 
+   BLT eti12.13 
+   CMP #2147483647, R3 
+   BLE eti13.14 
+eti12.13: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti13.14: 
    STORE R3, 1(GB) 
    ADD #1, R1 
-   BRA eti4.5 
-eti5.6: 
+   BRA eti10.11 
+eti11.12: 
    LOAD 3(GB), R1 
    WINT 
    WSTR "! = " 
@@ -42,10 +78,28 @@ eti5.6:
    WNL 
    LOAD 3(GB), R1 
    ADD #1, R1 
+   CMP #-2147483647, R1 
+   BLT eti14.15 
+   CMP #2147483647, R1 
+   BLE eti15.16 
+eti14.15: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti15.16: 
    STORE R1, 3(GB) 
    LOAD #1, R1 
+   CMP #-2147483647, R1 
+   BLT eti16.17 
+   CMP #2147483647, R1 
+   BLE eti17.18 
+eti16.17: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti17.18: 
    STORE R1, 1(GB) 
-   BRA eti2.3 
-eti3.4: 
+   BRA eti6.7 
+eti7.8: 
    SUBSP #5 
    HALT 

@@ -2,7 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="baaba2fb-9fe1-44ce-bc1c-f76f69c60778" name="Default" comment="">
+<<<<<<< Updated upstream
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/fr/esisar/compilation/gencode/Generation.java" afterPath="$PROJECT_DIR$/src/fr/esisar/compilation/gencode/Generation.java" />
+=======
+<<<<<<< Updated upstream
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/fr/esisar/compilation/gencode/Generation.java" afterPath="$PROJECT_DIR$/src/fr/esisar/compilation/gencode/Generation.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/gencode/TestExpressionArith.cas" afterPath="$PROJECT_DIR$/test/gencode/TestExpressionArith.cas" />
+=======
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/fr/esisar/compilation/gencode/Generation.java" afterPath="$PROJECT_DIR$/src/fr/esisar/compilation/gencode/Generation.java" />
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -13,17 +23,47 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
+<<<<<<< Updated upstream
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
       <file leaf-file-name="Generation.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/fr/esisar/compilation/gencode/Generation.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
             <state relative-caret-position="226">
               <caret line="563" column="78" lean-forward="false" selection-start-line="563" selection-start-column="78" selection-end-line="563" selection-end-column="78" />
+=======
+<<<<<<< Updated upstream
+            <state relative-caret-position="3778">
+              <caret line="162" column="81" lean-forward="false" selection-start-line="162" selection-start-column="81" selection-end-line="162" selection-end-column="81" />
+=======
+<<<<<<< Updated upstream
+            <state relative-caret-position="228">
+              <caret line="572" column="54" lean-forward="false" selection-start-line="572" selection-start-column="54" selection-end-line="572" selection-end-column="54" />
+=======
+<<<<<<< Updated upstream
+            <state relative-caret-position="476">
+              <caret line="568" column="9" lean-forward="false" selection-start-line="568" selection-start-column="9" selection-end-line="568" selection-end-column="9" />
+=======
+            <state relative-caret-position="-3074">
+              <caret line="389" column="115" lean-forward="false" selection-start-line="389" selection-start-column="115" selection-end-line="389" selection-end-column="115" />
+=======
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Generation.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/fr/esisar/compilation/gencode/Generation.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="18">
+              <caret line="266" column="37" lean-forward="false" selection-start-line="266" selection-start-column="37" selection-end-line="266" selection-end-column="37" />
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< Updated upstream
       <file leaf-file-name="TestExpressionLogique.cas" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/gencode/TestExpressionLogique.cas">
           <provider selected="true" editor-type-id="text-editor">
@@ -49,6 +89,13 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="100">
               <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+=======
+      <file leaf-file-name="Memoire.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/fr/esisar/compilation/gencode/Memoire.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="810">
+              <caret line="50" column="51" lean-forward="false" selection-start-line="50" selection-start-column="51" selection-end-line="50" selection-end-column="51" />
+>>>>>>> Stashed changes
               <folding />
             </state>
           </provider>
@@ -85,6 +132,11 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/fr/esisar/compilation/gencode/Memoire.java" />
+<<<<<<< Updated upstream
+=======
+        <option value="$PROJECT_DIR$/src/fr/esisar/compilation/gencode/Generation.java" />
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
         <option value="$PROJECT_DIR$/test/gencode/TestExpressionArith.cas" />
         <option value="$PROJECT_DIR$/src/fr/esisar/compilation/gencode/Generation.java" />
       </list>
@@ -95,6 +147,16 @@
     <option name="y" value="-11" />
     <option name="width" value="1934" />
     <option name="height" value="1042" />
+=======
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="213" />
+    <option name="y" value="418" />
+    <option name="width" value="1707" />
+    <option name="height" value="866" />
+>>>>>>> Stashed changes
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -111,6 +173,11 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< Updated upstream
+=======
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+>>>>>>> Stashed changes
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -140,6 +207,7 @@
           <select />
         </subPane>
       </pane>
+<<<<<<< Updated upstream
       <pane id="PackagesPane" />
       <pane id="AndroidView" />
       <pane id="Scope" />
@@ -148,6 +216,14 @@
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Pas_Vacanse/ProjetVLV" />
+=======
+      <pane id="Scope" />
+      <pane id="AndroidView" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+>>>>>>> Stashed changes
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -263,8 +339,16 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
+<<<<<<< Updated upstream
     <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
     <editor active="true" />
+=======
+<<<<<<< Updated upstream
+    <frame x="-11" y="-11" width="1942" height="1042" extended-state="7" />
+=======
+    <frame x="213" y="418" width="1920" height="948" extended-state="6" />
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -278,7 +362,15 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+<<<<<<< Updated upstream
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26864865" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+=======
+<<<<<<< Updated upstream
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26864865" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+=======
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -303,6 +395,7 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/fr/esisar/compilation/gencode/Generation.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="5225">
           <caret line="217" column="32" lean-forward="false" selection-start-line="217" selection-start-column="32" selection-end-line="217" selection-end-column="32" />
           <folding />
@@ -367,6 +460,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Doc/Context.txt">
       <provider selected="true" editor-type-id="text-editor">
+=======
+>>>>>>> Stashed changes
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
@@ -375,6 +470,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/fr/esisar/compilation/gencode/Memoire.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="400">
           <caret line="21" column="18" lean-forward="false" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
           <folding />
@@ -409,13 +505,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2275">
           <caret line="91" column="0" lean-forward="false" selection-start-line="91" selection-start-column="0" selection-end-line="97" selection-end-column="16" />
+=======
+        <state relative-caret-position="810">
+          <caret line="50" column="51" lean-forward="false" selection-start-line="50" selection-start-column="51" selection-end-line="50" selection-end-column="51" />
+>>>>>>> Stashed changes
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/fr/esisar/compilation/gencode/Generation.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="4800">
+=======
+        <state relative-caret-position="3456">
+>>>>>>> Stashed changes
           <caret line="202" column="33" lean-forward="true" selection-start-line="202" selection-start-column="33" selection-end-line="202" selection-end-column="33" />
           <folding />
         </state>
@@ -423,12 +527,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/fr/esisar/compilation/gencode/Memoire.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="1125">
+=======
+        <state relative-caret-position="810">
+>>>>>>> Stashed changes
           <caret line="50" column="51" lean-forward="false" selection-start-line="50" selection-start-column="51" selection-end-line="50" selection-end-column="51" />
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< Updated upstream
     <entry file="file://$PROJECT_DIR$/bin/TestMemoire.ass">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2275">
@@ -484,10 +593,28 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="268">
           <caret line="35" column="11" lean-forward="false" selection-start-line="35" selection-start-column="11" selection-end-line="35" selection-end-column="11" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/fr/esisar/compilation/gencode/Memoire.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="810">
+          <caret line="50" column="51" lean-forward="false" selection-start-line="50" selection-start-column="51" selection-end-line="50" selection-end-column="51" />
+>>>>>>> Stashed changes
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< Updated upstream
+=======
+    <entry file="file://$PROJECT_DIR$/src/fr/esisar/compilation/gencode/Generation.java">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
+        <state relative-caret-position="-3074">
+          <caret line="389" column="115" lean-forward="false" selection-start-line="389" selection-start-column="115" selection-end-line="389" selection-end-column="115" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+>>>>>>> Stashed changes
     <entry file="file://$PROJECT_DIR$/test/gencode/TestExpressionLogique.cas">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -508,6 +635,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="529">
           <caret line="32" column="41" lean-forward="true" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
+=======
+        <state relative-caret-position="18">
+          <caret line="266" column="37" lean-forward="false" selection-start-line="266" selection-start-column="37" selection-end-line="266" selection-end-column="37" />
+>>>>>>> Stashed changes
           <folding />
         </state>
       </provider>

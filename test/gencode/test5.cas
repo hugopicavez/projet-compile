@@ -1,0 +1,21 @@
+program 
+	a,b,c,d,e,f,g,h,j,z : integer;
+	bb : boolean; 
+begin
+	bb := true; 
+	for a := 0 to 5	 do
+
+										if (bb) then
+											new_line; 
+											write("Entrer entier");
+											read(z);
+											bb := false ; 
+										end ;
+										if (bb) then
+											new_line;
+											write("faux");
+											new_line;
+							end;
+		
+	end;
+end. 

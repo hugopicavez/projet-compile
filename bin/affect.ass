@@ -138,36 +138,39 @@ eti23.24:
    MUL #1, R6 
    LEA 0(R5, R6), R5 
    STORE R4, 0(R5) 
-   LOAD #2, R4 
-   LEA 10(GB), R5 
-   LOAD 4(GB), R6 
-   CMP #3, R6 
+   LEA 10(GB), R4 
+   LOAD 4(GB), R5 
+   CMP #3, R5 
    BLT eti24.25 
-   CMP #6, R6 
+   CMP #6, R5 
    BLE eti25.26 
 eti24.25: 
    WSTR "erreur debordemet index tableau" 
    WNL 
    HALT 
 eti25.26: 
-   SUB #3, R6 
-   MUL #9, R6 
-   LEA 0(R5, R6), R5 
-   LOAD 5(GB), R6 
-   CMP #1, R6 
+   SUB #3, R5 
+   MUL #9, R5 
+   LEA 0(R4, R5), R4 
+   LOAD 5(GB), R5 
+   CMP #1, R5 
    BLT eti26.27 
-   CMP #9, R6 
+   CMP #9, R5 
    BLE eti27.28 
 eti26.27: 
    WSTR "erreur debordemet index tableau" 
    WNL 
    HALT 
 eti27.28: 
-   SUB #1, R6 
-   MUL #1, R6 
-   LEA 0(R5, R6), R5 
-   LOAD 0(R5), R5 
-   MUL R5, R4 
+   SUB #1, R5 
+   MUL #1, R5 
+   LEA 0(R4, R5), R4 
+   LOAD 0(R4), R4 
+   ADDSP #1 
+   STORE R4, 83(GB) 
+   LOAD #2, R4 
+   MUL 83(GB), R4 
+   SUBSP #1 
    LEA 46(GB), R5 
    LOAD 4(GB), R6 
    CMP #3, R6 

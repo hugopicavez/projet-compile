@@ -28,7 +28,7 @@ public class Memoire {
     public Operande createVariableTemp() {
         Prog.ajouter(Inst.creation1(Operation.ADDSP,
                 Operande.creationOpEntier(1)));
-        return Operande.creationOpIndirect(this.pillUse++, Registre.GB);
+        return Operande.creationOpIndirect(++this.pillUse, Registre.GB);
     }
 
     public void freeVariableTemp(){

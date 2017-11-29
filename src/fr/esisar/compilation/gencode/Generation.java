@@ -65,8 +65,7 @@ public class Generation {
             case ListeIdent:
                 index = gene_LISTE_IDF(a.getFils1(), index);
                 a.getFils2().getDecor().getDefn().setOperande(Operande.creationOpIndirect(index, Registre.GB));
-                System.out.println(index);
-                Type type = a.getFils2().getDecor().getDefn().getType();
+               Type type = a.getFils2().getDecor().getDefn().getType();
                 if (type.getNature() != NatureType.Array) {
                     index++;
                     return index;
@@ -387,7 +386,7 @@ public class Generation {
     private static void gene_Lecture_Tableau(Arbre a, Registre registre) {
         Type type = emplacement_Variable(a, registre);
         if (type.getNature() != NatureType.Array)
-            Prog.ajouter(Inst.creation2(Operation.LOAD, Operande.creationOpIndirect(0,registre), Operande.opDirect(registre)));
+            Prog.ajouter(Inst.creation2(Operation.LOAD, Operande.creationOpIndirect(0, registre), Operande.opDirect(registre)));
     }
 
     private static Operande gene_expression_Unitaire(Arbre a, Registre registre) {
@@ -519,13 +518,18 @@ public class Generation {
 
 
     private static Operande gene_arith(Arbre a, Registre registre) {
-        if (memoire.getNumberFree() >= 2) {
+        System.out.println(memoire.getNumberFree());
+        if (memoire.getNumberFree() >= 2 && false) {
             Operande operande1 = gene_Exp(a.getFils1(), registre);
             if (operande1.getNature() != NatureOperande.OpDirect) {
                 Prog.ajouter(Inst.creation2(Operation.LOAD, operande1, Operande.opDirect(registre)));
                 operande1 = Operande.opDirect(registre);
             }
+
             Registre registre1 = memoire.get(registre);
+
+            System.out.println("=====>"+memoire.getNumberFree());
+
             Operande operande2 = gene_Exp(a.getFils2(), registre1);
             gene_arith(a, operande2, operande1);
             memoire.free(registre1);
@@ -548,6 +552,7 @@ public class Generation {
                 Prog.ajouter(Inst.creation2(Operation.LOAD, operande, Operande.opDirect(registre)));
             }
             gene_arith(a, temp, Operande.opDirect(registre));
+            memoire.freeVariableTemp();
             return Operande.opDirect(registre);
         }
     }
@@ -563,7 +568,7 @@ public class Generation {
             if (a.getNoeud() == Noeud.Reste) {
                 gene_Test_Division_0(operande1, Operande.creationOpEntier(0));
                 Prog.ajouter(Inst.creation2(Operation.MOD, operande1, operande2));
-            }if (a.getNoeud() == Noeud.Quotient) {
+            }else if (a.getNoeud() == Noeud.Quotient) {
                 gene_Test_Division_0(operande1, Operande.creationOpEntier(0));
                 Prog.ajouter(Inst.creation2(Operation.DIV, operande1, operande2));
             }
@@ -583,7 +588,7 @@ public class Generation {
             Prog.ajouter(Inst.creation2(Operation.CMP, compare, Operande.opDirect(registre)));
 
         } else Prog.ajouter(Inst.creation2(Operation.CMP, compare, operande1));
-        Prog.ajouter(Inst.creation1(Operation.BEQ, Operande.creationOpEtiq(fin)));
+        Prog.ajouter(Inst.creation1(Operation.BNE, Operande.creationOpEtiq(fin)));
         Prog.ajouter(Inst.creation1(Operation.WSTR, Operande.creationOpChaine("division par zero")));
         Prog.ajouter(Inst.creation0(Operation.WNL));
         Prog.ajouter(Inst.creation0(Operation.HALT));

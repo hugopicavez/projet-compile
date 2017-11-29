@@ -12,7 +12,7 @@ begin
     new_line;
     write("devrait etre 10: ", b*a, " (mult entier ");
 	new_line;
-    write("devrait etre 15 : ", 31/b, " (div entier ");
+    write("devrait etre 15 : ", 31 div b, " (div entier ");
 	new_line;
     write("devrait etre 1 : ", 31 mod 2, " (reste entier ");
 	new_line;
@@ -34,8 +34,15 @@ begin
     new_line;
     write("devrait etre 1.57: ", 15.7/10, " (div float avec converssion ");
     new_line;
+    write("devrait etre -5: ", -a, " (div float avec converssion ");
+    new_line;   
+    write("devrait etre 5: ", +a, " (div float avec converssion ");
+	new_line; 
+ write("devrait etre -2.5: ", -2.5, " (div float avec converssion ");
+    new_line;   
+    write("devrait etre 2.5: ", +2.5, " (div float avec converssion ");
+    new_line;
 
-
-    write("devrait etre 4.8: ", 1+2*3/4 +1.1-2.2*3.3/4.4 +1+1.1-2.2*3/4+1+2*3/4 +1.1-2.2*3.3/4.4 +1+1.1-2.2*3/4, " (div float avec converssion ");
+    write("devrait etre 4.8: ", 1+2*3/4 +1.1-2.2*3.3/4.4 +1+1.1-2.2*3/4+1+2*3/4 +1.1-2.2*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3*3.3, " (div float avec converssion ");
     new_line;
 end.
