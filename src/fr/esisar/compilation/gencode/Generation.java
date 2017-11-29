@@ -555,15 +555,17 @@ public class Generation {
     private static void gene_arith(Arbre a, Operande operande1, Operande operande2) {
         if (a.getNoeud() == Noeud.Plus)
             Prog.ajouter(Inst.creation2(Operation.ADD, operande1, operande2));
-        if (a.getNoeud() == Noeud.Moins)
+        else if (a.getNoeud() == Noeud.Moins)
             Prog.ajouter(Inst.creation2(Operation.SUB, operande1, operande2));
-        if (a.getNoeud() == Noeud.Mult)
+        else if (a.getNoeud() == Noeud.Mult)
             Prog.ajouter(Inst.creation2(Operation.MUL, operande1, operande2));
-        gene_Test_Division_0(operande1);
-        if (a.getNoeud() == Noeud.Reste)
-            Prog.ajouter(Inst.creation2(Operation.MOD, operande1, operande2));
-        if (a.getNoeud() == Noeud.Quotient || a.getNoeud() == Noeud.DivReel) {
-            Prog.ajouter(Inst.creation2(Operation.DIV, operande1, operande2));
+        else {
+            gene_Test_Division_0(operande1);
+            if (a.getNoeud() == Noeud.Reste)
+                Prog.ajouter(Inst.creation2(Operation.MOD, operande1, operande2));
+            if (a.getNoeud() == Noeud.Quotient || a.getNoeud() == Noeud.DivReel) {
+                Prog.ajouter(Inst.creation2(Operation.DIV, operande1, operande2));
+            }
         }
     }
 
@@ -573,12 +575,16 @@ public class Generation {
         if (operande1.getNature() != NatureOperande.OpDirect) {
             registre = memoire.get();
             Prog.ajouter(Inst.creation2(Operation.LOAD, operande1, Operande.opDirect(registre)));
-        }
-        Prog.ajouter(Inst.creation2(Operation.CMP, Operande.creationOpEntier(0), Operande.opDirect(registre)));
+            Prog.ajouter(Inst.creation2(Operation.CMP, Operande.creationOpEntier(0), Operande.opDirect(registre)));
+
+        } else Prog.ajouter(Inst.creation2(Operation.CMP, Operande.creationOpEntier(0), operande1));
         Prog.ajouter(Inst.creation1(Operation.BEQ, Operande.creationOpEtiq(fin)));
         Prog.ajouter(Inst.creation1(Operation.WSTR, Operande.creationOpChaine("division par zero")));
         Prog.ajouter(Inst.creation0(Operation.WNL));
         Prog.ajouter(Inst.creation0(Operation.HALT));
         Prog.ajouter(fin);
+        if (registre != null)
+            memoire.free(registre);
+
     }
 }
