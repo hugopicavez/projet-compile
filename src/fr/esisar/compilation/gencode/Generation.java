@@ -18,7 +18,7 @@ public class Generation {
     static Prog coder(Arbre a) {
         memoire = new Memoire();
         numberEti = 0;
-        Prog.ajouterGrosComment("Programme généré par JCasc");
+        Prog.ajouterGrosComment("Programme genere par JCasc");
 
         int size = gene_LISTE_DECL(a.getFils1(), 1);
         memoire.testePile(size);
@@ -34,7 +34,7 @@ public class Generation {
         // On ajoute l'instruction à la fin du programme
         Prog.ajouter(inst);
 
-        // On retourne le programme assembleur généré
+        // On retourne le programme assembleur genere
         return Prog.instance();
     }
 
@@ -160,7 +160,7 @@ public class Generation {
         Prog.ajouter(Inst.creation2(Operation.CMP, Operande.creationOpEntier(type.getBorneSup()), Operande.opDirect(registre)));
         Prog.ajouter(Inst.creation1(Operation.BLE, Operande.creationOpEtiq(fin)));
         Prog.ajouter(erreur);
-        Prog.ajouter(Inst.creation1(Operation.WSTR, Operande.creationOpChaine("débordement de l'intervale")));
+        Prog.ajouter(Inst.creation1(Operation.WSTR, Operande.creationOpChaine("debordement de l'intervale")));
         Prog.ajouter(Inst.creation0(Operation.WNL));
         Prog.ajouter(Inst.creation0(Operation.HALT));
         Prog.ajouter(fin);

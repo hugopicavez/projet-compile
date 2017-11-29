@@ -17,8 +17,8 @@
       <file leaf-file-name="Generation.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/fr/esisar/compilation/gencode/Generation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="572" column="54" lean-forward="false" selection-start-line="572" selection-start-column="54" selection-end-line="572" selection-end-column="54" />
+            <state relative-caret-position="3778">
+              <caret line="162" column="81" lean-forward="false" selection-start-line="162" selection-start-column="81" selection-end-line="162" selection-end-column="81" />
               <folding />
             </state>
           </provider>
@@ -65,7 +65,11 @@
       <find>size</find>
       <find>gene_A</find>
       <find>TODO</find>
+      <find>Etiq.nouvelle(&quot;&quot;);</find>
     </findStrings>
+    <replaceStrings>
+      <replace>Etiq.nouvelle(&quot;eti&quot; + numberEti++);</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -508,8 +512,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/fr/esisar/compilation/gencode/Generation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="572" column="54" lean-forward="false" selection-start-line="572" selection-start-column="54" selection-end-line="572" selection-end-column="54" />
+        <state relative-caret-position="3778">
+          <caret line="162" column="81" lean-forward="false" selection-start-line="162" selection-start-column="81" selection-end-line="162" selection-end-column="81" />
           <folding />
         </state>
       </provider>
