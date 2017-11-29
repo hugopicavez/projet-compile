@@ -6,17 +6,13 @@ import fr.esisar.compilation.global.src.Noeud;
 import fr.esisar.compilation.global.src.Type;
 import fr.esisar.compilation.global.src3.*;
 import fr.esisar.compilation.verif.ErreurInterneVerif;
-import sun.security.krb5.internal.EncAPRepPart;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Generation {
 
     //TODO erreur débordement indice tableau
-    //TODO erreur débordement interval
-    //TODO erreur div par zero
 
     private static Memoire memoire;
     public static int numberEti = 0;
@@ -88,7 +84,7 @@ public class Generation {
     private static int sizeTableau(Type type) {
         int size = 1;
         while (type.getNature() == NatureType.Array) {
-            size = (type.getIndice().getBorneSup() - type.getIndice().getBorneInf()+1) * size;
+            size = (type.getIndice().getBorneSup() - type.getIndice().getBorneInf() + 1) * size;
             type = type.getElement();
         }
         return size;
@@ -145,10 +141,12 @@ public class Generation {
             Operande operande = gene_Exp(a.getFils2(), registre);
             if (operande.getNature() != NatureOperande.OpDirect)
                 Prog.ajouter(Inst.creation2(Operation.LOAD, operande, Operande.opDirect(registre)));
-            if (a.getFils1().getNoeud() != Noeud.Index)
+            if (a.getFils1().getNoeud() != Noeud.Index) {
+                if (type.getNature() == NatureType.Interval)
+                    gene_Test_Affect_Interval(type, registre);
                 Prog.ajouter(Inst.creation2(Operation.STORE, Operande.opDirect(registre),
                         a.getFils1().getDecor().getDefn().getOperande()));
-            else {
+            } else {
                 Registre emplacement = memoire.get(registre);
                 emplacement_Variable(a.getFils1(), emplacement);
                 Prog.ajouter(Inst.creation2(Operation.STORE, Operande.opDirect(registre),
@@ -159,15 +157,34 @@ public class Generation {
         }
     }
 
+    private static void gene_Test_Affect_Interval(Type type, Registre registre) {
+        Etiq erreur = Etiq.nouvelle("");
+        Etiq fin = Etiq.nouvelle("");
+        Prog.ajouter(Inst.creation2(Operation.CMP, Operande.creationOpEntier(type.getBorneInf()), Operande.opDirect(registre)));
+        Prog.ajouter(Inst.creation1(Operation.BLT, Operande.creationOpEtiq(erreur)));
+        Prog.ajouter(Inst.creation2(Operation.CMP, Operande.creationOpEntier(type.getBorneSup()), Operande.opDirect(registre)));
+        Prog.ajouter(Inst.creation1(Operation.BLE, Operande.creationOpEtiq(fin)));
+        Prog.ajouter(erreur);
+        Prog.ajouter(Inst.creation1(Operation.WSTR, Operande.creationOpChaine("débordement de l'intervale")));
+        Prog.ajouter(Inst.creation0(Operation.WNL));
+        Prog.ajouter(Inst.creation0(Operation.HALT));
+        Prog.ajouter(fin);
+    }
+
     private static void gene_Affect_Tableau(Arbre a) {
+        Type emplacement = a.getFils1().getDecor().getDefn().getType();
+        while (emplacement.getNature() == NatureType.Array)
+            emplacement = emplacement.getElement();
         Registre result = memoire.get();
         Registre value = memoire.get(result);
         Registre temp = memoire.get(result, value);
         int size = sizeTableau(emplacement_Variable(a.getFils1(), result));
         emplacement_Variable(a.getFils2(), value);
-        for(int i = 0; i < size; i++){
+        for (int i = 0; i < size; i++) {
             Prog.ajouter(Inst.creation2(Operation.LOAD, Operande.creationOpIndirect(i, value), Operande.opDirect(temp)));
-            Prog.ajouter(Inst.creation2(Operation.STORE, Operande.opDirect(temp), Operande.creationOpIndirect(i,result)));
+            if (emplacement.getNature() == NatureType.Interval)
+                gene_Test_Affect_Interval(emplacement, temp);
+            Prog.ajouter(Inst.creation2(Operation.STORE, Operande.opDirect(temp), Operande.creationOpIndirect(i, result)));
         }
         memoire.free(temp);
         memoire.free(value);
@@ -182,7 +199,7 @@ public class Generation {
                         Operande.opDirect(registre)));
                 return a.getDecor().getType();
             case Index:
-                Type type = gene_Lecture_Tableau(a.getFils1(), registre);
+                Type type = emplacement_Variable(a.getFils1(), registre);
                 int size = sizeTableau(type.getElement());
                 Registre index = memoire.get(registre);
                 Operande operande = gene_Exp(a.getFils2(), index);
@@ -264,7 +281,7 @@ public class Generation {
 
     private static void gene_ECRITURE(Arbre a) {
         if (gene_ECRICRE_GENE(a.getFils1()))
-            Prog.ajouter(Inst.creation1(Operation.POP, Operande.R1));
+            memoire.pop(Registre.R1);
     }
 
     private static boolean gene_ECRICRE_GENE(Arbre a) {
@@ -362,8 +379,11 @@ public class Generation {
         throw new Error();
     }
 
-    private static Type gene_Lecture_Tableau(Arbre a, Registre registre) {
-        switch (a.getNoeud()) {
+    private static void gene_Lecture_Tableau(Arbre a, Registre registre) {
+        Type type = emplacement_Variable(a, registre);
+        if (type.getNature() != NatureType.Array)
+            Prog.ajouter(Inst.creation2(Operation.LOAD, Operande.opDirect(registre), Operande.opDirect(registre)));
+        /*switch (a.getNoeud()) {
             case Ident:
                 Prog.ajouter(Inst.creation2(Operation.LEA,
                         a.getDecor().getDefn().getOperande(),
@@ -386,7 +406,7 @@ public class Generation {
                 return type.getElement();
             default:
                 throw new ErreurInterneVerif("Place : " + a.getFils1().getNumLigne());
-        }
+        }*/
     }
 
     private static Operande gene_expression_Unitaire(Arbre a, Registre registre) {
@@ -499,7 +519,6 @@ public class Generation {
     }
 
     private static Operande gene_Simplification_Comparaison(Arbre a, float operande1, float operande2, List<Ligne> stateBefore) {
-
         Prog.instance().getListeLignes().clear();
         Prog.instance().getListeLignes().addAll(stateBefore);
         if (a.getNoeud() == Noeud.Egal)
@@ -559,11 +578,26 @@ public class Generation {
             Prog.ajouter(Inst.creation2(Operation.SUB, operande1, operande2));
         if (a.getNoeud() == Noeud.Mult)
             Prog.ajouter(Inst.creation2(Operation.MUL, operande1, operande2));
-        if (a.getNoeud() == Noeud.DivReel)
-            Prog.ajouter(Inst.creation2(Operation.DIV, operande1, operande2));
+        gene_Test_Division_0(operande1);
         if (a.getNoeud() == Noeud.Reste)
             Prog.ajouter(Inst.creation2(Operation.MOD, operande1, operande2));
-        if (a.getNoeud() == Noeud.Quotient)
+        if (a.getNoeud() == Noeud.Quotient || a.getNoeud() == Noeud.DivReel) {
             Prog.ajouter(Inst.creation2(Operation.DIV, operande1, operande2));
+        }
+    }
+
+    private static void gene_Test_Division_0(Operande operande1) {
+        Etiq fin = Etiq.nouvelle("");
+        Registre registre = null;
+        if (operande1.getNature() != NatureOperande.OpDirect) {
+            registre = memoire.get();
+            Prog.ajouter(Inst.creation2(Operation.LOAD, operande1, Operande.opDirect(registre)));
+        }
+        Prog.ajouter(Inst.creation2(Operation.CMP, Operande.creationOpEntier(0), Operande.opDirect(registre)));
+        Prog.ajouter(Inst.creation1(Operation.BEQ, Operande.creationOpEtiq(fin)));
+        Prog.ajouter(Inst.creation1(Operation.WSTR, Operande.creationOpChaine("division par zero")));
+        Prog.ajouter(Inst.creation0(Operation.WNL));
+        Prog.ajouter(Inst.creation0(Operation.HALT));
+        Prog.ajouter(fin);
     }
 }
