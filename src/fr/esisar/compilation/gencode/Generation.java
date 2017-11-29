@@ -387,7 +387,7 @@ public class Generation {
     private static void gene_Lecture_Tableau(Arbre a, Registre registre) {
         Type type = emplacement_Variable(a, registre);
         if (type.getNature() != NatureType.Array)
-            Prog.ajouter(Inst.creation2(Operation.LOAD, Operande.opDirect(registre), Operande.opDirect(registre)));
+            Prog.ajouter(Inst.creation2(Operation.LOAD, Operande.creationOpIndirect(0,registre), Operande.opDirect(registre)));
     }
 
     private static Operande gene_expression_Unitaire(Arbre a, Registre registre) {
@@ -560,24 +560,29 @@ public class Generation {
         else if (a.getNoeud() == Noeud.Mult)
             Prog.ajouter(Inst.creation2(Operation.MUL, operande1, operande2));
         else {
-            gene_Test_Division_0(operande1);
-            if (a.getNoeud() == Noeud.Reste)
+            if (a.getNoeud() == Noeud.Reste) {
+                gene_Test_Division_0(operande1, Operande.creationOpEntier(0));
                 Prog.ajouter(Inst.creation2(Operation.MOD, operande1, operande2));
-            if (a.getNoeud() == Noeud.Quotient || a.getNoeud() == Noeud.DivReel) {
+            }if (a.getNoeud() == Noeud.Quotient) {
+                gene_Test_Division_0(operande1, Operande.creationOpEntier(0));
+                Prog.ajouter(Inst.creation2(Operation.DIV, operande1, operande2));
+            }
+            else {
+                gene_Test_Division_0(operande1, Operande.creationOpReel(0.0f));
                 Prog.ajouter(Inst.creation2(Operation.DIV, operande1, operande2));
             }
         }
     }
 
-    private static void gene_Test_Division_0(Operande operande1) {
+    private static void gene_Test_Division_0(Operande operande1, Operande compare) {
         Etiq fin = Etiq.nouvelle("eti" + numberEti++);
         Registre registre = null;
         if (operande1.getNature() != NatureOperande.OpDirect) {
             registre = memoire.get();
             Prog.ajouter(Inst.creation2(Operation.LOAD, operande1, Operande.opDirect(registre)));
-            Prog.ajouter(Inst.creation2(Operation.CMP, Operande.creationOpEntier(0), Operande.opDirect(registre)));
+            Prog.ajouter(Inst.creation2(Operation.CMP, compare, Operande.opDirect(registre)));
 
-        } else Prog.ajouter(Inst.creation2(Operation.CMP, Operande.creationOpEntier(0), operande1));
+        } else Prog.ajouter(Inst.creation2(Operation.CMP, compare, operande1));
         Prog.ajouter(Inst.creation1(Operation.BEQ, Operande.creationOpEtiq(fin)));
         Prog.ajouter(Inst.creation1(Operation.WSTR, Operande.creationOpChaine("division par zero")));
         Prog.ajouter(Inst.creation0(Operation.WNL));
