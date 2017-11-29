@@ -153,8 +153,8 @@ public class Generation {
     }
 
     private static void gene_Test_Affect_Interval(Type type, Registre registre) {
-        Etiq erreur = Etiq.nouvelle("");
-        Etiq fin = Etiq.nouvelle("");
+        Etiq erreur = Etiq.nouvelle("eti" + numberEti++);
+        Etiq fin = Etiq.nouvelle("eti" + numberEti++);
         Prog.ajouter(Inst.creation2(Operation.CMP, Operande.creationOpEntier(type.getBorneInf()), Operande.opDirect(registre)));
         Prog.ajouter(Inst.creation1(Operation.BLT, Operande.creationOpEtiq(erreur)));
         Prog.ajouter(Inst.creation2(Operation.CMP, Operande.creationOpEntier(type.getBorneSup()), Operande.opDirect(registre)));
@@ -195,8 +195,8 @@ public class Generation {
                 return a.getDecor().getType();
             case Index:
                 Type type = emplacement_Variable(a.getFils1(), registre);
-                Etiq erreur = Etiq.nouvelle("");
-                Etiq fin = Etiq.nouvelle("");
+                Etiq erreur = Etiq.nouvelle("eti" + numberEti++);
+                Etiq fin = Etiq.nouvelle("eti" + numberEti++);
                 int size = sizeTableau(type.getElement());
                 Registre index = memoire.get(registre);
                 Operande operande = gene_Exp(a.getFils2(), index);
@@ -570,7 +570,7 @@ public class Generation {
     }
 
     private static void gene_Test_Division_0(Operande operande1) {
-        Etiq fin = Etiq.nouvelle("");
+        Etiq fin = Etiq.nouvelle("eti" + numberEti++);
         Registre registre = null;
         if (operande1.getNature() != NatureOperande.OpDirect) {
             registre = memoire.get();
