@@ -12,8 +12,6 @@ import java.util.List;
 
 public class Generation {
 
-    //TODO erreur débordement indice tableau
-
     private static Memoire memoire;
     public static int numberEti = 0;
 
@@ -27,12 +25,9 @@ public class Generation {
         memoire.setPileUse(size);
         Prog.ajouter(Inst.creation1(Operation.ADDSP,
                 Operande.creationOpEntier(size)));
-
         gene_LISTE_INST(a.getFils2());
-
         Prog.ajouter(Inst.creation1(Operation.SUBSP,
                 Operande.creationOpEntier(size)));
-
         // Fin du programme
         // L'instruction "HALT"
         Inst inst = Inst.creation0(Operation.HALT);
@@ -200,11 +195,22 @@ public class Generation {
                 return a.getDecor().getType();
             case Index:
                 Type type = emplacement_Variable(a.getFils1(), registre);
+                Etiq erreur = Etiq.nouvelle("");
+                Etiq fin = Etiq.nouvelle("");
                 int size = sizeTableau(type.getElement());
                 Registre index = memoire.get(registre);
                 Operande operande = gene_Exp(a.getFils2(), index);
                 if (operande.getNature() != NatureOperande.OpDirect)
                     Prog.ajouter(Inst.creation2(Operation.LOAD, operande, Operande.opDirect(index)));
+                Prog.ajouter(Inst.creation2(Operation.CMP, Operande.creationOpEntier(type.getIndice().getBorneInf()), Operande.opDirect(index)));
+                Prog.ajouter(Inst.creation1(Operation.BLT, Operande.creationOpEtiq(erreur)));
+                Prog.ajouter(Inst.creation2(Operation.CMP, Operande.creationOpEntier(type.getIndice().getBorneSup()), Operande.opDirect(index)));
+                Prog.ajouter(Inst.creation1(Operation.BLE, Operande.creationOpEtiq(fin)));
+                Prog.ajouter(erreur);
+                Prog.ajouter(Inst.creation1(Operation.WSTR, Operande.creationOpChaine("erreur debordemet index tableau")));
+                Prog.ajouter(Inst.creation0(Operation.WNL));
+                Prog.ajouter(Inst.creation0(Operation.HALT));
+                Prog.ajouter(fin);
                 Prog.ajouter(Inst.creation2(Operation.SUB, Operande.creationOpEntier(type.getIndice().getBorneInf()), Operande.opDirect(index)));
                 Prog.ajouter(Inst.creation2(Operation.MUL, Operande.creationOpEntier(size), Operande.opDirect(index)));
                 Prog.ajouter(Inst.creation2(Operation.LEA, Operande.creationOpIndexe(0, registre, index), Operande.opDirect(registre)));
@@ -239,7 +245,6 @@ public class Generation {
             Prog.ajouter(Inst.creation2(Operation.ADD, Operande.creationOpEntier(1), Operande.opDirect(variable)));
         else
             Prog.ajouter(Inst.creation2(Operation.ADD, Operande.creationOpEntier(-1), Operande.opDirect(variable)));
-
         Prog.ajouter(Inst.creation1(Operation.BRA, Operande.creationOpEtiq(debutEti)));
         Prog.ajouter(finEti);
         memoire.free(fin);
@@ -383,30 +388,6 @@ public class Generation {
         Type type = emplacement_Variable(a, registre);
         if (type.getNature() != NatureType.Array)
             Prog.ajouter(Inst.creation2(Operation.LOAD, Operande.opDirect(registre), Operande.opDirect(registre)));
-        /*switch (a.getNoeud()) {
-            case Ident:
-                Prog.ajouter(Inst.creation2(Operation.LEA,
-                        a.getDecor().getDefn().getOperande(),
-                        Operande.opDirect(registre)));
-                return a.getDecor().getType();
-            case Index:
-                Type type = gene_Lecture_Tableau(a.getFils1(), registre);
-                int size = sizeTableau(type.getElement());
-                Registre index = memoire.get();
-                Operande operande = gene_Exp(a.getFils2(), index);
-                if (operande.getNature() != NatureOperande.OpDirect)
-                    Prog.ajouter(Inst.creation2(Operation.LOAD, operande, Operande.opDirect(index)));
-                Prog.ajouter(Inst.creation2(Operation.SUB, Operande.creationOpEntier(type.getIndice().getBorneInf()), Operande.opDirect(index)));
-                Prog.ajouter(Inst.creation2(Operation.MUL, Operande.creationOpEntier(size), Operande.opDirect(index)));
-                if (type.getElement().getNature() == NatureType.Array)
-                    Prog.ajouter(Inst.creation2(Operation.LEA, Operande.creationOpIndexe(0, registre, index), Operande.opDirect(registre)));
-                else Prog.ajouter(Inst.creation2(Operation.LOAD,
-                        Operande.creationOpIndexe(0, registre, index), Operande.opDirect(registre)));
-                memoire.free(index);
-                return type.getElement();
-            default:
-                throw new ErreurInterneVerif("Place : " + a.getFils1().getNumLigne());
-        }*/
     }
 
     private static Operande gene_expression_Unitaire(Arbre a, Registre registre) {
