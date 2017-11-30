@@ -7,17 +7,16 @@ import fr.esisar.compilation.global.src.Type;
 import fr.esisar.compilation.global.src3.*;
 import fr.esisar.compilation.verif.ErreurInterneVerif;
 
+import java.net.PortUnreachableException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Generation {
 
     private static Memoire memoire;
-    public static int numberEti = 0;
 
     static Prog coder(Arbre a) {
         memoire = new Memoire();
-        numberEti = 0;
         Prog.ajouterGrosComment("Programme genere par JCasc");
 
         long size = gene_LISTE_DECL(a.getFils1(), 1);
@@ -150,8 +149,8 @@ public class Generation {
     }
 
     private static void gene_Test_Affect_Interval(Type type, Registre registre) {
-        Etiq erreur = Etiq.nouvelle("eti" + numberEti++);
-        Etiq fin = Etiq.nouvelle("eti" + numberEti++);
+        Etiq erreur = Etiq.nouvelle("eti" );
+        Etiq fin = Etiq.nouvelle("eti" );
         Prog.ajouter(Inst.creation2(Operation.CMP, Operande.creationOpEntier(type.getBorneInf()), Operande.opDirect(registre)));
         Prog.ajouter(Inst.creation1(Operation.BLT, Operande.creationOpEtiq(erreur)));
         Prog.ajouter(Inst.creation2(Operation.CMP, Operande.creationOpEntier(type.getBorneSup()), Operande.opDirect(registre)));
@@ -192,8 +191,8 @@ public class Generation {
                 return a.getDecor().getType();
             case Index:
                 Type type = emplacement_Variable(a.getFils1(), registre);
-                Etiq erreur = Etiq.nouvelle("eti" + numberEti++);
-                Etiq fin = Etiq.nouvelle("eti" + numberEti++);
+                Etiq erreur = Etiq.nouvelle("eti" );
+                Etiq fin = Etiq.nouvelle("eti" );
                 int size = (int) sizeTableau(type.getElement());
                 Registre index = memoire.get(registre);
                 Operande operande = gene_Exp(a.getFils2(), index);
@@ -221,8 +220,8 @@ public class Generation {
     private static void gene_POUR(Arbre a) {
         Registre variable = memoire.get();
         Registre fin = memoire.get(variable);
-        Etiq debutEti = Etiq.nouvelle("eti" + numberEti++);
-        Etiq finEti = Etiq.nouvelle("eti" + numberEti++);
+        Etiq debutEti = Etiq.nouvelle("eti" );
+        Etiq finEti = Etiq.nouvelle("eti" );
         Operande operande = gene_Exp(a.getFils1().getFils2(), variable);
         if (operande.getNature() != NatureOperande.OpDirect)
             Prog.ajouter(Inst.creation2(Operation.LOAD, operande, Operande.opDirect(variable)));
@@ -249,8 +248,8 @@ public class Generation {
     }
 
     private static void gene_TANTQUE(Arbre a) {
-        Etiq debut = Etiq.nouvelle("eti" + numberEti++);
-        Etiq fin = Etiq.nouvelle("eti" + numberEti++);
+        Etiq debut = Etiq.nouvelle("eti" );
+        Etiq fin = Etiq.nouvelle("eti" );
         Registre registre = memoire.get();
         Prog.ajouter(debut);
         Operande operande = gene_Exp(a.getFils1(), registre);
@@ -265,8 +264,8 @@ public class Generation {
     }
 
     private static void gene_SI(Arbre a) {
-        Etiq els = Etiq.nouvelle("eti" + numberEti++);
-        Etiq fin = Etiq.nouvelle("eti" + numberEti++);
+        Etiq els = Etiq.nouvelle("eti" );
+        Etiq fin = Etiq.nouvelle("eti" );
         Registre registre = memoire.get();
         Operande operande = gene_Exp(a.getFils1(), registre);
         if (operande.getNature() != NatureOperande.OpDirect)
@@ -420,8 +419,8 @@ public class Generation {
 
     private static Operande gene_expression_Logique(Arbre a, Registre registre) {
         Operande operande1 = gene_Exp(a.getFils1(), registre);
-        Etiq autre = Etiq.nouvelle("eti" + numberEti++);
-        Etiq fin = Etiq.nouvelle("eti" + numberEti++);
+        Etiq autre = Etiq.nouvelle("eti" );
+        Etiq fin = Etiq.nouvelle("eti" );
         if (operande1.getNature() != NatureOperande.OpDirect)
             Prog.ajouter(Inst.creation2(Operation.LOAD, operande1, Operande.opDirect(registre)));
         Prog.ajouter(Inst.creation2(Operation.CMP, Operande.creationOpEntier(0), Operande.opDirect(registre)));
@@ -522,10 +521,11 @@ public class Generation {
                 Prog.ajouter(Inst.creation2(Operation.DIV, operande1, operande2));
             }
         }
+        gene_Test_Débordement();
     }
 
     private static void gene_Test_Division_0(Operande operande1, Operande compare) {
-        Etiq fin = Etiq.nouvelle("eti" + numberEti++);
+        Etiq fin = Etiq.nouvelle("eti" );
         Registre registre = null;
         if (operande1.getNature() != NatureOperande.OpDirect) {
             registre = memoire.get();
@@ -540,6 +540,17 @@ public class Generation {
         Prog.ajouter(fin);
         if (registre != null)
             memoire.free(registre);
+    }
 
+    private static void gene_Test_Débordement(){
+        Etiq fin = Etiq.nouvelle("eti" );
+        Etiq erreur = Etiq.nouvelle("eti" );
+        Prog.ajouter(Inst.creation1(Operation.BOV, Operande.creationOpEtiq(erreur)));
+        Prog.ajouter(Inst.creation1(Operation.BRA, Operande.creationOpEtiq(fin)));
+        Prog.ajouter(erreur);
+        Prog.ajouter(Inst.creation1(Operation.WSTR, Operande.creationOpChaine("E04 Erreur debordement arithmetique")));
+        Prog.ajouter(Inst.creation0(Operation.WNL));
+        Prog.ajouter(Inst.creation0(Operation.HALT));
+        Prog.ajouter(fin);
     }
 }
