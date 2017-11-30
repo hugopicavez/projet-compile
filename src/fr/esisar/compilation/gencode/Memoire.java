@@ -59,6 +59,18 @@ public class Memoire {
         return null;
     }
 
+    public void reserveRegistre(Registre r){
+        int indice = Arrays.binarySearch(Registre.values(), r);
+        if (this.registres[indice]) {
+            pile.add(false);
+            testePile(1);
+            Prog.ajouter(Inst.creation1(Operation.PUSH, Operande.opDirect(r)));
+        }
+        else
+            pile.add(true);
+        this.registres[indice] = true;
+    }
+
     private boolean content(Registre registre, Registre[] needs){
         for(int i = 0; i < needs.length; i++)
             if(registre.equals(needs[i]))

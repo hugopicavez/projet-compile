@@ -62,7 +62,7 @@ public class Generation {
                 break;
             case ListeIdent:
                 index = gene_LISTE_IDF(a.getFils1(), index);
-                a.getFils2().getDecor().getDefn().setOperande(Operande.creationOpIndirect((int)index, Registre.GB));
+                a.getFils2().getDecor().getDefn().setOperande(Operande.creationOpIndirect((int) index, Registre.GB));
                 Type type = a.getFils2().getDecor().getDefn().getType();
                 if (type.getNature() != NatureType.Array) {
                     index++;
@@ -76,7 +76,7 @@ public class Generation {
     private static long sizeTableau(Type type) {
         long size = 1;
         while (type.getNature() == NatureType.Array) {
-            size = ((long)type.getIndice().getBorneSup() - (long)type.getIndice().getBorneInf() + 1l) * size;
+            size = ((long) type.getIndice().getBorneSup() - (long) type.getIndice().getBorneInf() + 1l) * size;
             type = type.getElement();
         }
         return size;
@@ -170,7 +170,7 @@ public class Generation {
         Registre result = memoire.get();
         Registre value = memoire.get(result);
         Registre temp = memoire.get(result, value);
-        int size = (int)sizeTableau(emplacement_Variable(a.getFils1(), result));
+        int size = (int) sizeTableau(emplacement_Variable(a.getFils1(), result));
         emplacement_Variable(a.getFils2(), value);
         for (int i = 0; i < size; i++) {
             Prog.ajouter(Inst.creation2(Operation.LOAD, Operande.creationOpIndirect(i, value), Operande.opDirect(temp)));
@@ -194,7 +194,7 @@ public class Generation {
                 Type type = emplacement_Variable(a.getFils1(), registre);
                 Etiq erreur = Etiq.nouvelle("eti" + numberEti++);
                 Etiq fin = Etiq.nouvelle("eti" + numberEti++);
-                int size = (int)sizeTableau(type.getElement());
+                int size = (int) sizeTableau(type.getElement());
                 Registre index = memoire.get(registre);
                 Operande operande = gene_Exp(a.getFils2(), index);
                 if (operande.getNature() != NatureOperande.OpDirect)
@@ -283,7 +283,7 @@ public class Generation {
 
     private static void gene_ECRITURE(Arbre a) {
         if (gene_ECRICRE_GENE(a.getFils1()))
-            memoire.pop(Registre.R1);
+            memoire.free(Registre.R1);
     }
 
     private static boolean gene_ECRICRE_GENE(Arbre a) {
@@ -294,9 +294,9 @@ public class Generation {
         if (exp.getDecor().getType() == Type.String)
             Prog.ajouter(Inst.creation1(Operation.WSTR, Operande.creationOpChaine(exp.getChaine())));
         else {
-            if (!r && !memoire.isFree(Registre.R1)) {
+            if (!r) {
                 r = true;
-                memoire.push(Registre.R1);
+                memoire.reserveRegistre(Registre.R1);
             }
             Operande operande = gene_Exp(exp, Registre.R1);
             if (operande.getNature() != NatureOperande.OpDirect)
@@ -311,10 +311,9 @@ public class Generation {
 
     private static void gene_LECTURE(Arbre a) {
         boolean alreadyUse = false;
-        if (!memoire.isFree(Registre.R1)) {
-            alreadyUse = true;
-            memoire.push(Registre.R1);
-        }
+        alreadyUse = true;
+        memoire.reserveRegistre(Registre.R1);
+
         if (a.getFils1().getDecor().getType().getNature() == NatureType.Real)
             Prog.ajouter(Inst.creation0(Operation.RFLOAT));
         else
@@ -324,7 +323,7 @@ public class Generation {
         Prog.ajouter(Inst.creation2(Operation.STORE, Operande.R1, Operande.creationOpIndirect(0, registre)));
         memoire.free(registre);
         if (alreadyUse)
-            memoire.pop(Registre.R1);
+            memoire.free(Registre.R1);
     }
 
     private static Operande gene_Exp(Arbre a, Registre registre) {
