@@ -2,272 +2,495 @@
 ; -----------                      Programme genere par JCasc-----------
 ; ----------------------------------------------------------------------
    TSTO #12 
-   BOV eti0.1 
-   BRA eti1.2 
-eti0.1: 
+   BOV eti.1 
+   BRA eti.2 
+eti.1: 
    WSTR "E03 erreur debordement de la pile" 
    WNL 
    HALT 
-eti1.2: 
+eti.2: 
    ADDSP #12 
+   WSTR "Doit afficher beaucoup de fois 32 puis la valeur entree. (Avec des registres indisponibles)" 
    LOAD #1, R0 
    STORE R0, 11(GB) 
    LOAD #0, R0 
    LOAD #1, R1 
-eti2.3: 
+eti.3: 
    STORE R0, 1(GB) 
    CMP R0, R1 
-   BLT eti3.4 
+   BLT eti.4 
    LOAD #1, R2 
    LOAD #2, R3 
-eti4.5: 
+eti.5: 
    STORE R2, 2(GB) 
    CMP R2, R3 
-   BLT eti5.6 
+   BLT eti.6 
    LOAD #0, R4 
    LOAD #4, R5 
-eti6.7: 
+eti.7: 
    STORE R4, 3(GB) 
    CMP R4, R5 
-   BLT eti7.8 
+   BLT eti.8 
    LOAD #1, R6 
    LOAD #2, R7 
-eti8.9: 
+eti.9: 
    STORE R6, 4(GB) 
    CMP R6, R7 
-   BLT eti9.10 
+   BLT eti.10 
    LOAD #5, R8 
    LOAD #5, R9 
-eti10.11: 
+eti.11: 
    STORE R8, 5(GB) 
    CMP R8, R9 
-   BLT eti11.12 
+   BLT eti.12 
    LOAD #0, R10 
    LOAD #1, R11 
-eti12.13: 
+eti.13: 
    STORE R10, 6(GB) 
    CMP R10, R11 
-   BLT eti13.14 
+   BLT eti.14 
    LOAD #0, R12 
    LOAD #1, R13 
-eti14.15: 
+eti.15: 
    STORE R12, 7(GB) 
    CMP R12, R13 
-   BLT eti15.16 
+   BLT eti.16 
    LOAD #0, R14 
    LOAD #1, R15 
-eti16.17: 
+eti.17: 
    STORE R14, 8(GB) 
    CMP R14, R15 
-   BLT eti17.18 
+   BLT eti.18 
    TSTO #1 
-   BOV eti18.19 
-   BRA eti19.20 
-eti18.19: 
+   BOV eti.19 
+   BRA eti.20 
+eti.19: 
    WSTR "E03 erreur debordement de la pile" 
    WNL 
    HALT 
-eti19.20: 
+eti.20: 
    PUSH R0 
    TSTO #1 
-   BOV eti20.21 
-   BRA eti21.22 
-eti20.21: 
+   BOV eti.21 
+   BRA eti.22 
+eti.21: 
    WSTR "E03 erreur debordement de la pile" 
    WNL 
    HALT 
-eti21.22: 
+eti.22: 
    PUSH R1 
    LOAD #0, R0 
    LOAD #1, R1 
-eti22.23: 
+eti.23: 
    STORE R0, 9(GB) 
    CMP R0, R1 
-   BLT eti23.24 
+   BLT eti.24 
    TSTO #1 
-   BOV eti26.27 
-   BRA eti27.28 
-eti26.27: 
+   BOV eti.27 
+   BRA eti.28 
+eti.27: 
    WSTR "E03 erreur debordement de la pile" 
    WNL 
    HALT 
-eti27.28: 
+eti.28: 
    PUSH R0 
    LOAD 11(GB), R0 
    CMP #0, R0 
-   BEQ eti24.25 
+   BEQ eti.25 
    WNL 
    WSTR "Entrer entier" 
    TSTO #1 
-   BOV eti28.29 
-   BRA eti29.30 
-eti28.29: 
+   BOV eti.29 
+   BRA eti.30 
+eti.29: 
    WSTR "E03 erreur debordement de la pile" 
    WNL 
    HALT 
-eti29.30: 
+eti.30: 
    PUSH R1 
    RINT 
    TSTO #1 
-   BOV eti30.31 
-   BRA eti31.32 
-eti30.31: 
+   BOV eti.31 
+   BRA eti.32 
+eti.31: 
    WSTR "E03 erreur debordement de la pile" 
    WNL 
    HALT 
-eti31.32: 
+eti.32: 
    PUSH R0 
    LEA 10(GB), R0 
    STORE R1, 0(R0) 
    POP R0 
    POP R1 
    TSTO #1 
-   BOV eti32.33 
-   BRA eti33.34 
-eti32.33: 
+   BOV eti.33 
+   BRA eti.34 
+eti.33: 
    WSTR "E03 erreur debordement de la pile" 
    WNL 
    HALT 
-eti33.34: 
+eti.34: 
    PUSH R0 
    LOAD #0, R0 
    STORE R0, 11(GB) 
    POP R0 
-   BRA eti25.26 
-eti24.25: 
-eti25.26: 
+   BRA eti.26 
+eti.25: 
+eti.26: 
    POP R0 
    TSTO #1 
-   BOV eti34.35 
-   BRA eti35.36 
-eti34.35: 
+   BOV eti.35 
+   BRA eti.36 
+eti.35: 
    WSTR "E03 erreur debordement de la pile" 
    WNL 
    HALT 
-eti35.36: 
+eti.36: 
    PUSH R1 
    LOAD #1, R1 
    ADD #1, R1 
-   ADDSP #1 
-   STORE R1, 12(GB) 
-   LOAD #1, R1 
-   ADD #1, R1 
-   ADD 12(GB), R1 
-   SUBSP #1 
-   ADDSP #1 
-   STORE R1, 12(GB) 
-   LOAD #1, R1 
-   ADD #1, R1 
+   BOV eti.38 
+   BRA eti.37 
+eti.38: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.37: 
    ADDSP #1 
    STORE R1, 13(GB) 
    LOAD #1, R1 
    ADD #1, R1 
+   BOV eti.40 
+   BRA eti.39 
+eti.40: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.39: 
    ADD 13(GB), R1 
-   SUBSP #1 
-   ADD 12(GB), R1 
-   SUBSP #1 
-   ADDSP #1 
-   STORE R1, 12(GB) 
-   LOAD #1, R1 
-   ADD #1, R1 
-   ADDSP #1 
-   STORE R1, 13(GB) 
-   LOAD #1, R1 
-   ADD #1, R1 
-   ADD 13(GB), R1 
+   BOV eti.42 
+   BRA eti.41 
+eti.42: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.41: 
    SUBSP #1 
    ADDSP #1 
    STORE R1, 13(GB) 
    LOAD #1, R1 
    ADD #1, R1 
+   BOV eti.44 
+   BRA eti.43 
+eti.44: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.43: 
    ADDSP #1 
    STORE R1, 14(GB) 
    LOAD #1, R1 
    ADD #1, R1 
+   BOV eti.46 
+   BRA eti.45 
+eti.46: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.45: 
    ADD 14(GB), R1 
+   BOV eti.48 
+   BRA eti.47 
+eti.48: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.47: 
    SUBSP #1 
    ADD 13(GB), R1 
+   BOV eti.50 
+   BRA eti.49 
+eti.50: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.49: 
    SUBSP #1 
-   ADD 12(GB), R1 
-   SUBSP #1 
-   ADDSP #1 
-   STORE R1, 12(GB) 
-   LOAD #1, R1 
-   ADD #1, R1 
    ADDSP #1 
    STORE R1, 13(GB) 
    LOAD #1, R1 
    ADD #1, R1 
-   ADD 13(GB), R1 
-   SUBSP #1 
-   ADDSP #1 
-   STORE R1, 13(GB) 
-   LOAD #1, R1 
-   ADD #1, R1 
+   BOV eti.52 
+   BRA eti.51 
+eti.52: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.51: 
    ADDSP #1 
    STORE R1, 14(GB) 
    LOAD #1, R1 
    ADD #1, R1 
+   BOV eti.54 
+   BRA eti.53 
+eti.54: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.53: 
    ADD 14(GB), R1 
-   SUBSP #1 
-   ADD 13(GB), R1 
-   SUBSP #1 
-   ADDSP #1 
-   STORE R1, 13(GB) 
-   LOAD #1, R1 
-   ADD #1, R1 
-   ADDSP #1 
-   STORE R1, 14(GB) 
-   LOAD #1, R1 
-   ADD #1, R1 
-   ADD 14(GB), R1 
+   BOV eti.56 
+   BRA eti.55 
+eti.56: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.55: 
    SUBSP #1 
    ADDSP #1 
    STORE R1, 14(GB) 
    LOAD #1, R1 
    ADD #1, R1 
+   BOV eti.58 
+   BRA eti.57 
+eti.58: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.57: 
    ADDSP #1 
    STORE R1, 15(GB) 
    LOAD #1, R1 
    ADD #1, R1 
+   BOV eti.60 
+   BRA eti.59 
+eti.60: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.59: 
    ADD 15(GB), R1 
+   BOV eti.62 
+   BRA eti.61 
+eti.62: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.61: 
    SUBSP #1 
    ADD 14(GB), R1 
+   BOV eti.64 
+   BRA eti.63 
+eti.64: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.63: 
    SUBSP #1 
    ADD 13(GB), R1 
+   BOV eti.66 
+   BRA eti.65 
+eti.66: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.65: 
    SUBSP #1 
-   ADD 12(GB), R1 
+   ADDSP #1 
+   STORE R1, 13(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   BOV eti.68 
+   BRA eti.67 
+eti.68: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.67: 
+   ADDSP #1 
+   STORE R1, 14(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   BOV eti.70 
+   BRA eti.69 
+eti.70: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.69: 
+   ADD 14(GB), R1 
+   BOV eti.72 
+   BRA eti.71 
+eti.72: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.71: 
+   SUBSP #1 
+   ADDSP #1 
+   STORE R1, 14(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   BOV eti.74 
+   BRA eti.73 
+eti.74: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.73: 
+   ADDSP #1 
+   STORE R1, 15(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   BOV eti.76 
+   BRA eti.75 
+eti.76: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.75: 
+   ADD 15(GB), R1 
+   BOV eti.78 
+   BRA eti.77 
+eti.78: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.77: 
+   SUBSP #1 
+   ADD 14(GB), R1 
+   BOV eti.80 
+   BRA eti.79 
+eti.80: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.79: 
+   SUBSP #1 
+   ADDSP #1 
+   STORE R1, 14(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   BOV eti.82 
+   BRA eti.81 
+eti.82: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.81: 
+   ADDSP #1 
+   STORE R1, 15(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   BOV eti.84 
+   BRA eti.83 
+eti.84: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.83: 
+   ADD 15(GB), R1 
+   BOV eti.86 
+   BRA eti.85 
+eti.86: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.85: 
+   SUBSP #1 
+   ADDSP #1 
+   STORE R1, 15(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   BOV eti.88 
+   BRA eti.87 
+eti.88: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.87: 
+   ADDSP #1 
+   STORE R1, 16(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   BOV eti.90 
+   BRA eti.89 
+eti.90: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.89: 
+   ADD 16(GB), R1 
+   BOV eti.92 
+   BRA eti.91 
+eti.92: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.91: 
+   SUBSP #1 
+   ADD 15(GB), R1 
+   BOV eti.94 
+   BRA eti.93 
+eti.94: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.93: 
+   SUBSP #1 
+   ADD 14(GB), R1 
+   BOV eti.96 
+   BRA eti.95 
+eti.96: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.95: 
+   SUBSP #1 
+   ADD 13(GB), R1 
+   BOV eti.98 
+   BRA eti.97 
+eti.98: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.97: 
    SUBSP #1 
    WINT 
    POP R1 
+   WNL 
    ADD #1, R0 
-   BRA eti22.23 
-eti23.24: 
+   BRA eti.23 
+eti.24: 
    POP R1 
    POP R0 
    ADD #1, R14 
-   BRA eti16.17 
-eti17.18: 
+   BRA eti.17 
+eti.18: 
    ADD #1, R12 
-   BRA eti14.15 
-eti15.16: 
+   BRA eti.15 
+eti.16: 
    ADD #1, R10 
-   BRA eti12.13 
-eti13.14: 
+   BRA eti.13 
+eti.14: 
    ADD #1, R8 
-   BRA eti10.11 
-eti11.12: 
+   BRA eti.11 
+eti.12: 
    ADD #1, R6 
-   BRA eti8.9 
-eti9.10: 
+   BRA eti.9 
+eti.10: 
    ADD #1, R4 
-   BRA eti6.7 
-eti7.8: 
+   BRA eti.7 
+eti.8: 
    ADD #1, R2 
-   BRA eti4.5 
-eti5.6: 
+   BRA eti.5 
+eti.6: 
    ADD #1, R0 
-   BRA eti2.3 
-eti3.4: 
+   BRA eti.3 
+eti.4: 
+   WSTR "valeur entree :" 
+   LOAD 10(GB), R1 
+   WINT 
+   WNL 
    SUBSP #12 
    HALT 

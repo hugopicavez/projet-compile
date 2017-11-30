@@ -10,18 +10,26 @@ eti.1:
    HALT 
 eti.2: 
    ADDSP #2 
-   WSTR "Test erreur affecter interval inf" 
+   WSTR "Test erreur debordement integer" 
    WNL 
-   LOAD #9, R0 
-   CMP #1, R0 
-   BLT eti.3 
-   CMP #8, R0 
-   BLE eti.4 
+   LOAD #2147483647, R0 
+   ADD #1, R0 
+   BOV eti.4 
+   BRA eti.3 
+eti.4: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
 eti.3: 
+   CMP #-2147483647, R0 
+   BLT eti.5 
+   CMP #2147483647, R0 
+   BLE eti.6 
+eti.5: 
    WSTR "E02 interval incorrect" 
    WNL 
    HALT 
-eti.4: 
+eti.6: 
    STORE R0, 1(GB) 
    SUBSP #2 
    HALT 

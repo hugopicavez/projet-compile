@@ -2,35 +2,35 @@
 ; -----------                      Programme genere par JCasc-----------
 ; ----------------------------------------------------------------------
    TSTO #5 
-   BOV eti0.1 
-   BRA eti1.2 
-eti0.1: 
+   BOV eti.1 
+   BRA eti.2 
+eti.1: 
    WSTR "E03 erreur debordement de la pile" 
    WNL 
    HALT 
-eti1.2: 
+eti.2: 
    ADDSP #5 
    LOAD #5, R0 
    CMP #-2147483647, R0 
-   BLT eti2.3 
+   BLT eti.3 
    CMP #2147483647, R0 
-   BLE eti3.4 
-eti2.3: 
+   BLE eti.4 
+eti.3: 
    WSTR "E02 interval incorrect" 
    WNL 
    HALT 
-eti3.4: 
+eti.4: 
    STORE R0, 1(GB) 
    LOAD #2, R0 
    CMP #-2147483647, R0 
-   BLT eti4.5 
+   BLT eti.5 
    CMP #2147483647, R0 
-   BLE eti5.6 
-eti4.5: 
+   BLE eti.6 
+eti.5: 
    WSTR "E02 interval incorrect" 
    WNL 
    HALT 
-eti5.6: 
+eti.6: 
    STORE R0, 2(GB) 
    LOAD #1.5, R0 
    STORE R0, 3(GB) 
@@ -39,75 +39,138 @@ eti5.6:
    WSTR "devrait etre 3: " 
    LOAD #1, R1 
    ADD 2(GB), R1 
+   BOV eti.8 
+   BRA eti.7 
+eti.8: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.7: 
    WINT 
    WSTR " (add entier )" 
    WNL 
    WSTR "devrait etre -1: " 
    LOAD #1, R1 
    SUB #2, R1 
+   BOV eti.10 
+   BRA eti.9 
+eti.10: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.9: 
    WINT 
    WSTR " (sub entier " 
    WNL 
    WSTR "devrait etre 10: " 
    LOAD 2(GB), R1 
    MUL 1(GB), R1 
+   BOV eti.12 
+   BRA eti.11 
+eti.12: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.11: 
    WINT 
    WSTR " (mult entier " 
    WNL 
    WSTR "devrait etre 15 : " 
    LOAD #31, R1 
-   LOAD 2(GB), R1 
-   CMP #0, R1 
-   BNE eti6.7 
+   LOAD 2(GB), R2 
+   CMP #0, R2 
+   BNE eti.13 
    WSTR "E00 Division par zero" 
    WNL 
    HALT 
-eti6.7: 
+eti.13: 
    DIV 2(GB), R1 
+   BOV eti.15 
+   BRA eti.14 
+eti.15: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.14: 
    WINT 
    WSTR " (div entier " 
    WNL 
    WSTR "devrait etre 1 : " 
    LOAD #31, R1 
-   LOAD #2, R1 
-   CMP #0, R1 
-   BNE eti7.8 
+   LOAD #2, R2 
+   CMP #0, R2 
+   BNE eti.16 
    WSTR "E00 Division par zero" 
    WNL 
    HALT 
-eti7.8: 
+eti.16: 
    MOD #2, R1 
+   BOV eti.18 
+   BRA eti.17 
+eti.18: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.17: 
    WINT 
    WSTR " (reste entier " 
    WNL 
    WSTR "devrait etre 4 : " 
    LOAD #1.5, R1 
    ADD #2.5, R1 
+   BOV eti.20 
+   BRA eti.19 
+eti.20: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.19: 
    WFLOAT 
    WSTR " (add float " 
    WNL 
    WSTR "devrait etre -1 : " 
    LOAD #1.5, R1 
    SUB 4(GB), R1 
+   BOV eti.22 
+   BRA eti.21 
+eti.22: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.21: 
    WFLOAT 
    WSTR " (sub float " 
    WNL 
    WSTR "devrait etre 3.75 : " 
    LOAD 3(GB), R1 
    MUL 4(GB), R1 
+   BOV eti.24 
+   BRA eti.23 
+eti.24: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.23: 
    WFLOAT 
    WSTR " (mult float " 
    WNL 
    WSTR "devrait etre 5.5: " 
    LOAD #18.15, R1 
-   LOAD #3.3, R1 
-   CMP #0.0, R1 
-   BNE eti8.9 
+   LOAD #3.3, R2 
+   CMP #0.0, R2 
+   BNE eti.25 
    WSTR "E00 Division par zero" 
    WNL 
    HALT 
-eti8.9: 
+eti.25: 
    DIV #3.3, R1 
+   BOV eti.27 
+   BRA eti.26 
+eti.27: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.26: 
    WFLOAT 
    WSTR " (div float " 
    WNL 
@@ -115,31 +178,59 @@ eti8.9:
    LOAD 3(GB), R1 
    FLOAT 2(GB), R0 
    ADD R0, R1 
+   BOV eti.29 
+   BRA eti.28 
+eti.29: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.28: 
    WFLOAT 
    WSTR " (add float avec converssion " 
    WNL 
    WSTR "devrait etre -0.5 : " 
    LOAD #1.5, R1 
    SUB #2.0, R1 
+   BOV eti.31 
+   BRA eti.30 
+eti.31: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.30: 
    WFLOAT 
    WSTR " (sub float avec converssion " 
    WNL 
    WSTR "devrait etre 3.0 : " 
    LOAD #1.5, R1 
    MUL #2.0, R1 
+   BOV eti.33 
+   BRA eti.32 
+eti.33: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.32: 
    WFLOAT 
    WSTR " (mult float avec converssion " 
    WNL 
    WSTR "devrait etre 1.57: " 
    LOAD #15.7, R1 
-   LOAD #10.0, R1 
-   CMP #0.0, R1 
-   BNE eti9.10 
+   LOAD #10.0, R2 
+   CMP #0.0, R2 
+   BNE eti.34 
    WSTR "E00 Division par zero" 
    WNL 
    HALT 
-eti9.10: 
+eti.34: 
    DIV #10.0, R1 
+   BOV eti.36 
+   BRA eti.35 
+eti.36: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.35: 
    WFLOAT 
    WSTR " (div float avec converssion " 
    WNL 
@@ -167,58 +258,191 @@ eti9.10:
    LOAD #1.0, R1 
    LOAD #2, R0 
    MUL #3, R0 
+   BOV eti.38 
+   BRA eti.37 
+eti.38: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.37: 
    FLOAT R0, R0 
-   LOAD #4.0, R2 
-   CMP #0.0, R2 
-   BNE eti10.11 
+   LOAD #4.0, R3 
+   CMP #0.0, R3 
+   BNE eti.39 
    WSTR "E00 Division par zero" 
    WNL 
    HALT 
-eti10.11: 
+eti.39: 
    DIV #4.0, R0 
+   BOV eti.41 
+   BRA eti.40 
+eti.41: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.40: 
    ADD R0, R1 
+   BOV eti.43 
+   BRA eti.42 
+eti.43: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.42: 
    ADD #1.1, R1 
+   BOV eti.45 
+   BRA eti.44 
+eti.45: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.44: 
    LOAD #2.2, R0 
    MUL #3.3, R0 
-   LOAD #4.4, R2 
-   CMP #0.0, R2 
-   BNE eti11.12 
+   BOV eti.47 
+   BRA eti.46 
+eti.47: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.46: 
+   LOAD #4.4, R3 
+   CMP #0.0, R3 
+   BNE eti.48 
    WSTR "E00 Division par zero" 
    WNL 
    HALT 
-eti11.12: 
+eti.48: 
    DIV #4.4, R0 
+   BOV eti.50 
+   BRA eti.49 
+eti.50: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.49: 
    SUB R0, R1 
+   BOV eti.52 
+   BRA eti.51 
+eti.52: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.51: 
    ADD #1.0, R1 
+   BOV eti.54 
+   BRA eti.53 
+eti.54: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.53: 
    ADD #1.1, R1 
+   BOV eti.56 
+   BRA eti.55 
+eti.56: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.55: 
    LOAD #2.2, R0 
    MUL #3.0, R0 
-   LOAD #4.0, R2 
-   CMP #0.0, R2 
-   BNE eti12.13 
+   BOV eti.58 
+   BRA eti.57 
+eti.58: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.57: 
+   LOAD #4.0, R3 
+   CMP #0.0, R3 
+   BNE eti.59 
    WSTR "E00 Division par zero" 
    WNL 
    HALT 
-eti12.13: 
+eti.59: 
    DIV #4.0, R0 
+   BOV eti.61 
+   BRA eti.60 
+eti.61: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.60: 
    SUB R0, R1 
+   BOV eti.63 
+   BRA eti.62 
+eti.63: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.62: 
    ADD #1.0, R1 
+   BOV eti.65 
+   BRA eti.64 
+eti.65: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.64: 
    LOAD #2, R0 
    MUL #3, R0 
+   BOV eti.67 
+   BRA eti.66 
+eti.67: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.66: 
    FLOAT R0, R0 
-   LOAD #4.0, R2 
-   CMP #0.0, R2 
-   BNE eti13.14 
+   LOAD #4.0, R3 
+   CMP #0.0, R3 
+   BNE eti.68 
    WSTR "E00 Division par zero" 
    WNL 
    HALT 
-eti13.14: 
+eti.68: 
    DIV #4.0, R0 
+   BOV eti.70 
+   BRA eti.69 
+eti.70: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.69: 
    ADD R0, R1 
+   BOV eti.72 
+   BRA eti.71 
+eti.72: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.71: 
    ADD #1.1, R1 
+   BOV eti.74 
+   BRA eti.73 
+eti.74: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.73: 
    LOAD #2.2, R0 
    MUL #3.3, R0 
+   BOV eti.76 
+   BRA eti.75 
+eti.76: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.75: 
    SUB R0, R1 
+   BOV eti.78 
+   BRA eti.77 
+eti.78: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.77: 
    WFLOAT 
    WNL 
    SUBSP #5 

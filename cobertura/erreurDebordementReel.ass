@@ -1,0 +1,75 @@
+; ----------------------------------------------------------------------
+; -----------                      Programme genere par JCasc-----------
+; ----------------------------------------------------------------------
+   TSTO #2 
+   BOV eti.1 
+   BRA eti.2 
+eti.1: 
+   WSTR "E03 erreur debordement de la pile" 
+   WNL 
+   HALT 
+eti.2: 
+   ADDSP #2 
+   WSTR "Test erreur debordement real" 
+   WNL 
+   LOAD #2147483647, R0 
+   MUL #2147483647, R0 
+   BOV eti.4 
+   BRA eti.3 
+eti.4: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.3: 
+   MUL #2147483647, R0 
+   BOV eti.6 
+   BRA eti.5 
+eti.6: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.5: 
+   MUL #2147483647, R0 
+   BOV eti.8 
+   BRA eti.7 
+eti.8: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.7: 
+   MUL #2147483647, R0 
+   BOV eti.10 
+   BRA eti.9 
+eti.10: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.9: 
+   MUL #2147483647, R0 
+   BOV eti.12 
+   BRA eti.11 
+eti.12: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.11: 
+   MUL #2147483647, R0 
+   BOV eti.14 
+   BRA eti.13 
+eti.14: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.13: 
+   MUL #2147483647, R0 
+   BOV eti.16 
+   BRA eti.15 
+eti.16: 
+   WSTR "E04 Erreur debordement arithmetique" 
+   WNL 
+   HALT 
+eti.15: 
+   FLOAT R0, R0 
+   STORE R0, 1(GB) 
+   SUBSP #2 
+   HALT 

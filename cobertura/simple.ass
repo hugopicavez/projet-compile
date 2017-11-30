@@ -2,13 +2,13 @@
 ; -----------                      Programme genere par JCasc-----------
 ; ----------------------------------------------------------------------
    TSTO #1 
-   BOV eti0.1 
-   BRA eti1.2 
-eti0.1: 
-   WSTR "erreur debordement" 
+   BOV eti.1 
+   BRA eti.2 
+eti.1: 
+   WSTR "E03 erreur debordement de la pile" 
    WNL 
    HALT 
-eti1.2: 
+eti.2: 
    ADDSP #1 
    SUBSP #1 
    HALT 

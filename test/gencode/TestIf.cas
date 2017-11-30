@@ -1,15 +1,15 @@
 program
 begin
    if (true) then
-        write("je suis passer dans le if");
+        write("Succes : if(true)");
    else
-        write("je suis passer au mauvais endroit");
+        write("Echec : if(true)");
    end;
 	new_line;
    if (false) then
-        write("je suis passer au mauvais endroit");
+        write("Echec : if(false)");
    else
-        write("je suis passer dans le else");
+        write("Succes : if(false) on passe dans le else");
    end;
    	new_line;
 end.

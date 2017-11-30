@@ -2,69 +2,70 @@
 ; -----------                      Programme genere par JCasc-----------
 ; ----------------------------------------------------------------------
    TSTO #2 
-   BOV eti0.1 
-   BRA eti1.2 
-eti0.1: 
-   WSTR "erreur debordement" 
+   BOV eti.1 
+   BRA eti.2 
+eti.1: 
+   WSTR "E03 erreur debordement de la pile" 
    WNL 
    HALT 
-eti1.2: 
+eti.2: 
    ADDSP #2 
+   WSTR "On incremente i de 0 a 5 puis on le decremente de 5 a -1 dans des for" 
    LOAD #0, R0 
    LOAD #5, R1 
-eti2.3: 
+eti.3: 
    STORE R0, 1(GB) 
    CMP R0, R1 
-   BLT eti3.4 
+   BLT eti.4 
    WSTR "(+) valeur de i: " 
    TSTO #1 
-   BOV eti4.5 
-   BRA eti5.6 
-eti4.5: 
-   WSTR "erreur debordement" 
+   BOV eti.5 
+   BRA eti.6 
+eti.5: 
+   WSTR "E03 erreur debordement de la pile" 
    WNL 
    HALT 
-eti5.6: 
+eti.6: 
    PUSH R1 
    LOAD 1(GB), R1 
    WINT 
    POP R1 
    WNL 
    ADD #1, R0 
-   BRA eti2.3 
-eti3.4: 
+   BRA eti.3 
+eti.4: 
    LOAD #5, R0 
    LOAD #-1, R1 
-eti6.7: 
+eti.7: 
    STORE R0, 1(GB) 
    CMP R0, R1 
-   BGT eti7.8 
+   BGT eti.8 
    WSTR "(-) valeur de i: " 
    TSTO #1 
-   BOV eti8.9 
-   BRA eti9.10 
-eti8.9: 
-   WSTR "erreur debordement" 
+   BOV eti.9 
+   BRA eti.10 
+eti.9: 
+   WSTR "E03 erreur debordement de la pile" 
    WNL 
    HALT 
-eti9.10: 
+eti.10: 
    PUSH R1 
    LOAD 1(GB), R1 
    WINT 
    POP R1 
    WNL 
    ADD #-1, R0 
-   BRA eti6.7 
-eti7.8: 
+   BRA eti.7 
+eti.8: 
    LOAD #6, R0 
    LOAD #1, R1 
-eti10.11: 
+eti.11: 
    STORE R0, 1(GB) 
    CMP R0, R1 
-   BLT eti11.12 
+   BLT eti.12 
    WSTR "erreur for i=6 to 1" 
    ADD #1, R0 
-   BRA eti10.11 
-eti11.12: 
+   BRA eti.11 
+eti.12: 
    SUBSP #2 
    HALT 

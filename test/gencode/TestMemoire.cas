@@ -2,6 +2,7 @@ program
 	a,b,c,d,e,f,g,h,j,z : integer;
 	bb : boolean; 
 begin
+	write("Doit afficher beaucoup de fois 32 puis la valeur entree. (Avec des registres indisponibles)");
 	bb := true; 
 	for a := 0 to 1 do
 		for b := 1 to 2 do
@@ -19,6 +20,7 @@ begin
 											bb := false ; 
 										end ;
 										write((((((1+1)+(1+1))+((1+1)+(1+1)))+(((1+1)+(1+1))+((1+1)+(1+1))))+((((1+1)+(1+1))+((1+1)+(1+1)))+(((1+1)+(1+1))+((1+1)+(1+1))))));
+						new_line;
 
 										
 									end;
@@ -30,4 +32,6 @@ begin
 			end;
 		end;
 	end;
+	write("valeur entree :", z);
+	new_line;
 end. 

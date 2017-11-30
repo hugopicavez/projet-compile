@@ -2,31 +2,31 @@
 ; -----------                      Programme genere par JCasc-----------
 ; ----------------------------------------------------------------------
    TSTO #1 
-   BOV eti0.1 
-   BRA eti1.2 
-eti0.1: 
+   BOV eti.1 
+   BRA eti.2 
+eti.1: 
    WSTR "E03 erreur debordement de la pile" 
    WNL 
    HALT 
-eti1.2: 
+eti.2: 
    ADDSP #1 
    LOAD #1, R0 
    CMP #0, R0 
-   BEQ eti2.3 
-   WSTR "je suis passer dans le if" 
-   BRA eti3.4 
-eti2.3: 
-   WSTR "je suis passer au mauvais endroit" 
-eti3.4: 
+   BEQ eti.3 
+   WSTR "Succes : if(true)" 
+   BRA eti.4 
+eti.3: 
+   WSTR "Echec : if(true)" 
+eti.4: 
    WNL 
    LOAD #0, R0 
    CMP #0, R0 
-   BEQ eti4.5 
-   WSTR "je suis passer au mauvais endroit" 
-   BRA eti5.6 
-eti4.5: 
-   WSTR "je suis passer dans le else" 
-eti5.6: 
+   BEQ eti.5 
+   WSTR "Echec : if(false)" 
+   BRA eti.6 
+eti.5: 
+   WSTR "Succes : if(false) on passe dans le else" 
+eti.6: 
    WNL 
    SUBSP #1 
    HALT 

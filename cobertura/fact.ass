@@ -2,74 +2,81 @@
 ; -----------                      Programme genere par JCasc-----------
 ; ----------------------------------------------------------------------
    TSTO #5 
-   BOV eti0.1 
-   BRA eti1.2 
-eti0.1: 
-   WSTR "erreur debordement" 
+   BOV eti.1 
+   BRA eti.2 
+eti.1: 
+   WSTR "E03 erreur debordement de la pile" 
    WNL 
    HALT 
-eti1.2: 
+eti.2: 
    ADDSP #5 
    LOAD #1, R0 
    CMP #-2147483647, R0 
-   BLT eti2.3 
+   BLT eti.3 
    CMP #2147483647, R0 
-   BLE eti3.4 
-eti2.3: 
-   WSTR "debordement de l'intervale" 
+   BLE eti.4 
+eti.3: 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
-eti3.4: 
+eti.4: 
    STORE R0, 3(GB) 
    LOAD #1, R0 
    CMP #-2147483647, R0 
-   BLT eti4.5 
+   BLT eti.5 
    CMP #2147483647, R0 
-   BLE eti5.6 
-eti4.5: 
-   WSTR "debordement de l'intervale" 
+   BLE eti.6 
+eti.5: 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
-eti5.6: 
+eti.6: 
    STORE R0, 1(GB) 
-eti6.7: 
+eti.7: 
    LOAD 3(GB), R0 
    CMP #10, R0 
    SLE R0 
    CMP #0, R0 
-   BEQ eti7.8 
+   BEQ eti.8 
    LOAD 3(GB), R1 
    CMP #-2147483647, R1 
-   BLT eti8.9 
+   BLT eti.9 
    CMP #2147483647, R1 
-   BLE eti9.10 
-eti8.9: 
-   WSTR "debordement de l'intervale" 
+   BLE eti.10 
+eti.9: 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
-eti9.10: 
+eti.10: 
    STORE R1, 4(GB) 
    LOAD #1, R1 
    LOAD 4(GB), R2 
-eti10.11: 
+eti.11: 
    STORE R1, 2(GB) 
    CMP R1, R2 
-   BLT eti11.12 
+   BLT eti.12 
    LOAD 1(GB), R3 
    MUL 2(GB), R3 
-   CMP #-2147483647, R3 
-   BLT eti12.13 
-   CMP #2147483647, R3 
-   BLE eti13.14 
-eti12.13: 
-   WSTR "debordement de l'intervale" 
+   BOV eti.14 
+   BRA eti.13 
+eti.14: 
+   WSTR "E04 Erreur debordement arithmetique" 
    WNL 
    HALT 
-eti13.14: 
+eti.13: 
+   CMP #-2147483647, R3 
+   BLT eti.15 
+   CMP #2147483647, R3 
+   BLE eti.16 
+eti.15: 
+   WSTR "E02 interval incorrect" 
+   WNL 
+   HALT 
+eti.16: 
    STORE R3, 1(GB) 
    ADD #1, R1 
-   BRA eti10.11 
-eti11.12: 
+   BRA eti.11 
+eti.12: 
    LOAD 3(GB), R1 
    WINT 
    WSTR "! = " 
@@ -78,28 +85,35 @@ eti11.12:
    WNL 
    LOAD 3(GB), R1 
    ADD #1, R1 
-   CMP #-2147483647, R1 
-   BLT eti14.15 
-   CMP #2147483647, R1 
-   BLE eti15.16 
-eti14.15: 
-   WSTR "debordement de l'intervale" 
+   BOV eti.18 
+   BRA eti.17 
+eti.18: 
+   WSTR "E04 Erreur debordement arithmetique" 
    WNL 
    HALT 
-eti15.16: 
+eti.17: 
+   CMP #-2147483647, R1 
+   BLT eti.19 
+   CMP #2147483647, R1 
+   BLE eti.20 
+eti.19: 
+   WSTR "E02 interval incorrect" 
+   WNL 
+   HALT 
+eti.20: 
    STORE R1, 3(GB) 
    LOAD #1, R1 
    CMP #-2147483647, R1 
-   BLT eti16.17 
+   BLT eti.21 
    CMP #2147483647, R1 
-   BLE eti17.18 
-eti16.17: 
-   WSTR "debordement de l'intervale" 
+   BLE eti.22 
+eti.21: 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
-eti17.18: 
+eti.22: 
    STORE R1, 1(GB) 
-   BRA eti6.7 
-eti7.8: 
+   BRA eti.7 
+eti.8: 
    SUBSP #5 
    HALT 

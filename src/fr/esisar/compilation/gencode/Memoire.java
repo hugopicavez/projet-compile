@@ -42,8 +42,6 @@ public class Memoire {
             if (registres[i] == false) {
                 registres[i] = true;
                 pile.add(true);
-                System.out.println("Push registre : "+Registre.values()[i]);
-                System.out.println(Arrays.toString(Thread.currentThread().getStackTrace()));
                 return Registre.values()[i];
             }
         }
@@ -79,9 +77,7 @@ public class Memoire {
     }
 
     public void free(Registre r) {
-        System.out.println("Libération registre : "+r);
-        System.out.println(Arrays.toString(Thread.currentThread().getStackTrace()));
-        int indice = Arrays.binarySearch(Registre.values(), r);
+       int indice = Arrays.binarySearch(Registre.values(), r);
         if (pile.remove(pile.size() - 1))
             registres[indice] = false;
         else
@@ -112,8 +108,8 @@ public class Memoire {
     }
 
     public void testePile(int size){
-        Etiq error = Etiq.nouvelle("eti" + Generation.numberEti++);
-        Etiq fin = Etiq.nouvelle("eti" + Generation.numberEti++);
+        Etiq error = Etiq.nouvelle("eti");
+        Etiq fin = Etiq.nouvelle("eti");
         Prog.ajouter(Inst.creation1(Operation.TSTO, Operande.creationOpEntier(size)));
         Prog.ajouter(Inst.creation1(Operation.BOV, Operande.creationOpEtiq(error)));
         Prog.ajouter(Inst.creation1(Operation.BRA, Operande.creationOpEtiq(fin)));

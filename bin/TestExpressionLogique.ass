@@ -2,13 +2,13 @@
 ; -----------                      Programme genere par JCasc-----------
 ; ----------------------------------------------------------------------
    TSTO #3 
-   BOV eti0.1 
-   BRA eti1.2 
-eti0.1: 
+   BOV eti.1 
+   BRA eti.2 
+eti.1: 
    WSTR "E03 erreur debordement de la pile" 
    WNL 
    HALT 
-eti1.2: 
+eti.2: 
    ADDSP #3 
    LOAD #1, R0 
    STORE R0, 1(GB) 
@@ -19,140 +19,140 @@ eti1.2:
    WSTR "true : " 
    LOAD 1(GB), R0 
    CMP #0, R0 
-   BNE eti4.5 
+   BNE eti.5 
    LOAD 1(GB), R0 
-   BRA eti5.6 
-eti4.5: 
+   BRA eti.6 
+eti.5: 
    LOAD #1, R0 
-eti5.6: 
+eti.6: 
    CMP #0, R0 
-   BEQ eti2.3 
+   BEQ eti.3 
    WSTR "true" 
-   BRA eti3.4 
-eti2.3: 
+   BRA eti.4 
+eti.3: 
    WSTR "false" 
-eti3.4: 
+eti.4: 
    WNL 
    WSTR "true : " 
    LOAD #0, R0 
    CMP #0, R0 
-   BNE eti8.9 
+   BNE eti.9 
    LOAD 1(GB), R0 
-   BRA eti9.10 
-eti8.9: 
+   BRA eti.10 
+eti.9: 
    LOAD #1, R0 
-eti9.10: 
+eti.10: 
    CMP #0, R0 
-   BEQ eti6.7 
+   BEQ eti.7 
    WSTR "true" 
-   BRA eti7.8 
-eti6.7: 
+   BRA eti.8 
+eti.7: 
    WSTR "false" 
-eti7.8: 
+eti.8: 
    WNL 
    WSTR "true : " 
    LOAD 1(GB), R0 
    CMP #0, R0 
-   BNE eti12.13 
+   BNE eti.13 
    LOAD 2(GB), R0 
-   BRA eti13.14 
-eti12.13: 
+   BRA eti.14 
+eti.13: 
    LOAD #1, R0 
-eti13.14: 
+eti.14: 
    CMP #0, R0 
-   BEQ eti10.11 
+   BEQ eti.11 
    WSTR "true" 
-   BRA eti11.12 
-eti10.11: 
+   BRA eti.12 
+eti.11: 
    WSTR "false" 
-eti11.12: 
+eti.12: 
    WNL 
    WSTR "false : " 
    LOAD #0, R0 
    CMP #0, R0 
-   BNE eti16.17 
+   BNE eti.17 
    LOAD #0, R0 
-   BRA eti17.18 
-eti16.17: 
+   BRA eti.18 
+eti.17: 
    LOAD #1, R0 
-eti17.18: 
+eti.18: 
    CMP #0, R0 
-   BEQ eti14.15 
+   BEQ eti.15 
    WSTR "true" 
-   BRA eti15.16 
-eti14.15: 
+   BRA eti.16 
+eti.15: 
    WSTR "false" 
-eti15.16: 
+eti.16: 
    WNL 
    WSTR "test et " 
    WNL 
    WSTR "true : " 
    LOAD 1(GB), R0 
    CMP #0, R0 
-   BEQ eti20.21 
+   BEQ eti.21 
    LOAD 1(GB), R0 
-   BRA eti21.22 
-eti20.21: 
+   BRA eti.22 
+eti.21: 
    LOAD #0, R0 
-eti21.22: 
+eti.22: 
    CMP #0, R0 
-   BEQ eti18.19 
+   BEQ eti.19 
    WSTR "true" 
-   BRA eti19.20 
-eti18.19: 
+   BRA eti.20 
+eti.19: 
    WSTR "false" 
-eti19.20: 
+eti.20: 
    WNL 
    WSTR "false : " 
    LOAD #0, R0 
    CMP #0, R0 
-   BEQ eti24.25 
+   BEQ eti.25 
    LOAD 1(GB), R0 
-   BRA eti25.26 
-eti24.25: 
+   BRA eti.26 
+eti.25: 
    LOAD #0, R0 
-eti25.26: 
+eti.26: 
    CMP #0, R0 
-   BEQ eti22.23 
+   BEQ eti.23 
    WSTR "true" 
-   BRA eti23.24 
-eti22.23: 
+   BRA eti.24 
+eti.23: 
    WSTR "false" 
-eti23.24: 
+eti.24: 
    WNL 
    WSTR "false : " 
    LOAD 1(GB), R0 
    CMP #0, R0 
-   BEQ eti28.29 
+   BEQ eti.29 
    LOAD 2(GB), R0 
-   BRA eti29.30 
-eti28.29: 
+   BRA eti.30 
+eti.29: 
    LOAD #0, R0 
-eti29.30: 
+eti.30: 
    CMP #0, R0 
-   BEQ eti26.27 
+   BEQ eti.27 
    WSTR "true" 
-   BRA eti27.28 
-eti26.27: 
+   BRA eti.28 
+eti.27: 
    WSTR "false" 
-eti27.28: 
+eti.28: 
    WNL 
    WSTR "false : " 
    LOAD #0, R0 
    CMP #0, R0 
-   BEQ eti32.33 
+   BEQ eti.33 
    LOAD #0, R0 
-   BRA eti33.34 
-eti32.33: 
+   BRA eti.34 
+eti.33: 
    LOAD #0, R0 
-eti33.34: 
+eti.34: 
    CMP #0, R0 
-   BEQ eti30.31 
+   BEQ eti.31 
    WSTR "true" 
-   BRA eti31.32 
-eti30.31: 
+   BRA eti.32 
+eti.31: 
    WSTR "false" 
-eti31.32: 
+eti.32: 
    WNL 
    WSTR "test NOT " 
    WNL 
@@ -161,22 +161,22 @@ eti31.32:
    CMP #0, R0 
    SEQ R0 
    CMP #0, R0 
-   BEQ eti34.35 
+   BEQ eti.35 
    WSTR "true" 
-   BRA eti35.36 
-eti34.35: 
+   BRA eti.36 
+eti.35: 
    WSTR "false" 
-eti35.36: 
+eti.36: 
    WNL 
    WSTR "true : " 
    LOAD #1, R0 
    CMP #0, R0 
-   BEQ eti36.37 
+   BEQ eti.37 
    WSTR "true" 
-   BRA eti37.38 
-eti36.37: 
+   BRA eti.38 
+eti.37: 
    WSTR "false" 
-eti37.38: 
+eti.38: 
    WNL 
    SUBSP #3 
    HALT 

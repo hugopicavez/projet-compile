@@ -1,7 +1,7 @@
 program
 	f : real;
 begin
-    write("Test erreur débordement real");
+    write("Test erreur debordement real");
     new_line;
 	f := max_int*max_int*max_int*max_int*max_int*max_int*max_int*max_int;
 end.

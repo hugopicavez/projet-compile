@@ -2,68 +2,75 @@
 ; -----------                      Programme genere par JCasc-----------
 ; ----------------------------------------------------------------------
    TSTO #2 
-   BOV eti0.1 
-   BRA eti1.2 
-eti0.1: 
-   WSTR "erreur debordement" 
+   BOV eti.1 
+   BRA eti.2 
+eti.1: 
+   WSTR "E03 erreur debordement de la pile" 
    WNL 
    HALT 
-eti1.2: 
+eti.2: 
    ADDSP #2 
    LOAD #0, R0 
    CMP #-2147483647, R0 
-   BLT eti2.3 
+   BLT eti.3 
    CMP #2147483647, R0 
-   BLE eti3.4 
-eti2.3: 
-   WSTR "debordement de l'intervale" 
+   BLE eti.4 
+eti.3: 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
-eti3.4: 
+eti.4: 
    STORE R0, 1(GB) 
-eti4.5: 
+eti.5: 
    LOAD 1(GB), R0 
    CMP #4, R0 
    SLT R0 
    CMP #0, R0 
-   BEQ eti5.6 
+   BEQ eti.6 
    WSTR "Test while (i<4) , valeur de i " 
    LOAD 1(GB), R1 
    WINT 
    WNL 
    LOAD 1(GB), R1 
    ADD #1, R1 
-   CMP #-2147483647, R1 
-   BLT eti6.7 
-   CMP #2147483647, R1 
-   BLE eti7.8 
-eti6.7: 
-   WSTR "debordement de l'intervale" 
+   BOV eti.8 
+   BRA eti.7 
+eti.8: 
+   WSTR "E04 Erreur debordement arithmetique" 
    WNL 
    HALT 
-eti7.8: 
+eti.7: 
+   CMP #-2147483647, R1 
+   BLT eti.9 
+   CMP #2147483647, R1 
+   BLE eti.10 
+eti.9: 
+   WSTR "E02 interval incorrect" 
+   WNL 
+   HALT 
+eti.10: 
    STORE R1, 1(GB) 
-   BRA eti4.5 
-eti5.6: 
-eti8.9: 
+   BRA eti.5 
+eti.6: 
+eti.11: 
    LOAD #0, R0 
    CMP #0, R0 
-   BEQ eti9.10 
+   BEQ eti.12 
    WSTR "Test while false fail" 
    WNL 
-   BRA eti8.9 
-eti9.10: 
-eti10.11: 
+   BRA eti.11 
+eti.12: 
+eti.13: 
    LOAD 1(GB), R0 
    CMP #4, R0 
    SLT R0 
    CMP #0, R0 
-   BEQ eti11.12 
+   BEQ eti.14 
    WSTR "Test while (i<4) fail" 
    LOAD 1(GB), R1 
    WINT 
    WNL 
-   BRA eti10.11 
-eti11.12: 
+   BRA eti.13 
+eti.14: 
    SUBSP #2 
    HALT 

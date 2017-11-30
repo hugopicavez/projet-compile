@@ -1,9 +1,12 @@
 program
    a,b,c : boolean;
    d,e,f : integer;
+   x, q, z, w: real;
    t,y,u : real;
    t1, t2 : array [3 .. 6] of array [1 .. 9] of integer;
 begin
+  write("Test affectation boolean ");
+  new_line; 
   a := true;
   b := a;
   c := a AND false;
@@ -29,6 +32,9 @@ begin
   end;
   new_line;
 
+
+  write("Test affectation entier ");
+  new_line; 
   d := 10;
   e := d;
   f := d + 20;
@@ -39,19 +45,43 @@ begin
   write("30 : ", f);
   new_line;
 
+
+  
+
+  write("Test affectation real ");
+  new_line; 
+  x := 10.5;
+  q := x;
+  z := x + 20;
+  w := x + 20.01;
+  write("10.5: ", x);
+  new_line;
+  write("10.5 : ", q);
+  new_line;
+  write("30.5 : ", z);
+  new_line;
+  write("30.51 : ", w);
+  new_line;
+
+
+ 
+  write("Test affectation tableau ");
+  new_line;
   for d := 3 to 6 do
        for e := 1 to 9 do
            t1[d][e] := d+e;
            t2[d][e] := 2*t1[d][e];
            write("value : ",d+e);
           new_line;   
-  write("t1 : ", t1[d][e]);
+  write("t1 (t1=value): ", t1[d][e]);
      new_line;
-           write("t2 : ", t2[d][e]);
+           write("t2 (t2 = 2*t1): ", t2[d][e]);
+		
      new_line;       
   end;
   end;
-
+ 	write("t1=t2");
+	new_line;
   t1 := t2;
   for d := 3 to 6 do
        for e := 1 to 9 do

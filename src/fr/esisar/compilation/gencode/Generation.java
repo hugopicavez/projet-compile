@@ -467,8 +467,7 @@ public class Generation {
 
     private static Operande gene_arith(Arbre a, Registre registre) {
         if (memoire.getNumberFree() >= 2) {
-            System.out.println("registre libre");
-            Operande operande1 = gene_Exp(a.getFils1(), registre);
+             Operande operande1 = gene_Exp(a.getFils1(), registre);
             if (operande1.getNature() != NatureOperande.OpDirect) {
                 Prog.ajouter(Inst.creation2(Operation.LOAD, operande1, Operande.opDirect(registre)));
                 operande1 = Operande.opDirect(registre);
@@ -479,7 +478,6 @@ public class Generation {
             memoire.free(registre1);
             return Operande.opDirect(registre);
         } else {
-            System.out.println("pb");
             Operande operande = gene_Exp(a.getFils2(), registre);
             if (operande.getNature() != NatureOperande.OpDirect) {
                 Operande operande2 = gene_Exp(a.getFils1(), registre);

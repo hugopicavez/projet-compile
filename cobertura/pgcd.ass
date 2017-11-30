@@ -2,13 +2,13 @@
 ; -----------                      Programme genere par JCasc-----------
 ; ----------------------------------------------------------------------
    TSTO #4 
-   BOV eti0.1 
-   BRA eti1.2 
-eti0.1: 
-   WSTR "erreur debordement" 
+   BOV eti.1 
+   BRA eti.2 
+eti.1: 
+   WSTR "E03 erreur debordement de la pile" 
    WNL 
    HALT 
-eti1.2: 
+eti.2: 
    ADDSP #4 
    WSTR "Entrer une valeur de a: " 
    RINT 
@@ -22,111 +22,125 @@ eti1.2:
    CMP 2(GB), R0 
    SLT R0 
    CMP #0, R0 
-   BEQ eti2.3 
+   BEQ eti.3 
    LOAD 1(GB), R1 
    CMP #-2147483647, R1 
-   BLT eti4.5 
+   BLT eti.5 
    CMP #2147483647, R1 
-   BLE eti5.6 
-eti4.5: 
-   WSTR "debordement de l'intervale" 
+   BLE eti.6 
+eti.5: 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
-eti5.6: 
+eti.6: 
    STORE R1, 3(GB) 
    LOAD 2(GB), R1 
    CMP #-2147483647, R1 
-   BLT eti6.7 
+   BLT eti.7 
    CMP #2147483647, R1 
-   BLE eti7.8 
-eti6.7: 
-   WSTR "debordement de l'intervale" 
+   BLE eti.8 
+eti.7: 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
-eti7.8: 
+eti.8: 
    STORE R1, 1(GB) 
    LOAD 3(GB), R1 
    CMP #-2147483647, R1 
-   BLT eti8.9 
+   BLT eti.9 
    CMP #2147483647, R1 
-   BLE eti9.10 
-eti8.9: 
-   WSTR "debordement de l'intervale" 
+   BLE eti.10 
+eti.9: 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
-eti9.10: 
+eti.10: 
    STORE R1, 2(GB) 
-   BRA eti3.4 
-eti2.3: 
-eti3.4: 
+   BRA eti.4 
+eti.3: 
+eti.4: 
    LOAD 1(GB), R0 
-   LOAD 2(GB), R1 
-   CMP #0, R1 
-   BNE eti10.11 
-   WSTR "division par zero" 
+   LOAD 2(GB), R2 
+   CMP #0, R2 
+   BNE eti.11 
+   WSTR "E00 Division par zero" 
    WNL 
    HALT 
-eti10.11: 
+eti.11: 
    MOD 2(GB), R0 
-   CMP #-2147483647, R0 
-   BLT eti11.12 
-   CMP #2147483647, R0 
-   BLE eti12.13 
-eti11.12: 
-   WSTR "debordement de l'intervale" 
+   BOV eti.13 
+   BRA eti.12 
+eti.13: 
+   WSTR "E04 Erreur debordement arithmetique" 
    WNL 
    HALT 
-eti12.13: 
+eti.12: 
+   CMP #-2147483647, R0 
+   BLT eti.14 
+   CMP #2147483647, R0 
+   BLE eti.15 
+eti.14: 
+   WSTR "E02 interval incorrect" 
+   WNL 
+   HALT 
+eti.15: 
    STORE R0, 3(GB) 
-eti13.14: 
+eti.16: 
    LOAD 3(GB), R0 
    CMP #0, R0 
    SNE R0 
    CMP #0, R0 
-   BEQ eti14.15 
+   BEQ eti.17 
    LOAD 2(GB), R1 
    CMP #-2147483647, R1 
-   BLT eti15.16 
+   BLT eti.18 
    CMP #2147483647, R1 
-   BLE eti16.17 
-eti15.16: 
-   WSTR "debordement de l'intervale" 
+   BLE eti.19 
+eti.18: 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
-eti16.17: 
+eti.19: 
    STORE R1, 1(GB) 
    LOAD 3(GB), R1 
    CMP #-2147483647, R1 
-   BLT eti17.18 
+   BLT eti.20 
    CMP #2147483647, R1 
-   BLE eti18.19 
-eti17.18: 
-   WSTR "debordement de l'intervale" 
+   BLE eti.21 
+eti.20: 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
-eti18.19: 
+eti.21: 
    STORE R1, 2(GB) 
    LOAD 1(GB), R1 
-   LOAD 2(GB), R2 
-   CMP #0, R2 
-   BNE eti19.20 
-   WSTR "division par zero" 
+   LOAD 2(GB), R3 
+   CMP #0, R3 
+   BNE eti.22 
+   WSTR "E00 Division par zero" 
    WNL 
    HALT 
-eti19.20: 
+eti.22: 
    MOD 2(GB), R1 
-   CMP #-2147483647, R1 
-   BLT eti20.21 
-   CMP #2147483647, R1 
-   BLE eti21.22 
-eti20.21: 
-   WSTR "debordement de l'intervale" 
+   BOV eti.24 
+   BRA eti.23 
+eti.24: 
+   WSTR "E04 Erreur debordement arithmetique" 
    WNL 
    HALT 
-eti21.22: 
+eti.23: 
+   CMP #-2147483647, R1 
+   BLT eti.25 
+   CMP #2147483647, R1 
+   BLE eti.26 
+eti.25: 
+   WSTR "E02 interval incorrect" 
+   WNL 
+   HALT 
+eti.26: 
    STORE R1, 3(GB) 
-   BRA eti13.14 
-eti14.15: 
+   BRA eti.16 
+eti.17: 
    WSTR "Le pgcd de a et b est" 
    LOAD 2(GB), R1 
    WINT 

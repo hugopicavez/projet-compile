@@ -2,6 +2,7 @@ program
 	i:integer; 
 
 begin 
+	write("On incremente i de 0 a 5 puis on le decremente de 5 a -1 dans des for");
 	for i := 0 to 5 do 
 		write("(+) valeur de i: ", i) ; 
 		new_line; 
