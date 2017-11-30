@@ -36,7 +36,7 @@ public class Generation {
         return Prog.instance();
     }
 
-    private static int gene_LISTE_DECL(Arbre a, int index) {
+    private static long gene_LISTE_DECL(Arbre a, long index) {
         switch (a.getNoeud()) {
             case Vide:
                 break;
@@ -48,7 +48,7 @@ public class Generation {
         return index;
     }
 
-    private static int gene_DECL(Arbre a, int index) {
+    private static long gene_DECL(Arbre a, long index) {
         switch (a.getNoeud()) {
             case Decl:
                 index = gene_LISTE_IDF(a.getFils1(), index);
@@ -56,13 +56,13 @@ public class Generation {
         return index;
     }
 
-    private static int gene_LISTE_IDF(Arbre a, int index) {
+    private static long gene_LISTE_IDF(Arbre a, long index) {
         switch (a.getNoeud()) {
             case Vide:
                 break;
             case ListeIdent:
                 index = gene_LISTE_IDF(a.getFils1(), index);
-                a.getFils2().getDecor().getDefn().setOperande(Operande.creationOpIndirect(index, Registre.GB));
+                a.getFils2().getDecor().getDefn().setOperande(Operande.creationOpIndirect((int)index, Registre.GB));
                 Type type = a.getFils2().getDecor().getDefn().getType();
                 if (type.getNature() != NatureType.Array) {
                     index++;
