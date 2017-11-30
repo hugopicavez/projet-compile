@@ -1,0 +1,47 @@
+; ----------------------------------------------------------------------
+; -----------                      Programme genere par JCasc-----------
+; ----------------------------------------------------------------------
+   TSTO #3 
+   BOV eti0.1 
+   BRA eti1.2 
+eti0.1: 
+   WSTR "erreur debordement" 
+   WNL 
+   HALT 
+eti1.2: 
+   ADDSP #3 
+   LOAD #5, R0 
+   CMP #-2147483647, R0 
+   BLT eti2.3 
+   CMP #2147483647, R0 
+   BLE eti3.4 
+eti2.3: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti3.4: 
+   STORE R0, 1(GB) 
+   LOAD #7, R0 
+   CMP #-2147483647, R0 
+   BLT eti4.5 
+   CMP #2147483647, R0 
+   BLE eti5.6 
+eti4.5: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti5.6: 
+   STORE R0, 2(GB) 
+   LOAD #7.0, R1 
+   LOAD #5.0, R0 
+   CMP #0.0, R0 
+   BNE eti6.7 
+   WSTR "division par zero" 
+   WNL 
+   HALT 
+eti6.7: 
+   DIV #5.0, R1 
+   WFLOAT 
+   WNL 
+   SUBSP #3 
+   HALT 

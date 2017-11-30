@@ -1,0 +1,69 @@
+; ----------------------------------------------------------------------
+; -----------                      Programme genere par JCasc-----------
+; ----------------------------------------------------------------------
+   TSTO #2 
+   BOV eti0.1 
+   BRA eti1.2 
+eti0.1: 
+   WSTR "E03 erreur debordement de la pile" 
+   WNL 
+   HALT 
+eti1.2: 
+   ADDSP #2 
+   LOAD #0, R0 
+   CMP #-2147483647, R0 
+   BLT eti2.3 
+   CMP #2147483647, R0 
+   BLE eti3.4 
+eti2.3: 
+   WSTR "E02 interval incorrect" 
+   WNL 
+   HALT 
+eti3.4: 
+   STORE R0, 1(GB) 
+eti4.5: 
+   LOAD 1(GB), R0 
+   CMP #4, R0 
+   SLT R0 
+   CMP #0, R0 
+   BEQ eti5.6 
+   WSTR "Test while (i<4) , valeur de i " 
+   LOAD 1(GB), R1 
+   WINT 
+   WNL 
+   LOAD 1(GB), R1 
+   ADD #1, R1 
+   CMP #-2147483647, R1 
+   BLT eti6.7 
+   CMP #2147483647, R1 
+   BLE eti7.8 
+eti6.7: 
+   WSTR "E02 interval incorrect" 
+   WNL 
+   HALT 
+eti7.8: 
+   STORE R1, 1(GB) 
+   BRA eti4.5 
+eti5.6: 
+eti8.9: 
+   LOAD #0, R0 
+   CMP #0, R0 
+   BEQ eti9.10 
+   WSTR "Test while false fail" 
+   WNL 
+   BRA eti8.9 
+eti9.10: 
+eti10.11: 
+   LOAD 1(GB), R0 
+   CMP #4, R0 
+   SLT R0 
+   CMP #0, R0 
+   BEQ eti11.12 
+   WSTR "Test while (i<4) fail" 
+   LOAD 1(GB), R1 
+   WINT 
+   WNL 
+   BRA eti10.11 
+eti11.12: 
+   SUBSP #2 
+   HALT 

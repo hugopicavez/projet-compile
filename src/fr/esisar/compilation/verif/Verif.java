@@ -398,6 +398,8 @@ public class Verif {
                 Defn defn = env.chercher(a.getChaine());
                 if (defn == null)
                   ErreurContext.ErreurVariableInconnue.leverErreurContext("", a.getNumLigne());
+                if(defn.getNature() == NatureDefn.Type )
+                    ErreurContext.ErreurIdentificateurInvalide.leverErreurContext("", a.getNumLigne());
                 a.setDecor(new Decor(defn, defn.getType()));
                 break;
             default:

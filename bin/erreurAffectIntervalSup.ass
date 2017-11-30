@@ -1,0 +1,27 @@
+; ----------------------------------------------------------------------
+; -----------                      Programme genere par JCasc-----------
+; ----------------------------------------------------------------------
+   TSTO #2 
+   BOV eti0.1 
+   BRA eti1.2 
+eti0.1: 
+   WSTR "E03 erreur debordement de la pile" 
+   WNL 
+   HALT 
+eti1.2: 
+   ADDSP #2 
+   WSTR "Test erreur affecter interval inf" 
+   WNL 
+   LOAD #9, R0 
+   CMP #1, R0 
+   BLT eti2.3 
+   CMP #8, R0 
+   BLE eti3.4 
+eti2.3: 
+   WSTR "E02 interval incorrect" 
+   WNL 
+   HALT 
+eti3.4: 
+   STORE R0, 1(GB) 
+   SUBSP #2 
+   HALT 

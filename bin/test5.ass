@@ -1,0 +1,57 @@
+; ----------------------------------------------------------------------
+; -----------                      Programme genere par JCasc-----------
+; ----------------------------------------------------------------------
+   TSTO #12 
+   BOV eti0.1 
+   BRA eti1.2 
+eti0.1: 
+   WSTR "E03 erreur debordement de la pile" 
+   WNL 
+   HALT 
+eti1.2: 
+   ADDSP #12 
+   LOAD #1, R0 
+   STORE R0, 11(GB) 
+   LOAD #0, R0 
+   LOAD #5, R1 
+eti2.3: 
+   STORE R0, 1(GB) 
+   CMP R0, R1 
+   BLT eti3.4 
+   LOAD 11(GB), R2 
+   CMP #0, R2 
+   BEQ eti4.5 
+   WNL 
+   WSTR "Entrer entier" 
+   TSTO #1 
+   BOV eti6.7 
+   BRA eti7.8 
+eti6.7: 
+   WSTR "E03 erreur debordement de la pile" 
+   WNL 
+   HALT 
+eti7.8: 
+   PUSH R1 
+   RINT 
+   LEA 10(GB), R3 
+   STORE R1, 0(R3) 
+   POP R1 
+   LOAD #0, R3 
+   STORE R3, 11(GB) 
+   BRA eti5.6 
+eti4.5: 
+eti5.6: 
+   LOAD 11(GB), R2 
+   CMP #0, R2 
+   BEQ eti8.9 
+   WNL 
+   WSTR "faux" 
+   WNL 
+   BRA eti9.10 
+eti8.9: 
+eti9.10: 
+   ADD #1, R0 
+   BRA eti2.3 
+eti3.4: 
+   SUBSP #12 
+   HALT 

@@ -1,0 +1,108 @@
+; ----------------------------------------------------------------------
+; -----------                      Programme genere par JCasc-----------
+; ----------------------------------------------------------------------
+   TSTO #82 
+   BOV eti0.1 
+   BRA eti1.2 
+eti0.1: 
+   WSTR "erreur debordement" 
+   WNL 
+   HALT 
+eti1.2: 
+   ADDSP #82 
+   LOAD #1, R1 
+   ADD #1, R1 
+   ADDSP #1 
+   STORE R1, 83(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   ADD 83(GB), R1 
+   SUBSP #1 
+   ADDSP #1 
+   STORE R1, 83(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   ADDSP #1 
+   STORE R1, 84(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   ADD 84(GB), R1 
+   SUBSP #1 
+   ADD 83(GB), R1 
+   SUBSP #1 
+   ADDSP #1 
+   STORE R1, 83(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   ADDSP #1 
+   STORE R1, 84(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   ADD 84(GB), R1 
+   SUBSP #1 
+   ADDSP #1 
+   STORE R1, 84(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   ADDSP #1 
+   STORE R1, 85(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   ADD 85(GB), R1 
+   SUBSP #1 
+   ADD 84(GB), R1 
+   SUBSP #1 
+   ADD 83(GB), R1 
+   SUBSP #1 
+   ADDSP #1 
+   STORE R1, 83(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   ADDSP #1 
+   STORE R1, 84(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   ADD 84(GB), R1 
+   SUBSP #1 
+   ADDSP #1 
+   STORE R1, 84(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   ADDSP #1 
+   STORE R1, 85(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   ADD 85(GB), R1 
+   SUBSP #1 
+   ADD 84(GB), R1 
+   SUBSP #1 
+   ADDSP #1 
+   STORE R1, 84(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   ADDSP #1 
+   STORE R1, 85(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   ADD 85(GB), R1 
+   SUBSP #1 
+   ADDSP #1 
+   STORE R1, 85(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   ADDSP #1 
+   STORE R1, 86(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   ADD 86(GB), R1 
+   SUBSP #1 
+   ADD 85(GB), R1 
+   SUBSP #1 
+   ADD 84(GB), R1 
+   SUBSP #1 
+   ADD 83(GB), R1 
+   SUBSP #1 
+   WINT 
+   WNL 
+   SUBSP #82 
+   HALT 

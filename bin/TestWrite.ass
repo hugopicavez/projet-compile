@@ -1,0 +1,37 @@
+; ----------------------------------------------------------------------
+; -----------                      Programme genere par JCasc-----------
+; ----------------------------------------------------------------------
+   TSTO #1 
+   BOV eti0.1 
+   BRA eti1.2 
+eti0.1: 
+   WSTR "E03 erreur debordement de la pile" 
+   WNL 
+   HALT 
+eti1.2: 
+   ADDSP #1 
+   WSTR "j'ecrit du texte" 
+   WNL 
+   WSTR "j'ecrit un entier" 
+   LOAD #10, R1 
+   WINT 
+   WNL 
+   WSTR "j'ecrit un float " 
+   LOAD #10.5, R1 
+   WFLOAT 
+   WNL 
+   WSTR "j'ecrit un entier, un double" 
+   LOAD #2, R1 
+   WINT 
+   LOAD #2.5, R1 
+   WFLOAT 
+   WNL 
+   WSTR "j'ecrit un entier, un double et un autre texte" 
+   LOAD #2, R1 
+   WINT 
+   LOAD #2.5, R1 
+   WFLOAT 
+   WSTR "I was hiding" 
+   WNL 
+   SUBSP #1 
+   HALT 

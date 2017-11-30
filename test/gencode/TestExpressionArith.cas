@@ -1,0 +1,48 @@
+program
+    a,b : integer;
+    c,d : real;
+begin
+    a := 5;
+    b := 2;
+    c := 1.5;
+    d := 2.5;
+    write("devrait etre 3: ", 1+b, " (add entier )");
+	new_line;
+	write("devrait etre -1: ", 1-2, " (sub entier ");
+    new_line;
+    write("devrait etre 10: ", b*a, " (mult entier ");
+	new_line;
+    write("devrait etre 15 : ", 31 div b, " (div entier ");
+	new_line;
+    write("devrait etre 1 : ", 31 mod 2, " (reste entier ");
+	new_line;
+
+    write("devrait etre 4 : ", 1.5+2.5, " (add float ");
+	new_line;
+	write("devrait etre -1 : ", 1.5-d, " (sub float ");
+    new_line;
+    write("devrait etre 3.75 : ", c*d, " (mult float ");
+    new_line;
+    write("devrait etre 5.5: ", 18.15/3.3, " (div float ");
+    new_line;
+
+    write("devrait etre 3.5 : ", c+b, " (add float avec converssion ");
+    new_line;
+    write("devrait etre -0.5 : ", 1.5-2, " (sub float avec converssion ");
+    new_line;
+    write("devrait etre 3.0 : ", 1.5*2, " (mult float avec converssion ");
+    new_line;
+    write("devrait etre 1.57: ", 15.7/10, " (div float avec converssion ");
+    new_line;
+    write("devrait etre -5: ", -a, " (div float avec converssion ");
+    new_line;   
+    write("devrait etre 5: ", +a, " (div float avec converssion ");
+	new_line; 
+ 	write("devrait etre -2.5: ", -2.5, " (div float avec converssion ");
+    new_line;   
+    write("devrait etre 2.5: ", +2.5, " (div float avec converssion ");
+    new_line;
+
+    write("devrait etre -1.26: ", 1+2*3/4 +1.1-2.2*3.3/4.4 +1+1.1-2.2*3/4+1+2*3/4 +1.1-2.2*3.3);
+    new_line;
+end.

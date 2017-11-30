@@ -1,0 +1,134 @@
+; ----------------------------------------------------------------------
+; -----------                      Programme genere par JCasc-----------
+; ----------------------------------------------------------------------
+   TSTO #4 
+   BOV eti0.1 
+   BRA eti1.2 
+eti0.1: 
+   WSTR "E03 erreur debordement de la pile" 
+   WNL 
+   HALT 
+eti1.2: 
+   ADDSP #4 
+   WSTR "Entrer une valeur de a: " 
+   RINT 
+   LEA 1(GB), R0 
+   STORE R1, 0(R0) 
+   WSTR "Entrer une valeur de b: " 
+   RINT 
+   LEA 2(GB), R0 
+   STORE R1, 0(R0) 
+   LOAD 1(GB), R0 
+   CMP 2(GB), R0 
+   SLT R0 
+   CMP #0, R0 
+   BEQ eti2.3 
+   LOAD 1(GB), R1 
+   CMP #-2147483647, R1 
+   BLT eti4.5 
+   CMP #2147483647, R1 
+   BLE eti5.6 
+eti4.5: 
+   WSTR "E02 interval incorrect" 
+   WNL 
+   HALT 
+eti5.6: 
+   STORE R1, 3(GB) 
+   LOAD 2(GB), R1 
+   CMP #-2147483647, R1 
+   BLT eti6.7 
+   CMP #2147483647, R1 
+   BLE eti7.8 
+eti6.7: 
+   WSTR "E02 interval incorrect" 
+   WNL 
+   HALT 
+eti7.8: 
+   STORE R1, 1(GB) 
+   LOAD 3(GB), R1 
+   CMP #-2147483647, R1 
+   BLT eti8.9 
+   CMP #2147483647, R1 
+   BLE eti9.10 
+eti8.9: 
+   WSTR "E02 interval incorrect" 
+   WNL 
+   HALT 
+eti9.10: 
+   STORE R1, 2(GB) 
+   BRA eti3.4 
+eti2.3: 
+eti3.4: 
+   LOAD 1(GB), R0 
+   LOAD 2(GB), R2 
+   CMP #0, R2 
+   BNE eti10.11 
+   WSTR "E00 Division par zero" 
+   WNL 
+   HALT 
+eti10.11: 
+   MOD 2(GB), R0 
+   CMP #-2147483647, R0 
+   BLT eti11.12 
+   CMP #2147483647, R0 
+   BLE eti12.13 
+eti11.12: 
+   WSTR "E02 interval incorrect" 
+   WNL 
+   HALT 
+eti12.13: 
+   STORE R0, 3(GB) 
+eti13.14: 
+   LOAD 3(GB), R0 
+   CMP #0, R0 
+   SNE R0 
+   CMP #0, R0 
+   BEQ eti14.15 
+   LOAD 2(GB), R1 
+   CMP #-2147483647, R1 
+   BLT eti15.16 
+   CMP #2147483647, R1 
+   BLE eti16.17 
+eti15.16: 
+   WSTR "E02 interval incorrect" 
+   WNL 
+   HALT 
+eti16.17: 
+   STORE R1, 1(GB) 
+   LOAD 3(GB), R1 
+   CMP #-2147483647, R1 
+   BLT eti17.18 
+   CMP #2147483647, R1 
+   BLE eti18.19 
+eti17.18: 
+   WSTR "E02 interval incorrect" 
+   WNL 
+   HALT 
+eti18.19: 
+   STORE R1, 2(GB) 
+   LOAD 1(GB), R1 
+   LOAD 2(GB), R3 
+   CMP #0, R3 
+   BNE eti19.20 
+   WSTR "E00 Division par zero" 
+   WNL 
+   HALT 
+eti19.20: 
+   MOD 2(GB), R1 
+   CMP #-2147483647, R1 
+   BLT eti20.21 
+   CMP #2147483647, R1 
+   BLE eti21.22 
+eti20.21: 
+   WSTR "E02 interval incorrect" 
+   WNL 
+   HALT 
+eti21.22: 
+   STORE R1, 3(GB) 
+   BRA eti13.14 
+eti14.15: 
+   WSTR "Le pgcd de a et b est" 
+   LOAD 2(GB), R1 
+   WINT 
+   SUBSP #4 
+   HALT 

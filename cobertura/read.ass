@@ -1,0 +1,30 @@
+; ----------------------------------------------------------------------
+; -----------                      Programme genere par JCasc-----------
+; ----------------------------------------------------------------------
+   TSTO #3 
+   BOV eti0.1 
+   BRA eti1.2 
+eti0.1: 
+   WSTR "erreur debordement" 
+   WNL 
+   HALT 
+eti1.2: 
+   ADDSP #3 
+   WSTR "Entrer un entier : " 
+   RINT 
+   LEA 1(GB), R0 
+   STORE R1, 0(R0) 
+   WSTR "Valeur lu :" 
+   LOAD 1(GB), R1 
+   WINT 
+   WNL 
+   WSTR "Entrer un reel : " 
+   RFLOAT 
+   LEA 2(GB), R0 
+   STORE R1, 0(R0) 
+   WSTR "Valeur lu :" 
+   LOAD 2(GB), R1 
+   WFLOAT 
+   WNL 
+   SUBSP #3 
+   HALT 

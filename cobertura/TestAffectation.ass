@@ -1,0 +1,790 @@
+; ----------------------------------------------------------------------
+; -----------                      Programme genere par JCasc-----------
+; ----------------------------------------------------------------------
+   TSTO #82 
+   BOV eti0.1 
+   BRA eti1.2 
+eti0.1: 
+   WSTR "erreur debordement" 
+   WNL 
+   HALT 
+eti1.2: 
+   ADDSP #82 
+   LOAD #1, R0 
+   STORE R0, 1(GB) 
+   LOAD 1(GB), R0 
+   STORE R0, 2(GB) 
+   LOAD #0, R0 
+   BRA eti3.4 
+eti2.3: 
+   LOAD #0, R0 
+eti3.4: 
+   STORE R0, 3(GB) 
+   WSTR "true : " 
+   LOAD 1(GB), R0 
+   CMP #0, R0 
+   BEQ eti4.5 
+   WSTR "true" 
+   BRA eti5.6 
+eti4.5: 
+   WSTR "false" 
+eti5.6: 
+   WNL 
+   WSTR "true : " 
+   LOAD 2(GB), R0 
+   CMP #0, R0 
+   BEQ eti6.7 
+   WSTR "true" 
+   BRA eti7.8 
+eti6.7: 
+   WSTR "false" 
+eti7.8: 
+   WNL 
+   WSTR "false : " 
+   LOAD 3(GB), R0 
+   CMP #0, R0 
+   BEQ eti8.9 
+   WSTR "true" 
+   BRA eti9.10 
+eti8.9: 
+   WSTR "false" 
+eti9.10: 
+   WNL 
+   LOAD #10, R0 
+   CMP #-2147483647, R0 
+   BLT eti10.11 
+   CMP #2147483647, R0 
+   BLE eti11.12 
+eti10.11: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti11.12: 
+   STORE R0, 4(GB) 
+   LOAD 4(GB), R0 
+   CMP #-2147483647, R0 
+   BLT eti12.13 
+   CMP #2147483647, R0 
+   BLE eti13.14 
+eti12.13: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti13.14: 
+   STORE R0, 5(GB) 
+   LOAD 4(GB), R0 
+   ADD #20, R0 
+   CMP #-2147483647, R0 
+   BLT eti14.15 
+   CMP #2147483647, R0 
+   BLE eti15.16 
+eti14.15: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti15.16: 
+   STORE R0, 6(GB) 
+   WSTR "10 : " 
+   LOAD 4(GB), R1 
+   WINT 
+   WNL 
+   WSTR "10 : " 
+   LOAD 5(GB), R1 
+   WINT 
+   WNL 
+   WSTR "30 : " 
+   LOAD 6(GB), R1 
+   WINT 
+   WNL 
+   LOAD #3, R0 
+   LOAD #6, R1 
+eti16.17: 
+   STORE R0, 4(GB) 
+   CMP R0, R1 
+   BLT eti17.18 
+   LOAD #1, R2 
+   LOAD #9, R3 
+eti18.19: 
+   STORE R2, 5(GB) 
+   CMP R2, R3 
+   BLT eti19.20 
+   LOAD 4(GB), R4 
+   ADD 5(GB), R4 
+   LEA 10(GB), R5 
+   LOAD 4(GB), R6 
+   CMP #3, R6 
+   BLT eti20.21 
+   CMP #6, R6 
+   BLE eti21.22 
+eti20.21: 
+   WSTR "erreur debordemet index tableau" 
+   WNL 
+   HALT 
+eti21.22: 
+   SUB #3, R6 
+   MUL #9, R6 
+   LEA 0(R5, R6), R5 
+   LOAD 5(GB), R6 
+   CMP #1, R6 
+   BLT eti22.23 
+   CMP #9, R6 
+   BLE eti23.24 
+eti22.23: 
+   WSTR "erreur debordemet index tableau" 
+   WNL 
+   HALT 
+eti23.24: 
+   SUB #1, R6 
+   MUL #1, R6 
+   LEA 0(R5, R6), R5 
+   STORE R4, 0(R5) 
+   LOAD #2, R4 
+   LEA 10(GB), R5 
+   LOAD 4(GB), R6 
+   CMP #3, R6 
+   BLT eti24.25 
+   CMP #6, R6 
+   BLE eti25.26 
+eti24.25: 
+   WSTR "erreur debordemet index tableau" 
+   WNL 
+   HALT 
+eti25.26: 
+   SUB #3, R6 
+   MUL #9, R6 
+   LEA 0(R5, R6), R5 
+   LOAD 5(GB), R6 
+   CMP #1, R6 
+   BLT eti26.27 
+   CMP #9, R6 
+   BLE eti27.28 
+eti26.27: 
+   WSTR "erreur debordemet index tableau" 
+   WNL 
+   HALT 
+eti27.28: 
+   SUB #1, R6 
+   MUL #1, R6 
+   LEA 0(R5, R6), R5 
+   LOAD 0(R5), R5 
+   MUL R5, R4 
+   LEA 46(GB), R5 
+   LOAD 4(GB), R6 
+   CMP #3, R6 
+   BLT eti28.29 
+   CMP #6, R6 
+   BLE eti29.30 
+eti28.29: 
+   WSTR "erreur debordemet index tableau" 
+   WNL 
+   HALT 
+eti29.30: 
+   SUB #3, R6 
+   MUL #9, R6 
+   LEA 0(R5, R6), R5 
+   LOAD 5(GB), R6 
+   CMP #1, R6 
+   BLT eti30.31 
+   CMP #9, R6 
+   BLE eti31.32 
+eti30.31: 
+   WSTR "erreur debordemet index tableau" 
+   WNL 
+   HALT 
+eti31.32: 
+   SUB #1, R6 
+   MUL #1, R6 
+   LEA 0(R5, R6), R5 
+   STORE R4, 0(R5) 
+   WSTR "value : " 
+   TSTO #1 
+   BOV eti32.33 
+   BRA eti33.34 
+eti32.33: 
+   WSTR "erreur debordement" 
+   WNL 
+   HALT 
+eti33.34: 
+   PUSH R1 
+   LOAD 4(GB), R1 
+   ADD 5(GB), R1 
+   WINT 
+   POP R1 
+   WNL 
+   WSTR "t1 : " 
+   TSTO #1 
+   BOV eti34.35 
+   BRA eti35.36 
+eti34.35: 
+   WSTR "erreur debordement" 
+   WNL 
+   HALT 
+eti35.36: 
+   PUSH R1 
+   LEA 10(GB), R1 
+   LOAD 4(GB), R4 
+   CMP #3, R4 
+   BLT eti36.37 
+   CMP #6, R4 
+   BLE eti37.38 
+eti36.37: 
+   WSTR "erreur debordemet index tableau" 
+   WNL 
+   HALT 
+eti37.38: 
+   SUB #3, R4 
+   MUL #9, R4 
+   LEA 0(R1, R4), R1 
+   LOAD 5(GB), R4 
+   CMP #1, R4 
+   BLT eti38.39 
+   CMP #9, R4 
+   BLE eti39.40 
+eti38.39: 
+   WSTR "erreur debordemet index tableau" 
+   WNL 
+   HALT 
+eti39.40: 
+   SUB #1, R4 
+   MUL #1, R4 
+   LEA 0(R1, R4), R1 
+   LOAD 0(R1), R1 
+   WINT 
+   POP R1 
+   WNL 
+   WSTR "t2 : " 
+   TSTO #1 
+   BOV eti40.41 
+   BRA eti41.42 
+eti40.41: 
+   WSTR "erreur debordement" 
+   WNL 
+   HALT 
+eti41.42: 
+   PUSH R1 
+   LEA 46(GB), R1 
+   LOAD 4(GB), R4 
+   CMP #3, R4 
+   BLT eti42.43 
+   CMP #6, R4 
+   BLE eti43.44 
+eti42.43: 
+   WSTR "erreur debordemet index tableau" 
+   WNL 
+   HALT 
+eti43.44: 
+   SUB #3, R4 
+   MUL #9, R4 
+   LEA 0(R1, R4), R1 
+   LOAD 5(GB), R4 
+   CMP #1, R4 
+   BLT eti44.45 
+   CMP #9, R4 
+   BLE eti45.46 
+eti44.45: 
+   WSTR "erreur debordemet index tableau" 
+   WNL 
+   HALT 
+eti45.46: 
+   SUB #1, R4 
+   MUL #1, R4 
+   LEA 0(R1, R4), R1 
+   LOAD 0(R1), R1 
+   WINT 
+   POP R1 
+   WNL 
+   ADD #1, R2 
+   BRA eti18.19 
+eti19.20: 
+   ADD #1, R0 
+   BRA eti16.17 
+eti17.18: 
+   LEA 10(GB), R0 
+   LEA 46(GB), R1 
+   LOAD 0(R1), R2 
+   CMP #-2147483647, R2 
+   BLT eti46.47 
+   CMP #2147483647, R2 
+   BLE eti47.48 
+eti46.47: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti47.48: 
+   STORE R2, 0(R0) 
+   LOAD 1(R1), R2 
+   CMP #-2147483647, R2 
+   BLT eti48.49 
+   CMP #2147483647, R2 
+   BLE eti49.50 
+eti48.49: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti49.50: 
+   STORE R2, 1(R0) 
+   LOAD 2(R1), R2 
+   CMP #-2147483647, R2 
+   BLT eti50.51 
+   CMP #2147483647, R2 
+   BLE eti51.52 
+eti50.51: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti51.52: 
+   STORE R2, 2(R0) 
+   LOAD 3(R1), R2 
+   CMP #-2147483647, R2 
+   BLT eti52.53 
+   CMP #2147483647, R2 
+   BLE eti53.54 
+eti52.53: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti53.54: 
+   STORE R2, 3(R0) 
+   LOAD 4(R1), R2 
+   CMP #-2147483647, R2 
+   BLT eti54.55 
+   CMP #2147483647, R2 
+   BLE eti55.56 
+eti54.55: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti55.56: 
+   STORE R2, 4(R0) 
+   LOAD 5(R1), R2 
+   CMP #-2147483647, R2 
+   BLT eti56.57 
+   CMP #2147483647, R2 
+   BLE eti57.58 
+eti56.57: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti57.58: 
+   STORE R2, 5(R0) 
+   LOAD 6(R1), R2 
+   CMP #-2147483647, R2 
+   BLT eti58.59 
+   CMP #2147483647, R2 
+   BLE eti59.60 
+eti58.59: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti59.60: 
+   STORE R2, 6(R0) 
+   LOAD 7(R1), R2 
+   CMP #-2147483647, R2 
+   BLT eti60.61 
+   CMP #2147483647, R2 
+   BLE eti61.62 
+eti60.61: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti61.62: 
+   STORE R2, 7(R0) 
+   LOAD 8(R1), R2 
+   CMP #-2147483647, R2 
+   BLT eti62.63 
+   CMP #2147483647, R2 
+   BLE eti63.64 
+eti62.63: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti63.64: 
+   STORE R2, 8(R0) 
+   LOAD 9(R1), R2 
+   CMP #-2147483647, R2 
+   BLT eti64.65 
+   CMP #2147483647, R2 
+   BLE eti65.66 
+eti64.65: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti65.66: 
+   STORE R2, 9(R0) 
+   LOAD 10(R1), R2 
+   CMP #-2147483647, R2 
+   BLT eti66.67 
+   CMP #2147483647, R2 
+   BLE eti67.68 
+eti66.67: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti67.68: 
+   STORE R2, 10(R0) 
+   LOAD 11(R1), R2 
+   CMP #-2147483647, R2 
+   BLT eti68.69 
+   CMP #2147483647, R2 
+   BLE eti69.70 
+eti68.69: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti69.70: 
+   STORE R2, 11(R0) 
+   LOAD 12(R1), R2 
+   CMP #-2147483647, R2 
+   BLT eti70.71 
+   CMP #2147483647, R2 
+   BLE eti71.72 
+eti70.71: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti71.72: 
+   STORE R2, 12(R0) 
+   LOAD 13(R1), R2 
+   CMP #-2147483647, R2 
+   BLT eti72.73 
+   CMP #2147483647, R2 
+   BLE eti73.74 
+eti72.73: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti73.74: 
+   STORE R2, 13(R0) 
+   LOAD 14(R1), R2 
+   CMP #-2147483647, R2 
+   BLT eti74.75 
+   CMP #2147483647, R2 
+   BLE eti75.76 
+eti74.75: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti75.76: 
+   STORE R2, 14(R0) 
+   LOAD 15(R1), R2 
+   CMP #-2147483647, R2 
+   BLT eti76.77 
+   CMP #2147483647, R2 
+   BLE eti77.78 
+eti76.77: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti77.78: 
+   STORE R2, 15(R0) 
+   LOAD 16(R1), R2 
+   CMP #-2147483647, R2 
+   BLT eti78.79 
+   CMP #2147483647, R2 
+   BLE eti79.80 
+eti78.79: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti79.80: 
+   STORE R2, 16(R0) 
+   LOAD 17(R1), R2 
+   CMP #-2147483647, R2 
+   BLT eti80.81 
+   CMP #2147483647, R2 
+   BLE eti81.82 
+eti80.81: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti81.82: 
+   STORE R2, 17(R0) 
+   LOAD 18(R1), R2 
+   CMP #-2147483647, R2 
+   BLT eti82.83 
+   CMP #2147483647, R2 
+   BLE eti83.84 
+eti82.83: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti83.84: 
+   STORE R2, 18(R0) 
+   LOAD 19(R1), R2 
+   CMP #-2147483647, R2 
+   BLT eti84.85 
+   CMP #2147483647, R2 
+   BLE eti85.86 
+eti84.85: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti85.86: 
+   STORE R2, 19(R0) 
+   LOAD 20(R1), R2 
+   CMP #-2147483647, R2 
+   BLT eti86.87 
+   CMP #2147483647, R2 
+   BLE eti87.88 
+eti86.87: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti87.88: 
+   STORE R2, 20(R0) 
+   LOAD 21(R1), R2 
+   CMP #-2147483647, R2 
+   BLT eti88.89 
+   CMP #2147483647, R2 
+   BLE eti89.90 
+eti88.89: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti89.90: 
+   STORE R2, 21(R0) 
+   LOAD 22(R1), R2 
+   CMP #-2147483647, R2 
+   BLT eti90.91 
+   CMP #2147483647, R2 
+   BLE eti91.92 
+eti90.91: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti91.92: 
+   STORE R2, 22(R0) 
+   LOAD 23(R1), R2 
+   CMP #-2147483647, R2 
+   BLT eti92.93 
+   CMP #2147483647, R2 
+   BLE eti93.94 
+eti92.93: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti93.94: 
+   STORE R2, 23(R0) 
+   LOAD 24(R1), R2 
+   CMP #-2147483647, R2 
+   BLT eti94.95 
+   CMP #2147483647, R2 
+   BLE eti95.96 
+eti94.95: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti95.96: 
+   STORE R2, 24(R0) 
+   LOAD 25(R1), R2 
+   CMP #-2147483647, R2 
+   BLT eti96.97 
+   CMP #2147483647, R2 
+   BLE eti97.98 
+eti96.97: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti97.98: 
+   STORE R2, 25(R0) 
+   LOAD 26(R1), R2 
+   CMP #-2147483647, R2 
+   BLT eti98.99 
+   CMP #2147483647, R2 
+   BLE eti99.100 
+eti98.99: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti99.100: 
+   STORE R2, 26(R0) 
+   LOAD 27(R1), R2 
+   CMP #-2147483647, R2 
+   BLT eti100.101 
+   CMP #2147483647, R2 
+   BLE eti101.102 
+eti100.101: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti101.102: 
+   STORE R2, 27(R0) 
+   LOAD 28(R1), R2 
+   CMP #-2147483647, R2 
+   BLT eti102.103 
+   CMP #2147483647, R2 
+   BLE eti103.104 
+eti102.103: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti103.104: 
+   STORE R2, 28(R0) 
+   LOAD 29(R1), R2 
+   CMP #-2147483647, R2 
+   BLT eti104.105 
+   CMP #2147483647, R2 
+   BLE eti105.106 
+eti104.105: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti105.106: 
+   STORE R2, 29(R0) 
+   LOAD 30(R1), R2 
+   CMP #-2147483647, R2 
+   BLT eti106.107 
+   CMP #2147483647, R2 
+   BLE eti107.108 
+eti106.107: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti107.108: 
+   STORE R2, 30(R0) 
+   LOAD 31(R1), R2 
+   CMP #-2147483647, R2 
+   BLT eti108.109 
+   CMP #2147483647, R2 
+   BLE eti109.110 
+eti108.109: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti109.110: 
+   STORE R2, 31(R0) 
+   LOAD 32(R1), R2 
+   CMP #-2147483647, R2 
+   BLT eti110.111 
+   CMP #2147483647, R2 
+   BLE eti111.112 
+eti110.111: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti111.112: 
+   STORE R2, 32(R0) 
+   LOAD 33(R1), R2 
+   CMP #-2147483647, R2 
+   BLT eti112.113 
+   CMP #2147483647, R2 
+   BLE eti113.114 
+eti112.113: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti113.114: 
+   STORE R2, 33(R0) 
+   LOAD 34(R1), R2 
+   CMP #-2147483647, R2 
+   BLT eti114.115 
+   CMP #2147483647, R2 
+   BLE eti115.116 
+eti114.115: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti115.116: 
+   STORE R2, 34(R0) 
+   LOAD 35(R1), R2 
+   CMP #-2147483647, R2 
+   BLT eti116.117 
+   CMP #2147483647, R2 
+   BLE eti117.118 
+eti116.117: 
+   WSTR "debordement de l'intervale" 
+   WNL 
+   HALT 
+eti117.118: 
+   STORE R2, 35(R0) 
+   LOAD #3, R0 
+   LOAD #6, R1 
+eti118.119: 
+   STORE R0, 4(GB) 
+   CMP R0, R1 
+   BLT eti119.120 
+   LOAD #1, R2 
+   LOAD #9, R3 
+eti120.121: 
+   STORE R2, 5(GB) 
+   CMP R2, R3 
+   BLT eti121.122 
+   WSTR "t1 : " 
+   TSTO #1 
+   BOV eti122.123 
+   BRA eti123.124 
+eti122.123: 
+   WSTR "erreur debordement" 
+   WNL 
+   HALT 
+eti123.124: 
+   PUSH R1 
+   LEA 10(GB), R1 
+   LOAD 4(GB), R4 
+   CMP #3, R4 
+   BLT eti124.125 
+   CMP #6, R4 
+   BLE eti125.126 
+eti124.125: 
+   WSTR "erreur debordemet index tableau" 
+   WNL 
+   HALT 
+eti125.126: 
+   SUB #3, R4 
+   MUL #9, R4 
+   LEA 0(R1, R4), R1 
+   LOAD 5(GB), R4 
+   CMP #1, R4 
+   BLT eti126.127 
+   CMP #9, R4 
+   BLE eti127.128 
+eti126.127: 
+   WSTR "erreur debordemet index tableau" 
+   WNL 
+   HALT 
+eti127.128: 
+   SUB #1, R4 
+   MUL #1, R4 
+   LEA 0(R1, R4), R1 
+   LOAD 0(R1), R1 
+   WINT 
+   WSTR "   t2  : " 
+   LEA 46(GB), R1 
+   LOAD 4(GB), R4 
+   CMP #3, R4 
+   BLT eti128.129 
+   CMP #6, R4 
+   BLE eti129.130 
+eti128.129: 
+   WSTR "erreur debordemet index tableau" 
+   WNL 
+   HALT 
+eti129.130: 
+   SUB #3, R4 
+   MUL #9, R4 
+   LEA 0(R1, R4), R1 
+   LOAD 5(GB), R4 
+   CMP #1, R4 
+   BLT eti130.131 
+   CMP #9, R4 
+   BLE eti131.132 
+eti130.131: 
+   WSTR "erreur debordemet index tableau" 
+   WNL 
+   HALT 
+eti131.132: 
+   SUB #1, R4 
+   MUL #1, R4 
+   LEA 0(R1, R4), R1 
+   LOAD 0(R1), R1 
+   WINT 
+   POP R1 
+   WNL 
+   ADD #1, R2 
+   BRA eti120.121 
+eti121.122: 
+   ADD #1, R0 
+   BRA eti118.119 
+eti119.120: 
+   SUBSP #82 
+   HALT 

@@ -1,0 +1,225 @@
+; ----------------------------------------------------------------------
+; -----------                      Programme genere par JCasc-----------
+; ----------------------------------------------------------------------
+   TSTO #5 
+   BOV eti0.1 
+   BRA eti1.2 
+eti0.1: 
+   WSTR "E03 erreur debordement de la pile" 
+   WNL 
+   HALT 
+eti1.2: 
+   ADDSP #5 
+   LOAD #5, R0 
+   CMP #-2147483647, R0 
+   BLT eti2.3 
+   CMP #2147483647, R0 
+   BLE eti3.4 
+eti2.3: 
+   WSTR "E02 interval incorrect" 
+   WNL 
+   HALT 
+eti3.4: 
+   STORE R0, 1(GB) 
+   LOAD #2, R0 
+   CMP #-2147483647, R0 
+   BLT eti4.5 
+   CMP #2147483647, R0 
+   BLE eti5.6 
+eti4.5: 
+   WSTR "E02 interval incorrect" 
+   WNL 
+   HALT 
+eti5.6: 
+   STORE R0, 2(GB) 
+   LOAD #1.5, R0 
+   STORE R0, 3(GB) 
+   LOAD #2.5, R0 
+   STORE R0, 4(GB) 
+   WSTR "devrait etre 3: " 
+   LOAD #1, R1 
+   ADD 2(GB), R1 
+   WINT 
+   WSTR " (add entier )" 
+   WNL 
+   WSTR "devrait etre -1: " 
+   LOAD #1, R1 
+   SUB #2, R1 
+   WINT 
+   WSTR " (sub entier " 
+   WNL 
+   WSTR "devrait etre 10: " 
+   LOAD 2(GB), R1 
+   MUL 1(GB), R1 
+   WINT 
+   WSTR " (mult entier " 
+   WNL 
+   WSTR "devrait etre 15 : " 
+   LOAD #31, R1 
+   LOAD 2(GB), R1 
+   CMP #0, R1 
+   BNE eti6.7 
+   WSTR "E00 Division par zero" 
+   WNL 
+   HALT 
+eti6.7: 
+   DIV 2(GB), R1 
+   WINT 
+   WSTR " (div entier " 
+   WNL 
+   WSTR "devrait etre 1 : " 
+   LOAD #31, R1 
+   LOAD #2, R1 
+   CMP #0, R1 
+   BNE eti7.8 
+   WSTR "E00 Division par zero" 
+   WNL 
+   HALT 
+eti7.8: 
+   MOD #2, R1 
+   WINT 
+   WSTR " (reste entier " 
+   WNL 
+   WSTR "devrait etre 4 : " 
+   LOAD #1.5, R1 
+   ADD #2.5, R1 
+   WFLOAT 
+   WSTR " (add float " 
+   WNL 
+   WSTR "devrait etre -1 : " 
+   LOAD #1.5, R1 
+   SUB 4(GB), R1 
+   WFLOAT 
+   WSTR " (sub float " 
+   WNL 
+   WSTR "devrait etre 3.75 : " 
+   LOAD 3(GB), R1 
+   MUL 4(GB), R1 
+   WFLOAT 
+   WSTR " (mult float " 
+   WNL 
+   WSTR "devrait etre 5.5: " 
+   LOAD #18.15, R1 
+   LOAD #3.3, R1 
+   CMP #0.0, R1 
+   BNE eti8.9 
+   WSTR "E00 Division par zero" 
+   WNL 
+   HALT 
+eti8.9: 
+   DIV #3.3, R1 
+   WFLOAT 
+   WSTR " (div float " 
+   WNL 
+   WSTR "devrait etre 3.5 : " 
+   LOAD 3(GB), R1 
+   FLOAT 2(GB), R0 
+   ADD R0, R1 
+   WFLOAT 
+   WSTR " (add float avec converssion " 
+   WNL 
+   WSTR "devrait etre -0.5 : " 
+   LOAD #1.5, R1 
+   SUB #2.0, R1 
+   WFLOAT 
+   WSTR " (sub float avec converssion " 
+   WNL 
+   WSTR "devrait etre 3.0 : " 
+   LOAD #1.5, R1 
+   MUL #2.0, R1 
+   WFLOAT 
+   WSTR " (mult float avec converssion " 
+   WNL 
+   WSTR "devrait etre 1.57: " 
+   LOAD #15.7, R1 
+   LOAD #10.0, R1 
+   CMP #0.0, R1 
+   BNE eti9.10 
+   WSTR "E00 Division par zero" 
+   WNL 
+   HALT 
+eti9.10: 
+   DIV #10.0, R1 
+   WFLOAT 
+   WSTR " (div float avec converssion " 
+   WNL 
+   WSTR "devrait etre -5: " 
+   OPP 1(GB), R1 
+   WINT 
+   WSTR " (div float avec converssion " 
+   WNL 
+   WSTR "devrait etre 5: " 
+   LOAD 1(GB), R1 
+   WINT 
+   WSTR " (div float avec converssion " 
+   WNL 
+   WSTR "devrait etre -2.5: " 
+   LOAD #-2.5, R1 
+   WFLOAT 
+   WSTR " (div float avec converssion " 
+   WNL 
+   WSTR "devrait etre 2.5: " 
+   LOAD #2.5, R1 
+   WFLOAT 
+   WSTR " (div float avec converssion " 
+   WNL 
+   WSTR "devrait etre -1.26: " 
+   LOAD #1.0, R1 
+   LOAD #2, R0 
+   MUL #3, R0 
+   FLOAT R0, R0 
+   LOAD #4.0, R2 
+   CMP #0.0, R2 
+   BNE eti10.11 
+   WSTR "E00 Division par zero" 
+   WNL 
+   HALT 
+eti10.11: 
+   DIV #4.0, R0 
+   ADD R0, R1 
+   ADD #1.1, R1 
+   LOAD #2.2, R0 
+   MUL #3.3, R0 
+   LOAD #4.4, R2 
+   CMP #0.0, R2 
+   BNE eti11.12 
+   WSTR "E00 Division par zero" 
+   WNL 
+   HALT 
+eti11.12: 
+   DIV #4.4, R0 
+   SUB R0, R1 
+   ADD #1.0, R1 
+   ADD #1.1, R1 
+   LOAD #2.2, R0 
+   MUL #3.0, R0 
+   LOAD #4.0, R2 
+   CMP #0.0, R2 
+   BNE eti12.13 
+   WSTR "E00 Division par zero" 
+   WNL 
+   HALT 
+eti12.13: 
+   DIV #4.0, R0 
+   SUB R0, R1 
+   ADD #1.0, R1 
+   LOAD #2, R0 
+   MUL #3, R0 
+   FLOAT R0, R0 
+   LOAD #4.0, R2 
+   CMP #0.0, R2 
+   BNE eti13.14 
+   WSTR "E00 Division par zero" 
+   WNL 
+   HALT 
+eti13.14: 
+   DIV #4.0, R0 
+   ADD R0, R1 
+   ADD #1.1, R1 
+   LOAD #2.2, R0 
+   MUL #3.3, R0 
+   SUB R0, R1 
+   WFLOAT 
+   WNL 
+   SUBSP #5 
+   HALT 

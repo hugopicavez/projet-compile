@@ -1,0 +1,17 @@
+program
+	res : integer;
+	i,n,m : integer;
+begin
+	n:= 1;
+	res := 1;
+	while (n <=10) do
+		m := n ;
+		for i := 1 to m do
+			res := res * i;
+		end;
+		write(n,"! = ", res);
+		new_line; 
+		n := n+1;
+		res := 1;
+	end;
+end.

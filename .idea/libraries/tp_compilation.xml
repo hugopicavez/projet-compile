@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="tp-compilation">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/tp-compilation.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

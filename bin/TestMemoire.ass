@@ -1,0 +1,273 @@
+; ----------------------------------------------------------------------
+; -----------                      Programme genere par JCasc-----------
+; ----------------------------------------------------------------------
+   TSTO #12 
+   BOV eti0.1 
+   BRA eti1.2 
+eti0.1: 
+   WSTR "E03 erreur debordement de la pile" 
+   WNL 
+   HALT 
+eti1.2: 
+   ADDSP #12 
+   LOAD #1, R0 
+   STORE R0, 11(GB) 
+   LOAD #0, R0 
+   LOAD #1, R1 
+eti2.3: 
+   STORE R0, 1(GB) 
+   CMP R0, R1 
+   BLT eti3.4 
+   LOAD #1, R2 
+   LOAD #2, R3 
+eti4.5: 
+   STORE R2, 2(GB) 
+   CMP R2, R3 
+   BLT eti5.6 
+   LOAD #0, R4 
+   LOAD #4, R5 
+eti6.7: 
+   STORE R4, 3(GB) 
+   CMP R4, R5 
+   BLT eti7.8 
+   LOAD #1, R6 
+   LOAD #2, R7 
+eti8.9: 
+   STORE R6, 4(GB) 
+   CMP R6, R7 
+   BLT eti9.10 
+   LOAD #5, R8 
+   LOAD #5, R9 
+eti10.11: 
+   STORE R8, 5(GB) 
+   CMP R8, R9 
+   BLT eti11.12 
+   LOAD #0, R10 
+   LOAD #1, R11 
+eti12.13: 
+   STORE R10, 6(GB) 
+   CMP R10, R11 
+   BLT eti13.14 
+   LOAD #0, R12 
+   LOAD #1, R13 
+eti14.15: 
+   STORE R12, 7(GB) 
+   CMP R12, R13 
+   BLT eti15.16 
+   LOAD #0, R14 
+   LOAD #1, R15 
+eti16.17: 
+   STORE R14, 8(GB) 
+   CMP R14, R15 
+   BLT eti17.18 
+   TSTO #1 
+   BOV eti18.19 
+   BRA eti19.20 
+eti18.19: 
+   WSTR "E03 erreur debordement de la pile" 
+   WNL 
+   HALT 
+eti19.20: 
+   PUSH R0 
+   TSTO #1 
+   BOV eti20.21 
+   BRA eti21.22 
+eti20.21: 
+   WSTR "E03 erreur debordement de la pile" 
+   WNL 
+   HALT 
+eti21.22: 
+   PUSH R1 
+   LOAD #0, R0 
+   LOAD #1, R1 
+eti22.23: 
+   STORE R0, 9(GB) 
+   CMP R0, R1 
+   BLT eti23.24 
+   TSTO #1 
+   BOV eti26.27 
+   BRA eti27.28 
+eti26.27: 
+   WSTR "E03 erreur debordement de la pile" 
+   WNL 
+   HALT 
+eti27.28: 
+   PUSH R0 
+   LOAD 11(GB), R0 
+   CMP #0, R0 
+   BEQ eti24.25 
+   WNL 
+   WSTR "Entrer entier" 
+   TSTO #1 
+   BOV eti28.29 
+   BRA eti29.30 
+eti28.29: 
+   WSTR "E03 erreur debordement de la pile" 
+   WNL 
+   HALT 
+eti29.30: 
+   PUSH R1 
+   RINT 
+   TSTO #1 
+   BOV eti30.31 
+   BRA eti31.32 
+eti30.31: 
+   WSTR "E03 erreur debordement de la pile" 
+   WNL 
+   HALT 
+eti31.32: 
+   PUSH R0 
+   LEA 10(GB), R0 
+   STORE R1, 0(R0) 
+   POP R0 
+   POP R1 
+   TSTO #1 
+   BOV eti32.33 
+   BRA eti33.34 
+eti32.33: 
+   WSTR "E03 erreur debordement de la pile" 
+   WNL 
+   HALT 
+eti33.34: 
+   PUSH R0 
+   LOAD #0, R0 
+   STORE R0, 11(GB) 
+   POP R0 
+   BRA eti25.26 
+eti24.25: 
+eti25.26: 
+   POP R0 
+   TSTO #1 
+   BOV eti34.35 
+   BRA eti35.36 
+eti34.35: 
+   WSTR "E03 erreur debordement de la pile" 
+   WNL 
+   HALT 
+eti35.36: 
+   PUSH R1 
+   LOAD #1, R1 
+   ADD #1, R1 
+   ADDSP #1 
+   STORE R1, 12(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   ADD 12(GB), R1 
+   SUBSP #1 
+   ADDSP #1 
+   STORE R1, 12(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   ADDSP #1 
+   STORE R1, 13(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   ADD 13(GB), R1 
+   SUBSP #1 
+   ADD 12(GB), R1 
+   SUBSP #1 
+   ADDSP #1 
+   STORE R1, 12(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   ADDSP #1 
+   STORE R1, 13(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   ADD 13(GB), R1 
+   SUBSP #1 
+   ADDSP #1 
+   STORE R1, 13(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   ADDSP #1 
+   STORE R1, 14(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   ADD 14(GB), R1 
+   SUBSP #1 
+   ADD 13(GB), R1 
+   SUBSP #1 
+   ADD 12(GB), R1 
+   SUBSP #1 
+   ADDSP #1 
+   STORE R1, 12(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   ADDSP #1 
+   STORE R1, 13(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   ADD 13(GB), R1 
+   SUBSP #1 
+   ADDSP #1 
+   STORE R1, 13(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   ADDSP #1 
+   STORE R1, 14(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   ADD 14(GB), R1 
+   SUBSP #1 
+   ADD 13(GB), R1 
+   SUBSP #1 
+   ADDSP #1 
+   STORE R1, 13(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   ADDSP #1 
+   STORE R1, 14(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   ADD 14(GB), R1 
+   SUBSP #1 
+   ADDSP #1 
+   STORE R1, 14(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   ADDSP #1 
+   STORE R1, 15(GB) 
+   LOAD #1, R1 
+   ADD #1, R1 
+   ADD 15(GB), R1 
+   SUBSP #1 
+   ADD 14(GB), R1 
+   SUBSP #1 
+   ADD 13(GB), R1 
+   SUBSP #1 
+   ADD 12(GB), R1 
+   SUBSP #1 
+   WINT 
+   POP R1 
+   ADD #1, R0 
+   BRA eti22.23 
+eti23.24: 
+   POP R1 
+   POP R0 
+   ADD #1, R14 
+   BRA eti16.17 
+eti17.18: 
+   ADD #1, R12 
+   BRA eti14.15 
+eti15.16: 
+   ADD #1, R10 
+   BRA eti12.13 
+eti13.14: 
+   ADD #1, R8 
+   BRA eti10.11 
+eti11.12: 
+   ADD #1, R6 
+   BRA eti8.9 
+eti9.10: 
+   ADD #1, R4 
+   BRA eti6.7 
+eti7.8: 
+   ADD #1, R2 
+   BRA eti4.5 
+eti5.6: 
+   ADD #1, R0 
+   BRA eti2.3 
+eti3.4: 
+   SUBSP #12 
+   HALT 

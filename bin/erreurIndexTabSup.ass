@@ -1,0 +1,32 @@
+; ----------------------------------------------------------------------
+; -----------                      Programme genere par JCasc-----------
+; ----------------------------------------------------------------------
+   TSTO #10 
+   BOV eti0.1 
+   BRA eti1.2 
+eti0.1: 
+   WSTR "E03 erreur debordement de la pile" 
+   WNL 
+   HALT 
+eti1.2: 
+   ADDSP #10 
+   WSTR "Test erreur index tableau sup" 
+   WNL 
+   LOAD #10, R0 
+   LEA 1(GB), R1 
+   LOAD #10, R2 
+   CMP #1, R2 
+   BLT eti2.3 
+   CMP #9, R2 
+   BLE eti3.4 
+eti2.3: 
+   WSTR "E01 l'index incorrecte " 
+   WNL 
+   HALT 
+eti3.4: 
+   SUB #1, R2 
+   MUL #1, R2 
+   LEA 0(R1, R2), R1 
+   STORE R0, 0(R1) 
+   SUBSP #10 
+   HALT 

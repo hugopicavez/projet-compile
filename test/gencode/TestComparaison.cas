@@ -1,0 +1,116 @@
+program
+begin
+   if (1 = 1) then
+        write("Succes : if(1==1)");
+   else
+        write("Echec : if(1==1)");
+   end;
+   new_line;
+   
+   if (1 = 2) then
+       write("Echec : comparaison 1=2 ");
+   else
+       write("Succes : comparaison 1=2 ");
+   end;
+   new_line;
+   
+   if (1 /= 2) then
+        write("Succes : comparaison 1/=2");
+   else
+        write("Echec : comparaison 1/=2");
+   end;
+   new_line;
+      
+   if (1 /= 1) then
+        write("Echec : comparaison 1/=1");
+   else
+        write("Succes  : comparaison 1/=1");
+   end;
+   new_line;
+
+   if (1 < 1.5) then
+        write("Succes : comparaison 1<1.5");
+   else
+        write("Echec : comparaison 1<1.5");
+   end;
+   new_line;
+
+   if (1.5 < 1) then
+       write("Echec : comparaison 1.5<1");
+   else
+       write("Succes : comparaison 1.5<1");
+   end;
+   new_line;
+
+   if (1.5 < 1.5) then
+       write("Echec :comparaison 1.5<1.5");
+   else
+       write("Succes :comparaison 1.5<1.5");
+   end;
+   new_line;
+
+   if (1 <= 1.5) then
+        write("Succes :comparaison 1<=1.5");
+   else
+        write("Echec :comparaison 1<=1.5");
+   end;
+   new_line;
+
+   if (1.5 <= 1) then
+       write("Echec :comparaison 1.5 <= 1");
+   else
+       write("Succes : comparaison 1.5 <= 1 ");
+   end;
+   new_line;
+
+   if (1.5 <= 1.5) then
+       write("Succes :comparaison 1.5 <= 1.5");
+   else
+       write("Echec : comparaison 1.5 <= 1.5 ");
+   end;
+
+   new_line;
+
+   if (1.5 > 1) then
+           write("Succes: comparaison 1.5 > 1 ");
+      else
+           write("Echec : comparaison 1.5 > 1 ");
+      end;
+      new_line;
+
+      if (1.5 > 1) then
+          write("Succes : comparaison 1.5>1");
+      else
+          write("Echec : comparaison 1.5>1");
+      end;
+      new_line;
+
+      if (1.5 > 1.5) then
+          write("Echec : comparaison 1.5>1.5");
+      else
+          write("Succes : comparaison 1.5>1.5");
+      end;
+      new_line;
+
+      if (1.5 >= 1) then
+           write("Succes : comparaison 1.5 >= 1");
+      else
+           write("Echec : comparaison 1.5 >= 1");
+      end;
+      new_line;
+
+      if (1 >= 1.5) then
+          write("Echec : comparaison 1>=1.5");
+      else
+          write("Succes : comparaison 1>=1.5 ");
+      end;
+      new_line;
+
+      if (1.5 >= 1.5) then
+        write("Succes : comparaison 1.5>=1.5");
+      else
+        write("Echec : comparaison 1.5>=1.5 ");
+      end;
+      new_line;
+
+end.

@@ -1,0 +1,83 @@
+program
+   a, b : boolean;
+begin
+      a := true;
+      b := false;
+      write("test OR ");
+      new_line;
+      write("true : ");
+      if ( a OR a ) then
+          write("true");
+      else
+          write("false");
+      end;
+      new_line;
+      write("true : ");
+      if ( false OR a ) then
+          write("true");
+      else
+          write("false");
+      end;
+      new_line;
+      write("true : ");
+      if ( a OR b ) then
+          write("true");
+      else
+          write("false");
+      end;
+      new_line;
+      write("false : ");
+      if ( false OR false ) then
+          write("true");
+      else
+          write("false");
+      end;
+      new_line;
+      write("test et ");
+      new_line;
+      write("true : ");
+      if ( a AND a ) then
+          write("true");
+      else
+          write("false");
+      end;
+      new_line;
+      write("false : ");
+      if ( false AND a ) then
+          write("true");
+      else
+          write("false");
+      end;
+      new_line;
+      write("false : ");
+      if ( a AND b ) then
+          write("true");
+      else
+          write("false");
+      end;
+      new_line;
+      write("false : ");
+      if ( false AND false ) then
+          write("true");
+      else
+          write("false");
+      end;
+      new_line;
+
+      write("test NOT ");
+      new_line;
+      write("false : ");
+      if ( NOT a ) then
+          write("true");
+      else
+          write("false");
+      end;
+      new_line;
+      write("true : ");
+      if ( NOT false ) then
+          write("true");
+      else
+          write("false");
+      end;
+      new_line;
+end.

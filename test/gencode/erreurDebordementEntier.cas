@@ -1,0 +1,7 @@
+program
+	f : integer;
+begin
+    write("Test erreur débordement integer");
+    new_line;
+	f := max_int+1;
+end.
