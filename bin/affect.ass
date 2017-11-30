@@ -5,7 +5,7 @@
    BOV eti0.1 
    BRA eti1.2 
 eti0.1: 
-   WSTR "erreur debordement" 
+   WSTR "E03 erreur debordement de la pile" 
    WNL 
    HALT 
 eti1.2: 
@@ -14,6 +14,9 @@ eti1.2:
    STORE R0, 1(GB) 
    LOAD 1(GB), R0 
    STORE R0, 2(GB) 
+   LOAD 1(GB), R0 
+   CMP #0, R0 
+   BEQ eti2.3 
    LOAD #0, R0 
    BRA eti3.4 
 eti2.3: 
@@ -56,7 +59,7 @@ eti9.10:
    CMP #2147483647, R0 
    BLE eti11.12 
 eti10.11: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti11.12: 
@@ -67,7 +70,7 @@ eti11.12:
    CMP #2147483647, R0 
    BLE eti13.14 
 eti12.13: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti13.14: 
@@ -79,7 +82,7 @@ eti13.14:
    CMP #2147483647, R0 
    BLE eti15.16 
 eti14.15: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti15.16: 
@@ -117,7 +120,7 @@ eti18.19:
    CMP #6, R6 
    BLE eti21.22 
 eti20.21: 
-   WSTR "erreur debordemet index tableau" 
+   WSTR "E01 l'index incorrecte " 
    WNL 
    HALT 
 eti21.22: 
@@ -130,7 +133,7 @@ eti21.22:
    CMP #9, R6 
    BLE eti23.24 
 eti22.23: 
-   WSTR "erreur debordemet index tableau" 
+   WSTR "E01 l'index incorrecte " 
    WNL 
    HALT 
 eti23.24: 
@@ -138,39 +141,36 @@ eti23.24:
    MUL #1, R6 
    LEA 0(R5, R6), R5 
    STORE R4, 0(R5) 
-   LEA 10(GB), R4 
-   LOAD 4(GB), R5 
-   CMP #3, R5 
+   LOAD #2, R4 
+   LEA 10(GB), R5 
+   LOAD 4(GB), R6 
+   CMP #3, R6 
    BLT eti24.25 
-   CMP #6, R5 
+   CMP #6, R6 
    BLE eti25.26 
 eti24.25: 
-   WSTR "erreur debordemet index tableau" 
+   WSTR "E01 l'index incorrecte " 
    WNL 
    HALT 
 eti25.26: 
-   SUB #3, R5 
-   MUL #9, R5 
-   LEA 0(R4, R5), R4 
-   LOAD 5(GB), R5 
-   CMP #1, R5 
+   SUB #3, R6 
+   MUL #9, R6 
+   LEA 0(R5, R6), R5 
+   LOAD 5(GB), R6 
+   CMP #1, R6 
    BLT eti26.27 
-   CMP #9, R5 
+   CMP #9, R6 
    BLE eti27.28 
 eti26.27: 
-   WSTR "erreur debordemet index tableau" 
+   WSTR "E01 l'index incorrecte " 
    WNL 
    HALT 
 eti27.28: 
-   SUB #1, R5 
-   MUL #1, R5 
-   LEA 0(R4, R5), R4 
-   LOAD 0(R4), R4 
-   ADDSP #1 
-   STORE R4, 83(GB) 
-   LOAD #2, R4 
-   MUL 83(GB), R4 
-   SUBSP #1 
+   SUB #1, R6 
+   MUL #1, R6 
+   LEA 0(R5, R6), R5 
+   LOAD 0(R5), R5 
+   MUL R5, R4 
    LEA 46(GB), R5 
    LOAD 4(GB), R6 
    CMP #3, R6 
@@ -178,7 +178,7 @@ eti27.28:
    CMP #6, R6 
    BLE eti29.30 
 eti28.29: 
-   WSTR "erreur debordemet index tableau" 
+   WSTR "E01 l'index incorrecte " 
    WNL 
    HALT 
 eti29.30: 
@@ -191,7 +191,7 @@ eti29.30:
    CMP #9, R6 
    BLE eti31.32 
 eti30.31: 
-   WSTR "erreur debordemet index tableau" 
+   WSTR "E01 l'index incorrecte " 
    WNL 
    HALT 
 eti31.32: 
@@ -204,7 +204,7 @@ eti31.32:
    BOV eti32.33 
    BRA eti33.34 
 eti32.33: 
-   WSTR "erreur debordement" 
+   WSTR "E03 erreur debordement de la pile" 
    WNL 
    HALT 
 eti33.34: 
@@ -219,7 +219,7 @@ eti33.34:
    BOV eti34.35 
    BRA eti35.36 
 eti34.35: 
-   WSTR "erreur debordement" 
+   WSTR "E03 erreur debordement de la pile" 
    WNL 
    HALT 
 eti35.36: 
@@ -231,7 +231,7 @@ eti35.36:
    CMP #6, R4 
    BLE eti37.38 
 eti36.37: 
-   WSTR "erreur debordemet index tableau" 
+   WSTR "E01 l'index incorrecte " 
    WNL 
    HALT 
 eti37.38: 
@@ -244,7 +244,7 @@ eti37.38:
    CMP #9, R4 
    BLE eti39.40 
 eti38.39: 
-   WSTR "erreur debordemet index tableau" 
+   WSTR "E01 l'index incorrecte " 
    WNL 
    HALT 
 eti39.40: 
@@ -260,7 +260,7 @@ eti39.40:
    BOV eti40.41 
    BRA eti41.42 
 eti40.41: 
-   WSTR "erreur debordement" 
+   WSTR "E03 erreur debordement de la pile" 
    WNL 
    HALT 
 eti41.42: 
@@ -272,7 +272,7 @@ eti41.42:
    CMP #6, R4 
    BLE eti43.44 
 eti42.43: 
-   WSTR "erreur debordemet index tableau" 
+   WSTR "E01 l'index incorrecte " 
    WNL 
    HALT 
 eti43.44: 
@@ -285,7 +285,7 @@ eti43.44:
    CMP #9, R4 
    BLE eti45.46 
 eti44.45: 
-   WSTR "erreur debordemet index tableau" 
+   WSTR "E01 l'index incorrecte " 
    WNL 
    HALT 
 eti45.46: 
@@ -310,7 +310,7 @@ eti17.18:
    CMP #2147483647, R2 
    BLE eti47.48 
 eti46.47: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti47.48: 
@@ -321,7 +321,7 @@ eti47.48:
    CMP #2147483647, R2 
    BLE eti49.50 
 eti48.49: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti49.50: 
@@ -332,7 +332,7 @@ eti49.50:
    CMP #2147483647, R2 
    BLE eti51.52 
 eti50.51: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti51.52: 
@@ -343,7 +343,7 @@ eti51.52:
    CMP #2147483647, R2 
    BLE eti53.54 
 eti52.53: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti53.54: 
@@ -354,7 +354,7 @@ eti53.54:
    CMP #2147483647, R2 
    BLE eti55.56 
 eti54.55: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti55.56: 
@@ -365,7 +365,7 @@ eti55.56:
    CMP #2147483647, R2 
    BLE eti57.58 
 eti56.57: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti57.58: 
@@ -376,7 +376,7 @@ eti57.58:
    CMP #2147483647, R2 
    BLE eti59.60 
 eti58.59: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti59.60: 
@@ -387,7 +387,7 @@ eti59.60:
    CMP #2147483647, R2 
    BLE eti61.62 
 eti60.61: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti61.62: 
@@ -398,7 +398,7 @@ eti61.62:
    CMP #2147483647, R2 
    BLE eti63.64 
 eti62.63: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti63.64: 
@@ -409,7 +409,7 @@ eti63.64:
    CMP #2147483647, R2 
    BLE eti65.66 
 eti64.65: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti65.66: 
@@ -420,7 +420,7 @@ eti65.66:
    CMP #2147483647, R2 
    BLE eti67.68 
 eti66.67: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti67.68: 
@@ -431,7 +431,7 @@ eti67.68:
    CMP #2147483647, R2 
    BLE eti69.70 
 eti68.69: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti69.70: 
@@ -442,7 +442,7 @@ eti69.70:
    CMP #2147483647, R2 
    BLE eti71.72 
 eti70.71: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti71.72: 
@@ -453,7 +453,7 @@ eti71.72:
    CMP #2147483647, R2 
    BLE eti73.74 
 eti72.73: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti73.74: 
@@ -464,7 +464,7 @@ eti73.74:
    CMP #2147483647, R2 
    BLE eti75.76 
 eti74.75: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti75.76: 
@@ -475,7 +475,7 @@ eti75.76:
    CMP #2147483647, R2 
    BLE eti77.78 
 eti76.77: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti77.78: 
@@ -486,7 +486,7 @@ eti77.78:
    CMP #2147483647, R2 
    BLE eti79.80 
 eti78.79: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti79.80: 
@@ -497,7 +497,7 @@ eti79.80:
    CMP #2147483647, R2 
    BLE eti81.82 
 eti80.81: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti81.82: 
@@ -508,7 +508,7 @@ eti81.82:
    CMP #2147483647, R2 
    BLE eti83.84 
 eti82.83: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti83.84: 
@@ -519,7 +519,7 @@ eti83.84:
    CMP #2147483647, R2 
    BLE eti85.86 
 eti84.85: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti85.86: 
@@ -530,7 +530,7 @@ eti85.86:
    CMP #2147483647, R2 
    BLE eti87.88 
 eti86.87: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti87.88: 
@@ -541,7 +541,7 @@ eti87.88:
    CMP #2147483647, R2 
    BLE eti89.90 
 eti88.89: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti89.90: 
@@ -552,7 +552,7 @@ eti89.90:
    CMP #2147483647, R2 
    BLE eti91.92 
 eti90.91: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti91.92: 
@@ -563,7 +563,7 @@ eti91.92:
    CMP #2147483647, R2 
    BLE eti93.94 
 eti92.93: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti93.94: 
@@ -574,7 +574,7 @@ eti93.94:
    CMP #2147483647, R2 
    BLE eti95.96 
 eti94.95: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti95.96: 
@@ -585,7 +585,7 @@ eti95.96:
    CMP #2147483647, R2 
    BLE eti97.98 
 eti96.97: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti97.98: 
@@ -596,7 +596,7 @@ eti97.98:
    CMP #2147483647, R2 
    BLE eti99.100 
 eti98.99: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti99.100: 
@@ -607,7 +607,7 @@ eti99.100:
    CMP #2147483647, R2 
    BLE eti101.102 
 eti100.101: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti101.102: 
@@ -618,7 +618,7 @@ eti101.102:
    CMP #2147483647, R2 
    BLE eti103.104 
 eti102.103: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti103.104: 
@@ -629,7 +629,7 @@ eti103.104:
    CMP #2147483647, R2 
    BLE eti105.106 
 eti104.105: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti105.106: 
@@ -640,7 +640,7 @@ eti105.106:
    CMP #2147483647, R2 
    BLE eti107.108 
 eti106.107: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti107.108: 
@@ -651,7 +651,7 @@ eti107.108:
    CMP #2147483647, R2 
    BLE eti109.110 
 eti108.109: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti109.110: 
@@ -662,7 +662,7 @@ eti109.110:
    CMP #2147483647, R2 
    BLE eti111.112 
 eti110.111: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti111.112: 
@@ -673,7 +673,7 @@ eti111.112:
    CMP #2147483647, R2 
    BLE eti113.114 
 eti112.113: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti113.114: 
@@ -684,7 +684,7 @@ eti113.114:
    CMP #2147483647, R2 
    BLE eti115.116 
 eti114.115: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti115.116: 
@@ -695,7 +695,7 @@ eti115.116:
    CMP #2147483647, R2 
    BLE eti117.118 
 eti116.117: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti117.118: 
@@ -717,7 +717,7 @@ eti120.121:
    BOV eti122.123 
    BRA eti123.124 
 eti122.123: 
-   WSTR "erreur debordement" 
+   WSTR "E03 erreur debordement de la pile" 
    WNL 
    HALT 
 eti123.124: 
@@ -729,7 +729,7 @@ eti123.124:
    CMP #6, R4 
    BLE eti125.126 
 eti124.125: 
-   WSTR "erreur debordemet index tableau" 
+   WSTR "E01 l'index incorrecte " 
    WNL 
    HALT 
 eti125.126: 
@@ -742,7 +742,7 @@ eti125.126:
    CMP #9, R4 
    BLE eti127.128 
 eti126.127: 
-   WSTR "erreur debordemet index tableau" 
+   WSTR "E01 l'index incorrecte " 
    WNL 
    HALT 
 eti127.128: 
@@ -759,7 +759,7 @@ eti127.128:
    CMP #6, R4 
    BLE eti129.130 
 eti128.129: 
-   WSTR "erreur debordemet index tableau" 
+   WSTR "E01 l'index incorrecte " 
    WNL 
    HALT 
 eti129.130: 
@@ -772,7 +772,7 @@ eti129.130:
    CMP #9, R4 
    BLE eti131.132 
 eti130.131: 
-   WSTR "erreur debordemet index tableau" 
+   WSTR "E01 l'index incorrecte " 
    WNL 
    HALT 
 eti131.132: 

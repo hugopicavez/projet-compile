@@ -5,12 +5,14 @@
    BOV eti0.1 
    BRA eti1.2 
 eti0.1: 
-   WSTR "erreur debordement" 
+   WSTR "E03 erreur debordement de la pile" 
    WNL 
    HALT 
 eti1.2: 
    ADDSP #1 
    LOAD #1, R0 
+   CMP #1, R0 
+   SEQ R0 
    CMP #0, R0 
    BEQ eti2.3 
    WSTR "j ai teste  avec succe l egaliter entre deux entier egaux" 
@@ -19,7 +21,9 @@ eti2.3:
    WSTR "j ai echoue a comparer l egaliter entre deux entier egaux" 
 eti3.4: 
    WNL 
-   LOAD #0, R0 
+   LOAD #1, R0 
+   CMP #2, R0 
+   SEQ R0 
    CMP #0, R0 
    BEQ eti4.5 
    WSTR "j ai echoue a comparer egaliter entre  deux entier diferent" 
@@ -29,6 +33,8 @@ eti4.5:
 eti5.6: 
    WNL 
    LOAD #1, R0 
+   CMP #2, R0 
+   SNE R0 
    CMP #0, R0 
    BEQ eti6.7 
    WSTR "j ai teste  avec succe la non egaliter entre deux entier different" 
@@ -37,7 +43,9 @@ eti6.7:
    WSTR "j ai echoue a comparer la non egaliter entre deux entier different" 
 eti7.8: 
    WNL 
-   LOAD #0, R0 
+   LOAD #1, R0 
+   CMP #1, R0 
+   SNE R0 
    CMP #0, R0 
    BEQ eti8.9 
    WSTR "j ai echoue la non egaliter entre deux entier egaux" 
@@ -46,7 +54,9 @@ eti8.9:
    WSTR "j ai teste  avec succe a comparer la non egaliter entre deux entier egaux" 
 eti9.10: 
    WNL 
-   LOAD #1, R0 
+   LOAD #1.0, R0 
+   CMP #1.5, R0 
+   SLT R0 
    CMP #0, R0 
    BEQ eti10.11 
    WSTR "j ai teste  avec succe l inferioriter " 
@@ -55,7 +65,9 @@ eti10.11:
    WSTR "j ai echoue a comparer l inferioriter " 
 eti11.12: 
    WNL 
-   LOAD #0, R0 
+   LOAD #1.5, R0 
+   CMP #1.0, R0 
+   SLT R0 
    CMP #0, R0 
    BEQ eti12.13 
    WSTR "j ai echoue l inferioriter" 
@@ -64,7 +76,9 @@ eti12.13:
    WSTR "j ai comparai avec succe l inferioriter" 
 eti13.14: 
    WNL 
-   LOAD #0, R0 
+   LOAD #1.5, R0 
+   CMP #1.5, R0 
+   SLT R0 
    CMP #0, R0 
    BEQ eti14.15 
    WSTR "j ai echoue l inferioriter" 
@@ -73,7 +87,9 @@ eti14.15:
    WSTR "j ai comparai avec succe l inferioriter" 
 eti15.16: 
    WNL 
-   LOAD #1, R0 
+   LOAD #1.0, R0 
+   CMP #1.5, R0 
+   SLE R0 
    CMP #0, R0 
    BEQ eti16.17 
    WSTR "j ai teste  avec succe l inferioriter egal" 
@@ -82,7 +98,9 @@ eti16.17:
    WSTR "j ai echoue a comparer l inferioriter egal" 
 eti17.18: 
    WNL 
-   LOAD #0, R0 
+   LOAD #1.5, R0 
+   CMP #1.0, R0 
+   SLE R0 
    CMP #0, R0 
    BEQ eti18.19 
    WSTR "j ai echoue l inferioriter egal" 
@@ -91,7 +109,9 @@ eti18.19:
    WSTR "j ai comparai avec succe l inferioriter egal " 
 eti19.20: 
    WNL 
-   LOAD #1, R0 
+   LOAD #1.5, R0 
+   CMP #1.5, R0 
+   SLE R0 
    CMP #0, R0 
    BEQ eti20.21 
    WSTR "j ai comparai avec succe l inferioriter egal" 
@@ -100,7 +120,9 @@ eti20.21:
    WSTR "j ai echoue l inferioriter egal " 
 eti21.22: 
    WNL 
-   LOAD #1, R0 
+   LOAD #1.5, R0 
+   CMP #1.0, R0 
+   SGT R0 
    CMP #0, R0 
    BEQ eti22.23 
    WSTR "j ai teste  avec succe l supperieur " 
@@ -109,7 +131,9 @@ eti22.23:
    WSTR "j ai echoue a comparer l supperieur " 
 eti23.24: 
    WNL 
-   LOAD #1, R0 
+   LOAD #1.5, R0 
+   CMP #1.0, R0 
+   SGT R0 
    CMP #0, R0 
    BEQ eti24.25 
    WSTR "j ai comparai avec succe l supperieur" 
@@ -118,7 +142,9 @@ eti24.25:
    WSTR "j ai echoue l supperieur" 
 eti25.26: 
    WNL 
-   LOAD #0, R0 
+   LOAD #1.5, R0 
+   CMP #1.5, R0 
+   SGT R0 
    CMP #0, R0 
    BEQ eti26.27 
    WSTR "j ai echoue l supperieur" 
@@ -127,7 +153,9 @@ eti26.27:
    WSTR "j ai comparai avec succe l supperieur" 
 eti27.28: 
    WNL 
-   LOAD #1, R0 
+   LOAD #1.5, R0 
+   CMP #1.0, R0 
+   SGE R0 
    CMP #0, R0 
    BEQ eti28.29 
    WSTR "j ai teste  avec succe l supperieur egal" 
@@ -136,7 +164,9 @@ eti28.29:
    WSTR "j ai echoue a comparer l supperieur egal" 
 eti29.30: 
    WNL 
-   LOAD #0, R0 
+   LOAD #1.0, R0 
+   CMP #1.5, R0 
+   SGE R0 
    CMP #0, R0 
    BEQ eti30.31 
    WSTR "j ai echoue l supperieur egal" 
@@ -145,7 +175,9 @@ eti30.31:
    WSTR "j ai comparai avec succe l supperieur egal " 
 eti31.32: 
    WNL 
-   LOAD #1, R0 
+   LOAD #1.5, R0 
+   CMP #1.5, R0 
+   SGE R0 
    CMP #0, R0 
    BEQ eti32.33 
    WSTR "j ai comparai avec succe l supperieur egal" 

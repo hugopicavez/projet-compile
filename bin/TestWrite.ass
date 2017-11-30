@@ -5,7 +5,7 @@
    BOV eti0.1 
    BRA eti1.2 
 eti0.1: 
-   WSTR "erreur debordement" 
+   WSTR "E03 erreur debordement de la pile" 
    WNL 
    HALT 
 eti1.2: 

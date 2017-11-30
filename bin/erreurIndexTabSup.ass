@@ -1,7 +1,7 @@
 ; ----------------------------------------------------------------------
 ; -----------                      Programme genere par JCasc-----------
 ; ----------------------------------------------------------------------
-   TSTO #3 
+   TSTO #10 
    BOV eti0.1 
    BRA eti1.2 
 eti0.1: 
@@ -9,22 +9,24 @@ eti0.1:
    WNL 
    HALT 
 eti1.2: 
-   ADDSP #3 
-   WSTR "Entrer un entier : " 
-   RINT 
-   LEA 1(GB), R0 
-   STORE R1, 0(R0) 
-   WSTR "Valeur lu :" 
-   LOAD 1(GB), R1 
-   WINT 
+   ADDSP #10 
+   WSTR "Test erreur index tableau sup" 
    WNL 
-   WSTR "Entrer un reel : " 
-   RFLOAT 
-   LEA 2(GB), R0 
-   STORE R1, 0(R0) 
-   WSTR "Valeur lu :" 
-   LOAD 2(GB), R1 
-   WFLOAT 
+   LOAD #10, R0 
+   LEA 1(GB), R1 
+   LOAD #10, R2 
+   CMP #1, R2 
+   BLT eti2.3 
+   CMP #9, R2 
+   BLE eti3.4 
+eti2.3: 
+   WSTR "E01 l'index incorrecte " 
    WNL 
-   SUBSP #3 
+   HALT 
+eti3.4: 
+   SUB #1, R2 
+   MUL #1, R2 
+   LEA 0(R1, R2), R1 
+   STORE R0, 0(R1) 
+   SUBSP #10 
    HALT 

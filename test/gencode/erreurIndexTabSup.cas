@@ -1,7 +1,7 @@
 program
 	t2 : array  [1 .. 9] of integer;
 begin
-    write("teste erreur index tableau sup");
+    write("Test erreur index tableau sup");
     new_line;
 	t2[10] := 10;
 end.

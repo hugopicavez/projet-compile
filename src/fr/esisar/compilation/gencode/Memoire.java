@@ -42,6 +42,8 @@ public class Memoire {
             if (registres[i] == false) {
                 registres[i] = true;
                 pile.add(true);
+                System.out.println("Push registre : "+Registre.values()[i]);
+                System.out.println(Arrays.toString(Thread.currentThread().getStackTrace()));
                 return Registre.values()[i];
             }
         }
@@ -51,6 +53,7 @@ public class Memoire {
             if (content(Registre.values()[i], needs)) {
                 Registre registre = Registre.values()[i];
                 Prog.ajouter(Inst.creation1(Operation.PUSH, Operande.opDirect(registre)));
+
                 return registre;
             }
         return null;
@@ -64,6 +67,8 @@ public class Memoire {
     }
 
     public void free(Registre r) {
+        System.out.println("Libération registre : "+r);
+        System.out.println(Arrays.toString(Thread.currentThread().getStackTrace()));
         int indice = Arrays.binarySearch(Registre.values(), r);
         if (pile.remove(pile.size() - 1))
             registres[indice] = false;

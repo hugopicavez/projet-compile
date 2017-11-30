@@ -1,7 +1,7 @@
 program
 	h : 1 .. 8;
 begin
-    write("teste erreur affecter interval inf");
+    write("Test erreur affectation  interval inf");
     new_line;
 	h := 0;
 end.

@@ -5,7 +5,7 @@
    BOV eti0.1 
    BRA eti1.2 
 eti0.1: 
-   WSTR "erreur debordement" 
+   WSTR "E03 erreur debordement de la pile" 
    WNL 
    HALT 
 eti1.2: 
@@ -64,7 +64,7 @@ eti16.17:
    BOV eti18.19 
    BRA eti19.20 
 eti18.19: 
-   WSTR "erreur debordement" 
+   WSTR "E03 erreur debordement de la pile" 
    WNL 
    HALT 
 eti19.20: 
@@ -73,7 +73,7 @@ eti19.20:
    BOV eti20.21 
    BRA eti21.22 
 eti20.21: 
-   WSTR "erreur debordement" 
+   WSTR "E03 erreur debordement de la pile" 
    WNL 
    HALT 
 eti21.22: 
@@ -88,7 +88,7 @@ eti22.23:
    BOV eti26.27 
    BRA eti27.28 
 eti26.27: 
-   WSTR "erreur debordement" 
+   WSTR "E03 erreur debordement de la pile" 
    WNL 
    HALT 
 eti27.28: 
@@ -102,7 +102,7 @@ eti27.28:
    BOV eti28.29 
    BRA eti29.30 
 eti28.29: 
-   WSTR "erreur debordement" 
+   WSTR "E03 erreur debordement de la pile" 
    WNL 
    HALT 
 eti29.30: 
@@ -112,7 +112,7 @@ eti29.30:
    BOV eti30.31 
    BRA eti31.32 
 eti30.31: 
-   WSTR "erreur debordement" 
+   WSTR "E03 erreur debordement de la pile" 
    WNL 
    HALT 
 eti31.32: 
@@ -125,7 +125,7 @@ eti31.32:
    BOV eti32.33 
    BRA eti33.34 
 eti32.33: 
-   WSTR "erreur debordement" 
+   WSTR "E03 erreur debordement de la pile" 
    WNL 
    HALT 
 eti33.34: 
@@ -141,7 +141,7 @@ eti25.26:
    BOV eti34.35 
    BRA eti35.36 
 eti34.35: 
-   WSTR "erreur debordement" 
+   WSTR "E03 erreur debordement de la pile" 
    WNL 
    HALT 
 eti35.36: 

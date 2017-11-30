@@ -5,7 +5,7 @@
    BOV eti0.1 
    BRA eti1.2 
 eti0.1: 
-   WSTR "erreur debordement" 
+   WSTR "E03 erreur debordement de la pile" 
    WNL 
    HALT 
 eti1.2: 
@@ -16,7 +16,7 @@ eti1.2:
    CMP #2147483647, R0 
    BLE eti3.4 
 eti2.3: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti3.4: 
@@ -38,7 +38,7 @@ eti4.5:
    CMP #2147483647, R1 
    BLE eti7.8 
 eti6.7: 
-   WSTR "debordement de l'intervale" 
+   WSTR "E02 interval incorrect" 
    WNL 
    HALT 
 eti7.8: 

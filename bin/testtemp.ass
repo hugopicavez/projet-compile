@@ -5,103 +5,58 @@
    BOV eti0.1 
    BRA eti1.2 
 eti0.1: 
-   WSTR "erreur debordement" 
+   WSTR "E03 erreur debordement de la pile" 
    WNL 
    HALT 
 eti1.2: 
    ADDSP #82 
    LOAD #1, R1 
    ADD #1, R1 
-   ADDSP #1 
-   STORE R1, 83(GB) 
+   LOAD #1, R0 
+   ADD #1, R0 
+   ADD R0, R1 
+   LOAD #1, R0 
+   ADD #1, R0 
    LOAD #1, R1 
    ADD #1, R1 
-   ADD 83(GB), R1 
-   SUBSP #1 
-   ADDSP #1 
-   STORE R1, 83(GB) 
+   ADD R1, R0 
+   ADD R0, R1 
+   LOAD #1, R0 
+   ADD #1, R0 
    LOAD #1, R1 
    ADD #1, R1 
-   ADDSP #1 
-   STORE R1, 84(GB) 
+   ADD R1, R0 
    LOAD #1, R1 
    ADD #1, R1 
-   ADD 84(GB), R1 
-   SUBSP #1 
-   ADD 83(GB), R1 
-   SUBSP #1 
-   ADDSP #1 
-   STORE R1, 83(GB) 
+   LOAD #1, R2 
+   ADD #1, R2 
+   ADD R2, R1 
+   ADD R1, R0 
+   ADD R0, R1 
+   LOAD #1, R0 
+   ADD #1, R0 
    LOAD #1, R1 
    ADD #1, R1 
-   ADDSP #1 
-   STORE R1, 84(GB) 
+   ADD R1, R0 
    LOAD #1, R1 
    ADD #1, R1 
-   ADD 84(GB), R1 
-   SUBSP #1 
-   ADDSP #1 
-   STORE R1, 84(GB) 
+   LOAD #1, R2 
+   ADD #1, R2 
+   ADD R2, R1 
+   ADD R1, R0 
    LOAD #1, R1 
    ADD #1, R1 
-   ADDSP #1 
-   STORE R1, 85(GB) 
-   LOAD #1, R1 
-   ADD #1, R1 
-   ADD 85(GB), R1 
-   SUBSP #1 
-   ADD 84(GB), R1 
-   SUBSP #1 
-   ADD 83(GB), R1 
-   SUBSP #1 
-   ADDSP #1 
-   STORE R1, 83(GB) 
-   LOAD #1, R1 
-   ADD #1, R1 
-   ADDSP #1 
-   STORE R1, 84(GB) 
-   LOAD #1, R1 
-   ADD #1, R1 
-   ADD 84(GB), R1 
-   SUBSP #1 
-   ADDSP #1 
-   STORE R1, 84(GB) 
-   LOAD #1, R1 
-   ADD #1, R1 
-   ADDSP #1 
-   STORE R1, 85(GB) 
-   LOAD #1, R1 
-   ADD #1, R1 
-   ADD 85(GB), R1 
-   SUBSP #1 
-   ADD 84(GB), R1 
-   SUBSP #1 
-   ADDSP #1 
-   STORE R1, 84(GB) 
-   LOAD #1, R1 
-   ADD #1, R1 
-   ADDSP #1 
-   STORE R1, 85(GB) 
-   LOAD #1, R1 
-   ADD #1, R1 
-   ADD 85(GB), R1 
-   SUBSP #1 
-   ADDSP #1 
-   STORE R1, 85(GB) 
-   LOAD #1, R1 
-   ADD #1, R1 
-   ADDSP #1 
-   STORE R1, 86(GB) 
-   LOAD #1, R1 
-   ADD #1, R1 
-   ADD 86(GB), R1 
-   SUBSP #1 
-   ADD 85(GB), R1 
-   SUBSP #1 
-   ADD 84(GB), R1 
-   SUBSP #1 
-   ADD 83(GB), R1 
-   SUBSP #1 
+   LOAD #1, R2 
+   ADD #1, R2 
+   ADD R2, R1 
+   LOAD #1, R2 
+   ADD #1, R2 
+   LOAD #1, R3 
+   ADD #1, R3 
+   ADD R3, R2 
+   ADD R2, R1 
+   ADD R1, R0 
+   ADD R0, R1 
    WINT 
    WNL 
    SUBSP #82 

@@ -5,7 +5,7 @@
    BOV eti0.1 
    BRA eti1.2 
 eti0.1: 
-   WSTR "erreur debordement" 
+   WSTR "E03 erreur debordement de la pile" 
    WNL 
    HALT 
 eti1.2: 
@@ -19,7 +19,7 @@ eti1.2:
    WSTR "true : " 
    LOAD 1(GB), R0 
    CMP #0, R0 
-   BEQ eti4.5 
+   BNE eti4.5 
    LOAD 1(GB), R0 
    BRA eti5.6 
 eti4.5: 
@@ -36,7 +36,7 @@ eti3.4:
    WSTR "true : " 
    LOAD #0, R0 
    CMP #0, R0 
-   BEQ eti8.9 
+   BNE eti8.9 
    LOAD 1(GB), R0 
    BRA eti9.10 
 eti8.9: 
@@ -53,7 +53,7 @@ eti7.8:
    WSTR "true : " 
    LOAD 1(GB), R0 
    CMP #0, R0 
-   BEQ eti12.13 
+   BNE eti12.13 
    LOAD 2(GB), R0 
    BRA eti13.14 
 eti12.13: 
@@ -68,6 +68,9 @@ eti10.11:
 eti11.12: 
    WNL 
    WSTR "false : " 
+   LOAD #0, R0 
+   CMP #0, R0 
+   BNE eti16.17 
    LOAD #0, R0 
    BRA eti17.18 
 eti16.17: 
@@ -135,6 +138,9 @@ eti26.27:
 eti27.28: 
    WNL 
    WSTR "false : " 
+   LOAD #0, R0 
+   CMP #0, R0 
+   BEQ eti32.33 
    LOAD #0, R0 
    BRA eti33.34 
 eti32.33: 

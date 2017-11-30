@@ -1,115 +1,115 @@
 program
 begin
    if (1 = 1) then
-        write("j ai teste  avec succe l egaliter entre deux entier egaux");
+        write("Succes : if(1==1)");
    else
-        write("j ai echoue a comparer l egaliter entre deux entier egaux");
+        write("Echec : if(1==1)");
    end;
    new_line;
    
    if (1 = 2) then
-       write("j ai echoue a comparer egaliter entre  deux entier diferent");
+       write("Echec : comparaison 1=2 ");
    else
-       write("j ai comparai avec succe egaliter entre deux entier diferent");
+       write("Succes : comparaison 1=2 ");
    end;
    new_line;
    
    if (1 /= 2) then
-        write("j ai teste  avec succe la non egaliter entre deux entier different");
+        write("Succes : comparaison 1/=2");
    else
-        write("j ai echoue a comparer la non egaliter entre deux entier different");
+        write("Echec : comparaison 1/=2");
    end;
    new_line;
       
    if (1 /= 1) then
-        write("j ai echoue la non egaliter entre deux entier egaux");
+        write("Echec : comparaison 1/=1");
    else
-        write("j ai teste  avec succe a comparer la non egaliter entre deux entier egaux");
+        write("Succes  : comparaison 1/=1");
    end;
    new_line;
 
    if (1 < 1.5) then
-        write("j ai teste  avec succe l inferioriter ");
+        write("Succes : comparaison 1<1.5");
    else
-        write("j ai echoue a comparer l inferioriter ");
+        write("Echec : comparaison 1<1.5");
    end;
    new_line;
 
    if (1.5 < 1) then
-       write("j ai echoue l inferioriter");
+       write("Echec : comparaison 1.5<1");
    else
-       write("j ai comparai avec succe l inferioriter");
+       write("Succes : comparaison 1.5<1");
    end;
    new_line;
 
    if (1.5 < 1.5) then
-       write("j ai echoue l inferioriter");
+       write("Echec :comparaison 1.5<1.5");
    else
-       write("j ai comparai avec succe l inferioriter");
+       write("Succes :comparaison 1.5<1.5");
    end;
    new_line;
 
    if (1 <= 1.5) then
-        write("j ai teste  avec succe l inferioriter egal");
+        write("Succes :comparaison 1<=1.5");
    else
-        write("j ai echoue a comparer l inferioriter egal");
+        write("Echec :comparaison 1<=1.5");
    end;
    new_line;
 
    if (1.5 <= 1) then
-       write("j ai echoue l inferioriter egal");
+       write("Echec :comparaison 1.5 <= 1");
    else
-       write("j ai comparai avec succe l inferioriter egal ");
+       write("Succes : comparaison 1.5 <= 1 ");
    end;
    new_line;
 
    if (1.5 <= 1.5) then
-       write("j ai comparai avec succe l inferioriter egal");
+       write("Succes :comparaison 1.5 <= 1.5");
    else
-       write("j ai echoue l inferioriter egal ");
+       write("Echec : comparaison 1.5 <= 1.5 ");
    end;
 
    new_line;
 
    if (1.5 > 1) then
-           write("j ai teste  avec succe l supperieur ");
+           write("Succes: comparaison 1.5 > 1 ");
       else
-           write("j ai echoue a comparer l supperieur ");
+           write("Echec : comparaison 1.5 > 1 ");
       end;
       new_line;
 
       if (1.5 > 1) then
-          write("j ai comparai avec succe l supperieur");
+          write("Succes : comparaison 1.5>1");
       else
-          write("j ai echoue l supperieur");
+          write("Echec : comparaison 1.5>1");
       end;
       new_line;
 
       if (1.5 > 1.5) then
-          write("j ai echoue l supperieur");
+          write("Echec : comparaison 1.5>1.5");
       else
-          write("j ai comparai avec succe l supperieur");
+          write("Succes : comparaison 1.5>1.5");
       end;
       new_line;
 
       if (1.5 >= 1) then
-           write("j ai teste  avec succe l supperieur egal");
+           write("Succes : comparaison 1.5 >= 1");
       else
-           write("j ai echoue a comparer l supperieur egal");
+           write("Echec : comparaison 1.5 >= 1");
       end;
       new_line;
 
       if (1 >= 1.5) then
-          write("j ai echoue l supperieur egal");
+          write("Echec : comparaison 1>=1.5");
       else
-          write("j ai comparai avec succe l supperieur egal ");
+          write("Succes : comparaison 1>=1.5 ");
       end;
       new_line;
 
       if (1.5 >= 1.5) then
-        write("j ai comparai avec succe l supperieur egal");
+        write("Succes : comparaison 1.5>=1.5");
       else
-        write("j ai echoue l supperieur egal ");
+        write("Echec : comparaison 1.5>=1.5 ");
       end;
       new_line;
 
