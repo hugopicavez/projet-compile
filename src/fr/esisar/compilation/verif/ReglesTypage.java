@@ -50,7 +50,7 @@ public class ReglesTypage {
         switch (noeud) {
             case Et:
             case Ou:
-                verifier_Condition_Bool(binaireOk, t1);
+                verifier_Condition_Bool(binaireOk, t1, t2);
                 break;
             case Egal:
             case Inf:
@@ -78,8 +78,8 @@ public class ReglesTypage {
         }
         return binaireOk;
     }
-    private static void verifier_Condition_Bool(ResultatBinaireCompatible binaireOk , Type t1){
-      if (t1.getNature().equals(NatureType.Boolean) && t1.getNature().equals(NatureType.Boolean))
+    private static void verifier_Condition_Bool(ResultatBinaireCompatible binaireOk , Type t1, Type t2){
+      if (t1.getNature().equals(NatureType.Boolean) && t2.getNature().equals(NatureType.Boolean))
       {
           binaireOk.setOk(true);
       }

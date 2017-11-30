@@ -8,9 +8,9 @@ import fr.esisar.compilation.global.src3.*;
 public class Memoire {
     private boolean registres[] = new boolean[16];
     private ArrayList<Boolean> pile = new ArrayList<>();
-    private int pillUse = 0;
+    private long pillUse = 0;
 
-    public void setPileUse(int pileUse){
+    public void setPileUse(long pileUse){
         this.pillUse = pileUse;
     }
 
@@ -28,7 +28,7 @@ public class Memoire {
     public Operande createVariableTemp() {
         Prog.ajouter(Inst.creation1(Operation.ADDSP,
                 Operande.creationOpEntier(1)));
-        return Operande.creationOpIndirect(++this.pillUse, Registre.GB);
+        return Operande.creationOpIndirect((int)++this.pillUse, Registre.GB);
     }
 
     public void freeVariableTemp(){
@@ -84,6 +84,16 @@ public class Memoire {
         return number;
     }
 
+    public void reservePile(long value){
+        while(value > 0){
+            int place = (int) Math.min(value, Integer.MAX_VALUE);
+            testePile(place);
+            Prog.ajouter(Inst.creation1(Operation.ADDSP,
+                    Operande.creationOpEntier(place)));
+            value = value - place;
+        }
+    }
+
     public void testePile(int size){
         Etiq error = Etiq.nouvelle("eti" + Generation.numberEti++);
         Etiq fin = Etiq.nouvelle("eti" + Generation.numberEti++);
@@ -91,10 +101,19 @@ public class Memoire {
         Prog.ajouter(Inst.creation1(Operation.BOV, Operande.creationOpEtiq(error)));
         Prog.ajouter(Inst.creation1(Operation.BRA, Operande.creationOpEtiq(fin)));
         Prog.ajouter(error);
-        Prog.ajouter(Inst.creation1(Operation.WSTR, Operande.creationOpChaine("erreur debordement")));
+        Prog.ajouter(Inst.creation1(Operation.WSTR, Operande.creationOpChaine("E03 erreur debordement de la pile")));
         Prog.ajouter(Inst.creation0(Operation.WNL));
         Prog.ajouter(Inst.creation0(Operation.HALT));
         Prog.ajouter(fin);
     }
 
+
+    public void freePile() {
+        while(this.pillUse > 0){
+            int place = (int) Math.min(this.pillUse, Integer.MAX_VALUE);
+            Prog.ajouter(Inst.creation1(Operation.SUBSP,
+                    Operande.creationOpEntier(place)));
+            this.pillUse = this.pillUse - place;
+        }
+    }
 }

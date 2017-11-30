@@ -20,14 +20,12 @@ public class Generation {
         numberEti = 0;
         Prog.ajouterGrosComment("Programme genere par JCasc");
 
-        int size = gene_LISTE_DECL(a.getFils1(), 1);
-        memoire.testePile(size);
+        long size = gene_LISTE_DECL(a.getFils1(), 1);
+        memoire.reservePile(size);
         memoire.setPileUse(size);
-        Prog.ajouter(Inst.creation1(Operation.ADDSP,
-                Operande.creationOpEntier(size)));
         gene_LISTE_INST(a.getFils2());
-        Prog.ajouter(Inst.creation1(Operation.SUBSP,
-                Operande.creationOpEntier(size)));
+        memoire.freePile();
+
         // Fin du programme
         // L'instruction "HALT"
         Inst inst = Inst.creation0(Operation.HALT);
@@ -159,7 +157,7 @@ public class Generation {
         Prog.ajouter(Inst.creation2(Operation.CMP, Operande.creationOpEntier(type.getBorneSup()), Operande.opDirect(registre)));
         Prog.ajouter(Inst.creation1(Operation.BLE, Operande.creationOpEtiq(fin)));
         Prog.ajouter(erreur);
-        Prog.ajouter(Inst.creation1(Operation.WSTR, Operande.creationOpChaine("debordement de l'intervale")));
+        Prog.ajouter(Inst.creation1(Operation.WSTR, Operande.creationOpChaine("E02 interval incorrect")));
         Prog.ajouter(Inst.creation0(Operation.WNL));
         Prog.ajouter(Inst.creation0(Operation.HALT));
         Prog.ajouter(fin);
@@ -206,7 +204,7 @@ public class Generation {
                 Prog.ajouter(Inst.creation2(Operation.CMP, Operande.creationOpEntier(type.getIndice().getBorneSup()), Operande.opDirect(index)));
                 Prog.ajouter(Inst.creation1(Operation.BLE, Operande.creationOpEtiq(fin)));
                 Prog.ajouter(erreur);
-                Prog.ajouter(Inst.creation1(Operation.WSTR, Operande.creationOpChaine("erreur debordemet index tableau")));
+                Prog.ajouter(Inst.creation1(Operation.WSTR, Operande.creationOpChaine("E01 l'index incorrecte ")));
                 Prog.ajouter(Inst.creation0(Operation.WNL));
                 Prog.ajouter(Inst.creation0(Operation.HALT));
                 Prog.ajouter(fin);
@@ -447,7 +445,6 @@ public class Generation {
 
 
     private static Operande gene_comparaison(Arbre a, Registre registre) {
-        List<Ligne> stateBefore = (List<Ligne>) ((ArrayList) Prog.instance().getListeLignes()).clone();
         Registre temp = memoire.get(registre);
         Operande operande1 = gene_Exp(a.getFils1(), registre);
         Operande operande2 = gene_Exp(a.getFils2(), temp);
@@ -536,7 +533,7 @@ public class Generation {
 
         } else Prog.ajouter(Inst.creation2(Operation.CMP, compare, operande1));
         Prog.ajouter(Inst.creation1(Operation.BNE, Operande.creationOpEtiq(fin)));
-        Prog.ajouter(Inst.creation1(Operation.WSTR, Operande.creationOpChaine("division par zero")));
+        Prog.ajouter(Inst.creation1(Operation.WSTR, Operande.creationOpChaine("E00 Division par zero")));
         Prog.ajouter(Inst.creation0(Operation.WNL));
         Prog.ajouter(Inst.creation0(Operation.HALT));
         Prog.ajouter(fin);
