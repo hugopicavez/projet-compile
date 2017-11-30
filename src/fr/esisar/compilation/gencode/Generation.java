@@ -76,7 +76,7 @@ public class Generation {
     private static long sizeTableau(Type type) {
         long size = 1;
         while (type.getNature() == NatureType.Array) {
-            size = (type.getIndice().getBorneSup() - type.getIndice().getBorneInf() + 1) * size;
+            size = ((long)type.getIndice().getBorneSup() - (long)type.getIndice().getBorneInf() + 1l) * size;
             type = type.getElement();
         }
         return size;

@@ -1,0 +1,7 @@
+program
+	h : 1 .. 8;
+begin
+    write("teste erreur affecter interval inf");
+    new_line;
+	h := 9;
+end.
